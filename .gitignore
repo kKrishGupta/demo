@@ -8,7 +8,7 @@ dist-ssr/
 **/dist/
 coverage/
 
-# Environment variables & secrets (keep .env.example)
+# Environment variables & secrets (keep .env.example, .env.development, and .env.production)
 .env
 .env.local
 .env.*.local
@@ -16,6 +16,8 @@ coverage/
 **/.env.local
 **/.env.*.local
 !**/.env.example
+!**/.env.development
+!**/.env.production
 
 # Sensitive OAuth token store & test stores
 server/data/google_tokens.enc.json
@@ -32,3 +34,4 @@ pnpm-debug.log*
 .idea
 .vscode/*
 !.vscode/extensions.json
+

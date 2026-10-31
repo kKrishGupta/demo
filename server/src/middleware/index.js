@@ -18,13 +18,18 @@ export const corsMiddleware = cors({
   origin: (origin, callback) => {
     // Allow requests with no origin (e.g. mobile apps, curl)
     if (!origin) return callback(null, true);
-    if (config.cors.allowedOrigins.includes(origin) || config.server.isDev) {
+    if (
+      config.cors.allowedOrigins.includes(origin) ||
+      origin === config.app.baseUrl ||
+      /^https:\/\/[a-z0-9-]+\.vercel\.app$/i.test(origin) ||
+      config.server.isDev
+    ) {
       return callback(null, true);
     }
     callback(new Error(`CORS: Origin ${origin} not allowed`));
   },
   credentials: true,
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization', 'X-Request-ID', 'X-Session-ID']
 });
 

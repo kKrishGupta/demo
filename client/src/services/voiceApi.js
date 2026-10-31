@@ -1,16 +1,17 @@
 /**
  * ActionFlow AI — Voice API Client Service (Phase 2)
  * Clean interface for all voice-related API calls.
+ * Uses centralized apiConfig (`https://demo-51qr.onrender.com` in production,
+ * `http://localhost:3001` in development).
  * Falls back to local rule engine when server is unreachable.
  */
 
 import { processVoiceCommand } from '../features/intelligence/voiceCommandEngine.js';
 import { SESSION_ID } from './intelligenceApi.js';
-
-const API_BASE = '/api/v1';
+import { buildApiUrl } from '../config/apiConfig.js';
 
 async function post(path, body) {
-  const res = await fetch(`${API_BASE}${path}`, {
+  const res = await fetch(buildApiUrl(path), {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -29,7 +30,7 @@ async function post(path, body) {
 }
 
 async function get(path) {
-  const res = await fetch(`${API_BASE}${path}`, {
+  const res = await fetch(buildApiUrl(path), {
     headers: { 'X-Session-ID': SESSION_ID }
   });
   if (!res.ok) throw new Error(`HTTP ${res.status}`);

@@ -13,7 +13,8 @@
  *   POST /api/v1/execution/execute
  *   POST /api/v1/execution/approve
  *
- * Uses relative URLs so the Vite dev proxy forwards to the backend.
+ * Uses centralized apiConfig (`https://demo-51qr.onrender.com` in production,
+ * `http://localhost:3001` in development).
  * Falls back to the local rule engine when the server is unreachable.
  */
 
@@ -21,9 +22,10 @@ import { analyzeTranscript, quickExtract, registerCompletedAction, recordCorrect
 import { buildExecutionPlan } from '../features/intelligence/dagPlanner.js';
 import { validateTaskPayload } from './taskService.js';
 import { draftToMicroAction, detectActionType } from '../features/intelligence/actionTypes.js';
+import { API_V1_BASE_URL, HEALTH_URL, buildApiUrl } from '../config/apiConfig.js';
 
 const API_VERSION = 'v1';
-const API_BASE = `/api/${API_VERSION}`;
+const API_BASE = API_V1_BASE_URL;
 
 // Session ID for request tracing (persisted across reloads and OAuth redirects)
 function getOrCreateSessionId() {
@@ -52,13 +54,12 @@ export const SESSION_ID = getOrCreateSessionId();
 let _serverAvailable = null; // null = unknown, true/false after first probe
 
 /**
- * Probes the server health endpoint to determine availability.
- * Caches the result so we don't probe on every call.
+ * Probes the server health endpoint (`${API_BASE_URL}/health`) to determine availability.
  */
 async function probeServer() {
-  if (_serverAvailable !== null) return _serverAvailable;
+  if (_serverAvailable === true) return true;
   try {
-    const res = await fetch('/health', { signal: AbortSignal.timeout(2000) });
+    const res = await fetch(HEALTH_URL, { signal: AbortSignal.timeout(8000) });
     _serverAvailable = res.ok;
   } catch {
     _serverAvailable = false;
@@ -79,7 +80,7 @@ async function serverPost(path, body) {
   const available = await probeServer();
   if (!available) return null;
 
-  const response = await fetch(`${API_BASE}${path}`, {
+  const response = await fetch(buildApiUrl(path), {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -103,7 +104,7 @@ async function serverGet(path) {
   const available = await probeServer();
   if (!available) return null;
 
-  const response = await fetch(`${API_BASE}${path}`, {
+  const response = await fetch(buildApiUrl(path), {
     headers: { 'X-Session-ID': SESSION_ID }
   });
 
@@ -340,8 +341,6 @@ export async function refreshServerStatus() {
   _serverAvailable = null;
   return await probeServer();
 }
-
-// export { SESSION_ID };
 
 // ─── Voice Command (Phase 1) ───────────────────────────────────────────────────
 /**

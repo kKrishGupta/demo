@@ -104,7 +104,7 @@ export const config = {
   },
 
   cors: {
-    allowedOrigins: (process.env.ALLOWED_ORIGINS || 'http://localhost:5173,http://localhost:5174')
+    allowedOrigins: (process.env.ALLOWED_ORIGINS || 'http://localhost:5173,http://localhost:5174,https://demo-bay-rho-74.vercel.app')
       .split(',')
       .map(s => s.trim())
       .filter(Boolean)

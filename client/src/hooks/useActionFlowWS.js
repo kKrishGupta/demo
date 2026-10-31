@@ -1,18 +1,13 @@
 /**
  * ActionFlow AI — WebSocket Hook
  * Connects to the server WebSocket for real-time Gemini enrichment updates.
+ * Uses centralized buildWebSocketUrl (`wss://demo-51qr.onrender.com/ws` in production,
+ * `ws://localhost:3001/ws` in development).
  * Stable connection lifecycle with ref-based message handler and backoff.
  */
 
 import { useEffect, useRef, useState, useCallback } from 'react';
-
-const WS_URL = () => {
-  // Use Vite proxy path (ws:// same host, /ws path)
-  if (typeof window === 'undefined') return 'ws://localhost:3001/ws';
-  const host = window.location.host;
-  const proto = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
-  return `${proto}//${host}/ws`;
-};
+import { buildWebSocketUrl } from '../config/apiConfig.js';
 
 export default function useActionFlowWS({ sessionId, onMessage, enabled = true }) {
   const ws = useRef(null);
@@ -38,7 +33,7 @@ export default function useActionFlowWS({ sessionId, onMessage, enabled = true }
     }
 
     try {
-      const url = `${WS_URL()}?sessionId=${encodeURIComponent(sessionId)}`;
+      const url = buildWebSocketUrl(sessionId);
       const socket = new WebSocket(url);
 
       socket.onopen = () => {

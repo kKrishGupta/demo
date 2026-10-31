@@ -4,6 +4,7 @@ import {
   Sparkles, AlertCircle, RefreshCw, Send, CheckCheck,
   ShieldAlert, Clock, Activity
 } from 'lucide-react';
+import { apiFetch } from '../config/apiConfig.js';
 
 export const COUNTRY_CODES = [
   { code: '+91', country: 'India', flag: '🇮🇳' },
@@ -99,8 +100,8 @@ export default function WhatsAppComposer({
     setLoadingTracker(true);
     try {
       const [statusRes, msgsRes] = await Promise.all([
-        fetch('/api/v1/whatsapp/status'),
-        fetch('/api/v1/whatsapp/messages?sync=true')
+        apiFetch('/api/v1/whatsapp/status'),
+        apiFetch('/api/v1/whatsapp/messages?sync=true')
       ]);
       if (statusRes.ok) {
         const sData = await statusRes.json();
@@ -260,7 +261,7 @@ export default function WhatsAppComposer({
     if (!recordId) return;
     setConfirmingId(recordId);
     try {
-      const res = await fetch(`/api/v1/whatsapp/messages/${encodeURIComponent(recordId)}/confirm-user-sent`, {
+      const res = await apiFetch(`/api/v1/whatsapp/messages/${encodeURIComponent(recordId)}/confirm-user-sent`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ confirmed: true })

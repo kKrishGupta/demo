@@ -17,6 +17,7 @@ import { taskService, validateTaskPayload } from './services/taskService';
 import { defaultTaskSubmissionAdapter } from './adapters/taskSubmissionAdapter';
 import { getLocalTimeZone, formatFriendlyDateTime } from './utils/dateTime';
 import { apiAnalyze, apiExecute, refreshServerStatus, getServerStatus } from './services/intelligenceApi';
+import { API_BASE_URL } from './config/apiConfig';
 
 const INITIAL_TASK_STATE = {
   title: '',
@@ -481,7 +482,7 @@ export default function App() {
                   ? 'bg-emerald-50 text-emerald-700 border-emerald-200'
                   : 'bg-slate-50 text-slate-500 border-slate-200'
               }`}
-              title={serverConnected ? 'Connected to ActionFlow AI Server (Gemini enabled)' : 'Running in local mode (rule engine only)'}
+              title={serverConnected ? `Connected to ActionFlow AI Server (${API_BASE_URL})` : `Backend unreachable at ${API_BASE_URL} — Running in local mode`}
             >
               {serverConnected ? (
                 <Wifi className="w-3.5 h-3.5 text-emerald-600" />

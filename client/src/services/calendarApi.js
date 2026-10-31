@@ -10,11 +10,10 @@
  */
 
 import { SESSION_ID } from './intelligenceApi.js';
-
-const API_BASE = '/api/v1';
+import { buildApiUrl } from '../config/apiConfig.js';
 
 async function request(path, options = {}) {
-  const res = await fetch(`${API_BASE}${path}`, {
+  const res = await fetch(buildApiUrl(path), {
     ...options,
     headers: {
       'Content-Type': 'application/json',
@@ -195,5 +194,3 @@ export async function deleteCalendarEventById(eventId) {
     method: 'DELETE'
   });
 }
-
-

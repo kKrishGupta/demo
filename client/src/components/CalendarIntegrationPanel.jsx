@@ -46,6 +46,7 @@ import {
   deleteCalendarEventById
 } from '../services/calendarApi';
 import { SESSION_ID } from '../services/intelligenceApi';
+import { buildWebSocketUrl } from '../config/apiConfig';
 
 const EVENTS_CACHE_KEY = 'af_calendar_hub_events_cache_v1';
 
@@ -212,8 +213,7 @@ export default function CalendarIntegrationPanel() {
 
     // Connect to backend WebSocket for live CALENDAR_UPDATED events
     try {
-      const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
-      const wsUrl = `${protocol}//${window.location.host}/ws?sessionId=${encodeURIComponent(SESSION_ID || 'default_session')}`;
+      const wsUrl = buildWebSocketUrl(SESSION_ID || 'default_session');
       const ws = new WebSocket(wsUrl);
       wsRef.current = ws;
 
