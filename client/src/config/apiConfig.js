@@ -87,6 +87,18 @@ export const HEALTH_URL = resolved.healthUrl;
 export const WS_BASE_URL = resolved.wsBaseUrl;
 export const API_CONFIG_WARNING = resolved.configWarning;
 
+if (typeof window !== 'undefined' && !Boolean(import.meta.env?.VITEST)) {
+  console.info('[ActionFlow Config]', {
+    apiBaseUrl: API_BASE_URL,
+    apiV1BaseUrl: API_V1_BASE_URL,
+    healthUrl: HEALTH_URL,
+    wsBaseUrl: WS_BASE_URL,
+    configuredEnvUrl: resolved.configuredEnvUrl,
+    isProdBuild: resolved.isProdBuild,
+    configWarning: API_CONFIG_WARNING
+  });
+}
+
 /**
  * Constructs a full backend URL from any endpoint path.
  * Safely handles:

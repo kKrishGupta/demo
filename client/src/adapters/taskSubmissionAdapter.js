@@ -4,6 +4,7 @@
  */
 
 import { validateTaskPayload } from '../services/taskService';
+import { buildApiUrl } from '../config/apiConfig';
 
 export class TaskSubmissionAdapter {
   constructor(endpoint = null) {
@@ -50,7 +51,7 @@ export class TaskSubmissionAdapter {
     try {
       // In production, delegate to real HTTP POST endpoint if configured
       if (this._endpoint) {
-        const response = await fetch(this._endpoint, {
+        const response = await fetch(buildApiUrl(this._endpoint), {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(taskPayload)
