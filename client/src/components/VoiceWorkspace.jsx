@@ -17,7 +17,7 @@
 
 import { useState, useEffect, useRef, useCallback } from 'react';
 import {
-  Mic, Square, RefreshCw, Sparkles, AlertCircle, Edit3, Check, X,
+  Mic, Square, RefreshCw, Sparkles, AlertCircle, AlertTriangle, Edit2, Edit3, Check, X, Plus,
   Zap, Calendar, Bell, ShoppingCart, MessageSquare, Mail,
   FileText, ClipboardList, Video, HelpCircle,
   User, GitBranch, Loader2, RotateCcw,
@@ -34,6 +34,7 @@ import {
   sendMeetingChunk,
   endMeeting
 } from '../services/voiceApi';
+import { fetchRooms } from '../services/roomApi';
 import useActionFlowWS from '../hooks/useActionFlowWS';
 import TranscriptHighlighter from './TranscriptHighlighter';
 import WhatsAppComposer from './WhatsAppComposer';

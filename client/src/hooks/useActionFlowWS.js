@@ -83,7 +83,12 @@ export default function useActionFlowWS({ sessionId, onMessage, enabled = true }
       if (ws.current) {
         ws.current.onclose = null; // Suppress close listener on component unmount
         ws.current.onerror = null;
-        ws.current.close();
+        if (ws.current.readyState === WebSocket.OPEN) {
+          ws.current.close();
+        } else if (ws.current.readyState === WebSocket.CONNECTING) {
+          const s = ws.current;
+          s.onopen = () => { try { s.close(); } catch {} };
+        }
         ws.current = null;
       }
     };
