@@ -283,19 +283,37 @@ Return ONLY valid JSON.`;
       }
     }
 
-    // High-fidelity local synthesis fallback
+    // Clean empty state if no audio or text was captured (Section 7: Never fabricate decisions or reports for 0 segments)
+    if (!fullTranscript.trim() && (!meeting.transcriptSegments || meeting.transcriptSegments.length === 0)) {
+      return {
+        isEmpty: true,
+        executiveSummary: 'No speaking segments recorded during this meeting session. Please speak or upload audio before generating a meeting report.',
+        keyDiscussionPoints: [],
+        decisionsTaken: [],
+        actionItems: [],
+        nextSteps: ['Start a recording session and speak into the microphone to capture meeting notes and action items.']
+      };
+    }
+
+    // High-fidelity local synthesis derived strictly from actual captured segments
+    const segmentTexts = (meeting.transcriptSegments || [])
+      .map(s => s.text?.trim())
+      .filter(t => t && t.length > 5);
+
+    const derivedPoints = segmentTexts.slice(0, 5).map(t => t.charAt(0).toUpperCase() + t.slice(1));
+    const keyDiscussionPoints = derivedPoints.length > 0
+      ? derivedPoints
+      : [`Discussion on agenda items across ${meeting.transcriptSegments.length} speaking segment(s).`];
+
     return {
-      executiveSummary: `Discussion on "${meeting.title}" completed. Key priorities and assignments established across ${meeting.transcriptSegments.length} speaking segment(s).`,
-      keyDiscussionPoints: [
-        'Reviewed current milestone deliverables and timeline',
-        'Identified cross-functional dependencies and action owners',
-        'Aligned on upcoming verification and execution schedule'
-      ],
-      decisionsTaken: meeting.decisions.length > 0 ? meeting.decisions : ['Proceed with planned milestone deliverables as discussed.'],
-      actionItems: meeting.incrementalActions,
+      isEmpty: false,
+      executiveSummary: `Discussion on "${meeting.title}" completed. Key items and assignments captured across ${meeting.transcriptSegments.length} speaking segment(s).`,
+      keyDiscussionPoints,
+      decisionsTaken: meeting.decisions.length > 0 ? meeting.decisions : ['No formal binding decisions recorded in this session.'],
+      actionItems: meeting.incrementalActions || [],
       nextSteps: [
         'Review and approve extracted action items in ActionFlow Execution Gateway',
-        'Sync upcoming milestones to Google Calendar'
+        'Distribute relevant tasks to respective rooms'
       ]
     };
   }

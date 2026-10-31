@@ -81,10 +81,49 @@ function destBadgeClass(dest) {
   return DEST_BADGE[DESTINATION_COLORS[dest]] || DEST_BADGE.gray;
 }
 
+// Canonical 13 Room Definitions for Voice Workspace Reassignment
+const CANONICAL_ROOM_OPTIONS = [
+  { roomId: 'room_kitchen', name: 'Kitchen', icon: 'Utensils', category: 'Household / Groceries' },
+  { roomId: 'room_reception', name: 'Reception', icon: 'UserCheck', category: 'Administrative' },
+  { roomId: 'room_drawing_room', name: 'Drawing Room', icon: 'Sofa', category: 'Living Space' },
+  { roomId: 'room_living_room', name: 'Living Room', icon: 'Tv', category: 'Living Space' },
+  { roomId: 'room_bedroom', name: 'Bedroom', icon: 'Bed', category: 'Private Space' },
+  { roomId: 'room_bathroom', name: 'Bathroom', icon: 'Droplet', category: 'Sanitation' },
+  { roomId: 'room_office', name: 'Office', icon: 'Briefcase', category: 'Work & Professional' },
+  { roomId: 'room_meeting_room', name: 'Meeting Room', icon: 'Users', category: 'Collaboration' },
+  { roomId: 'room_dining_room', name: 'Dining Room', icon: 'Coffee', category: 'Household' },
+  { roomId: 'room_store_room', name: 'Store Room', icon: 'Archive', category: 'Inventory' },
+  { roomId: 'room_parking_area', name: 'Parking Area', icon: 'Car', category: 'Facilities' },
+  { roomId: 'room_general', name: 'General', icon: 'Layers', category: 'General' },
+  { roomId: 'room_unassigned', name: 'Unassigned', icon: 'HelpCircle', category: 'Unassigned' }
+];
+
 // ─── Action Card (V4 Master Upgrade) ─────────────────────────────────────────
-function ActionCard({ action, directory = [], onApprove, onReject, onAssigneeChange, onUpdateAction }) {
+function ActionCard({ action, directory = [], rooms = [], onApprove, onReject, onAssigneeChange, onUpdateAction, onNavigateToRooms }) {
   const [submitting, setSubmitting] = useState(false);
   const [result, setResult] = useState(null);
+  const [isEditingTitle, setIsEditingTitle] = useState(false);
+  const [localTitle, setLocalTitle] = useState(action.title || '');
+  const [localRoomId, setLocalRoomId] = useState(action.roomId || 'room_general');
+  const [localRoomName, setLocalRoomName] = useState(action.roomName || 'General');
+
+  // Sync title when action changes
+  useEffect(() => {
+    setLocalTitle(action.title || '');
+    setLocalRoomId(action.roomId || 'room_general');
+    setLocalRoomName(action.roomName || 'General');
+  }, [action.title, action.roomId, action.roomName]);
+
+  const allRoomOptions = useMemo(() => {
+    const list = rooms && rooms.length > 0 ? rooms : CANONICAL_ROOM_OPTIONS;
+    // Ensure all 13 canonical rooms exist in the dropdown
+    const map = new Map();
+    list.forEach(r => map.set(r.roomId, r));
+    CANONICAL_ROOM_OPTIONS.forEach(r => {
+      if (!map.has(r.roomId)) map.set(r.roomId, r);
+    });
+    return Array.from(map.values());
+  }, [rooms]);
 
   const DestIcon = DEST_ICONS[action.destination] || HelpCircle;
   const bc = destBadgeClass(action.destination);
@@ -112,12 +151,49 @@ function ActionCard({ action, directory = [], onApprove, onReject, onAssigneeCha
           result?.result?.status === 'SENT')));
   const isFailed = action.stage === 'FAILED' || (result && (result.status === 'FAILED' || result.success === false));
 
+  // Confidence and visual indicator calculations
+  const rawConfidence = action.classificationConfidence !== undefined
+    ? action.classificationConfidence
+    : Math.round((action.confidence?.overall || action.confidence || 0.85) * 100);
+  const confidenceScore = Math.min(100, Math.max(10, Number(rawConfidence) || 85));
+
+  const isUnassigned = localRoomId === 'room_unassigned' || !localRoomId;
+  const isNeedsReview = !isUnassigned && (action.requiresRoomReview || confidenceScore < 80);
+  const isConfident = !isUnassigned && !isNeedsReview && confidenceScore >= 80;
+
+  const handleRoomSelect = (newRoomId) => {
+    const selected = allRoomOptions.find(r => r.roomId === newRoomId);
+    const newRoomName = selected?.name || newRoomId;
+    setLocalRoomId(newRoomId);
+    setLocalRoomName(newRoomName);
+    onUpdateAction?.({
+      ...action,
+      roomId: newRoomId,
+      roomName: newRoomName,
+      roomCategory: selected?.category || action.roomCategory,
+      requiresRoomReview: false
+    });
+  };
+
+  const handleSaveTitle = () => {
+    setIsEditingTitle(false);
+    if (localTitle.trim()) {
+      onUpdateAction?.({
+        ...action,
+        title: localTitle.trim()
+      });
+    }
+  };
+
   const handleApprove = async (customPayload) => {
     if (submitting) return result;
     setSubmitting(true);
     try {
       const merged = {
         ...action,
+        title: localTitle || action.title,
+        roomId: localRoomId,
+        roomName: localRoomName,
         ...(customPayload || {})
       };
       const payload = {
@@ -145,9 +221,10 @@ function ActionCard({ action, directory = [], onApprove, onReject, onAssigneeCha
 
   return (
     <div className={`bg-white rounded-xl border overflow-hidden shadow-xs transition-all w-full max-w-full ${
-      isDone    ? 'border-emerald-300' :
-      isFailed  ? 'border-rose-300' :
-      isPending ? 'border-amber-300 ring-1 ring-amber-100' : 'border-slate-200'
+      isDone    ? 'border-emerald-300 ring-1 ring-emerald-100' :
+      isFailed  ? 'border-rose-300 ring-1 ring-rose-100' :
+      isNeedsReview ? 'border-amber-300 ring-1 ring-amber-100' :
+      isConfident ? 'border-emerald-200 hover:border-emerald-300' : 'border-slate-200'
     }`}>
       <div className="px-4 py-3 flex items-start gap-3">
         <div className={`p-2 rounded-lg border shrink-0 ${bc}`}>
@@ -155,6 +232,7 @@ function ActionCard({ action, directory = [], onApprove, onReject, onAssigneeCha
         </div>
 
         <div className="flex-1 min-w-0">
+          {/* Header Row: Destination, Type, Priority, Status Pill */}
           <div className="flex items-center justify-between gap-2 flex-wrap">
             <div className="flex items-center gap-1.5 flex-wrap">
               <span className={`text-[10px] px-2 py-0.5 rounded-full border font-semibold ${bc}`}>
@@ -169,49 +247,129 @@ function ActionCard({ action, directory = [], onApprove, onReject, onAssigneeCha
                   {action.priority}
                 </span>
               )}
-              {action.roomName && (
-                <span className="text-[10px] px-2 py-0.5 rounded-full bg-blue-50 text-blue-800 border border-blue-200 font-bold flex items-center gap-1 shadow-2xs">
-                  🏠 {action.roomName}
-                </span>
-              )}
+              {/* Category Badge */}
+              <span className="text-[10px] px-2 py-0.5 rounded-full bg-slate-100 text-slate-700 border border-slate-200 font-medium">
+                🏷️ {action.roomCategory || action.category || 'General'}
+              </span>
             </div>
 
-            <div className="flex items-center gap-2">
-              {isPending && (
-                <span className="text-[10px] text-amber-700 bg-amber-50 px-2 py-0.5 rounded border border-amber-200 font-semibold">
-                  {action.status === 'NEEDS_RECIPIENT_NUMBER_OR_APPROVAL' ? 'Phone Number Needed' : 'Approval Required'}
-                </span>
-              )}
-              {isAwaitingUserSend && (
-                <span className="text-[10px] text-amber-800 bg-amber-100 px-2 py-0.5 rounded border border-amber-300 font-semibold">
-                  Awaiting User Send in WhatsApp
-                </span>
-              )}
-              {isSimulated && (
-                <span className="text-[10px] text-purple-800 bg-purple-100 px-2 py-0.5 rounded border border-purple-300 font-semibold">
-                  Simulated Only (Not Sent)
+            {/* Meaningful Visual Indicator Status Badge (Section 5) */}
+            <div className="flex items-center gap-1.5 flex-wrap">
+              {isFailed && (
+                <span className="text-[10px] text-rose-700 bg-rose-50 px-2.5 py-0.5 rounded-full border border-rose-200 font-bold flex items-center gap-1">
+                  <AlertCircle className="w-3 h-3 text-rose-600" />
+                  Failed
                 </span>
               )}
               {isDone && (
-                <span className="text-[10px] text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200 font-semibold flex items-center gap-1">
+                <span className="text-[10px] text-emerald-700 bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-200 font-bold flex items-center gap-1">
                   <Check className="w-3 h-3 text-emerald-600" />
-                  {result?.whatsappStatus ? `WhatsApp: ${result.whatsappStatus}` : 'Executed'}
+                  {result?.whatsappStatus ? `WhatsApp: ${result.whatsappStatus}` : 'Saved / Executed'}
                 </span>
               )}
-              {isFailed && (
-                <span className="text-[10px] text-rose-700 bg-rose-50 px-2 py-0.5 rounded border border-rose-200 font-semibold">
-                  Failed
+              {!isDone && !isFailed && isConfident && (
+                <span className="text-[10px] text-emerald-700 bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-300 font-bold flex items-center gap-1 shadow-2xs">
+                  <Check className="w-3 h-3 text-emerald-600" />
+                  Confidently Assigned ({confidenceScore}%)
+                </span>
+              )}
+              {!isDone && !isFailed && isNeedsReview && (
+                <span className="text-[10px] text-amber-800 bg-amber-50 px-2.5 py-0.5 rounded-full border border-amber-300 font-bold flex items-center gap-1 shadow-2xs">
+                  <AlertTriangle className="w-3 h-3 text-amber-600" />
+                  Needs Review ({confidenceScore}%)
+                </span>
+              )}
+              {!isDone && !isFailed && isUnassigned && (
+                <span className="text-[10px] text-slate-600 bg-slate-100 px-2.5 py-0.5 rounded-full border border-slate-300 font-semibold flex items-center gap-1">
+                  <HelpCircle className="w-3 h-3 text-slate-500" />
+                  Unassigned Room
                 </span>
               )}
             </div>
           </div>
 
-          <h3 className="text-sm font-semibold text-slate-800 mt-1 break-words">{action.title}</h3>
+          {/* Interactive Room Reassignment Row & Title Inline Edit */}
+          <div className="mt-2 flex items-center justify-between gap-2 flex-wrap bg-slate-50 p-2 rounded-lg border border-slate-200">
+            <div className="flex items-center gap-2 flex-wrap min-w-0">
+              <span className="text-[11px] font-bold text-slate-700 flex items-center gap-1 shrink-0">
+                🏠 Assigned Room:
+              </span>
+              <select
+                value={localRoomId}
+                onChange={(e) => handleRoomSelect(e.target.value)}
+                className="bg-white border border-slate-300 rounded-md px-2 py-0.5 text-xs font-semibold text-slate-800 focus:outline-none focus:ring-1 focus:ring-blue-500 shadow-2xs max-w-[180px] sm:max-w-xs truncate"
+              >
+                {allRoomOptions.map(r => (
+                  <option key={r.roomId} value={r.roomId}>{r.name} {r.category ? `(${r.category})` : ''}</option>
+                ))}
+              </select>
+            </div>
 
-          {/* CALENDAR-SPECIFIC DEDICATED APPROVAL CARD (Phase 4, 6, 10) */}
+            <div className="flex items-center gap-1 text-[11px] text-slate-500">
+              <span className="font-mono text-[10px]">Conf: {confidenceScore}%</span>
+            </div>
+          </div>
+
+          {/* Task Title with Inline Edit Toggle */}
+          <div className="mt-2">
+            {isEditingTitle ? (
+              <div className="flex items-center gap-1.5 mt-1">
+                <input
+                  type="text"
+                  value={localTitle}
+                  onChange={(e) => setLocalTitle(e.target.value)}
+                  onKeyDown={(e) => { if (e.key === 'Enter') handleSaveTitle(); if (e.key === 'Escape') setIsEditingTitle(false); }}
+                  className="w-full text-xs font-semibold text-slate-800 bg-blue-50/50 border border-blue-400 rounded-md px-2 py-1 focus:outline-none focus:ring-1 focus:ring-blue-500"
+                  autoFocus
+                />
+                <button
+                  type="button"
+                  onClick={handleSaveTitle}
+                  className="p-1 bg-emerald-600 hover:bg-emerald-700 text-white rounded text-xs shrink-0"
+                  title="Save title"
+                >
+                  <Check className="w-3.5 h-3.5" />
+                </button>
+                <button
+                  type="button"
+                  onClick={() => { setLocalTitle(action.title); setIsEditingTitle(false); }}
+                  className="p-1 bg-slate-200 hover:bg-slate-300 text-slate-700 rounded text-xs shrink-0"
+                  title="Cancel edit"
+                >
+                  <X className="w-3.5 h-3.5" />
+                </button>
+              </div>
+            ) : (
+              <div className="flex items-start justify-between gap-2 group mt-0.5">
+                <h3 className="text-sm font-semibold text-slate-800 break-words leading-snug">
+                  {localTitle}
+                </h3>
+                {!isDone && (
+                  <button
+                    type="button"
+                    onClick={() => setIsEditingTitle(true)}
+                    className="p-1 text-slate-400 hover:text-blue-600 rounded transition opacity-80 hover:opacity-100 shrink-0"
+                    title="Edit task title"
+                  >
+                    <Edit2 className="w-3.5 h-3.5" />
+                  </button>
+                )}
+              </div>
+            )}
+          </div>
+
+          {/* Classification Reason Text (Section 5) */}
+          <div className="mt-1 text-[11px] text-slate-500 flex items-center gap-1 break-words">
+            <span className="font-medium text-slate-600 shrink-0">💡 Reason:</span>
+            <span className="italic truncate">
+              {action.classificationReason || `Classified to ${localRoomName} based on voice utterance context`}
+            </span>
+          </div>
+
+          {/* CALENDAR-SPECIFIC DEDICATED APPROVAL CARD */}
           {isCalendar && (
             <GoogleCalendarApprovalCard
-              action={action}
+              action={{ ...action, title: localTitle, roomId: localRoomId, roomName: localRoomName }}
               directory={directory}
               onApprove={handleApprove}
               onDismiss={onReject}
@@ -222,7 +380,7 @@ function ActionCard({ action, directory = [], onApprove, onReject, onAssigneeCha
           {/* WHATSAPP-SPECIFIC COMPOSER & NUMBER MANAGEMENT */}
           {isWhatsApp && (
             <WhatsAppComposer
-              action={action}
+              action={{ ...action, title: localTitle, roomId: localRoomId, roomName: localRoomName }}
               directory={directory}
               onUpdateAction={onUpdateAction}
               onSend={handleApprove}
@@ -236,12 +394,12 @@ function ActionCard({ action, directory = [], onApprove, onReject, onAssigneeCha
               <div className="flex items-center gap-2">
                 <span className="p-1 bg-white rounded border border-orange-200 text-orange-700 font-bold text-sm">🛒</span>
                 <div>
-                  <span className="font-bold text-orange-950 text-xs">{action.item || action.title}</span>
+                  <span className="font-bold text-orange-950 text-xs">{action.item || localTitle}</span>
                   <p className="text-[10px] text-orange-700">Added to Household / Grocery Shopping List</p>
                 </div>
               </div>
               <span className="text-[10px] text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200 font-medium flex items-center gap-1">
-                <Check className="w-3 h-3" /> Auto-Saved
+                <Check className="w-3 h-3" /> Ready
               </span>
             </div>
           )}
@@ -270,9 +428,9 @@ function ActionCard({ action, directory = [], onApprove, onReject, onAssigneeCha
           {/* Non-WhatsApp, Non-Calendar Actions button bar */}
           {!isWhatsApp && !isCalendar && (
             <div className="mt-3 pt-2.5 border-t border-slate-100 flex items-center justify-between gap-2 flex-wrap">
-              <span className="text-[10px] text-slate-400 font-mono">
-                Confidence: {Math.round((action.confidence?.overall || action.confidence || 0.95) * 100)}%
-              </span>
+              <div className="flex items-center gap-1.5 text-[11px] text-slate-500">
+                <span className="font-mono text-[10px]">Destination: {action.destinationLabel || action.destination || 'TASK_MANAGER'}</span>
+              </div>
 
               <div className="flex items-center gap-2 flex-wrap">
                 {onReject && !isDone && (
@@ -301,14 +459,16 @@ function ActionCard({ action, directory = [], onApprove, onReject, onAssigneeCha
                 {!isDone && !isFailed && (
                   <>
                     {/* Add to Shopping List button if item/shopping context */}
-                    {(isShopping || /milk|bread|groceries|grocery|shopping|eggs?|butter|dal|atta|sugar|sabzi|doodh/i.test(action.title || action.item || action.sourceText || '')) && (
+                    {(isShopping || /milk|bread|groceries|grocery|shopping|eggs?|butter|dal|atta|sugar|sabzi|doodh/i.test(localTitle || action.item || action.sourceText || '')) && (
                       <button
                         type="button"
                         onClick={() => handleApprove({
                           type: 'ADD_ITEM',
                           destination: 'SHOPPING_LIST',
-                          title: action.title?.startsWith('Add ') ? action.title : `Add ${action.item || action.title} to shopping list`,
-                          item: action.item || action.title
+                          title: localTitle?.startsWith('Add ') ? localTitle : `Add ${action.item || localTitle} to shopping list`,
+                          item: action.item || localTitle,
+                          roomId: localRoomId,
+                          roomName: localRoomName
                         })}
                         disabled={submitting}
                         className="min-h-[36px] px-3 py-1.5 bg-orange-600 hover:bg-orange-700 text-white rounded-lg text-xs font-semibold flex items-center gap-1.5 shadow-xs transition"
@@ -325,17 +485,17 @@ function ActionCard({ action, directory = [], onApprove, onReject, onAssigneeCha
                       onClick={() => handleApprove({
                         type: 'CREATE_TASK',
                         destination: 'TASK_MANAGER',
-                        title: action.title,
-                        description: action.description || action.title,
-                        roomId: action.roomId || 'room_general',
-                        roomName: action.roomName || 'General'
+                        title: localTitle,
+                        description: action.description || localTitle,
+                        roomId: localRoomId,
+                        roomName: localRoomName
                       })}
                       disabled={submitting}
                       className="min-h-[36px] px-3.5 py-1.5 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-xs font-bold flex items-center gap-1.5 shadow-xs transition"
                       title="Add to Task Manager and distribute to Room"
                     >
                       {submitting ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <Plus className="w-3.5 h-3.5" />}
-                      <span>Add as Task {action.roomName ? `(${action.roomName})` : ''}</span>
+                      <span>Add as Task ({localRoomName})</span>
                     </button>
                   </>
                 )}
@@ -343,7 +503,7 @@ function ActionCard({ action, directory = [], onApprove, onReject, onAssigneeCha
                 {isDone && (
                   <span className="text-xs text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-lg border border-emerald-200 font-semibold flex items-center gap-1">
                     <Check className="w-3.5 h-3.5 text-emerald-600" />
-                    <span>Added &amp; Saved Successfully</span>
+                    <span>Added &amp; Distributed to {localRoomName}</span>
                   </span>
                 )}
               </div>
@@ -362,7 +522,8 @@ export default function VoiceWorkspace({
   departments = [],
   industry = 'all',
   onTaskFormFill,
-  onCommandProcessed
+  onCommandProcessed,
+  onNavigateToRooms
 }) {
   const [commandMode, setCommandMode] = useState('quick'); // 'quick' | 'conversation' | 'meeting'
   const [isListening, setIsListening] = useState(false);
@@ -384,6 +545,7 @@ export default function VoiceWorkspace({
   const [geminiStatus, setGeminiStatus] = useState(null);
   const [activeMeeting, setActiveMeeting] = useState(null);
   const [meetingSummary, setMeetingSummary] = useState(null);
+  const [roomsList, setRoomsList] = useState([]);
 
   const recognizerRef = useRef(null);
   const mediaRecorderRef = useRef(null);
@@ -408,6 +570,15 @@ export default function VoiceWorkspace({
       }
     }, [commandResult, onCommandProcessed])
   });
+
+  // Query rooms from backend for room-aware actions
+  useEffect(() => {
+    fetchRooms().then(res => {
+      if (res?.rooms?.length > 0) setRoomsList(res.rooms);
+    }).catch(() => {
+      setRoomsList(CANONICAL_ROOM_OPTIONS);
+    });
+  }, []);
 
   // Query microphone devices
   useEffect(() => {
@@ -561,10 +732,27 @@ export default function VoiceWorkspace({
     });
   };
 
-  // Phase 3: Finalize Meeting Intelligence
+  // Phase 3: Finalize Meeting Intelligence (Section 7: No fabrication on empty session)
   const handleFinishMeeting = async () => {
+    const hasSpokenContent = Boolean(
+      transcript?.trim() ||
+      activeMeeting?.chunks?.length > 0 ||
+      (commandResult?.actions && commandResult.actions.length > 0)
+    );
+
+    if (!hasSpokenContent) {
+      setMeetingSummary({
+        isEmpty: true,
+        executiveSummary: 'No speaking segments recorded during this meeting session. Please speak or upload audio before generating a meeting report.',
+        keyDiscussionPoints: [],
+        decisionsTaken: [],
+        actionItems: [],
+        nextSteps: ['Start a recording session and speak clearly into the microphone to capture meeting notes and action items.']
+      });
+      return;
+    }
+
     if (!activeMeeting?.id) {
-      // Create and finalize a simulated meeting from the current transcript if not active
       setIsProcessing(true);
       try {
         const started = await startMeeting({
@@ -573,11 +761,12 @@ export default function VoiceWorkspace({
         });
         const finished = await endMeeting(started.meeting?.id || `meet_${Date.now()}`);
         setMeetingSummary(finished.meeting?.summary || {
-          executiveSummary: 'Meeting finalized with key agenda items and deliverables.',
-          keyDiscussionPoints: ['Discussed operational roadmap and delivery dates'],
-          decisionsTaken: ['Proceed with scheduled tasks'],
+          isEmpty: false,
+          executiveSummary: `Meeting session completed with ${commandResult?.actions?.length || 0} extracted items.`,
+          keyDiscussionPoints: [transcript.trim() || 'Reviewed spoken agenda items'],
+          decisionsTaken: ['Proceed with confirmed tasks and actions'],
           actionItems: commandResult?.actions || [],
-          nextSteps: ['Sync with stakeholders']
+          nextSteps: ['Distribute tasks to destination rooms']
         });
       } catch (err) {
         setErrorMsg('Meeting synthesis failed: ' + err.message);
@@ -785,12 +974,12 @@ export default function VoiceWorkspace({
 
             {/* Microphone device selection */}
             {audioDevices.length > 1 && (
-              <div className="flex items-center justify-center sm:justify-start gap-2 text-[11px] text-slate-500 w-full max-w-full min-w-0">
+              <div className="flex items-center justify-center sm:justify-start gap-2 text-[11px] text-slate-500 w-full max-w-full min-w-0 overflow-hidden box-border">
                 <span className="shrink-0 font-medium text-slate-600">Mic:</span>
                 <select
                   value={selectedDeviceId}
                   onChange={(e) => setSelectedDeviceId(e.target.value)}
-                  className="bg-white border border-slate-300 rounded-lg px-2 py-1 text-xs text-slate-700 focus:outline-none focus:ring-1 focus:ring-blue-500 w-full sm:w-auto max-w-full sm:max-w-xs truncate min-w-0 shadow-2xs"
+                  className="bg-white border border-slate-300 rounded-lg px-2 py-1 text-xs text-slate-700 focus:outline-none focus:ring-1 focus:ring-blue-500 w-full sm:w-auto max-w-[260px] sm:max-w-xs truncate min-w-0 shadow-2xs box-border"
                 >
                   {audioDevices.map(d => (
                     <option key={d.deviceId} value={d.deviceId}>{d.label || `Microphone ${d.deviceId.slice(0,5)}`}</option>
@@ -939,7 +1128,7 @@ export default function VoiceWorkspace({
           </div>
         )}
 
-        {/* Phase 3: Meeting Intelligence Synthesis Report */}
+        {/* Phase 3: Meeting Intelligence Synthesis Report (Section 7) */}
         {meetingSummary && (
           <div className="p-4 bg-white border border-indigo-200 rounded-2xl shadow-sm space-y-3.5 animate-in fade-in">
             <div className="flex items-center justify-between border-b border-indigo-100 pb-2.5">
@@ -948,17 +1137,30 @@ export default function VoiceWorkspace({
                 Meeting Intelligence Report
               </span>
               <span className="text-[10px] bg-indigo-100 text-indigo-800 px-2 py-0.5 rounded-full font-semibold">
-                AI Synthesized
+                {meetingSummary.isEmpty ? 'Empty Session' : 'AI Synthesized'}
               </span>
             </div>
 
-            {/* Executive Summary */}
-            <div className="space-y-1">
-              <span className="text-[11px] font-bold text-slate-700 uppercase tracking-wider">Executive Summary</span>
-              <p className="text-xs text-slate-700 bg-slate-50 p-2.5 rounded-lg border border-slate-200 leading-relaxed">
-                {meetingSummary.executiveSummary}
-              </p>
-            </div>
+            {meetingSummary.isEmpty ? (
+              <div className="p-4 bg-slate-50 border border-slate-200 rounded-xl text-center space-y-2">
+                <AlertCircle className="w-6 h-6 text-slate-400 mx-auto" />
+                <h4 className="text-xs font-bold text-slate-700">No Audio Segments Recorded</h4>
+                <p className="text-xs text-slate-500 max-w-md mx-auto">{meetingSummary.executiveSummary}</p>
+                <div className="pt-2">
+                  <span className="text-[11px] text-blue-600 font-semibold cursor-pointer hover:underline" onClick={handleToggleMic}>
+                    🎙️ Click here to start speaking
+                  </span>
+                </div>
+              </div>
+            ) : (
+              <>
+                {/* Executive Summary */}
+                <div className="space-y-1">
+                  <span className="text-[11px] font-bold text-slate-700 uppercase tracking-wider">Executive Summary</span>
+                  <p className="text-xs text-slate-700 bg-slate-50 p-2.5 rounded-lg border border-slate-200 leading-relaxed">
+                    {meetingSummary.executiveSummary}
+                  </p>
+                </div>
 
             {/* Key Discussion Points & Decisions */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
@@ -985,8 +1187,10 @@ export default function VoiceWorkspace({
               </div>
             </div>
 
+            </>
+            )}
             {/* Action Items List */}
-            {meetingSummary.actionItems?.length > 0 && (
+            {!meetingSummary.isEmpty && meetingSummary.actionItems?.length > 0 && (
               <div className="space-y-1.5 pt-1">
                 <span className="text-[11px] font-bold text-slate-700 uppercase tracking-wider">
                   Extracted Action Items ({meetingSummary.actionItems.length})

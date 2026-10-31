@@ -104,6 +104,7 @@ export default function RoomTaskDistributionDashboard({ onNavigateToVoice }) {
   const [priorityFilter, setPriorityFilter] = useState('all'); // 'all' | 'Urgent' | 'High' | 'Normal' | 'Low'
   const [categoryFilter, setCategoryFilter] = useState('all');
   const [sortBy, setSortBy] = useState('newest'); // 'newest' | 'dueDate' | 'priority' | 'confidence'
+  const [viewLayout, setViewLayout] = useState('sections'); // 'sections' | 'grid'
 
   // Modals & Panels
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
@@ -662,6 +663,34 @@ export default function RoomTaskDistributionDashboard({ onNavigateToVoice }) {
             </select>
           )}
 
+          {/* View Mode Toggle: Room-Wise Sections vs Grid */}
+          <div className="flex items-center bg-slate-100 p-0.5 rounded-lg border border-slate-200">
+            <button
+              type="button"
+              onClick={() => setViewLayout('sections')}
+              className={`px-2.5 py-1 rounded-md text-xs font-semibold flex items-center gap-1 transition ${
+                viewLayout === 'sections'
+                  ? 'bg-white text-blue-700 shadow-2xs'
+                  : 'text-slate-600 hover:text-slate-900'
+              }`}
+              title="Group tasks under Room Sections"
+            >
+              <span>📑 Sections</span>
+            </button>
+            <button
+              type="button"
+              onClick={() => setViewLayout('grid')}
+              className={`px-2.5 py-1 rounded-md text-xs font-semibold flex items-center gap-1 transition ${
+                viewLayout === 'grid'
+                  ? 'bg-white text-blue-700 shadow-2xs'
+                  : 'text-slate-600 hover:text-slate-900'
+              }`}
+              title="Flat Grid View"
+            >
+              <span>▦ Grid</span>
+            </button>
+          </div>
+
           {/* Sort By */}
           <select
             value={sortBy}
@@ -676,193 +705,292 @@ export default function RoomTaskDistributionDashboard({ onNavigateToVoice }) {
         </div>
       </div>
 
-      {/* ─── Task List View ──────────────────────────────────────────────── */}
-      {displayedTasks.length === 0 ? (
-        <div className="bg-white border border-slate-200 rounded-2xl p-12 text-center shadow-xs space-y-3">
-          <div className="w-12 h-12 rounded-full bg-slate-100 text-slate-400 mx-auto flex items-center justify-center">
-            <Layers className="w-6 h-6" />
-          </div>
-          <h3 className="text-sm font-bold text-slate-800">
-            No tasks found in {activeRoom ? activeRoom.name : 'this view'}
-          </h3>
-          <p className="text-xs text-slate-500 max-w-md mx-auto">
-            {searchQuery || statusFilter !== 'all' || priorityFilter !== 'all'
-              ? 'Try relaxing your filters or clearing the search query.'
-              : 'Speak a voice command to extract and assign tasks, or click "Add Task" to create one manually.'}
-          </p>
-          {onNavigateToVoice && (
-            <button
-              type="button"
-              onClick={onNavigateToVoice}
-              className="inline-flex items-center gap-1.5 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold rounded-xl transition shadow-xs"
+      {/* ─── Task List View (Section 4: Room-Wise Sections or Grid View) ───────── */}
+      {(() => {
+        // Task Card Renderer helper
+        const renderSingleTaskCard = (task) => {
+          const taskRoom = rooms.find(r => r.roomId === task.roomId) || {
+            roomId: task.roomId || 'room_unassigned',
+            name: task.roomNameSnapshot || 'General',
+            color: 'slate',
+            icon: 'Layers'
+          };
+          const RoomIcon = ROOM_ICONS[taskRoom.icon] || ROOM_ICONS.Layers;
+          const colorStyles = getRoomColorStyles(taskRoom.color);
+          const isCompleted = task.status === 'COMPLETED';
+          const isNeedsReview = task.requiresRoomReview || task.status === 'NEEDS_ROOM_REVIEW';
+
+          return (
+            <div
+              key={task.id}
+              className={`bg-white border rounded-2xl p-5 shadow-xs transition hover:shadow-sm space-y-4 ${
+                isCompleted ? 'border-slate-200 opacity-75' : isNeedsReview ? 'border-amber-300 ring-1 ring-amber-200' : 'border-slate-200'
+              }`}
             >
-              🎙️ Speak a Voice Command
-            </button>
-          )}
-        </div>
-      ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          {displayedTasks.map(task => {
-            const taskRoom = rooms.find(r => r.roomId === task.roomId) || {
-              roomId: task.roomId || 'room_unassigned',
-              name: task.roomNameSnapshot || 'General',
-              color: 'slate',
-              icon: 'Layers'
-            };
-            const RoomIcon = ROOM_ICONS[taskRoom.icon] || ROOM_ICONS.Layers;
-            const colorStyles = getRoomColorStyles(taskRoom.color);
-            const isCompleted = task.status === 'COMPLETED';
-            const isNeedsReview = task.requiresRoomReview || task.status === 'NEEDS_ROOM_REVIEW';
+              {/* Header: Room Pill & Confidence */}
+              <div className="flex items-center justify-between gap-2 flex-wrap">
+                <div className="flex items-center gap-1.5">
+                  <span className={`px-2.5 py-1 rounded-lg text-xs font-bold border flex items-center gap-1.5 ${colorStyles.badge}`}>
+                    <RoomIcon className="w-3.5 h-3.5" />
+                    <span>{task.roomNameSnapshot || taskRoom.name}</span>
+                  </span>
 
-            return (
-              <div
-                key={task.id}
-                className={`bg-white border rounded-2xl p-5 shadow-xs transition hover:shadow-sm space-y-4 ${
-                  isCompleted ? 'border-slate-200 opacity-75' : isNeedsReview ? 'border-amber-300 ring-1 ring-amber-200' : 'border-slate-200'
-                }`}
-              >
-                {/* Header: Room Pill & Confidence */}
-                <div className="flex items-center justify-between gap-2 flex-wrap">
-                  <div className="flex items-center gap-1.5">
-                    <span className={`px-2.5 py-1 rounded-lg text-xs font-bold border flex items-center gap-1.5 ${colorStyles.badge}`}>
-                      <RoomIcon className="w-3.5 h-3.5" />
-                      <span>{task.roomNameSnapshot || taskRoom.name}</span>
+                  {task.roomCategory && (
+                    <span className="text-[10px] font-medium px-2 py-0.5 rounded bg-slate-100 text-slate-600 border border-slate-200">
+                      {task.roomCategory}
                     </span>
+                  )}
+                </div>
 
-                    {task.roomCategory && (
-                      <span className="text-[10px] font-medium px-2 py-0.5 rounded bg-slate-100 text-slate-600 border border-slate-200">
-                        {task.roomCategory}
-                      </span>
+                {/* AI Confidence / Review Badge */}
+                {isNeedsReview ? (
+                  <button
+                    type="button"
+                    onClick={() => setReassigningTask(task)}
+                    className="px-2 py-0.5 bg-amber-50 text-amber-800 border border-amber-300 rounded text-[10px] font-bold flex items-center gap-1 hover:bg-amber-100 transition"
+                    title="AI suggested this room with low confidence. Click to confirm or reassign."
+                  >
+                    <AlertTriangle className="w-3 h-3 text-amber-600" />
+                    Needs Review
+                  </button>
+                ) : (
+                  <span
+                    className="text-[10px] text-slate-400 font-mono flex items-center gap-1"
+                    title={task.classificationReason || 'Auto-assigned by ActionFlow Room Engine'}
+                  >
+                    <Sparkles className="w-3 h-3 text-blue-500" />
+                    {Math.round((task.classificationConfidence || 0.95) * 100)}% Match
+                  </span>
+                )}
+              </div>
+
+              {/* Title & Description */}
+              <div className="space-y-1">
+                <h4 className={`text-sm font-bold tracking-tight text-slate-900 ${isCompleted ? 'line-through text-slate-400' : ''}`}>
+                  {task.title}
+                </h4>
+                {task.description && (
+                  <p className="text-xs text-slate-600 line-clamp-2">
+                    {task.description}
+                  </p>
+                )}
+              </div>
+
+              {/* Metadata Row: Priority, Assignee, Due Date */}
+              <div className="flex items-center gap-3 flex-wrap text-xs text-slate-500 pt-1 border-t border-slate-100">
+                {task.priority && (
+                  <span className={`px-2 py-0.5 rounded text-[10px] font-bold border ${
+                    task.priority === 'Urgent' ? 'bg-rose-50 text-rose-700 border-rose-200' :
+                    task.priority === 'High' ? 'bg-amber-50 text-amber-800 border-amber-200' :
+                    'bg-slate-100 text-slate-700 border-slate-200'
+                  }`}>
+                    {task.priority}
+                  </span>
+                )}
+
+                {task.assigneeName && (
+                  <span className="flex items-center gap-1 text-[11px] font-medium text-slate-700">
+                    <User className="w-3.5 h-3.5 text-slate-400" />
+                    {task.assigneeName}
+                  </span>
+                )}
+
+                {(task.dueDate || task.scheduledStart) && (
+                  <span className="flex items-center gap-1 text-[11px] text-slate-500">
+                    <Calendar className="w-3.5 h-3.5 text-slate-400" />
+                    {new Date(task.dueDate || task.scheduledStart).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
+                  </span>
+                )}
+
+                {task.googleEventId && (
+                  <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-blue-50 text-blue-700 border border-blue-200 flex items-center gap-1">
+                    <Calendar className="w-3 h-3 text-blue-600" />
+                    Synced
+                  </span>
+                )}
+              </div>
+
+              {/* Footer Controls: Quick Actions */}
+              <div className="pt-2 flex items-center justify-between gap-2 border-t border-slate-100">
+                <div className="flex items-center gap-1">
+                  <button
+                    type="button"
+                    onClick={() => handleToggleComplete(task)}
+                    className={`px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center gap-1.5 transition ${
+                      isCompleted
+                        ? 'bg-slate-100 text-slate-700 hover:bg-slate-200'
+                        : 'bg-emerald-600 hover:bg-emerald-700 text-white shadow-2xs'
+                    }`}
+                  >
+                    {isCompleted ? (
+                      <>
+                        <RotateCcw className="w-3.5 h-3.5" /> Reopen
+                      </>
+                    ) : (
+                      <>
+                        <Check className="w-3.5 h-3.5" /> Mark Done
+                      </>
                     )}
-                  </div>
+                  </button>
 
-                  {/* AI Confidence / Review Badge */}
-                  {isNeedsReview ? (
+                  {!isCompleted && task.status !== 'IN_PROGRESS' && (
                     <button
                       type="button"
-                      onClick={() => setReassigningTask(task)}
-                      className="px-2 py-0.5 bg-amber-50 text-amber-800 border border-amber-300 rounded text-[10px] font-bold flex items-center gap-1 hover:bg-amber-100 transition"
-                      title="AI suggested this room with low confidence. Click to confirm or reassign."
+                      onClick={() => handleSetInProgress(task)}
+                      className="px-2.5 py-1.5 bg-blue-50 hover:bg-blue-100 text-blue-700 rounded-lg text-xs font-semibold transition border border-blue-200"
                     >
-                      <AlertTriangle className="w-3 h-3 text-amber-600" />
-                      Needs Review
+                      Start
                     </button>
-                  ) : (
-                    <span
-                      className="text-[10px] text-slate-400 font-mono flex items-center gap-1"
-                      title={task.classificationReason || 'Auto-assigned by ActionFlow Room Engine'}
-                    >
-                      <Sparkles className="w-3 h-3 text-blue-500" />
-                      {Math.round((task.classificationConfidence || 0.95) * 100)}% Match
-                    </span>
                   )}
                 </div>
 
-                {/* Title & Description */}
-                <div className="space-y-1">
-                  <h4 className={`text-sm font-bold tracking-tight text-slate-900 ${isCompleted ? 'line-through text-slate-400' : ''}`}>
-                    {task.title}
-                  </h4>
-                  {task.description && (
-                    <p className="text-xs text-slate-600 line-clamp-2">
-                      {task.description}
-                    </p>
-                  )}
-                </div>
+                <div className="flex items-center gap-1">
+                  <button
+                    type="button"
+                    onClick={() => setReassigningTask(task)}
+                    className="px-2.5 py-1.5 text-xs text-slate-600 hover:text-slate-900 hover:bg-slate-100 rounded-lg font-medium transition"
+                    title="Reassign to another room"
+                  >
+                    Move Room
+                  </button>
 
-                {/* Metadata Row: Priority, Assignee, Due Date */}
-                <div className="flex items-center gap-3 flex-wrap text-xs text-slate-500 pt-1 border-t border-slate-100">
-                  {task.priority && (
-                    <span className={`px-2 py-0.5 rounded text-[10px] font-bold border ${
-                      task.priority === 'Urgent' ? 'bg-rose-50 text-rose-700 border-rose-200' :
-                      task.priority === 'High' ? 'bg-amber-50 text-amber-800 border-amber-200' :
-                      'bg-slate-100 text-slate-700 border-slate-200'
-                    }`}>
-                      {task.priority}
-                    </span>
-                  )}
-
-                  {task.assigneeName && (
-                    <span className="flex items-center gap-1 text-[11px] font-medium text-slate-700">
-                      <User className="w-3.5 h-3.5 text-slate-400" />
-                      {task.assigneeName}
-                    </span>
-                  )}
-
-                  {(task.dueDate || task.scheduledStart) && (
-                    <span className="flex items-center gap-1 text-[11px] text-slate-500">
-                      <Calendar className="w-3.5 h-3.5 text-slate-400" />
-                      {new Date(task.dueDate || task.scheduledStart).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
-                    </span>
-                  )}
-
-                  {task.googleEventId && (
-                    <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-blue-50 text-blue-700 border border-blue-200 flex items-center gap-1">
-                      <Calendar className="w-3 h-3 text-blue-600" />
-                      Synced
-                    </span>
-                  )}
-                </div>
-
-                {/* Footer Controls: Quick Actions */}
-                <div className="pt-2 flex items-center justify-between gap-2 border-t border-slate-100">
-                  <div className="flex items-center gap-1">
-                    <button
-                      type="button"
-                      onClick={() => handleToggleComplete(task)}
-                      className={`px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center gap-1.5 transition ${
-                        isCompleted
-                          ? 'bg-slate-100 text-slate-700 hover:bg-slate-200'
-                          : 'bg-emerald-600 hover:bg-emerald-700 text-white shadow-2xs'
-                      }`}
-                    >
-                      {isCompleted ? (
-                        <>
-                          <RotateCcw className="w-3.5 h-3.5" /> Reopen
-                        </>
-                      ) : (
-                        <>
-                          <Check className="w-3.5 h-3.5" /> Mark Done
-                        </>
-                      )}
-                    </button>
-
-                    {!isCompleted && task.status !== 'IN_PROGRESS' && (
-                      <button
-                        type="button"
-                        onClick={() => handleSetInProgress(task)}
-                        className="px-2.5 py-1.5 bg-blue-50 hover:bg-blue-100 text-blue-700 rounded-lg text-xs font-semibold transition border border-blue-200"
-                      >
-                        Start
-                      </button>
-                    )}
-                  </div>
-
-                  <div className="flex items-center gap-1">
-                    <button
-                      type="button"
-                      onClick={() => setReassigningTask(task)}
-                      className="px-2.5 py-1.5 text-xs text-slate-600 hover:text-slate-900 hover:bg-slate-100 rounded-lg font-medium transition"
-                      title="Reassign to another room"
-                    >
-                      Move Room
-                    </button>
-
-                    <button
-                      type="button"
-                      onClick={() => setViewingAuditTask(task)}
-                      className="p-1.5 text-slate-400 hover:text-slate-600 hover:bg-slate-100 rounded-lg transition"
-                      title="View audit history"
-                    >
-                      <Eye className="w-4 h-4" />
-                    </button>
-                  </div>
+                  <button
+                    type="button"
+                    onClick={() => setViewingAuditTask(task)}
+                    className="p-1.5 text-slate-400 hover:text-slate-600 hover:bg-slate-100 rounded-lg transition"
+                    title="View audit history"
+                  >
+                    <Eye className="w-4 h-4" />
+                  </button>
                 </div>
               </div>
-            );
-          })}
-        </div>
-      )}
+            </div>
+          );
+        };
+
+        if (displayedTasks.length === 0) {
+          return (
+            <div className="bg-white border border-slate-200 rounded-2xl p-12 text-center shadow-xs space-y-3">
+              <div className="w-12 h-12 rounded-full bg-slate-100 text-slate-400 mx-auto flex items-center justify-center">
+                <Layers className="w-6 h-6" />
+              </div>
+              <h3 className="text-sm font-bold text-slate-800">
+                No tasks found in {activeRoom ? activeRoom.name : 'this view'}
+              </h3>
+              <p className="text-xs text-slate-500 max-w-md mx-auto">
+                {searchQuery || statusFilter !== 'all' || priorityFilter !== 'all'
+                  ? 'Try relaxing your filters or clearing the search query.'
+                  : 'Speak a voice command to extract and assign tasks, or click "Add Task" to create one manually.'}
+              </p>
+              {onNavigateToVoice && (
+                <button
+                  type="button"
+                  onClick={onNavigateToVoice}
+                  className="inline-flex items-center gap-1.5 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold rounded-xl transition shadow-xs"
+                >
+                  🎙️ Speak a Voice Command
+                </button>
+              )}
+            </div>
+          );
+        }
+
+        // Section View (When selectedRoomId is 'all' and viewLayout is 'sections')
+        if (selectedRoomId === 'all' && viewLayout === 'sections') {
+          // Group displayed tasks by room ID
+          const map = {};
+          rooms.forEach(r => { map[r.roomId] = []; });
+          displayedTasks.forEach(t => {
+            const rid = t.roomId || 'room_unassigned';
+            if (!map[rid]) map[rid] = [];
+            map[rid].push(t);
+          });
+
+          // Show rooms with tasks first, followed by others unless search/filters active
+          const isFiltering = Boolean(searchQuery || statusFilter !== 'all' || priorityFilter !== 'all' || categoryFilter !== 'all');
+          const visibleRooms = isFiltering
+            ? rooms.filter(r => (map[r.roomId] || []).length > 0)
+            : rooms;
+
+          return (
+            <div className="space-y-6">
+              {visibleRooms.map(room => {
+                const roomTasks = map[room.roomId] || [];
+                const RoomIcon = ROOM_ICONS[room.icon] || ROOM_ICONS.Layers;
+                const colorStyles = getRoomColorStyles(room.color);
+                const pendingCount = roomTasks.filter(t => t.status !== 'COMPLETED').length;
+                const completedCount = roomTasks.filter(t => t.status === 'COMPLETED').length;
+
+                return (
+                  <div key={room.roomId} className="bg-white border border-slate-200 rounded-2xl p-5 shadow-xs space-y-4">
+                    {/* Room Section Header */}
+                    <div className="flex items-center justify-between pb-3 border-b border-slate-100 flex-wrap gap-2">
+                      <div className="flex items-center gap-2.5">
+                        <div className={`p-2 rounded-xl ${colorStyles.light} border border-slate-200 text-slate-700`}>
+                          <RoomIcon className="w-4 h-4" />
+                        </div>
+                        <div>
+                          <div className="flex items-center gap-2">
+                            <h3 className="text-sm font-bold text-slate-900">{room.name}</h3>
+                            <span className={`text-[10px] px-2 py-0.5 rounded-full border font-semibold ${colorStyles.badge}`}>
+                              {room.categories?.[0] || 'Room'}
+                            </span>
+                          </div>
+                          <p className="text-[11px] text-slate-500">{room.description}</p>
+                        </div>
+                      </div>
+
+                      <div className="flex items-center gap-2 flex-wrap">
+                        <span className="text-[11px] font-semibold text-slate-600 bg-slate-100 px-2.5 py-0.5 rounded-full">
+                          {roomTasks.length} {roomTasks.length === 1 ? 'task' : 'tasks'}
+                        </span>
+                        {pendingCount > 0 && (
+                          <span className="text-[11px] font-semibold text-amber-700 bg-amber-50 px-2 py-0.5 rounded-full border border-amber-200">
+                            {pendingCount} pending
+                          </span>
+                        )}
+                        {completedCount > 0 && (
+                          <span className="text-[11px] font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200">
+                            {completedCount} done
+                          </span>
+                        )}
+                        <button
+                          type="button"
+                          onClick={() => {
+                            setNewTaskForm(prev => ({ ...prev, roomId: room.roomId }));
+                            setIsCreateModalOpen(true);
+                          }}
+                          className="text-[11px] font-semibold text-blue-600 hover:text-blue-700 hover:bg-blue-50 px-2.5 py-1 rounded-lg transition border border-transparent hover:border-blue-200"
+                        >
+                          + Add Task
+                        </button>
+                      </div>
+                    </div>
+
+                    {/* Room Tasks Grid */}
+                    {roomTasks.length === 0 ? (
+                      <div className="py-4 text-center text-xs text-slate-400 bg-slate-50/50 rounded-xl border border-dashed border-slate-200">
+                        No tasks in {room.name}. Click "+ Add Task" or speak a voice command to assign here.
+                      </div>
+                    ) : (
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        {roomTasks.map(t => renderSingleTaskCard(t))}
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+          );
+        }
+
+        // Standard Flat Grid View
+        return (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {displayedTasks.map(t => renderSingleTaskCard(t))}
+          </div>
+        );
+      })()}
 
       {/* ─── MODAL 1: Create Task Modal ───────────────────────────────────── */}
       {isCreateModalOpen && (

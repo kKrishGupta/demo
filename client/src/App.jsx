@@ -643,6 +643,7 @@ export default function App() {
               departments={SAMPLE_DEPARTMENTS}
               industry={selectedIndustry}
               onTaskFormFill={handleExtractDraft}
+              onNavigateToRooms={() => setViewMode('rooms')}
               onCommandProcessed={(result) => {
                 // Sync server analysis result to ActionPlan display
                 if (result?.actions?.length > 0) {
