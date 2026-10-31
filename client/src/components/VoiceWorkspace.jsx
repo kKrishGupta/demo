@@ -155,6 +155,11 @@ function ActionCard({ action, directory = [], onApprove, onReject, onAssigneeCha
                   {action.priority}
                 </span>
               )}
+              {action.roomName && (
+                <span className="text-[10px] px-2 py-0.5 rounded-full bg-blue-50 text-blue-800 border border-blue-200 font-bold flex items-center gap-1 shadow-2xs">
+                  🏠 {action.roomName}
+                </span>
+              )}
             </div>
 
             <div className="flex items-center gap-2">

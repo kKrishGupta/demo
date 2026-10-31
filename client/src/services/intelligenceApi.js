@@ -15,43 +15,27 @@
  *
  * Uses centralized apiConfig (`https://demo-51qr.onrender.com` in production,
  * `http://localhost:3001` in development).
- * Falls back to the local rule engine when the server is unreachable.
+ * Clearly separates local extraction from external backend execution.
  */
 
 import { analyzeTranscript, quickExtract, registerCompletedAction, recordCorrection } from '../features/intelligence/intelligenceService.js';
 import { buildExecutionPlan } from '../features/intelligence/dagPlanner.js';
 import { validateTaskPayload } from './taskService.js';
-import { draftToMicroAction, detectActionType } from '../features/intelligence/actionTypes.js';
-import { API_V1_BASE_URL, HEALTH_URL, buildApiUrl } from '../config/apiConfig.js';
+import {
+  API_V1_BASE_URL,
+  HEALTH_URL,
+  SESSION_ID,
+  getSessionId,
+  buildApiUrl
+} from '../config/apiConfig.js';
 
 const API_VERSION = 'v1';
 const API_BASE = API_V1_BASE_URL;
 
-// Session ID for request tracing (persisted across reloads and OAuth redirects)
-function getOrCreateSessionId() {
-  if (typeof window === 'undefined') return 'server_session';
-  try {
-    const urlParams = new URLSearchParams(window.location.search);
-    const redirectSession = urlParams.get('sessionId');
-    if (redirectSession) {
-      localStorage.setItem('actionflow_session_id', redirectSession);
-      return redirectSession;
-    }
-    let stored = localStorage.getItem('actionflow_session_id');
-    if (!stored) {
-      stored = `client_${Date.now().toString(36)}_${Math.random().toString(36).slice(2, 6)}`;
-      localStorage.setItem('actionflow_session_id', stored);
-    }
-    return stored;
-  } catch {
-    return 'default_client_session';
-  }
-}
-
-export const SESSION_ID = getOrCreateSessionId();
+export { SESSION_ID, getSessionId };
 
 // Track whether the server has been detected as available
-let _serverAvailable = null; // null = unknown, true/false after first probe
+let _serverAvailable = null; // null = unknown, true/false after probe
 
 /**
  * Probes the server health endpoint (`${API_BASE_URL}/health`) to determine availability.
@@ -59,7 +43,10 @@ let _serverAvailable = null; // null = unknown, true/false after first probe
 async function probeServer() {
   if (_serverAvailable === true) return true;
   try {
-    const res = await fetch(HEALTH_URL, { signal: AbortSignal.timeout(8000) });
+    const res = await fetch(HEALTH_URL, {
+      headers: { 'X-Session-ID': getSessionId() },
+      signal: AbortSignal.timeout(8000)
+    });
     _serverAvailable = res.ok;
   } catch {
     _serverAvailable = false;
@@ -74,24 +61,35 @@ probeServer();
  * Makes a POST request to the server with proper headers and error handling.
  * @param {string} path - API path (e.g. '/intelligence/analyze')
  * @param {Object} body - Request body
- * @returns {Promise<Object|null>} Response JSON or null if server unavailable
+ * @returns {Promise<Object>} Response JSON
  */
 async function serverPost(path, body) {
-  const available = await probeServer();
-  if (!available) return null;
+  let response;
+  try {
+    response = await fetch(buildApiUrl(path), {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Session-ID': getSessionId()
+      },
+      body: JSON.stringify(body)
+    });
+  } catch (networkErr) {
+    _serverAvailable = false;
+    const err = new Error(networkErr.message || 'Backend server is unreachable.');
+    err.code = 'SERVER_UNAVAILABLE';
+    err.isNetworkError = true;
+    throw err;
+  }
 
-  const response = await fetch(buildApiUrl(path), {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'X-Session-ID': SESSION_ID
-    },
-    body: JSON.stringify(body)
-  });
+  _serverAvailable = true;
 
   if (!response.ok) {
     const errBody = await response.json().catch(() => ({}));
-    throw new Error(errBody.message || `Server returned ${response.status}`);
+    const err = new Error(errBody.message || errBody.error || `Server returned HTTP ${response.status}`);
+    err.status = response.status;
+    err.body = errBody;
+    throw err;
   }
 
   return response.json();
@@ -101,21 +99,36 @@ async function serverPost(path, body) {
  * Makes a GET request to the server.
  */
 async function serverGet(path) {
-  const available = await probeServer();
-  if (!available) return null;
+  let response;
+  try {
+    response = await fetch(buildApiUrl(path), {
+      headers: { 'X-Session-ID': getSessionId() }
+    });
+  } catch (networkErr) {
+    _serverAvailable = false;
+    const err = new Error(networkErr.message || 'Backend server is unreachable.');
+    err.code = 'SERVER_UNAVAILABLE';
+    err.isNetworkError = true;
+    throw err;
+  }
 
-  const response = await fetch(buildApiUrl(path), {
-    headers: { 'X-Session-ID': SESSION_ID }
-  });
+  _serverAvailable = true;
 
-  if (!response.ok) throw new Error(`Server returned ${response.status}`);
+  if (!response.ok) {
+    const errBody = await response.json().catch(() => ({}));
+    const err = new Error(errBody.message || errBody.error || `Server returned HTTP ${response.status}`);
+    err.status = response.status;
+    err.body = errBody;
+    throw err;
+  }
   return response.json();
 }
 
 // ─── Analyze ─────────────────────────────────────────────────────────────────
 /**
  * Full pipeline: classify → extract → plan → confidence → duplicate-check
- * Calls the server if available, falls back to local engine.
+ * Calls the server if available; if allowLocalFallback is enabled, falls back to local rule engine
+ * and explicitly labels extractionPath: 'LOCAL'.
  */
 export async function apiAnalyze({
   transcript,
@@ -124,7 +137,8 @@ export async function apiAnalyze({
   departments = [],
   industry = 'all',
   referenceDate = new Date(),
-  requestId
+  requestId,
+  allowLocalFallback = true
 }) {
   if (!transcript?.trim()) {
     return { status: 'empty', actions: [], clarifications: [], suggestions: [], warnings: [] };
@@ -143,13 +157,22 @@ export async function apiAnalyze({
 
     if (serverResult) return serverResult;
   } catch (err) {
-    console.warn('[IntelligenceAPI] Server analyze failed, using local:', err.message);
+    console.warn('[IntelligenceAPI] Server analyze failed:', err.message);
+    if (!allowLocalFallback) {
+      throw err;
+    }
   }
 
-  // Local fallback (rule engine only)
-  return await analyzeTranscript({
+  // Local fallback (rule engine only — explicitly labelled LOCAL)
+  const localAnalysis = await analyzeTranscript({
     transcript, directory, projects, departments, industry, referenceDate, requestId
   });
+  return {
+    ...localAnalysis,
+    extractionPath: 'LOCAL',
+    isLocalExtraction: true,
+    geminiEnriched: false
+  };
 }
 
 // ─── Extract (fast-path) ──────────────────────────────────────────────────────
@@ -284,13 +307,14 @@ export async function apiFeedback({
 // ─── Execute ───────────────────────────────────────────────────────────────────
 /**
  * Submits an action for execution via the server's execution gateway.
- * Falls back to local task submission if server unavailable.
+ * Never fakes COMPLETED or LOCAL_ACKNOWLEDGED when the server is unavailable.
  */
 export async function apiExecute(action, { isApproved = false } = {}) {
+  const actionId = action?.id || `action_${Date.now()}`;
   try {
     const serverResult = await serverPost('/execution/execute', {
       action: {
-        id: action.id || `action_${Date.now()}`,
+        id: actionId,
         type: action.type || 'CREATE_TASK',
         title: action.title || action.fields?.title || '',
         description: action.description || action.fields?.description || '',
@@ -309,13 +333,32 @@ export async function apiExecute(action, { isApproved = false } = {}) {
     if (serverResult) return serverResult;
   } catch (err) {
     console.warn('[IntelligenceAPI] Server execute failed:', err.message);
+    const status = err.isNetworkError ? 'SERVER_UNAVAILABLE' : 'FAILED';
+    return {
+      success: false,
+      actionId,
+      status,
+      httpStatus: err.status || 503,
+      error: err.message || 'Backend server unavailable.',
+      result: {
+        success: false,
+        status,
+        message: err.message || 'Backend server is unreachable. Action was not executed.'
+      }
+    };
   }
 
-  // Local fallback — acknowledge without external execution
   return {
-    actionId: action.id || `local_${Date.now()}`,
-    status: 'COMPLETED',
-    result: { success: true, status: 'LOCAL_ACKNOWLEDGED', message: 'Action recorded locally (server unavailable).' }
+    success: false,
+    actionId,
+    status: 'SERVER_UNAVAILABLE',
+    httpStatus: 503,
+    error: 'Backend server unavailable.',
+    result: {
+      success: false,
+      status: 'SERVER_UNAVAILABLE',
+      message: 'Backend server is unreachable. Action was not executed.'
+    }
   };
 }
 

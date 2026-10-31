@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-31T07:21:06.939Z",
+  "updatedAt": "2026-10-31T13:35:05.495Z",
   "tasks": [
     {
       "id": "act_1793427859149_0",
@@ -31,7 +31,7 @@
           "originalEventId": "t7ds2ut8f4gmrrn93s0255kd14",
           "htmlLink": "https://www.google.com/calendar/event?eid=dDdkczJ1dDhmNGdtcnJuOTNzMDI1NWtkMTQga3Jpc2gyMzE1MzEwNkBt",
           "providerStatus": "ACTIVE",
-          "lastVerifiedAt": "2026-10-31T07:21:03.516Z",
+          "lastVerifiedAt": "2026-10-31T13:34:57.120Z",
           "lastError": null
         },
         "googleTask": null
@@ -42,12 +42,12 @@
         "t7ds2ut8f4gmrrn93s0255kd14"
       ],
       "eventLink": "https://www.google.com/calendar/event?eid=dDdkczJ1dDhmNGdtcnJuOTNzMDI1NWtkMTQga3Jpc2gyMzE1MzEwNkBt",
-      "status": "PENDING",
+      "status": "COMPLETED",
       "completed": false,
       "completedAt": null,
       "calendarRemovalResult": null,
       "createdAt": "2026-10-31T06:24:42.027Z",
-      "updatedAt": "2026-10-31T06:24:42.027Z",
+      "updatedAt": "2026-10-31T13:35:02.448Z",
       "auditTrail": [
         {
           "id": "taud_1793427882028_fuqw",
@@ -360,7 +360,7 @@
           "originalEventId": "trqighp34tok3e29n9isell7ac",
           "htmlLink": "https://www.google.com/calendar/event?eid=dHJxaWdocDM0dG9rM2UyOW45aXNlbGw3YWMga3Jpc2gyMzE1MzEwNkBt",
           "providerStatus": "ACTIVE",
-          "lastVerifiedAt": "2026-10-31T07:21:03.516Z",
+          "lastVerifiedAt": "2026-10-31T13:35:03.637Z",
           "lastError": null
         },
         "googleTask": null
@@ -425,7 +425,7 @@
           "originalEventId": "ap7dc9d3thqh69ifn96rglp0u0",
           "htmlLink": "https://www.google.com/calendar/event?eid=YXA3ZGM5ZDN0aHFoNjlpZm45NnJnbHAwdTAga3Jpc2gyMzE1MzEwNkBt",
           "providerStatus": "ACTIVE",
-          "lastVerifiedAt": "2026-10-31T07:21:03.516Z",
+          "lastVerifiedAt": "2026-10-31T13:35:03.637Z",
           "lastError": null
         },
         "googleTask": null
@@ -490,7 +490,7 @@
           "originalEventId": "sclti51t1e548f4t5odp7b8seg",
           "htmlLink": "https://www.google.com/calendar/event?eid=c2NsdGk1MXQxZTU0OGY0dDVvZHA3YjhzZWcga3Jpc2gyMzE1MzEwNkBt&ctz=Asia/Kolkata",
           "providerStatus": "ACTIVE",
-          "lastVerifiedAt": "2026-10-31T07:21:03.516Z",
+          "lastVerifiedAt": "2026-10-31T13:35:03.637Z",
           "lastError": null
         },
         "googleTask": null
@@ -502,12 +502,12 @@
       ],
       "eventLink": "https://www.google.com/calendar/event?eid=c2NsdGk1MXQxZTU0OGY0dDVvZHA3YjhzZWcga3Jpc2gyMzE1MzEwNkBt&ctz=Asia/Kolkata",
       "sourceOrigin": "GOOGLE_CALENDAR_EXTERNAL",
-      "status": "PENDING",
+      "status": "COMPLETED",
       "completed": false,
       "completedAt": null,
       "calendarRemovalResult": null,
       "createdAt": "2026-10-30T23:54:40.000Z",
-      "updatedAt": "2026-10-30T23:54:40.886Z",
+      "updatedAt": "2026-10-31T13:35:05.495Z",
       "auditTrail": [
         {
           "id": "taud_1793431151753_dugb",
@@ -554,7 +554,7 @@
           "originalEventId": "3audn3cm7722hgj6apci8esqi4",
           "htmlLink": "https://www.google.com/calendar/event?eid=M2F1ZG4zY203NzIyaGdqNmFwY2k4ZXNxaTQga3Jpc2gyMzE1MzEwNkBt&ctz=Asia/Kolkata",
           "providerStatus": "ACTIVE",
-          "lastVerifiedAt": "2026-10-31T07:21:03.516Z",
+          "lastVerifiedAt": "2026-10-31T13:35:03.637Z",
           "lastError": null
         },
         "googleTask": null
@@ -618,7 +618,7 @@
           "originalEventId": "50oub392qifqql88i360cngrg4",
           "htmlLink": "https://www.google.com/calendar/event?eid=NTBvdWIzOTJxaWZxcWw4OGkzNjBjbmdyZzQga3Jpc2gyMzE1MzEwNkBt&ctz=Asia/Kolkata",
           "providerStatus": "ACTIVE",
-          "lastVerifiedAt": "2026-10-31T07:21:03.516Z",
+          "lastVerifiedAt": "2026-10-31T13:35:03.637Z",
           "lastError": null
         },
         "googleTask": null
@@ -682,7 +682,7 @@
           "originalEventId": "l1mktc2ttfhbaejdk9ssbhd43o",
           "htmlLink": "https://www.google.com/calendar/event?eid=bDFta3RjMnR0ZmhiYWVqZGs5c3NiaGQ0M28ga3Jpc2gyMzE1MzEwNkBt&ctz=Asia/Kolkata",
           "providerStatus": "ACTIVE",
-          "lastVerifiedAt": "2026-10-31T07:21:03.516Z",
+          "lastVerifiedAt": "2026-10-31T13:35:03.637Z",
           "lastError": null
         },
         "googleTask": null

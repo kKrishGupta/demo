@@ -1,7 +1,7 @@
 /**
- * ActionFlow AI — Centralized Frontend API & WebSocket Configuration
+ * ActionFlow AI — Centralized Frontend API, Session & WebSocket Configuration
  *
- * Single source of truth for all backend HTTP and WebSocket URLs.
+ * Single source of truth for all backend HTTP and WebSocket URLs and session identity.
  * - Production API Base URL: https://demo-51qr.onrender.com
  * - Development API Base URL: http://localhost:3001
  * - Production WebSocket URL: wss://demo-51qr.onrender.com/ws
@@ -13,6 +13,7 @@
 
 const PRODUCTION_FALLBACK_URL = 'https://demo-51qr.onrender.com';
 const DEVELOPMENT_FALLBACK_URL = 'http://localhost:3001';
+const SESSION_STORAGE_KEY = 'actionflow_session_id';
 
 /**
  * Normalizes a base URL by removing trailing slashes and any accidental
@@ -23,6 +24,51 @@ export function normalizeBaseUrl(rawUrl) {
   let cleaned = rawUrl.trim().replace(/\/+$/, '');
   cleaned = cleaned.replace(/\/api\/v1$/i, '').replace(/\/api$/i, '');
   return cleaned.replace(/\/+$/, '');
+}
+
+/**
+ * Resolves a single stable session ID across all frontend services, WebSocket connections,
+ * and OAuth redirects. Preserves existing session IDs without overwriting them unexpectedly.
+ */
+export function resolveSessionId(locationOverride = null, storageOverride = null) {
+  const loc = locationOverride || (typeof window !== 'undefined' ? window.location : null);
+  const store = storageOverride || (typeof window !== 'undefined' ? window.localStorage : null);
+
+  if (!loc && !store) return 'server_session';
+
+  try {
+    const existingStored = store?.getItem(SESSION_STORAGE_KEY)?.trim() || '';
+
+    if (loc?.search) {
+      const urlParams = new URLSearchParams(loc.search);
+      const redirectSession = urlParams.get('sessionId')?.trim() || '';
+      // Adopt redirectSession if valid and not an ephemeral server fallback overwriting a client session
+      if (
+        redirectSession &&
+        redirectSession !== 'default_session' &&
+        (!existingStored || !redirectSession.startsWith('ses_'))
+      ) {
+        store?.setItem(SESSION_STORAGE_KEY, redirectSession);
+        return redirectSession;
+      }
+    }
+
+    if (existingStored) {
+      return existingStored;
+    }
+
+    const generated = `client_${Date.now().toString(36)}_${Math.random().toString(36).slice(2, 6)}`;
+    store?.setItem(SESSION_STORAGE_KEY, generated);
+    return generated;
+  } catch {
+    return 'default_client_session';
+  }
+}
+
+export const SESSION_ID = resolveSessionId();
+
+export function getSessionId() {
+  return resolveSessionId();
 }
 
 export function resolveApiConfig(envOverride = null, locationOverride = null) {
@@ -74,6 +120,7 @@ export function resolveApiConfig(envOverride = null, locationOverride = null) {
     healthUrl: `${baseUrl}/health`,
     wsBaseUrl,
     isProdBuild,
+    isDeployedBrowser,
     configuredEnvUrl: normalizedEnvUrl || null,
     configWarning
   };
@@ -85,6 +132,7 @@ export const API_BASE_URL = resolved.apiBaseUrl;
 export const API_V1_BASE_URL = resolved.apiV1BaseUrl;
 export const HEALTH_URL = resolved.healthUrl;
 export const WS_BASE_URL = resolved.wsBaseUrl;
+export const IS_PROD_BUILD = resolved.isProdBuild || resolved.isDeployedBrowser;
 export const API_CONFIG_WARNING = resolved.configWarning;
 
 if (typeof window !== 'undefined' && !Boolean(import.meta.env?.VITEST)) {
@@ -93,6 +141,7 @@ if (typeof window !== 'undefined' && !Boolean(import.meta.env?.VITEST)) {
     apiV1BaseUrl: API_V1_BASE_URL,
     healthUrl: HEALTH_URL,
     wsBaseUrl: WS_BASE_URL,
+    sessionId: SESSION_ID,
     configuredEnvUrl: resolved.configuredEnvUrl,
     isProdBuild: resolved.isProdBuild,
     configWarning: API_CONFIG_WARNING
@@ -138,16 +187,22 @@ export function buildApiUrl(path, baseOverride = null) {
 /**
  * Constructs the full backend WebSocket URL (`wss://demo-51qr.onrender.com/ws?sessionId=...`)
  */
-export function buildWebSocketUrl(sessionId, wsBaseOverride = null) {
+export function buildWebSocketUrl(sessionId = SESSION_ID, wsBaseOverride = null) {
   const wsBase = wsBaseOverride || WS_BASE_URL;
-  if (!sessionId) return wsBase;
-  return `${wsBase}?sessionId=${encodeURIComponent(sessionId)}`;
+  const resolvedSession = sessionId || SESSION_ID;
+  if (!resolvedSession) return wsBase;
+  return `${wsBase}?sessionId=${encodeURIComponent(resolvedSession)}`;
 }
 
 /**
- * Centralized fetch wrapper that always targets the configured backend API.
+ * Centralized fetch wrapper that always targets the configured backend API
+ * and attaches the unified X-Session-ID header.
  */
 export async function apiFetch(path, options = {}) {
   const url = buildApiUrl(path);
-  return fetch(url, options);
+  const headers = {
+    'X-Session-ID': getSessionId(),
+    ...(options.headers || {})
+  };
+  return fetch(url, { ...options, headers });
 }

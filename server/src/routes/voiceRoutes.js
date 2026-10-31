@@ -21,6 +21,7 @@ import { broadcastToSession } from '../websocket/wsServer.js';
 import { config } from '../config.js';
 import { transcribeAudio } from '../services/transcriptionService.js';
 import { semanticDecomposer } from '../services/semanticDecomposer.js';
+import { roomClassificationEngine } from '../services/roomClassificationEngine.js';
 import {
   routeTranscript,
   routeClause,
@@ -244,6 +245,14 @@ router.post('/command', validateTranscriptInput, async (req, res, next) => {
           whatsappMessage = m?.[1]?.trim() || null;
         }
 
+        const roomClassification = roomClassificationEngine.classifyTask({
+          text: act.clause,
+          fullTranscript: resolvedTranscript,
+          intent: act.operation,
+          destination: act.destination,
+          sessionId
+        });
+
         return {
           id: act.id,
           type: act.operation,
@@ -265,6 +274,15 @@ router.post('/command', validateTranscriptInput, async (req, res, next) => {
             intent: act.confidence,
             overall: act.confidence
           },
+          roomId: roomClassification.roomId,
+          roomName: roomClassification.roomName,
+          roomCategory: roomClassification.roomCategory,
+          classificationConfidence: roomClassification.confidenceScore,
+          classificationReason: roomClassification.classificationReason,
+          classificationSource: roomClassification.classificationSource,
+          routingRuleId: roomClassification.routingRuleId,
+          requiresRoomReview: roomClassification.requiresReview,
+          roomOutcome: roomClassification.outcome,
           extractionPath: 'FAST'
         };
       });

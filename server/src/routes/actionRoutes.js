@@ -160,18 +160,22 @@ router.get('/actions/history', (req, res) => {
 
 // ─── TASKS & CALENDAR LIFECYCLE MANAGEMENT ────────────────────────────────────
 
-// GET /api/v1/tasks — List tasks with filter (all|upcoming|pending|completed|cancelled) & search
+// GET /api/v1/tasks — List tasks with filter (all|upcoming|pending|completed|cancelled) & search & roomId
 router.get('/tasks', async (req, res, next) => {
   try {
     const filter = req.query?.filter || 'all';
     const search = req.query?.search || '';
     const syncCalendar = req.query?.sync === 'true';
+    const roomId = req.query?.roomId || null;
+    const organizationId = req.headers['x-organization-id'] || req.query?.organizationId || 'org_default';
 
     const result = await listTasks({
       sessionId: req.sessionId,
       filter,
       search,
-      syncCalendar
+      syncCalendar,
+      roomId,
+      organizationId
     });
 
     const auditHistory = getTaskAuditHistory(null, req.sessionId);
@@ -181,6 +185,7 @@ router.get('/tasks', async (req, res, next) => {
       success: true,
       count: result.tasks.length,
       counts: result.counts,
+      stats: result.stats,
       tasks: result.tasks,
       completedHistory: result.completedHistory,
       auditEntries: auditHistory.globalAuditEntries

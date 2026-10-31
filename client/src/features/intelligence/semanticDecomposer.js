@@ -15,6 +15,8 @@
  * - Location-associated automation
  */
 
+import { classifyRoomDeterministic } from './roomClassification.js';
+
 export class SemanticDecomposer {
   decompose(transcript, context = {}) {
     if (!transcript || typeof transcript !== 'string' || !transcript.trim()) {
@@ -503,6 +505,19 @@ export class SemanticDecomposer {
       }
     }
 
+    // Enrich extracted actions with room classification
+    for (const act of actions) {
+      const room = classifyRoomDeterministic(act.sourceText || act.title, act.destination);
+      act.roomId = room.roomId;
+      act.roomName = room.roomName;
+      act.roomCategory = room.roomCategory;
+      act.classificationConfidence = room.confidenceScore;
+      act.classificationReason = room.classificationReason;
+      act.classificationSource = room.classificationSource;
+      act.requiresRoomReview = room.requiresReview;
+      act.roomOutcome = room.outcome;
+    }
+
     return actions;
   }
 
@@ -530,11 +545,12 @@ export class SemanticDecomposer {
       return [working];
     }
 
-    // Split on commas followed by verbs/people/clauses
+    // Split on commas followed by verbs/people/clauses or room indicators
     const normalized = working
-      .replace(/,\s*(?=(?:[A-Za-z\u0900-\u097F]+\s+){1,3}(?:ko|se|ke|will|should|par|mein|bata\s+dena|assign|WhatsApp))/gi, ' | ')
+      .replace(/,\s*(?=(?:[A-Za-z\u0900-\u097F]+\s+){0,3}(?:ko|se|ke|will|should|par|mein|ka|ki|ke|bata\s+dena|assign|WhatsApp|reception|drawing|living|bedroom|bathroom|office|kitchen|store|parking|meeting|register|lights|service|repair))/gi, ' | ')
       .replace(/,\s*(?:aur|and|then|uske\s+baad|fir|phir)\s+/gi, ' | ')
-      .replace(/\s+(?:aur|and|then|uske\s+baad|fir|phir|after\s+that|as\s+well\s+as)\s+(?=[A-Za-z\u0900-\u097F]+\s+(?:ko|se|ke|par|mein|bata|WhatsApp|parso|kal|aaj|usko))/gi, ' | ')
+      .replace(/\s+(?:aur|and|then|uske\s+baad|fir|phir|after\s+that|as\s+well\s+as)\s+(?=(?:[A-Za-z\u0900-\u097F]+\s+){0,2}(?:ko|se|ke|par|mein|ka|ki|bata|WhatsApp|parso|kal|aaj|usko|ac|lights|service|repair|meeting|register|bedroom|drawing|office|reception|kitchen))/gi, ' | ')
+      .replace(/\s+(?:aur|and)\s+(?=(?:reception|drawing|living|bedroom|bathroom|office|kitchen|store|parking|meeting)\b)/gi, ' | ')
       .replace(/\s+(?:aur|and)\s+(?=[A-Za-z\u0900-\u097F]+(?:\s+bhi|\s+laana|\s+le\s+aana))/gi, ' | ')
       .replace(/[.;\n]+/g, ' | ');
 
@@ -666,7 +682,8 @@ export class SemanticDecomposer {
       return false;
     }
 
-    return /\b(?:task|assign|mangwani|mangwana|karna\s+hai|karega|karegi|report|presentation|testing|cleaning|check)\b/i.test(text);
+    return /\b(?:task|assign|mangwani|mangwana|karna\s+hai|karega|karegi|report|presentation|testing|cleaning|check|ready\s+rakhna|rakhna|repair|service|servicing|theek|fix|safai|maintenance)\b/i.test(text) ||
+           /\b(?:register|lights?|ac\s+service|service\s+karwana|repair\s+karwani)\b/i.test(text);
   }
 
   extractShoppingItems(text) {
@@ -696,7 +713,7 @@ export class SemanticDecomposer {
                 clause.match(/([A-Za-z\u0900-\u097F]+)\s+ko\s+(?:calendar|invite)/i);
     let name = match ? match[1].trim() : null;
     if (!name) return null;
-    name = name.replace(/^(?:.*?\b(?:kar\s+do|kardo|kar|do|fix|meeting|schedule|online|site|aaj|kal|parso)\b\s*)+/i, '').trim();
+    name = name.replace(/^(?:.*?\b(?:kar\s+do|kardo|kar|do|fix|meeting|schedule|online|site|aaj|kal|parso|office|room|cabin|reception|mein|me|par|se|in|at)\b\s*)+/i, '').trim();
     name = name.replace(/\s+(?:tomorrow|today|kal|aaj|at|on|for|by|ko|se)$/i, '');
     name = name.trim();
     if (!name || /^(?:aur|and|the|a|an|ko|se|par|to|invite)$/i.test(name)) return null;
@@ -760,11 +777,15 @@ export class SemanticDecomposer {
       return 'Master bedroom cleaning';
     }
     if (/report/i.test(clause)) return 'Production report';
+    if (/visitor\s+register/i.test(clause)) return 'Prepare visitor entry register';
+    if (/drawing\s+room/i.test(clause) && /light/i.test(clause)) return 'Repair drawing room lights';
+    if (/bedroom/i.test(clause) && /ac/i.test(clause)) return 'Arrange bedroom AC servicing';
+    if (/fridge|refrigerator/i.test(clause) && /repair/i.test(clause)) return 'Repair refrigerator';
 
     let clean = clause
       .replace(/^[A-Za-z\u0900-\u097F]+\s+(?:ko\s+(?:ye\s+task\s+)?assign\s+(?:karo|kar\s+do)|se\s+)/i, '')
       .replace(/\b(?:ki\s+cleaning|cleaning)\s+(?:karni\s+hai|karna\s+hai|hai|karo|kar\s+do)/gi, ' cleaning')
-      .replace(/\b(?:mangwani\s+hai|karni\s+hai|karna\s+hai|hai|karo|kar\s+do)\b/gi, '')
+      .replace(/\b(?:mangwani\s+hai|karni\s+hai|karna\s+hai|hai|karo|kar\s+do|ready\s+rakhna|ready\s+rakho|karwani\s+hain|karwani\s+hai|karwana\s+hai)\b/gi, '')
       .replace(/^[,\s]+|[,\s]+$/g, '')
       .trim();
 

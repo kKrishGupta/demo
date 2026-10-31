@@ -496,6 +496,15 @@ async function dispatchAction(action, context) {
           priority: action.priority || 'Normal',
           assigneeId: action.assignee?.id || action.assigneeId || null,
           assigneeName: action.assignee?.name || action.assigneeName || null,
+          roomId: action.roomId || null,
+          roomName: action.roomName || action.roomNameSnapshot || null,
+          roomCategory: action.roomCategory || null,
+          classificationConfidence: action.classificationConfidence,
+          classificationReason: action.classificationReason,
+          classificationSource: action.classificationSource,
+          routingRuleId: action.routingRuleId,
+          requiresRoomReview: action.requiresRoomReview,
+          sourceTranscriptId: action.sourceTranscriptId || null,
           scheduledStart: action.startDate || action.deadline || action.dueDate || null,
           durationMinutes: action.durationMinutes || 60
         }, { sessionId: context.sessionId });

@@ -9,6 +9,7 @@ import UniversalBenchmarkLab from './components/UniversalBenchmarkLab';
 import IntelligenceTestingLab from './components/IntelligenceTestingLab';
 import CalendarIntegrationPanel from './components/CalendarIntegrationPanel';
 import MyTasksCalendarPanel from './components/MyTasksCalendarPanel';
+import RoomTaskDistributionDashboard from './components/RoomTaskDistributionDashboard';
 import { SAMPLE_PEOPLE } from './data/samplePeople';
 import { SAMPLE_PROJECTS } from './data/sampleProjects';
 import { SAMPLE_DEPARTMENTS } from './data/sampleDepartments';
@@ -536,6 +537,39 @@ export default function App() {
             </button>
             <button
               type="button"
+              onClick={() => setViewMode('rooms')}
+              className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition ${
+                viewMode === 'rooms'
+                  ? 'bg-white text-blue-700 shadow-sm'
+                  : 'text-white/80 hover:text-white hover:bg-white/10'
+              }`}
+            >
+              🏠 Room Tasks
+            </button>
+            <button
+              type="button"
+              onClick={() => setViewMode('tasks')}
+              className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition ${
+                viewMode === 'tasks'
+                  ? 'bg-white text-blue-700 shadow-sm'
+                  : 'text-white/80 hover:text-white hover:bg-white/10'
+              }`}
+            >
+              ✅ My Tasks &amp; Calendar
+            </button>
+            <button
+              type="button"
+              onClick={() => setViewMode('calendar')}
+              className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition ${
+                viewMode === 'calendar'
+                  ? 'bg-white text-blue-700 shadow-sm'
+                  : 'text-white/80 hover:text-white hover:bg-white/10'
+              }`}
+            >
+              📅 Calendar Hub
+            </button>
+            <button
+              type="button"
               onClick={() => setViewMode('form')}
               className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition ${
                 viewMode === 'form'
@@ -567,33 +601,15 @@ export default function App() {
             >
               🧪 Testing Lab
             </button>
-            <button
-              type="button"
-              onClick={() => setViewMode('tasks')}
-              className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition ${
-                viewMode === 'tasks'
-                  ? 'bg-white text-blue-700 shadow-sm'
-                  : 'text-white/80 hover:text-white hover:bg-white/10'
-              }`}
-            >
-              ✅ My Tasks &amp; Calendar
-            </button>
-            <button
-              type="button"
-              onClick={() => setViewMode('calendar')}
-              className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition ${
-                viewMode === 'calendar'
-                  ? 'bg-white text-blue-700 shadow-sm'
-                  : 'text-white/80 hover:text-white hover:bg-white/10'
-              }`}
-            >
-              📅 Calendar Hub
-            </button>
           </div>
         </div>
 
-        {/* Section 1: My Tasks & Calendar OR Calendar Hub OR Testing Lab OR Benchmark Lab OR Voice Command Workspace OR Legacy Task Form */}
-        {viewMode === 'tasks' ? (
+        {/* Section 1: Room-Based Task Distribution OR My Tasks & Calendar OR Calendar Hub OR Testing Lab OR Benchmark Lab OR Voice Command Workspace */}
+        {viewMode === 'rooms' ? (
+          <section aria-label="Room-Based Task Distribution">
+            <RoomTaskDistributionDashboard onNavigateToVoice={() => setViewMode('workspace')} />
+          </section>
+        ) : viewMode === 'tasks' ? (
           <section aria-label="My Tasks & Calendar">
             <MyTasksCalendarPanel />
           </section>

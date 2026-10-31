@@ -22,6 +22,7 @@ import meetingRoutes from './routes/meetingRoutes.js';
 import contextRoutes from './routes/contextRoutes.js';
 import benchmarkRoutes from './routes/benchmarkRoutes.js';
 import testingRoutes from './routes/testingRoutes.js';
+import roomRoutes from './routes/roomRoutes.js';
 import { attachWebSocketServer } from './websocket/wsServer.js';
 
 const app = express();
@@ -90,6 +91,9 @@ app.use('/api/benchmark', benchmarkRoutes);
 
 app.use('/api/v1/testing', testingRoutes);
 app.use('/api/testing', testingRoutes);
+
+app.use('/api/v1', roomRoutes);
+app.use('/api', roomRoutes);
 
 import { initReminderScheduler } from './services/reminderSchedulerService.js';
 

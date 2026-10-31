@@ -29,6 +29,9 @@ import {
 } from './calendarService.js';
 import { getGoogleConnection, isIsolatedTestSession } from './tokenStorageService.js';
 import { auditLog, getAuditEntries, getCalendarActivityEntries } from './auditService.js';
+import { roomClassificationEngine } from './roomClassificationEngine.js';
+import { getRoomById, recordRoomCorrectionFeedback } from './roomManagementService.js';
+import { broadcastToSession } from '../websocket/wsServer.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const DATA_DIR = path.resolve(__dirname, '../../data');
@@ -41,12 +44,18 @@ function getTasksStoreFile() {
 }
 
 export const TASK_STATUSES = Object.freeze({
+  DRAFT: 'DRAFT',
+  PENDING_APPROVAL: 'PENDING_APPROVAL',
   PENDING: 'PENDING',
   IN_PROGRESS: 'IN_PROGRESS',
   COMPLETION_REQUESTED: 'COMPLETION_REQUESTED',
   COMPLETED: 'COMPLETED',
   CALENDAR_REMOVAL_FAILED: 'CALENDAR_REMOVAL_FAILED',
-  CANCELLED: 'CANCELLED'
+  CANCELLED: 'CANCELLED',
+  NEEDS_CLARIFICATION: 'NEEDS_CLARIFICATION',
+  NEEDS_ROOM_REVIEW: 'NEEDS_ROOM_REVIEW',
+  BLOCKED: 'BLOCKED',
+  FAILED: 'FAILED'
 });
 
 export const LINKED_RESOURCE_TYPES = Object.freeze({
@@ -258,6 +267,46 @@ export async function createOrRegisterTask(payload, { sessionId = 'default_sessi
     : 'ACTIONFLOW_TASK';
 
   const existing = _tasksMap.get(taskId);
+
+  // Intelligent Room Assignment Integration
+  let roomId = payload.roomId || null;
+  let roomNameSnapshot = payload.roomName || payload.roomNameSnapshot || null;
+  let roomCategory = payload.roomCategory || payload.category || null;
+  let classificationConfidence = payload.classificationConfidence !== undefined ? Number(payload.classificationConfidence) : null;
+  let classificationReason = payload.classificationReason || null;
+  let classificationSource = payload.classificationSource || null;
+  let routingRuleId = payload.routingRuleId || null;
+  let requiresRoomReview = payload.requiresRoomReview !== undefined ? Boolean(payload.requiresRoomReview) : false;
+
+  if (!roomId) {
+    const classification = roomClassificationEngine.classifyTask({
+      text: `${title} ${description}`,
+      intent: payload.intent || payload.type,
+      destination: payload.destination || primaryResourceType,
+      sessionId,
+      organizationId: payload.organizationId || 'org_default'
+    });
+    roomId = classification.roomId;
+    roomNameSnapshot = classification.roomName;
+    roomCategory = classification.roomCategory;
+    classificationConfidence = classification.confidenceScore;
+    classificationReason = classification.classificationReason;
+    classificationSource = classification.classificationSource;
+    routingRuleId = classification.routingRuleId;
+    requiresRoomReview = classification.requiresReview;
+  } else if (!roomNameSnapshot) {
+    const rObj = getRoomById(roomId, { organizationId: payload.organizationId || 'org_default' });
+    if (rObj) {
+      roomNameSnapshot = rObj.name;
+      roomCategory = roomCategory || rObj.categories?.[0] || 'General';
+      classificationSource = classificationSource || 'EXPLICIT_SPECIFIED';
+    }
+  }
+
+  const initialStatus = payload.status && Object.values(TASK_STATUSES).includes(payload.status)
+    ? payload.status
+    : TASK_STATUSES.PENDING;
+
   const taskRecord = {
     id: taskId,
     actionId,
@@ -269,6 +318,18 @@ export async function createOrRegisterTask(payload, { sessionId = 'default_sessi
     priority,
     assigneeId: payload.assigneeId || null,
     assigneeName: payload.assigneeName || null,
+    // Room Distribution fields
+    roomId,
+    roomNameSnapshot: roomNameSnapshot || 'General',
+    roomCategory: roomCategory || 'General',
+    classificationConfidence: classificationConfidence ?? 0.85,
+    classificationReason: classificationReason || 'Assigned via ActionFlow Room Engine',
+    classificationSource: classificationSource || 'RULE_ENGINE',
+    routingRuleId: routingRuleId || null,
+    requiresRoomReview: Boolean(requiresRoomReview),
+    sourceTranscriptId: payload.sourceTranscriptId || payload.commandId || null,
+    sourceActionId: payload.sourceActionId || actionId,
+    organizationId: payload.organizationId || 'org_default',
     scheduledStart,
     scheduledEnd,
     originalScheduledStart: existing?.originalScheduledStart || scheduledStart,
@@ -284,9 +345,9 @@ export async function createOrRegisterTask(payload, { sessionId = 'default_sessi
     originalGoogleEventId: existing?.originalGoogleEventId || googleEventId || null,
     previousGoogleEventIds: existing?.previousGoogleEventIds || (googleEventId ? [googleEventId] : []),
     eventLink,
-    status: TASK_STATUSES.PENDING,
-    completed: false,
-    completedAt: null,
+    status: initialStatus,
+    completed: initialStatus === TASK_STATUSES.COMPLETED,
+    completedAt: initialStatus === TASK_STATUSES.COMPLETED ? (existing?.completedAt || now) : null,
     calendarRemovalResult: null,
     createdAt: existing?.createdAt || now,
     updatedAt: now,
@@ -295,6 +356,9 @@ export async function createOrRegisterTask(payload, { sessionId = 'default_sessi
 
   appendTaskAudit(taskRecord, 'TASK_CREATED', {
     title: taskRecord.title,
+    roomId: taskRecord.roomId,
+    roomName: taskRecord.roomNameSnapshot,
+    requiresRoomReview: taskRecord.requiresRoomReview,
     scheduledStart: taskRecord.scheduledStart,
     scheduledEnd: taskRecord.scheduledEnd,
     googleEventId: taskRecord.googleEventId,
@@ -330,7 +394,9 @@ export async function listTasks({
   sessionId = 'default_session',
   filter = 'all',
   search = '',
-  syncCalendar = false
+  syncCalendar = false,
+  roomId = null,
+  organizationId = 'org_default'
 } = {}) {
   loadTasksFromDisk();
 
@@ -380,6 +446,12 @@ export async function listTasks({
     .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
 
   const nowMs = Date.now();
+  const byRoomCounts = {};
+  for (const t of allSessionTasks) {
+    const rId = t.roomId || 'room_unassigned';
+    byRoomCounts[rId] = (byRoomCounts[rId] || 0) + 1;
+  }
+
   const counts = {
     all: allSessionTasks.length,
     upcoming: allSessionTasks.filter(t =>
@@ -390,19 +462,28 @@ export async function listTasks({
       t.status === TASK_STATUSES.PENDING ||
       t.status === TASK_STATUSES.IN_PROGRESS ||
       t.status === TASK_STATUSES.COMPLETION_REQUESTED ||
+      t.status === TASK_STATUSES.NEEDS_ROOM_REVIEW ||
+      t.status === TASK_STATUSES.NEEDS_CLARIFICATION ||
       t.status === TASK_STATUSES.CALENDAR_REMOVAL_FAILED
     ).length,
     completed: allSessionTasks.filter(t => t.status === TASK_STATUSES.COMPLETED).length,
     cancelled: allSessionTasks.filter(t => t.status === TASK_STATUSES.CANCELLED).length,
-    removalFailed: allSessionTasks.filter(t => t.status === TASK_STATUSES.CALENDAR_REMOVAL_FAILED).length
+    removalFailed: allSessionTasks.filter(t => t.status === TASK_STATUSES.CALENDAR_REMOVAL_FAILED).length,
+    byRoom: byRoomCounts
   };
 
   const normalizedFilter = String(filter || 'all').toLowerCase();
   const normalizedSearch = String(search || '').trim().toLowerCase();
 
   const filtered = allSessionTasks.filter(task => {
+    // Room filter
+    if (roomId && roomId !== 'all') {
+      const taskRoom = task.roomId || 'room_unassigned';
+      if (taskRoom !== roomId) return false;
+    }
+
     if (normalizedSearch) {
-      const hay = `${task.title || ''} ${task.description || ''} ${task.calendarName || ''}`.toLowerCase();
+      const hay = `${task.title || ''} ${task.description || ''} ${task.roomNameSnapshot || ''} ${task.roomCategory || ''} ${task.calendarName || ''}`.toLowerCase();
       if (!hay.includes(normalizedSearch)) return false;
     }
 
@@ -419,8 +500,14 @@ export async function listTasks({
           task.status === TASK_STATUSES.PENDING ||
           task.status === TASK_STATUSES.IN_PROGRESS ||
           task.status === TASK_STATUSES.COMPLETION_REQUESTED ||
+          task.status === TASK_STATUSES.NEEDS_ROOM_REVIEW ||
+          task.status === TASK_STATUSES.NEEDS_CLARIFICATION ||
           task.status === TASK_STATUSES.CALENDAR_REMOVAL_FAILED
         );
+      case 'in_progress':
+        return task.status === TASK_STATUSES.IN_PROGRESS;
+      case 'needs_review':
+        return task.status === TASK_STATUSES.NEEDS_ROOM_REVIEW || task.requiresRoomReview === true;
       case 'completed':
         return task.status === TASK_STATUSES.COMPLETED;
       case 'cancelled':
@@ -431,11 +518,35 @@ export async function listTasks({
     }
   });
 
+  const targetRoomTasks = (roomId && roomId !== 'all')
+    ? allSessionTasks.filter(t => (t.roomId || 'room_unassigned') === roomId)
+    : allSessionTasks;
+
+  const stats = {
+    total: targetRoomTasks.length,
+    pending: targetRoomTasks.filter(t =>
+      t.status === TASK_STATUSES.PENDING ||
+      t.status === TASK_STATUSES.NEEDS_ROOM_REVIEW ||
+      t.status === TASK_STATUSES.NEEDS_CLARIFICATION
+    ).length,
+    inProgress: targetRoomTasks.filter(t => t.status === TASK_STATUSES.IN_PROGRESS).length,
+    completed: targetRoomTasks.filter(t => t.status === TASK_STATUSES.COMPLETED).length,
+    overdue: targetRoomTasks.filter(t =>
+      t.status !== TASK_STATUSES.COMPLETED &&
+      t.status !== TASK_STATUSES.CANCELLED &&
+      t.dueDate &&
+      new Date(t.dueDate).getTime() < nowMs
+    ).length,
+    highPriority: targetRoomTasks.filter(t => t.priority === 'Urgent' || t.priority === 'High').length,
+    recentlyAdded: targetRoomTasks.filter(t => new Date(t.createdAt).getTime() >= nowMs - 24 * 3600 * 1000).length
+  };
+
   const completedHistory = allSessionTasks.filter(t => t.status === TASK_STATUSES.COMPLETED);
 
   return {
     tasks: filtered,
     counts,
+    stats,
     completedHistory
   };
 }
@@ -529,9 +640,36 @@ export async function updateTask(taskId, updates, { sessionId = 'default_session
     }
   }
 
+  if (updates.assigneeId !== undefined) {
+    task.assigneeId = updates.assigneeId;
+    task.assigneeName = updates.assigneeName || task.assigneeName;
+  }
+  if (updates.assigneeName !== undefined) {
+    task.assigneeName = updates.assigneeName;
+  }
+  if (updates.roomId && updates.roomId !== task.roomId) {
+    const rObj = getRoomById(updates.roomId);
+    if (rObj) {
+      task.roomId = rObj.roomId;
+      task.roomNameSnapshot = rObj.name;
+      task.roomCategory = rObj.categories?.[0] || 'General';
+      task.classificationSource = 'MANUAL_OVERRIDE';
+      task.requiresRoomReview = false;
+    }
+  }
+  if (updates.requiresRoomReview !== undefined) {
+    task.requiresRoomReview = Boolean(updates.requiresRoomReview);
+  }
+
   task.updatedAt = new Date().toISOString();
   _tasksMap.set(task.id, task);
   persistTasksToDisk();
+
+  broadcastToSession(sessionId, {
+    type: 'task:updated',
+    taskId: task.id,
+    task
+  });
 
   return {
     success: true,
@@ -912,6 +1050,128 @@ export async function undoTaskCompletion(
     httpStatus: 200,
     status: TASK_STATUSES.PENDING,
     recreatedGoogleEventId: newGoogleEventId,
+    task
+  };
+}
+
+/**
+ * Explicitly reassigns a task's room, logs audit entry, records feedback, and broadcasts update
+ */
+export async function reassignTaskRoom(
+  taskId,
+  newRoomId,
+  { reason = 'Manual room reassignment', updatedBy = 'user', sessionId = 'default_session', organizationId = 'org_default' } = {}
+) {
+  loadTasksFromDisk();
+  const task = getTaskById(taskId, sessionId);
+  if (!task) {
+    return {
+      success: false,
+      httpStatus: 404,
+      error: 'TASK_NOT_FOUND',
+      message: `Task "${taskId}" not found.`
+    };
+  }
+
+  const room = getRoomById(newRoomId, { organizationId });
+  if (!room) {
+    return {
+      success: false,
+      httpStatus: 400,
+      error: 'ROOM_NOT_FOUND',
+      message: `Room with ID "${newRoomId}" not found.`
+    };
+  }
+
+  const oldRoomId = task.roomId || 'room_unassigned';
+  task.roomId = room.roomId;
+  task.roomNameSnapshot = room.name;
+  task.roomCategory = room.categories?.[0] || 'General';
+  task.classificationSource = 'MANUAL_OVERRIDE';
+  task.requiresRoomReview = false;
+  if (task.status === TASK_STATUSES.NEEDS_ROOM_REVIEW) {
+    task.status = TASK_STATUSES.PENDING;
+  }
+  task.updatedAt = new Date().toISOString();
+
+  appendTaskAudit(task, 'TASK_ROOM_REASSIGNED', {
+    oldRoomId,
+    newRoomId: room.roomId,
+    newRoomName: room.name,
+    reason,
+    updatedBy
+  });
+
+  _tasksMap.set(task.id, task);
+  persistTasksToDisk();
+
+  recordRoomCorrectionFeedback({
+    taskId: task.id,
+    taskTitle: task.title,
+    originalRoomId: oldRoomId,
+    correctedRoomId: room.roomId,
+    reason,
+    sessionId,
+    organizationId
+  });
+
+  broadcastToSession(sessionId, {
+    type: 'task:room_reassigned',
+    taskId: task.id,
+    oldRoomId,
+    newRoomId: room.roomId,
+    newRoomName: room.name,
+    task
+  });
+
+  return {
+    success: true,
+    httpStatus: 200,
+    task
+  };
+}
+
+/**
+ * Reopens a completed task, restoring its active status
+ */
+export async function reopenTask(
+  taskId,
+  { sessionId = 'default_session', accessToken = null, reason = 'Reopened by user' } = {}
+) {
+  loadTasksFromDisk();
+  const task = getTaskById(taskId, sessionId);
+  if (!task) {
+    return {
+      success: false,
+      httpStatus: 404,
+      error: 'TASK_NOT_FOUND',
+      message: `Task "${taskId}" not found.`
+    };
+  }
+
+  // If task had a Google Calendar event that was deleted on completion, delegate to undoTaskCompletion
+  if (task.originalGoogleEventId) {
+    return undoTaskCompletion(taskId, { sessionId, accessToken });
+  }
+
+  task.status = TASK_STATUSES.PENDING;
+  task.completed = false;
+  task.completedAt = null;
+  task.updatedAt = new Date().toISOString();
+
+  appendTaskAudit(task, 'TASK_REOPENED', { reason });
+  _tasksMap.set(task.id, task);
+  persistTasksToDisk();
+
+  broadcastToSession(sessionId, {
+    type: 'task:reopened',
+    taskId: task.id,
+    task
+  });
+
+  return {
+    success: true,
+    httpStatus: 200,
     task
   };
 }

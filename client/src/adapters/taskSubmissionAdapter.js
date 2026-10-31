@@ -7,7 +7,7 @@ import { validateTaskPayload } from '../services/taskService';
 import { buildApiUrl } from '../config/apiConfig';
 
 export class TaskSubmissionAdapter {
-  constructor(endpoint = null) {
+  constructor(endpoint = '/tasks') {
     this._endpoint = endpoint;
     this._lastSubmittedFingerprint = null;
     this._isSubmitting = false;
@@ -51,17 +51,25 @@ export class TaskSubmissionAdapter {
     try {
       // In production, delegate to real HTTP POST endpoint if configured
       if (this._endpoint) {
-        const response = await fetch(buildApiUrl(this._endpoint), {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(taskPayload)
-        });
-        if (!response.ok) {
-          throw new Error(`Server returned HTTP ${response.status}`);
+        try {
+          const response = await fetch(buildApiUrl(this._endpoint), {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(taskPayload)
+          });
+          if (response.ok) {
+            const data = await response.json();
+            this._lastSubmittedFingerprint = currentFingerprint;
+            return {
+              success: true,
+              taskId: data.task?.id || data.taskId,
+              task: data.task || data,
+              timestamp: data.task?.createdAt || new Date().toISOString()
+            };
+          }
+        } catch (netErr) {
+          console.warn('[TaskAdapter] Backend unavailable, using local fallback:', netErr.message);
         }
-        const data = await response.json();
-        this._lastSubmittedFingerprint = currentFingerprint;
-        return data;
       }
 
       // Simulated local API resolution with 300ms network feel
