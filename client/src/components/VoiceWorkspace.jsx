@@ -99,11 +99,16 @@ function ActionCard({ action, directory = [], onApprove, onReject, onAssigneeCha
     (action.stage === 'COMPLETED' ||
       (result?.success === true &&
         (result?.status === 'COMPLETED' ||
+          result?.status === 'CREATED' ||
+          result?.status === 'ADDED' ||
+          result?.status === 'SUCCESS' ||
           result?.whatsappStatus === 'QUEUED' ||
           result?.whatsappStatus === 'SENT' ||
           result?.whatsappStatus === 'DELIVERED' ||
           result?.whatsappStatus === 'READ' ||
           result?.result?.status === 'COMPLETED' ||
+          result?.result?.status === 'CREATED' ||
+          result?.result?.status === 'ADDED' ||
           result?.result?.status === 'SENT')));
   const isFailed = action.stage === 'FAILED' || (result && (result.status === 'FAILED' || result.success === false));
 
@@ -111,7 +116,16 @@ function ActionCard({ action, directory = [], onApprove, onReject, onAssigneeCha
     if (submitting) return result;
     setSubmitting(true);
     try {
-      const payload = customPayload || action;
+      const merged = {
+        ...action,
+        ...(customPayload || {})
+      };
+      const payload = {
+        ...merged,
+        id: merged.id || `act_${Date.now()}`,
+        type: (merged.type && merged.type !== 'UNKNOWN') ? merged.type : 'CREATE_TASK',
+        destination: (merged.destination && merged.destination !== 'UNKNOWN' && merged.destination !== 'General') ? merged.destination : 'TASK_MANAGER'
+      };
       const r = await approveAction(payload);
       setResult(r);
       onApprove?.(payload, r);
@@ -260,12 +274,12 @@ function ActionCard({ action, directory = [], onApprove, onReject, onAssigneeCha
                 Confidence: {Math.round((action.confidence?.overall || action.confidence || 0.95) * 100)}%
               </span>
 
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-2 flex-wrap">
                 {onReject && !isDone && (
                   <button
                     type="button"
                     onClick={() => onReject(action)}
-                    className="min-h-[36px] px-2.5 py-1 text-xs text-slate-500 hover:text-rose-600 rounded hover:bg-slate-50 transition"
+                    className="min-h-[36px] px-2.5 py-1 text-xs text-slate-500 hover:text-rose-600 rounded-lg hover:bg-slate-50 transition"
                   >
                     Dismiss
                   </button>
@@ -279,20 +293,58 @@ function ActionCard({ action, directory = [], onApprove, onReject, onAssigneeCha
                     className="min-h-[36px] px-3 py-1 bg-rose-600 hover:bg-rose-700 text-white rounded-lg text-xs font-semibold flex items-center gap-1 shadow-xs transition"
                   >
                     {submitting ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <RotateCcw className="w-3.5 h-3.5" />}
-                    Retry Approval
+                    Retry
                   </button>
                 )}
 
-                {isPending && (
-                  <button
-                    type="button"
-                    onClick={() => handleApprove()}
-                    disabled={submitting}
-                    className="min-h-[36px] px-3.5 py-1.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg text-xs font-semibold flex items-center gap-1 shadow-xs transition"
-                  >
-                    {submitting ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <Check className="w-3.5 h-3.5" />}
-                    Approve & Execute
-                  </button>
+                {/* Direct Action Buttons when not yet saved */}
+                {!isDone && !isFailed && (
+                  <>
+                    {/* Add to Shopping List button if item/shopping context */}
+                    {(isShopping || /milk|bread|groceries|grocery|shopping|eggs?|butter|dal|atta|sugar|sabzi|doodh/i.test(action.title || action.item || action.sourceText || '')) && (
+                      <button
+                        type="button"
+                        onClick={() => handleApprove({
+                          type: 'ADD_ITEM',
+                          destination: 'SHOPPING_LIST',
+                          title: action.title?.startsWith('Add ') ? action.title : `Add ${action.item || action.title} to shopping list`,
+                          item: action.item || action.title
+                        })}
+                        disabled={submitting}
+                        className="min-h-[36px] px-3 py-1.5 bg-orange-600 hover:bg-orange-700 text-white rounded-lg text-xs font-semibold flex items-center gap-1.5 shadow-xs transition"
+                        title="Add to Shopping List"
+                      >
+                        {submitting ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <span>🛒</span>}
+                        <span>Add to Shopping</span>
+                      </button>
+                    )}
+
+                    {/* Primary "Add as Task" Button - Always visible so user can 1-click create the task into its room! */}
+                    <button
+                      type="button"
+                      onClick={() => handleApprove({
+                        type: 'CREATE_TASK',
+                        destination: 'TASK_MANAGER',
+                        title: action.title,
+                        description: action.description || action.title,
+                        roomId: action.roomId || 'room_general',
+                        roomName: action.roomName || 'General'
+                      })}
+                      disabled={submitting}
+                      className="min-h-[36px] px-3.5 py-1.5 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-xs font-bold flex items-center gap-1.5 shadow-xs transition"
+                      title="Add to Task Manager and distribute to Room"
+                    >
+                      {submitting ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <Plus className="w-3.5 h-3.5" />}
+                      <span>Add as Task {action.roomName ? `(${action.roomName})` : ''}</span>
+                    </button>
+                  </>
+                )}
+
+                {isDone && (
+                  <span className="text-xs text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-lg border border-emerald-200 font-semibold flex items-center gap-1">
+                    <Check className="w-3.5 h-3.5 text-emerald-600" />
+                    <span>Added &amp; Saved Successfully</span>
+                  </span>
                 )}
               </div>
             </div>

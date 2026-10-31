@@ -155,7 +155,8 @@ const ROUTING_RULES = [
     weight: 90,
     patterns: [
       /\b(?:shopping\s+(?:list|mein|par)|grocery|groceries)\b/i,
-      /\b(?:bread|milk|doodh|sabzi|atta|chawal|dal|vegetables?|fruits?|eggs?|sugar|namak|oil|tel|butter)\b.*\b(?:laana|le\s+aana|khareedna|chahiye|add)\b/i,
+      /\b(?:bring|buy|get|fetch|purchase|order)\b.*\b(?:bread|milk|doodh|sabzi|eggs?|groceries|butter|item)\b/i,
+      /\b(?:bread|milk|doodh|sabzi|atta|chawal|dal|vegetables?|fruits?|eggs?|sugar|namak|oil|tel|butter|groceries)\b.*\b(?:laana|le\s+aana|khareedna|chahiye|add|buy|bring|get)\b/i,
       /\b(?:laana\s+hai|le\s+aana)\b.*\b(?:bread|milk|doodh|sabzi|eggs?)\b/i,
       /\b(?:kitchen|ghar)\s+(?:mein|ke\s+liye).*\b(?:laana|chahiye|lena|bread|milk)\b/i,
       /\b(?:add\s+(?:bread|milk|eggs|butter)\b)/i
@@ -341,10 +342,10 @@ export function routeClause(clause) {
   }
 
   if (matched.length === 0) {
-    const isAction = /\b(?:karo|karna|kar\s+do|banao|complete|create|add|fix)\b/i.test(lower);
+    const isAction = /\b(?:karo|karna|kar\s+do|banao|complete|create|add|fix|bring|get|buy|send|make|do|check|clean|repair|service)\b/i.test(lower);
     return {
       destination: isAction ? DESTINATIONS.TASK_MANAGER : DESTINATIONS.UNKNOWN,
-      confidence: isAction ? 0.6 : 0.25,
+      confidence: isAction ? 0.85 : 0.25,
       operation: isAction ? 'CREATE_TASK' : 'UNKNOWN'
     };
   }

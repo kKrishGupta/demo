@@ -629,8 +629,8 @@ export class SemanticDecomposer {
 
   isShoppingClause(text) {
     return (/\b(?:bread|milk|doodh|sabzi|atta|chawal|dal|eggs?|sugar|butter|groceries|grocery|shopping)\b/i.test(text) &&
-           /\b(?:laana|lana|le\s+aana|laana\s+hai|khareedna|add|kitchen|list|rakhni|rakhna|bhi|leni\s+hain|leni\s+hai|buy)\b/i.test(text)) ||
-           /\b(?:buy\s+bread|buy\s+milk|weekend\s+par\s+groceries)\b/i.test(text);
+           /\b(?:laana|lana|le\s+aana|laana\s+hai|khareedna|add|kitchen|list|rakhni|rakhna|bhi|leni\s+hain|leni\s+hai|buy|bring|get|fetch|purchase|order|take)\b/i.test(text)) ||
+           /\b(?:buy\s+bread|buy\s+milk|bring\s+(?:a\s+)?(?:milk|bread|groceries|butter|eggs?)|weekend\s+par\s+groceries)\b/i.test(text);
   }
 
   isCalendarClause(text) {
