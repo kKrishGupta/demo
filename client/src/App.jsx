@@ -448,25 +448,25 @@ export default function App() {
 
       {/* Enterprise Top Navigation Bar */}
       <header className="bg-white border-b border-slate-200/80 sticky top-0 z-40">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <div className="w-8 h-8 rounded-lg bg-blue-600 text-white flex items-center justify-center font-bold text-sm shadow-xs">
+        <div className="max-w-6xl mx-auto px-3 sm:px-6 h-14 flex items-center justify-between gap-2">
+          <div className="flex items-center gap-2 sm:gap-3 min-w-0">
+            <div className="w-8 h-8 rounded-lg bg-blue-600 text-white flex items-center justify-center font-bold text-sm shadow-xs shrink-0">
               <Layers className="w-4 h-4" />
             </div>
-            <div>
+            <div className="min-w-0 truncate">
               <span className="font-semibold text-sm text-slate-900 tracking-tight">
                 TaskDelegation
               </span>
-              <span className="hidden sm:inline-block ml-2 text-xs text-slate-400 font-medium">
+              <span className="hidden sm:inline-block ml-2 text-xs text-slate-400 font-medium truncate">
                 / Universal Multi-Industry Engine
               </span>
             </div>
           </div>
 
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2 sm:gap-3 shrink-0">
             {/* Real-Time Live Clock Badge */}
-            <div className="hidden sm:flex items-center gap-1.5 px-3 py-1 bg-slate-100/90 rounded-full text-xs text-slate-700 font-medium border border-slate-200/60 shadow-2xs">
-              <Clock className="w-3.5 h-3.5 text-blue-600 animate-pulse" />
+            <div className="hidden md:flex items-center gap-1.5 px-3 py-1 bg-slate-100/90 rounded-full text-xs text-slate-700 font-medium border border-slate-200/60 shadow-2xs">
+              <Clock className="w-3.5 h-3.5 text-blue-600 animate-pulse shrink-0" />
               <span className="font-mono text-slate-900 font-semibold">
                 {currentTime.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', second: '2-digit' })}
               </span>
@@ -486,9 +486,9 @@ export default function App() {
               title={serverConnected ? `Connected to ActionFlow AI Server (${API_BASE_URL})` : `Backend unreachable at ${API_BASE_URL} — Running in local mode`}
             >
               {serverConnected ? (
-                <Wifi className="w-3.5 h-3.5 text-emerald-600" />
+                <Wifi className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
               ) : (
-                <WifiOff className="w-3.5 h-3.5 text-slate-400" />
+                <WifiOff className="w-3.5 h-3.5 text-slate-400 shrink-0" />
               )}
               <span className="hidden sm:inline">{serverConnected ? 'AI Server' : 'Local Mode'}</span>
             </div>
@@ -500,8 +500,9 @@ export default function App() {
                 onClick={() => setIsHistoryOpen(!isHistoryOpen)}
                 className="flex items-center gap-1.5 px-2.5 py-1 bg-blue-50 text-blue-700 hover:bg-blue-100 border border-blue-200 rounded-full text-xs font-semibold transition"
               >
-                <History className="w-3.5 h-3.5" />
-                <span>{submittedTasks.length} Submitted</span>
+                <History className="w-3.5 h-3.5 shrink-0" />
+                <span className="hidden sm:inline">{submittedTasks.length} Submitted</span>
+                <span className="sm:hidden">{submittedTasks.length}</span>
               </button>
             )}
           </div>
@@ -509,12 +510,12 @@ export default function App() {
       </header>
 
       {/* Main Container */}
-      <main className="max-w-4xl mx-auto w-full px-4 sm:px-6 py-6 flex-1 space-y-6">
+      <main className="max-w-6xl mx-auto w-full px-3 sm:px-6 py-4 sm:py-6 flex-1 space-y-4 sm:space-y-6">
         {/* Intro Banner */}
-        <div className="bg-gradient-to-r from-blue-700 to-indigo-800 rounded-2xl p-5 text-white shadow-sm flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-          <div>
+        <div className="bg-gradient-to-r from-blue-700 to-indigo-800 rounded-2xl p-4 sm:p-5 text-white shadow-sm flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-4 overflow-hidden">
+          <div className="min-w-0">
             <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-white/15 text-white text-xs font-medium backdrop-blur-xs mb-2">
-              <Zap className="w-3.5 h-3.5 text-yellow-300" />
+              <Zap className="w-3.5 h-3.5 text-yellow-300 shrink-0" />
               <span>Voice-First Intelligent AutoAction Engine</span>
             </div>
             <h1 className="text-xl sm:text-2xl font-bold tracking-tight">ActionFlow AI</h1>
@@ -522,85 +523,94 @@ export default function App() {
               Speak naturally in Hindi, Hinglish, or English. ActionFlow understands your intent and routes to Calendar, Tasks, WhatsApp, Reminders, or Shopping automatically.
             </p>
           </div>
-          {/* View Mode Toggle */}
-          <div className="flex items-center bg-white/10 rounded-xl p-1 gap-1 shrink-0">
-            <button
-              type="button"
-              onClick={() => setViewMode('workspace')}
-              className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition ${
-                viewMode === 'workspace'
-                  ? 'bg-white text-blue-700 shadow-sm'
-                  : 'text-white/80 hover:text-white hover:bg-white/10'
-              }`}
-            >
-              🎙️ Voice
-            </button>
-            <button
-              type="button"
-              onClick={() => setViewMode('rooms')}
-              className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition ${
-                viewMode === 'rooms'
-                  ? 'bg-white text-blue-700 shadow-sm'
-                  : 'text-white/80 hover:text-white hover:bg-white/10'
-              }`}
-            >
-              🏠 Room Tasks
-            </button>
-            <button
-              type="button"
-              onClick={() => setViewMode('tasks')}
-              className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition ${
-                viewMode === 'tasks'
-                  ? 'bg-white text-blue-700 shadow-sm'
-                  : 'text-white/80 hover:text-white hover:bg-white/10'
-              }`}
-            >
-              ✅ My Tasks &amp; Calendar
-            </button>
-            <button
-              type="button"
-              onClick={() => setViewMode('calendar')}
-              className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition ${
-                viewMode === 'calendar'
-                  ? 'bg-white text-blue-700 shadow-sm'
-                  : 'text-white/80 hover:text-white hover:bg-white/10'
-              }`}
-            >
-              📅 Calendar Hub
-            </button>
-            <button
-              type="button"
-              onClick={() => setViewMode('form')}
-              className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition ${
-                viewMode === 'form'
-                  ? 'bg-white text-blue-700 shadow-sm'
-                  : 'text-white/80 hover:text-white hover:bg-white/10'
-              }`}
-            >
-              📋 Form
-            </button>
-            <button
-              type="button"
-              onClick={() => setViewMode('benchmark')}
-              className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition ${
-                viewMode === 'benchmark'
-                  ? 'bg-white text-blue-700 shadow-sm'
-                  : 'text-white/80 hover:text-white hover:bg-white/10'
-              }`}
-            >
-              🔬 Benchmark Lab
-            </button>
-            <button
-              type="button"
-              onClick={() => setViewMode('testing')}
-              className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition ${
-                viewMode === 'testing'
-                  ? 'bg-white text-blue-700 shadow-sm'
-                  : 'text-white/80 hover:text-white hover:bg-white/10'
-              }`}
-            >
-              🧪 Testing Lab
-            </button>
+          {/* View Mode Toggle - Responsive Touch-Friendly Horizontal Scroller */}
+          <div className="w-full lg:w-auto overflow-x-auto no-scrollbar scroll-smooth">
+            <div className="flex items-center bg-black/20 backdrop-blur-xs rounded-xl p-1 gap-1 w-max min-w-full sm:min-w-0">
+              <button
+                type="button"
+                onClick={() => setViewMode('workspace')}
+                className={`px-3 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap shrink-0 transition flex items-center gap-1.5 ${
+                  viewMode === 'workspace'
+                    ? 'bg-white text-blue-700 shadow-sm'
+                    : 'text-white/80 hover:text-white hover:bg-white/10'
+                }`}
+              >
+                <span>🎙️</span>
+                <span>Voice</span>
+              </button>
+              <button
+                type="button"
+                onClick={() => setViewMode('rooms')}
+                className={`px-3 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap shrink-0 transition flex items-center gap-1.5 ${
+                  viewMode === 'rooms'
+                    ? 'bg-white text-blue-700 shadow-sm'
+                    : 'text-white/80 hover:text-white hover:bg-white/10'
+                }`}
+              >
+                <span>🏠</span>
+                <span>Room Tasks</span>
+              </button>
+              <button
+                type="button"
+                onClick={() => setViewMode('tasks')}
+                className={`px-3 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap shrink-0 transition flex items-center gap-1.5 ${
+                  viewMode === 'tasks'
+                    ? 'bg-white text-blue-700 shadow-sm'
+                    : 'text-white/80 hover:text-white hover:bg-white/10'
+                }`}
+              >
+                <span>✅</span>
+                <span>My Tasks &amp; Calendar</span>
+              </button>
+              <button
+                type="button"
+                onClick={() => setViewMode('calendar')}
+                className={`px-3 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap shrink-0 transition flex items-center gap-1.5 ${
+                  viewMode === 'calendar'
+                    ? 'bg-white text-blue-700 shadow-sm'
+                    : 'text-white/80 hover:text-white hover:bg-white/10'
+                }`}
+              >
+                <span>📅</span>
+                <span>Calendar Hub</span>
+              </button>
+              <button
+                type="button"
+                onClick={() => setViewMode('form')}
+                className={`px-3 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap shrink-0 transition flex items-center gap-1.5 ${
+                  viewMode === 'form'
+                    ? 'bg-white text-blue-700 shadow-sm'
+                    : 'text-white/80 hover:text-white hover:bg-white/10'
+                }`}
+              >
+                <span>📋</span>
+                <span>Form</span>
+              </button>
+              <button
+                type="button"
+                onClick={() => setViewMode('benchmark')}
+                className={`px-3 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap shrink-0 transition flex items-center gap-1.5 ${
+                  viewMode === 'benchmark'
+                    ? 'bg-white text-blue-700 shadow-sm'
+                    : 'text-white/80 hover:text-white hover:bg-white/10'
+                }`}
+              >
+                <span>🔬</span>
+                <span>Benchmark Lab</span>
+              </button>
+              <button
+                type="button"
+                onClick={() => setViewMode('testing')}
+                className={`px-3 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap shrink-0 transition flex items-center gap-1.5 ${
+                  viewMode === 'testing'
+                    ? 'bg-white text-blue-700 shadow-sm'
+                    : 'text-white/80 hover:text-white hover:bg-white/10'
+                }`}
+              >
+                <span>🧪</span>
+                <span>Testing Lab</span>
+              </button>
+            </div>
           </div>
         </div>
 

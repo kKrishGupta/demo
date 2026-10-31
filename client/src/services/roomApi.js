@@ -161,3 +161,4 @@ export async function classifyTextToRoom(text, { intent, destination, fullTransc
     body: JSON.stringify({ text, intent, destination, fullTranscript })
   });
 }
+

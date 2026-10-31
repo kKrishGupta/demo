@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-31T14:35:51.871Z",
+  "updatedAt": "2026-10-31T14:55:30.082Z",
   "entries": [
     {
       "id": "audit_1793431151754_2l5x",
@@ -5020,6 +5020,2237 @@
         "feedbackId": "fb_1793457351861_60qj",
         "failingStage": "INTENT_UNDERSTANDING",
         "inputSnippet": "Credit card [REDACTED_CC] par charge karo and assi",
+        "operation": "calendar.operation",
+        "result": "SUCCESS"
+      }
+    },
+    {
+      "id": "audit_1793457872940_mn5m",
+      "event": "CALENDAR_SYNC_STARTED",
+      "actionId": null,
+      "googleEventId": null,
+      "title": "Calendar Sync (all)",
+      "operation": "events.list",
+      "result": "STARTED",
+      "errorDetails": null,
+      "sessionId": "ses_e0fdf7dd",
+      "timestamp": "2026-10-31T14:44:32.940Z",
+      "details": {
+        "title": "Calendar Sync (all)",
+        "calendarId": "primary",
+        "range": "all",
+        "operation": "events.list",
+        "result": "STARTED"
+      }
+    },
+    {
+      "id": "audit_1793457874232_7soz",
+      "event": "CALENDAR_SYNC_COMPLETED",
+      "actionId": null,
+      "googleEventId": null,
+      "title": "Calendar Sync Completed (5 events)",
+      "operation": "events.list + reconcile",
+      "result": "SUCCESS",
+      "errorDetails": null,
+      "sessionId": "ses_e0fdf7dd",
+      "timestamp": "2026-10-31T14:44:34.232Z",
+      "details": {
+        "title": "Calendar Sync Completed (5 events)",
+        "calendarId": "primary",
+        "range": "all",
+        "googleEventsCount": 5,
+        "localEventsCount": 10,
+        "mergedEventsCount": 5,
+        "discrepanciesCount": 1,
+        "operation": "events.list + reconcile",
+        "result": "SUCCESS"
+      }
+    },
+    {
+      "id": "audit_1793457874842_znwy",
+      "event": "CALENDAR_SYNC_STARTED",
+      "actionId": null,
+      "googleEventId": null,
+      "title": "Calendar Sync (all)",
+      "operation": "events.list",
+      "result": "STARTED",
+      "errorDetails": null,
+      "sessionId": "ses_e0fdf7dd",
+      "timestamp": "2026-10-31T14:44:34.842Z",
+      "details": {
+        "title": "Calendar Sync (all)",
+        "calendarId": "primary",
+        "range": "all",
+        "operation": "events.list",
+        "result": "STARTED"
+      }
+    },
+    {
+      "id": "audit_1793457875875_15c2",
+      "event": "CALENDAR_SYNC_COMPLETED",
+      "actionId": null,
+      "googleEventId": null,
+      "title": "Calendar Sync Completed (5 events)",
+      "operation": "events.list + reconcile",
+      "result": "SUCCESS",
+      "errorDetails": null,
+      "sessionId": "ses_e0fdf7dd",
+      "timestamp": "2026-10-31T14:44:35.875Z",
+      "details": {
+        "title": "Calendar Sync Completed (5 events)",
+        "calendarId": "primary",
+        "range": "all",
+        "googleEventsCount": 5,
+        "localEventsCount": 10,
+        "mergedEventsCount": 5,
+        "discrepanciesCount": 1,
+        "operation": "events.list + reconcile",
+        "result": "SUCCESS"
+      }
+    },
+    {
+      "id": "audit_1793458451702_pyuu",
+      "event": "MEETING_COMPLETED",
+      "actionId": "meet_1793458451680_wlp3",
+      "googleEventId": null,
+      "title": "Strategic Meeting Session",
+      "operation": "calendar.operation",
+      "result": "SUCCESS",
+      "errorDetails": null,
+      "sessionId": "ses_e0fdf7dd",
+      "timestamp": "2026-10-31T14:54:11.702Z",
+      "details": {
+        "title": "Strategic Meeting Session",
+        "durationSeconds": 1,
+        "actionsExtracted": 0,
+        "operation": "calendar.operation",
+        "result": "SUCCESS"
+      }
+    },
+    {
+      "id": "audit_1793458459895_2qra",
+      "event": "EXECUTION_VALIDATION_FAILED",
+      "actionId": "unknown",
+      "googleEventId": null,
+      "title": null,
+      "operation": "calendar.operation",
+      "result": "FAILED",
+      "errorDetails": null,
+      "sessionId": "session_test_p2",
+      "timestamp": "2026-10-31T14:54:19.895Z",
+      "details": {
+        "errors": [
+          "Action ID is required.",
+          "Action title is required."
+        ],
+        "operation": "calendar.operation",
+        "result": "FAILED"
+      }
+    },
+    {
+      "id": "audit_1793458459916_8frw",
+      "event": "EXECUTION_VALIDATION_FAILED",
+      "actionId": "act_123",
+      "googleEventId": null,
+      "title": null,
+      "operation": "calendar.operation",
+      "result": "FAILED",
+      "errorDetails": null,
+      "sessionId": "session_test_p2",
+      "timestamp": "2026-10-31T14:54:19.917Z",
+      "details": {
+        "errors": [
+          "Action title is required."
+        ],
+        "operation": "calendar.operation",
+        "result": "FAILED"
+      }
+    },
+    {
+      "id": "audit_1793458459972_907q",
+      "event": "EXECUTION_VALIDATION_FAILED",
+      "actionId": "act_cancelled",
+      "googleEventId": null,
+      "title": null,
+      "operation": "calendar.operation",
+      "result": "FAILED",
+      "errorDetails": null,
+      "sessionId": "session_test_p2",
+      "timestamp": "2026-10-31T14:54:19.972Z",
+      "details": {
+        "errors": [
+          "Cannot execute a cancelled action."
+        ],
+        "operation": "calendar.operation",
+        "result": "FAILED"
+      }
+    },
+    {
+      "id": "audit_1793458460081_hsf9",
+      "event": "EXECUTION_APPROVAL_REQUIRED",
+      "actionId": "act_wa_1793458460081",
+      "googleEventId": null,
+      "title": null,
+      "operation": "calendar.operation",
+      "result": "SUCCESS",
+      "errorDetails": null,
+      "sessionId": "session_test_p2",
+      "timestamp": "2026-10-31T14:54:20.081Z",
+      "details": {
+        "type": "SEND_WHATSAPP",
+        "operation": "calendar.operation",
+        "result": "SUCCESS"
+      }
+    },
+    {
+      "id": "audit_1793458460173_y2gj",
+      "event": "EXECUTION_STARTED",
+      "actionId": "act_wa_approved_1793458460173_6k5",
+      "googleEventId": null,
+      "title": null,
+      "operation": "calendar.operation",
+      "result": "IN_PROGRESS",
+      "errorDetails": null,
+      "sessionId": "session_test_p2",
+      "timestamp": "2026-10-31T14:54:20.173Z",
+      "details": {
+        "type": "SEND_WHATSAPP",
+        "operation": "calendar.operation",
+        "result": "IN_PROGRESS"
+      }
+    },
+    {
+      "id": "audit_1793458460280_ih44",
+      "event": "WHATSAPP_SEND_ATTEMPT",
+      "actionId": "act_wa_approved_1793458460173_6k5",
+      "googleEventId": null,
+      "title": null,
+      "operation": "calendar.operation",
+      "result": "IN_PROGRESS",
+      "errorDetails": null,
+      "sessionId": "session_test_p2",
+      "timestamp": "2026-10-31T14:54:20.280Z",
+      "details": {
+        "messageId": "wmsg_1793458460275_21mx",
+        "to": "+919876543211",
+        "integrationMode": "TWILIO",
+        "messageLength": 33,
+        "operation": "calendar.operation",
+        "result": "IN_PROGRESS"
+      }
+    },
+    {
+      "id": "audit_1793458460351_2ixn",
+      "event": "WHATSAPP_SENT",
+      "actionId": "act_wa_approved_1793458460173_6k5",
+      "googleEventId": null,
+      "title": null,
+      "operation": "calendar.operation",
+      "result": "SUCCESS",
+      "errorDetails": null,
+      "sessionId": "session_test_p2",
+      "timestamp": "2026-10-31T14:54:20.351Z",
+      "details": {
+        "outcomeType": "PROVIDER_SUCCESS",
+        "actionId": "act_wa_approved_1793458460173_6k5",
+        "messageId": "wmsg_1793458460275_21mx",
+        "integrationMode": "TWILIO",
+        "httpStatus": 201,
+        "senderConfigValid": true,
+        "sender": "whatsapp:+17372508034",
+        "recipientFormatValid": true,
+        "recipient": "whatsapp:+919876543211",
+        "messageSid": "SM_TEST_1793458460346",
+        "providerMessageId": "SM_TEST_1793458460346",
+        "providerStatus": "queued",
+        "dateCreated": "2026-10-31T14:54:20.346Z",
+        "sentAt": "2026-10-31T14:54:20.346Z",
+        "operation": "calendar.operation",
+        "result": "SUCCESS"
+      }
+    },
+    {
+      "id": "audit_1793458460388_zgjc",
+      "event": "EXECUTION_COMPLETED",
+      "actionId": "act_wa_approved_1793458460173_6k5",
+      "googleEventId": null,
+      "title": null,
+      "operation": "calendar.operation",
+      "result": "SUCCESS",
+      "errorDetails": null,
+      "sessionId": "session_test_p2",
+      "timestamp": "2026-10-31T14:54:20.388Z",
+      "details": {
+        "type": "SEND_WHATSAPP",
+        "status": "SENT",
+        "providerStatus": "queued",
+        "integrationMode": "TWILIO",
+        "providerMessageId": "SM_TEST_1793458460346",
+        "twilioMessageSid": "SM_TEST_1793458460346",
+        "sender": "whatsapp:+17372508034",
+        "recipient": "whatsapp:+919876543211",
+        "operation": "calendar.operation",
+        "result": "SUCCESS"
+      }
+    },
+    {
+      "id": "audit_1793458460420_chzu",
+      "event": "EXECUTION_APPROVAL_REQUIRED",
+      "actionId": "act_cal_1793458460420",
+      "googleEventId": null,
+      "title": null,
+      "operation": "calendar.operation",
+      "result": "SUCCESS",
+      "errorDetails": null,
+      "sessionId": "session_test_p2",
+      "timestamp": "2026-10-31T14:54:20.420Z",
+      "details": {
+        "type": "CREATE_CALENDAR_EVENT",
+        "operation": "calendar.operation",
+        "result": "SUCCESS"
+      }
+    },
+    {
+      "id": "audit_1793458460486_qch6",
+      "event": "EXECUTION_APPROVAL_REQUIRED",
+      "actionId": "act_del_cal_1793458460486",
+      "googleEventId": null,
+      "title": null,
+      "operation": "calendar.operation",
+      "result": "SUCCESS",
+      "errorDetails": null,
+      "sessionId": "session_test_p2",
+      "timestamp": "2026-10-31T14:54:20.486Z",
+      "details": {
+        "type": "DELETE_CALENDAR_EVENT",
+        "operation": "calendar.operation",
+        "result": "SUCCESS"
+      }
+    },
+    {
+      "id": "audit_1793458460555_dw6j",
+      "event": "EXECUTION_APPROVAL_REQUIRED",
+      "actionId": "act_del_task_1793458460555",
+      "googleEventId": null,
+      "title": null,
+      "operation": "calendar.operation",
+      "result": "SUCCESS",
+      "errorDetails": null,
+      "sessionId": "session_test_p2",
+      "timestamp": "2026-10-31T14:54:20.555Z",
+      "details": {
+        "type": "DELETE_TASK",
+        "operation": "calendar.operation",
+        "result": "SUCCESS"
+      }
+    },
+    {
+      "id": "audit_1793458460604_3k1n",
+      "event": "EXECUTION_STARTED",
+      "actionId": "act_task_1793458460604",
+      "googleEventId": null,
+      "title": null,
+      "operation": "calendar.operation",
+      "result": "IN_PROGRESS",
+      "errorDetails": null,
+      "sessionId": "session_test_p2",
+      "timestamp": "2026-10-31T14:54:20.604Z",
+      "details": {
+        "type": "CREATE_TASK",
+        "operation": "calendar.operation",
+        "result": "IN_PROGRESS"
+      }
+    },
+    {
+      "id": "audit_1793458460637_a9a4",
+      "event": "TASK_CREATED_INTERNALLY",
+      "actionId": "act_task_1793458460604",
+      "googleEventId": null,
+      "title": "Write technical architecture spec",
+      "operation": "events.insert",
+      "result": "SUCCESS",
+      "errorDetails": null,
+      "sessionId": "session_test_p2",
+      "timestamp": "2026-10-31T14:54:20.637Z",
+      "details": {
+        "title": "Write technical architecture spec",
+        "type": "CREATE_TASK",
+        "operation": "events.insert",
+        "result": "SUCCESS"
+      }
+    },
+    {
+      "id": "audit_1793458460734_588z",
+      "event": "TASK_CREATED",
+      "actionId": "act_task_1793458460604",
+      "googleEventId": null,
+      "title": "Write technical architecture spec",
+      "operation": "events.insert",
+      "result": "SUCCESS",
+      "errorDetails": null,
+      "sessionId": "session_test_p2",
+      "timestamp": "2026-10-31T14:54:20.734Z",
+      "details": {
+        "title": "Write technical architecture spec",
+        "googleEventId": null,
+        "resourceType": "ACTIONFLOW_TASK",
+        "scheduledStart": null,
+        "operation": "events.insert",
+        "result": "SUCCESS"
+      }
+    },
+    {
+      "id": "audit_1793458460741_z2qq",
+      "event": "EXECUTION_COMPLETED",
+      "actionId": "act_task_1793458460604",
+      "googleEventId": null,
+      "title": null,
+      "operation": "calendar.operation",
+      "result": "SUCCESS",
+      "errorDetails": null,
+      "sessionId": "session_test_p2",
+      "timestamp": "2026-10-31T14:54:20.741Z",
+      "details": {
+        "type": "CREATE_TASK",
+        "status": "CREATED",
+        "operation": "calendar.operation",
+        "result": "SUCCESS"
+      }
+    },
+    {
+      "id": "audit_1793458460833_hpuz",
+      "event": "EXECUTION_STARTED",
+      "actionId": "act_shop_1793458460833",
+      "googleEventId": null,
+      "title": null,
+      "operation": "calendar.operation",
+      "result": "IN_PROGRESS",
+      "errorDetails": null,
+      "sessionId": "session_test_p2",
+      "timestamp": "2026-10-31T14:54:20.833Z",
+      "details": {
+        "type": "ADD_SHOPPING_ITEM",
+        "operation": "calendar.operation",
+        "result": "IN_PROGRESS"
+      }
+    },
+    {
+      "id": "audit_1793458460841_lh33",
+      "event": "EXECUTION_COMPLETED",
+      "actionId": "act_shop_1793458460833",
+      "googleEventId": null,
+      "title": null,
+      "operation": "calendar.operation",
+      "result": "SUCCESS",
+      "errorDetails": null,
+      "sessionId": "session_test_p2",
+      "timestamp": "2026-10-31T14:54:20.841Z",
+      "details": {
+        "type": "ADD_SHOPPING_ITEM",
+        "status": "ADDED",
+        "operation": "calendar.operation",
+        "result": "SUCCESS"
+      }
+    },
+    {
+      "id": "audit_1793458460904_pwzi",
+      "event": "EXECUTION_STARTED",
+      "actionId": "act_rem_1793458460904",
+      "googleEventId": null,
+      "title": null,
+      "operation": "calendar.operation",
+      "result": "IN_PROGRESS",
+      "errorDetails": null,
+      "sessionId": "session_test_p2",
+      "timestamp": "2026-10-31T14:54:20.904Z",
+      "details": {
+        "type": "CREATE_REMINDER",
+        "operation": "calendar.operation",
+        "result": "IN_PROGRESS"
+      }
+    },
+    {
+      "id": "audit_1793458460928_c97o",
+      "event": "EXECUTION_COMPLETED",
+      "actionId": "act_rem_1793458460904",
+      "googleEventId": null,
+      "title": null,
+      "operation": "calendar.operation",
+      "result": "SUCCESS",
+      "errorDetails": null,
+      "sessionId": "session_test_p2",
+      "timestamp": "2026-10-31T14:54:20.928Z",
+      "details": {
+        "type": "CREATE_REMINDER",
+        "status": "SCHEDULED",
+        "operation": "calendar.operation",
+        "result": "SUCCESS"
+      }
+    },
+    {
+      "id": "audit_1793458460952_el4n",
+      "event": "EXECUTION_STARTED",
+      "actionId": "act_trusted_1793458460952",
+      "googleEventId": null,
+      "title": null,
+      "operation": "calendar.operation",
+      "result": "IN_PROGRESS",
+      "errorDetails": null,
+      "sessionId": "session_trusted_1793458460952",
+      "timestamp": "2026-10-31T14:54:20.952Z",
+      "details": {
+        "type": "SEND_WHATSAPP",
+        "operation": "calendar.operation",
+        "result": "IN_PROGRESS"
+      }
+    },
+    {
+      "id": "audit_1793458460996_xonc",
+      "event": "WHATSAPP_SEND_ATTEMPT",
+      "actionId": "act_trusted_1793458460952",
+      "googleEventId": null,
+      "title": null,
+      "operation": "calendar.operation",
+      "result": "IN_PROGRESS",
+      "errorDetails": null,
+      "sessionId": "session_trusted_1793458460952",
+      "timestamp": "2026-10-31T14:54:20.996Z",
+      "details": {
+        "messageId": "wmsg_1793458460993_sool",
+        "to": "+919999999999",
+        "integrationMode": "TWILIO",
+        "messageLength": 16,
+        "operation": "calendar.operation",
+        "result": "IN_PROGRESS"
+      }
+    },
+    {
+      "id": "audit_1793458461036_g6d6",
+      "event": "WHATSAPP_SENT",
+      "actionId": "act_trusted_1793458460952",
+      "googleEventId": null,
+      "title": null,
+      "operation": "calendar.operation",
+      "result": "SUCCESS",
+      "errorDetails": null,
+      "sessionId": "session_trusted_1793458460952",
+      "timestamp": "2026-10-31T14:54:21.036Z",
+      "details": {
+        "outcomeType": "PROVIDER_SUCCESS",
+        "actionId": "act_trusted_1793458460952",
+        "messageId": "wmsg_1793458460993_sool",
+        "integrationMode": "TWILIO",
+        "httpStatus": 201,
+        "senderConfigValid": true,
+        "sender": "whatsapp:+17372508034",
+        "recipientFormatValid": true,
+        "recipient": "whatsapp:+919999999999",
+        "messageSid": "SM_TRUSTED_1793458461024",
+        "providerMessageId": "SM_TRUSTED_1793458461024",
+        "providerStatus": "queued",
+        "dateCreated": "2026-10-31T14:54:21.024Z",
+        "sentAt": "2026-10-31T14:54:21.024Z",
+        "operation": "calendar.operation",
+        "result": "SUCCESS"
+      }
+    },
+    {
+      "id": "audit_1793458461067_8kah",
+      "event": "EXECUTION_COMPLETED",
+      "actionId": "act_trusted_1793458460952",
+      "googleEventId": null,
+      "title": null,
+      "operation": "calendar.operation",
+      "result": "SUCCESS",
+      "errorDetails": null,
+      "sessionId": "session_trusted_1793458460952",
+      "timestamp": "2026-10-31T14:54:21.067Z",
+      "details": {
+        "type": "SEND_WHATSAPP",
+        "status": "SENT",
+        "providerStatus": "queued",
+        "integrationMode": "TWILIO",
+        "providerMessageId": "SM_TRUSTED_1793458461024",
+        "twilioMessageSid": "SM_TRUSTED_1793458461024",
+        "sender": "whatsapp:+17372508034",
+        "recipient": "whatsapp:+919999999999",
+        "operation": "calendar.operation",
+        "result": "SUCCESS"
+      }
+    },
+    {
+      "id": "audit_1793458461193_oioz",
+      "event": "ACTION_REJECTED",
+      "actionId": "act_reject_1793458461193",
+      "googleEventId": null,
+      "title": null,
+      "operation": "calendar.operation",
+      "result": "SUCCESS",
+      "errorDetails": null,
+      "sessionId": "session_test_p2",
+      "timestamp": "2026-10-31T14:54:21.193Z",
+      "details": {
+        "reason": "User changed their mind",
+        "operation": "calendar.operation",
+        "result": "SUCCESS"
+      }
+    },
+    {
+      "id": "audit_1793458461791_w7zm",
+      "event": "CALENDAR_EVENT_UPDATED",
+      "actionId": "resched_action",
+      "googleEventId": "resched_evt_1793458461770",
+      "title": "Product Review",
+      "operation": "events.patch (simulated)",
+      "result": "SUCCESS",
+      "errorDetails": null,
+      "sessionId": "session_cal_test",
+      "timestamp": "2026-10-31T14:54:21.791Z",
+      "details": {
+        "title": "Product Review",
+        "eventId": "resched_evt_1793458461770",
+        "googleEventId": "resched_evt_1793458461770",
+        "calendarId": "primary",
+        "operation": "events.patch (simulated)",
+        "result": "SUCCESS",
+        "newStartDateTime": "2026-11-01T02:01:01.788Z",
+        "newEndDateTime": "2026-11-01T03:01:01.788Z",
+        "isOfflineSimulation": true
+      }
+    },
+    {
+      "id": "audit_1793458461850_adz0",
+      "event": "CALENDAR_EVENT_DELETED",
+      "actionId": "del_action",
+      "googleEventId": "del_evt_1793458461814",
+      "title": null,
+      "operation": "events.delete",
+      "result": "SUCCESS",
+      "errorDetails": null,
+      "sessionId": "session_cal_test",
+      "timestamp": "2026-10-31T14:54:21.850Z",
+      "details": {
+        "eventId": "del_evt_1793458461814",
+        "calendarId": "primary",
+        "alreadyAbsent": false,
+        "verifiedAbsent": true,
+        "isOfflineSimulation": true,
+        "removedAt": "2026-10-31T14:54:21.850Z",
+        "googleEventId": "del_evt_1793458461814",
+        "operation": "events.delete",
+        "result": "SUCCESS"
+      }
+    },
+    {
+      "id": "audit_1793458462006_vjsf",
+      "event": "WHATSAPP_SEND_ATTEMPT",
+      "actionId": "act_wa_dup_1793458462001",
+      "googleEventId": null,
+      "title": null,
+      "operation": "calendar.operation",
+      "result": "IN_PROGRESS",
+      "errorDetails": null,
+      "sessionId": "sess_wa",
+      "timestamp": "2026-10-31T14:54:22.006Z",
+      "details": {
+        "messageId": "wmsg_1793458462001_l2s7",
+        "to": "+919876543210",
+        "integrationMode": "TWILIO",
+        "messageLength": 28,
+        "operation": "calendar.operation",
+        "result": "IN_PROGRESS"
+      }
+    },
+    {
+      "id": "audit_1793458462057_dc9k",
+      "event": "WHATSAPP_SENT",
+      "actionId": "act_wa_dup_1793458462001",
+      "googleEventId": null,
+      "title": null,
+      "operation": "calendar.operation",
+      "result": "SUCCESS",
+      "errorDetails": null,
+      "sessionId": "sess_wa",
+      "timestamp": "2026-10-31T14:54:22.057Z",
+      "details": {
+        "outcomeType": "PROVIDER_SUCCESS",
+        "actionId": "act_wa_dup_1793458462001",
+        "messageId": "wmsg_1793458462001_l2s7",
+        "integrationMode": "TWILIO",
+        "httpStatus": 201,
+        "senderConfigValid": true,
+        "sender": "whatsapp:+17372508034",
+        "recipientFormatValid": true,
+        "recipient": "whatsapp:+919876543210",
+        "messageSid": "SM_IDEMP_1793458462036",
+        "providerMessageId": "SM_IDEMP_1793458462036",
+        "providerStatus": "queued",
+        "dateCreated": "2026-10-31T14:54:22.036Z",
+        "sentAt": "2026-10-31T14:54:22.036Z",
+        "operation": "calendar.operation",
+        "result": "SUCCESS"
+      }
+    },
+    {
+      "id": "audit_1793458462153_9p73",
+      "event": "WHATSAPP_DUPLICATE_BLOCKED",
+      "actionId": "act_wa_dup_1793458462001",
+      "googleEventId": null,
+      "title": null,
+      "operation": "calendar.operation",
+      "result": "SUCCESS",
+      "errorDetails": null,
+      "sessionId": "sess_wa",
+      "timestamp": "2026-10-31T14:54:22.153Z",
+      "details": {
+        "to": "+919876543210",
+        "idempotencyKey": "wp_idemp_1793458462001",
+        "status": "SENT",
+        "providerMessageId": "SM_IDEMP_1793458462036",
+        "operation": "calendar.operation",
+        "result": "SUCCESS"
+      }
+    },
+    {
+      "id": "audit_1793458463549_5x95",
+      "event": "EXECUTION_BLOCKED_BY_DEPENDENCY",
+      "actionId": "act_dep_1793458463541",
+      "googleEventId": null,
+      "title": null,
+      "operation": "calendar.operation",
+      "result": "SUCCESS",
+      "errorDetails": null,
+      "sessionId": "session_p3_dag_test",
+      "timestamp": "2026-10-31T14:54:23.549Z",
+      "details": {
+        "pendingDependencies": [
+          "act_prereq_1793458463541"
+        ],
+        "operation": "calendar.operation",
+        "result": "SUCCESS"
+      }
+    },
+    {
+      "id": "audit_1793458463568_1uhs",
+      "event": "EXECUTION_STARTED",
+      "actionId": "act_prereq_1793458463541",
+      "googleEventId": null,
+      "title": null,
+      "operation": "calendar.operation",
+      "result": "IN_PROGRESS",
+      "errorDetails": null,
+      "sessionId": "session_p3_dag_test",
+      "timestamp": "2026-10-31T14:54:23.568Z",
+      "details": {
+        "type": "CREATE_TASK",
+        "operation": "calendar.operation",
+        "result": "IN_PROGRESS"
+      }
+    },
+    {
+      "id": "audit_1793458463619_f8y7",
+      "event": "TASK_CREATED_INTERNALLY",
+      "actionId": "act_prereq_1793458463541",
+      "googleEventId": null,
+      "title": "Prerequisite Database Migration",
+      "operation": "events.insert",
+      "result": "SUCCESS",
+      "errorDetails": null,
+      "sessionId": "session_p3_dag_test",
+      "timestamp": "2026-10-31T14:54:23.619Z",
+      "details": {
+        "title": "Prerequisite Database Migration",
+        "type": "CREATE_TASK",
+        "operation": "events.insert",
+        "result": "SUCCESS"
+      }
+    },
+    {
+      "id": "audit_1793458463709_4qqy",
+      "event": "TASK_CREATED",
+      "actionId": "act_prereq_1793458463541",
+      "googleEventId": null,
+      "title": "Prerequisite Database Migration",
+      "operation": "events.insert",
+      "result": "SUCCESS",
+      "errorDetails": null,
+      "sessionId": "session_p3_dag_test",
+      "timestamp": "2026-10-31T14:54:23.709Z",
+      "details": {
+        "title": "Prerequisite Database Migration",
+        "googleEventId": null,
+        "resourceType": "ACTIONFLOW_TASK",
+        "scheduledStart": null,
+        "operation": "events.insert",
+        "result": "SUCCESS"
+      }
+    },
+    {
+      "id": "audit_1793458463721_b2hr",
+      "event": "EXECUTION_COMPLETED",
+      "actionId": "act_prereq_1793458463541",
+      "googleEventId": null,
+      "title": null,
+      "operation": "calendar.operation",
+      "result": "SUCCESS",
+      "errorDetails": null,
+      "sessionId": "session_p3_dag_test",
+      "timestamp": "2026-10-31T14:54:23.721Z",
+      "details": {
+        "type": "CREATE_TASK",
+        "status": "CREATED",
+        "operation": "calendar.operation",
+        "result": "SUCCESS"
+      }
+    },
+    {
+      "id": "audit_1793458463755_5bi6",
+      "event": "EXECUTION_STARTED",
+      "actionId": "act_dep_1793458463541",
+      "googleEventId": null,
+      "title": null,
+      "operation": "calendar.operation",
+      "result": "IN_PROGRESS",
+      "errorDetails": null,
+      "sessionId": "session_p3_dag_test",
+      "timestamp": "2026-10-31T14:54:23.755Z",
+      "details": {
+        "type": "CREATE_TASK",
+        "operation": "calendar.operation",
+        "result": "IN_PROGRESS"
+      }
+    },
+    {
+      "id": "audit_1793458463798_q6v6",
+      "event": "TASK_CREATED_INTERNALLY",
+      "actionId": "act_dep_1793458463541",
+      "googleEventId": null,
+      "title": "Start Production Workload",
+      "operation": "events.insert",
+      "result": "SUCCESS",
+      "errorDetails": null,
+      "sessionId": "session_p3_dag_test",
+      "timestamp": "2026-10-31T14:54:23.798Z",
+      "details": {
+        "title": "Start Production Workload",
+        "type": "CREATE_TASK",
+        "operation": "events.insert",
+        "result": "SUCCESS"
+      }
+    },
+    {
+      "id": "audit_1793458463847_jyei",
+      "event": "TASK_CREATED",
+      "actionId": "act_dep_1793458463541",
+      "googleEventId": null,
+      "title": "Start Production Workload",
+      "operation": "events.insert",
+      "result": "SUCCESS",
+      "errorDetails": null,
+      "sessionId": "session_p3_dag_test",
+      "timestamp": "2026-10-31T14:54:23.847Z",
+      "details": {
+        "title": "Start Production Workload",
+        "googleEventId": null,
+        "resourceType": "ACTIONFLOW_TASK",
+        "scheduledStart": null,
+        "operation": "events.insert",
+        "result": "SUCCESS"
+      }
+    },
+    {
+      "id": "audit_1793458463882_c55v",
+      "event": "EXECUTION_COMPLETED",
+      "actionId": "act_dep_1793458463541",
+      "googleEventId": null,
+      "title": null,
+      "operation": "calendar.operation",
+      "result": "SUCCESS",
+      "errorDetails": null,
+      "sessionId": "session_p3_dag_test",
+      "timestamp": "2026-10-31T14:54:23.882Z",
+      "details": {
+        "type": "CREATE_TASK",
+        "status": "CREATED",
+        "operation": "calendar.operation",
+        "result": "SUCCESS"
+      }
+    },
+    {
+      "id": "audit_1793458464317_h357",
+      "event": "MEETING_COMPLETED",
+      "actionId": "meet_1793458463907_1f3m",
+      "googleEventId": null,
+      "title": "Q3 Product Architecture Review",
+      "operation": "calendar.operation",
+      "result": "SUCCESS",
+      "errorDetails": null,
+      "sessionId": "session_p3_meeting_test",
+      "timestamp": "2026-10-31T14:54:24.317Z",
+      "details": {
+        "title": "Q3 Product Architecture Review",
+        "durationSeconds": 1,
+        "actionsExtracted": 1,
+        "operation": "calendar.operation",
+        "result": "SUCCESS"
+      }
+    },
+    {
+      "id": "audit_1793458464811_jinm",
+      "event": "EXECUTION_STARTED",
+      "actionId": "act_fail_1793458464810",
+      "googleEventId": null,
+      "title": null,
+      "operation": "calendar.operation",
+      "result": "IN_PROGRESS",
+      "errorDetails": null,
+      "sessionId": "unauth_approve_1793458464810",
+      "timestamp": "2026-10-31T14:54:24.811Z",
+      "details": {
+        "type": "CREATE_EVENT",
+        "operation": "calendar.operation",
+        "result": "IN_PROGRESS"
+      }
+    },
+    {
+      "id": "audit_1793458464872_45sk",
+      "event": "EXECUTION_FAILED",
+      "actionId": "act_fail_1793458464810",
+      "googleEventId": null,
+      "title": null,
+      "operation": "calendar.operation",
+      "result": "FAILED",
+      "errorDetails": "Google Calendar credentials detected in .env, but your personal Google account has not been authorized yet. Please click \"Authorize Google Account\" in the Calendar Hub.",
+      "sessionId": "unauth_approve_1793458464810",
+      "timestamp": "2026-10-31T14:54:24.872Z",
+      "details": {
+        "type": "CREATE_EVENT",
+        "status": "NOT_CONNECTED",
+        "error": "Google Calendar credentials detected in .env, but your personal Google account has not been authorized yet. Please click \"Authorize Google Account\" in the Calendar Hub.",
+        "operation": "calendar.operation",
+        "result": "FAILED",
+        "errorDetails": "Google Calendar credentials detected in .env, but your personal Google account has not been authorized yet. Please click \"Authorize Google Account\" in the Calendar Hub."
+      }
+    },
+    {
+      "id": "audit_1793458466006_4rn1",
+      "event": "ROOM_CREATED",
+      "actionId": "room_rooftop_lounge_4",
+      "googleEventId": null,
+      "title": null,
+      "operation": "events.insert",
+      "result": "SUCCESS",
+      "errorDetails": null,
+      "sessionId": null,
+      "timestamp": "2026-10-31T14:54:26.006Z",
+      "details": {
+        "name": "Rooftop Lounge",
+        "organizationId": "org_default",
+        "categories": [
+          "Outdoor",
+          "Plants"
+        ],
+        "operation": "events.insert",
+        "result": "SUCCESS"
+      }
+    },
+    {
+      "id": "audit_1793458466025_prrd",
+      "event": "ROOM_UPDATED",
+      "actionId": "room_rooftop_lounge_4",
+      "googleEventId": null,
+      "title": null,
+      "operation": "events.patch",
+      "result": "SUCCESS",
+      "errorDetails": null,
+      "sessionId": null,
+      "timestamp": "2026-10-31T14:54:26.025Z",
+      "details": {
+        "name": "Rooftop Lounge",
+        "isActive": true,
+        "operation": "events.patch",
+        "result": "SUCCESS"
+      }
+    },
+    {
+      "id": "audit_1793458466176_e47x",
+      "event": "ROOM_DEACTIVATED",
+      "actionId": "room_rooftop_lounge_4",
+      "googleEventId": null,
+      "title": null,
+      "operation": "calendar.operation",
+      "result": "SUCCESS",
+      "errorDetails": null,
+      "sessionId": null,
+      "timestamp": "2026-10-31T14:54:26.176Z",
+      "details": {
+        "hardDelete": false,
+        "operation": "calendar.operation",
+        "result": "SUCCESS"
+      }
+    },
+    {
+      "id": "audit_1793458466233_gv8i",
+      "event": "ROOM_CREATED",
+      "actionId": "room_org_a_lab_4",
+      "googleEventId": null,
+      "title": null,
+      "operation": "events.insert",
+      "result": "SUCCESS",
+      "errorDetails": null,
+      "sessionId": null,
+      "timestamp": "2026-10-31T14:54:26.233Z",
+      "details": {
+        "name": "Org A Lab",
+        "organizationId": "org_alpha",
+        "categories": [
+          "General"
+        ],
+        "operation": "events.insert",
+        "result": "SUCCESS"
+      }
+    },
+    {
+      "id": "audit_1793458467454_i7ao",
+      "event": "USER_CORRECTION_SUBMITTED",
+      "actionId": "act_01",
+      "googleEventId": null,
+      "title": null,
+      "operation": "calendar.operation",
+      "result": "SUCCESS",
+      "errorDetails": null,
+      "sessionId": "sess_user_qa",
+      "timestamp": "2026-10-31T14:54:27.454Z",
+      "details": {
+        "feedbackId": "fb_1793458467448_g7g4",
+        "failingStage": "INTENT_UNDERSTANDING",
+        "inputSnippet": "Credit card [REDACTED_CC] par charge karo and assi",
+        "operation": "calendar.operation",
+        "result": "SUCCESS"
+      }
+    },
+    {
+      "id": "audit_1793458467970_xqer",
+      "event": "AUDIO_TRANSCRIBE_SIMULATED",
+      "actionId": null,
+      "googleEventId": null,
+      "title": null,
+      "operation": "calendar.operation",
+      "result": "SUCCESS",
+      "errorDetails": null,
+      "sessionId": null,
+      "timestamp": "2026-10-31T14:54:27.970Z",
+      "details": {
+        "bytes": 1024,
+        "mimeType": "audio/webm",
+        "mode": "quick",
+        "operation": "calendar.operation",
+        "result": "SUCCESS"
+      }
+    },
+    {
+      "id": "audit_1793458468104_6d15",
+      "event": "EXECUTION_STARTED",
+      "actionId": "act_wa_test_1793458468086",
+      "googleEventId": null,
+      "title": null,
+      "operation": "calendar.operation",
+      "result": "IN_PROGRESS",
+      "errorDetails": null,
+      "sessionId": "sess_v4_test",
+      "timestamp": "2026-10-31T14:54:28.104Z",
+      "details": {
+        "type": "SEND_WHATSAPP",
+        "operation": "calendar.operation",
+        "result": "IN_PROGRESS"
+      }
+    },
+    {
+      "id": "audit_1793458468158_tnbz",
+      "event": "WHATSAPP_SEND_ATTEMPT",
+      "actionId": "act_wa_test_1793458468086",
+      "googleEventId": null,
+      "title": null,
+      "operation": "calendar.operation",
+      "result": "IN_PROGRESS",
+      "errorDetails": null,
+      "sessionId": "sess_v4_test",
+      "timestamp": "2026-10-31T14:54:28.158Z",
+      "details": {
+        "messageId": "wmsg_1793458468138_hs58",
+        "to": "+919876543210",
+        "integrationMode": "TWILIO",
+        "messageLength": 50,
+        "operation": "calendar.operation",
+        "result": "IN_PROGRESS"
+      }
+    },
+    {
+      "id": "audit_1793458468180_cayo",
+      "event": "WHATSAPP_SENT",
+      "actionId": "act_wa_test_1793458468086",
+      "googleEventId": null,
+      "title": null,
+      "operation": "calendar.operation",
+      "result": "SUCCESS",
+      "errorDetails": null,
+      "sessionId": "sess_v4_test",
+      "timestamp": "2026-10-31T14:54:28.180Z",
+      "details": {
+        "outcomeType": "PROVIDER_SUCCESS",
+        "actionId": "act_wa_test_1793458468086",
+        "messageId": "wmsg_1793458468138_hs58",
+        "integrationMode": "TWILIO",
+        "httpStatus": 201,
+        "senderConfigValid": true,
+        "sender": "whatsapp:+17372508034",
+        "recipientFormatValid": true,
+        "recipient": "whatsapp:+919876543210",
+        "messageSid": "SM_TEST_1793458468175",
+        "providerMessageId": "SM_TEST_1793458468175",
+        "providerStatus": "queued",
+        "dateCreated": "2026-10-31T14:54:28.175Z",
+        "sentAt": "2026-10-31T14:54:28.175Z",
+        "operation": "calendar.operation",
+        "result": "SUCCESS"
+      }
+    },
+    {
+      "id": "audit_1793458468243_0iz5",
+      "event": "EXECUTION_COMPLETED",
+      "actionId": "act_wa_test_1793458468086",
+      "googleEventId": null,
+      "title": null,
+      "operation": "calendar.operation",
+      "result": "SUCCESS",
+      "errorDetails": null,
+      "sessionId": "sess_v4_test",
+      "timestamp": "2026-10-31T14:54:28.244Z",
+      "details": {
+        "type": "SEND_WHATSAPP",
+        "status": "SENT",
+        "providerStatus": "queued",
+        "integrationMode": "TWILIO",
+        "providerMessageId": "SM_TEST_1793458468175",
+        "twilioMessageSid": "SM_TEST_1793458468175",
+        "sender": "whatsapp:+17372508034",
+        "recipient": "whatsapp:+919876543210",
+        "operation": "calendar.operation",
+        "result": "SUCCESS"
+      }
+    },
+    {
+      "id": "audit_1793458485650_8dhe",
+      "event": "VOICE_COMMAND_PROCESSED",
+      "actionId": "voice_7c3dd594-0819-4dce-aa98-f38fde817c6f",
+      "googleEventId": null,
+      "title": null,
+      "operation": "calendar.operation",
+      "result": "SUCCESS",
+      "errorDetails": null,
+      "sessionId": "ses_e0fdf7dd",
+      "timestamp": "2026-10-31T14:54:45.650Z",
+      "details": {
+        "destinations": [
+          "UNKNOWN"
+        ],
+        "actionCount": 1,
+        "mode": "quick",
+        "ms": 1096,
+        "operation": "calendar.operation",
+        "result": "SUCCESS"
+      }
+    },
+    {
+      "id": "audit_1793458496063_lh07",
+      "event": "VOICE_COMMAND_PROCESSED",
+      "actionId": "voice_f0ed62ca-784c-41ff-9e11-7ca7b984bc69",
+      "googleEventId": null,
+      "title": null,
+      "operation": "calendar.operation",
+      "result": "SUCCESS",
+      "errorDetails": null,
+      "sessionId": "ses_e0fdf7dd",
+      "timestamp": "2026-10-31T14:54:56.063Z",
+      "details": {
+        "destinations": [
+          "UNKNOWN"
+        ],
+        "actionCount": 1,
+        "mode": "quick",
+        "ms": 935,
+        "operation": "calendar.operation",
+        "result": "SUCCESS"
+      }
+    },
+    {
+      "id": "audit_1793458497864_73s0",
+      "event": "ANALYZE_COMPLETED",
+      "actionId": null,
+      "googleEventId": null,
+      "title": null,
+      "operation": "calendar.operation",
+      "result": "SUCCESS",
+      "errorDetails": null,
+      "sessionId": "ses_e0fdf7dd",
+      "timestamp": "2026-10-31T14:54:57.864Z",
+      "details": {
+        "requestId": "c1cf6b3f-2508-4470-88b7-b35c0865f6d6",
+        "actionCount": 1,
+        "path": "FAST",
+        "operation": "calendar.operation",
+        "result": "SUCCESS"
+      }
+    },
+    {
+      "id": "audit_1793458516505_dky3",
+      "event": "EXECUTION_VALIDATION_FAILED",
+      "actionId": "unknown",
+      "googleEventId": null,
+      "title": null,
+      "operation": "calendar.operation",
+      "result": "FAILED",
+      "errorDetails": null,
+      "sessionId": "session_test_p2",
+      "timestamp": "2026-10-31T14:55:16.505Z",
+      "details": {
+        "errors": [
+          "Action ID is required.",
+          "Action title is required."
+        ],
+        "operation": "calendar.operation",
+        "result": "FAILED"
+      }
+    },
+    {
+      "id": "audit_1793458516522_cteo",
+      "event": "EXECUTION_VALIDATION_FAILED",
+      "actionId": "act_123",
+      "googleEventId": null,
+      "title": null,
+      "operation": "calendar.operation",
+      "result": "FAILED",
+      "errorDetails": null,
+      "sessionId": "session_test_p2",
+      "timestamp": "2026-10-31T14:55:16.522Z",
+      "details": {
+        "errors": [
+          "Action title is required."
+        ],
+        "operation": "calendar.operation",
+        "result": "FAILED"
+      }
+    },
+    {
+      "id": "audit_1793458516542_fr5g",
+      "event": "EXECUTION_VALIDATION_FAILED",
+      "actionId": "act_cancelled",
+      "googleEventId": null,
+      "title": null,
+      "operation": "calendar.operation",
+      "result": "FAILED",
+      "errorDetails": null,
+      "sessionId": "session_test_p2",
+      "timestamp": "2026-10-31T14:55:16.543Z",
+      "details": {
+        "errors": [
+          "Cannot execute a cancelled action."
+        ],
+        "operation": "calendar.operation",
+        "result": "FAILED"
+      }
+    },
+    {
+      "id": "audit_1793458516564_9b4k",
+      "event": "EXECUTION_APPROVAL_REQUIRED",
+      "actionId": "act_wa_1793458516564",
+      "googleEventId": null,
+      "title": null,
+      "operation": "calendar.operation",
+      "result": "SUCCESS",
+      "errorDetails": null,
+      "sessionId": "session_test_p2",
+      "timestamp": "2026-10-31T14:55:16.564Z",
+      "details": {
+        "type": "SEND_WHATSAPP",
+        "operation": "calendar.operation",
+        "result": "SUCCESS"
+      }
+    },
+    {
+      "id": "audit_1793458516601_bcd3",
+      "event": "EXECUTION_STARTED",
+      "actionId": "act_wa_approved_1793458516601_yr3",
+      "googleEventId": null,
+      "title": null,
+      "operation": "calendar.operation",
+      "result": "IN_PROGRESS",
+      "errorDetails": null,
+      "sessionId": "session_test_p2",
+      "timestamp": "2026-10-31T14:55:16.601Z",
+      "details": {
+        "type": "SEND_WHATSAPP",
+        "operation": "calendar.operation",
+        "result": "IN_PROGRESS"
+      }
+    },
+    {
+      "id": "audit_1793458516634_kgft",
+      "event": "WHATSAPP_SEND_ATTEMPT",
+      "actionId": "act_wa_approved_1793458516601_yr3",
+      "googleEventId": null,
+      "title": null,
+      "operation": "calendar.operation",
+      "result": "IN_PROGRESS",
+      "errorDetails": null,
+      "sessionId": "session_test_p2",
+      "timestamp": "2026-10-31T14:55:16.634Z",
+      "details": {
+        "messageId": "wmsg_1793458516630_8wgf",
+        "to": "+919876543211",
+        "integrationMode": "TWILIO",
+        "messageLength": 33,
+        "operation": "calendar.operation",
+        "result": "IN_PROGRESS"
+      }
+    },
+    {
+      "id": "audit_1793458516819_shc0",
+      "event": "WHATSAPP_SENT",
+      "actionId": "act_wa_approved_1793458516601_yr3",
+      "googleEventId": null,
+      "title": null,
+      "operation": "calendar.operation",
+      "result": "SUCCESS",
+      "errorDetails": null,
+      "sessionId": "session_test_p2",
+      "timestamp": "2026-10-31T14:55:16.819Z",
+      "details": {
+        "outcomeType": "PROVIDER_SUCCESS",
+        "actionId": "act_wa_approved_1793458516601_yr3",
+        "messageId": "wmsg_1793458516630_8wgf",
+        "integrationMode": "TWILIO",
+        "httpStatus": 201,
+        "senderConfigValid": true,
+        "sender": "whatsapp:+17372508034",
+        "recipientFormatValid": true,
+        "recipient": "whatsapp:+919876543211",
+        "messageSid": "SM_TEST_1793458516664",
+        "providerMessageId": "SM_TEST_1793458516664",
+        "providerStatus": "queued",
+        "dateCreated": "2026-10-31T14:55:16.664Z",
+        "sentAt": "2026-10-31T14:55:16.664Z",
+        "operation": "calendar.operation",
+        "result": "SUCCESS"
+      }
+    },
+    {
+      "id": "audit_1793458516985_rm0v",
+      "event": "EXECUTION_COMPLETED",
+      "actionId": "act_wa_approved_1793458516601_yr3",
+      "googleEventId": null,
+      "title": null,
+      "operation": "calendar.operation",
+      "result": "SUCCESS",
+      "errorDetails": null,
+      "sessionId": "session_test_p2",
+      "timestamp": "2026-10-31T14:55:16.985Z",
+      "details": {
+        "type": "SEND_WHATSAPP",
+        "status": "SENT",
+        "providerStatus": "queued",
+        "integrationMode": "TWILIO",
+        "providerMessageId": "SM_TEST_1793458516664",
+        "twilioMessageSid": "SM_TEST_1793458516664",
+        "sender": "whatsapp:+17372508034",
+        "recipient": "whatsapp:+919876543211",
+        "operation": "calendar.operation",
+        "result": "SUCCESS"
+      }
+    },
+    {
+      "id": "audit_1793458517019_jx5l",
+      "event": "EXECUTION_APPROVAL_REQUIRED",
+      "actionId": "act_cal_1793458517018",
+      "googleEventId": null,
+      "title": null,
+      "operation": "calendar.operation",
+      "result": "SUCCESS",
+      "errorDetails": null,
+      "sessionId": "session_test_p2",
+      "timestamp": "2026-10-31T14:55:17.019Z",
+      "details": {
+        "type": "CREATE_CALENDAR_EVENT",
+        "operation": "calendar.operation",
+        "result": "SUCCESS"
+      }
+    },
+    {
+      "id": "audit_1793458517236_fgxu",
+      "event": "EXECUTION_APPROVAL_REQUIRED",
+      "actionId": "act_del_cal_1793458517236",
+      "googleEventId": null,
+      "title": null,
+      "operation": "calendar.operation",
+      "result": "SUCCESS",
+      "errorDetails": null,
+      "sessionId": "session_test_p2",
+      "timestamp": "2026-10-31T14:55:17.236Z",
+      "details": {
+        "type": "DELETE_CALENDAR_EVENT",
+        "operation": "calendar.operation",
+        "result": "SUCCESS"
+      }
+    },
+    {
+      "id": "audit_1793458517400_lmr0",
+      "event": "EXECUTION_APPROVAL_REQUIRED",
+      "actionId": "act_del_task_1793458517400",
+      "googleEventId": null,
+      "title": null,
+      "operation": "calendar.operation",
+      "result": "SUCCESS",
+      "errorDetails": null,
+      "sessionId": "session_test_p2",
+      "timestamp": "2026-10-31T14:55:17.400Z",
+      "details": {
+        "type": "DELETE_TASK",
+        "operation": "calendar.operation",
+        "result": "SUCCESS"
+      }
+    },
+    {
+      "id": "audit_1793458517433_j2e3",
+      "event": "EXECUTION_STARTED",
+      "actionId": "act_task_1793458517433",
+      "googleEventId": null,
+      "title": null,
+      "operation": "calendar.operation",
+      "result": "IN_PROGRESS",
+      "errorDetails": null,
+      "sessionId": "session_test_p2",
+      "timestamp": "2026-10-31T14:55:17.433Z",
+      "details": {
+        "type": "CREATE_TASK",
+        "operation": "calendar.operation",
+        "result": "IN_PROGRESS"
+      }
+    },
+    {
+      "id": "audit_1793458517532_cm6d",
+      "event": "TASK_CREATED_INTERNALLY",
+      "actionId": "act_task_1793458517433",
+      "googleEventId": null,
+      "title": "Write technical architecture spec",
+      "operation": "events.insert",
+      "result": "SUCCESS",
+      "errorDetails": null,
+      "sessionId": "session_test_p2",
+      "timestamp": "2026-10-31T14:55:17.532Z",
+      "details": {
+        "title": "Write technical architecture spec",
+        "type": "CREATE_TASK",
+        "operation": "events.insert",
+        "result": "SUCCESS"
+      }
+    },
+    {
+      "id": "audit_1793458517685_az8o",
+      "event": "TASK_CREATED",
+      "actionId": "act_task_1793458517433",
+      "googleEventId": null,
+      "title": "Write technical architecture spec",
+      "operation": "events.insert",
+      "result": "SUCCESS",
+      "errorDetails": null,
+      "sessionId": "session_test_p2",
+      "timestamp": "2026-10-31T14:55:17.685Z",
+      "details": {
+        "title": "Write technical architecture spec",
+        "googleEventId": null,
+        "resourceType": "ACTIONFLOW_TASK",
+        "scheduledStart": null,
+        "operation": "events.insert",
+        "result": "SUCCESS"
+      }
+    },
+    {
+      "id": "audit_1793458517715_fzgb",
+      "event": "EXECUTION_COMPLETED",
+      "actionId": "act_task_1793458517433",
+      "googleEventId": null,
+      "title": null,
+      "operation": "calendar.operation",
+      "result": "SUCCESS",
+      "errorDetails": null,
+      "sessionId": "session_test_p2",
+      "timestamp": "2026-10-31T14:55:17.715Z",
+      "details": {
+        "type": "CREATE_TASK",
+        "status": "CREATED",
+        "operation": "calendar.operation",
+        "result": "SUCCESS"
+      }
+    },
+    {
+      "id": "audit_1793458518025_0ift",
+      "event": "EXECUTION_STARTED",
+      "actionId": "act_shop_1793458518024",
+      "googleEventId": null,
+      "title": null,
+      "operation": "calendar.operation",
+      "result": "IN_PROGRESS",
+      "errorDetails": null,
+      "sessionId": "session_test_p2",
+      "timestamp": "2026-10-31T14:55:18.025Z",
+      "details": {
+        "type": "ADD_SHOPPING_ITEM",
+        "operation": "calendar.operation",
+        "result": "IN_PROGRESS"
+      }
+    },
+    {
+      "id": "audit_1793458518126_mc92",
+      "event": "EXECUTION_COMPLETED",
+      "actionId": "act_shop_1793458518024",
+      "googleEventId": null,
+      "title": null,
+      "operation": "calendar.operation",
+      "result": "SUCCESS",
+      "errorDetails": null,
+      "sessionId": "session_test_p2",
+      "timestamp": "2026-10-31T14:55:18.126Z",
+      "details": {
+        "type": "ADD_SHOPPING_ITEM",
+        "status": "ADDED",
+        "operation": "calendar.operation",
+        "result": "SUCCESS"
+      }
+    },
+    {
+      "id": "audit_1793458518487_tflk",
+      "event": "EXECUTION_STARTED",
+      "actionId": "act_rem_1793458518487",
+      "googleEventId": null,
+      "title": null,
+      "operation": "calendar.operation",
+      "result": "IN_PROGRESS",
+      "errorDetails": null,
+      "sessionId": "session_test_p2",
+      "timestamp": "2026-10-31T14:55:18.487Z",
+      "details": {
+        "type": "CREATE_REMINDER",
+        "operation": "calendar.operation",
+        "result": "IN_PROGRESS"
+      }
+    },
+    {
+      "id": "audit_1793458518518_mfgy",
+      "event": "EXECUTION_COMPLETED",
+      "actionId": "act_rem_1793458518487",
+      "googleEventId": null,
+      "title": null,
+      "operation": "calendar.operation",
+      "result": "SUCCESS",
+      "errorDetails": null,
+      "sessionId": "session_test_p2",
+      "timestamp": "2026-10-31T14:55:18.518Z",
+      "details": {
+        "type": "CREATE_REMINDER",
+        "status": "SCHEDULED",
+        "operation": "calendar.operation",
+        "result": "SUCCESS"
+      }
+    },
+    {
+      "id": "audit_1793458518599_a5ay",
+      "event": "EXECUTION_STARTED",
+      "actionId": "act_trusted_1793458518599",
+      "googleEventId": null,
+      "title": null,
+      "operation": "calendar.operation",
+      "result": "IN_PROGRESS",
+      "errorDetails": null,
+      "sessionId": "session_trusted_1793458518599",
+      "timestamp": "2026-10-31T14:55:18.599Z",
+      "details": {
+        "type": "SEND_WHATSAPP",
+        "operation": "calendar.operation",
+        "result": "IN_PROGRESS"
+      }
+    },
+    {
+      "id": "audit_1793458518698_8dha",
+      "event": "WHATSAPP_SEND_ATTEMPT",
+      "actionId": "act_trusted_1793458518599",
+      "googleEventId": null,
+      "title": null,
+      "operation": "calendar.operation",
+      "result": "IN_PROGRESS",
+      "errorDetails": null,
+      "sessionId": "session_trusted_1793458518599",
+      "timestamp": "2026-10-31T14:55:18.698Z",
+      "details": {
+        "messageId": "wmsg_1793458518691_d49u",
+        "to": "+919999999999",
+        "integrationMode": "TWILIO",
+        "messageLength": 16,
+        "operation": "calendar.operation",
+        "result": "IN_PROGRESS"
+      }
+    },
+    {
+      "id": "audit_1793458518802_ei5h",
+      "event": "WHATSAPP_SENT",
+      "actionId": "act_trusted_1793458518599",
+      "googleEventId": null,
+      "title": null,
+      "operation": "calendar.operation",
+      "result": "SUCCESS",
+      "errorDetails": null,
+      "sessionId": "session_trusted_1793458518599",
+      "timestamp": "2026-10-31T14:55:18.802Z",
+      "details": {
+        "outcomeType": "PROVIDER_SUCCESS",
+        "actionId": "act_trusted_1793458518599",
+        "messageId": "wmsg_1793458518691_d49u",
+        "integrationMode": "TWILIO",
+        "httpStatus": 201,
+        "senderConfigValid": true,
+        "sender": "whatsapp:+17372508034",
+        "recipientFormatValid": true,
+        "recipient": "whatsapp:+919999999999",
+        "messageSid": "SM_TRUSTED_1793458518784",
+        "providerMessageId": "SM_TRUSTED_1793458518784",
+        "providerStatus": "queued",
+        "dateCreated": "2026-10-31T14:55:18.784Z",
+        "sentAt": "2026-10-31T14:55:18.784Z",
+        "operation": "calendar.operation",
+        "result": "SUCCESS"
+      }
+    },
+    {
+      "id": "audit_1793458518882_9y99",
+      "event": "EXECUTION_COMPLETED",
+      "actionId": "act_trusted_1793458518599",
+      "googleEventId": null,
+      "title": null,
+      "operation": "calendar.operation",
+      "result": "SUCCESS",
+      "errorDetails": null,
+      "sessionId": "session_trusted_1793458518599",
+      "timestamp": "2026-10-31T14:55:18.882Z",
+      "details": {
+        "type": "SEND_WHATSAPP",
+        "status": "SENT",
+        "providerStatus": "queued",
+        "integrationMode": "TWILIO",
+        "providerMessageId": "SM_TRUSTED_1793458518784",
+        "twilioMessageSid": "SM_TRUSTED_1793458518784",
+        "sender": "whatsapp:+17372508034",
+        "recipient": "whatsapp:+919999999999",
+        "operation": "calendar.operation",
+        "result": "SUCCESS"
+      }
+    },
+    {
+      "id": "audit_1793458518950_ttbu",
+      "event": "ACTION_REJECTED",
+      "actionId": "act_reject_1793458518950",
+      "googleEventId": null,
+      "title": null,
+      "operation": "calendar.operation",
+      "result": "SUCCESS",
+      "errorDetails": null,
+      "sessionId": "session_test_p2",
+      "timestamp": "2026-10-31T14:55:18.950Z",
+      "details": {
+        "reason": "User changed their mind",
+        "operation": "calendar.operation",
+        "result": "SUCCESS"
+      }
+    },
+    {
+      "id": "audit_1793458519465_pken",
+      "event": "CALENDAR_EVENT_UPDATED",
+      "actionId": "resched_action",
+      "googleEventId": "resched_evt_1793458519445",
+      "title": "Product Review",
+      "operation": "events.patch (simulated)",
+      "result": "SUCCESS",
+      "errorDetails": null,
+      "sessionId": "session_cal_test",
+      "timestamp": "2026-10-31T14:55:19.465Z",
+      "details": {
+        "title": "Product Review",
+        "eventId": "resched_evt_1793458519445",
+        "googleEventId": "resched_evt_1793458519445",
+        "calendarId": "primary",
+        "operation": "events.patch (simulated)",
+        "result": "SUCCESS",
+        "newStartDateTime": "2026-11-01T02:01:59.463Z",
+        "newEndDateTime": "2026-11-01T03:01:59.463Z",
+        "isOfflineSimulation": true
+      }
+    },
+    {
+      "id": "audit_1793458519534_7695",
+      "event": "CALENDAR_EVENT_DELETED",
+      "actionId": "del_action",
+      "googleEventId": "del_evt_1793458519502",
+      "title": null,
+      "operation": "events.delete",
+      "result": "SUCCESS",
+      "errorDetails": null,
+      "sessionId": "session_cal_test",
+      "timestamp": "2026-10-31T14:55:19.534Z",
+      "details": {
+        "eventId": "del_evt_1793458519502",
+        "calendarId": "primary",
+        "alreadyAbsent": false,
+        "verifiedAbsent": true,
+        "isOfflineSimulation": true,
+        "removedAt": "2026-10-31T14:55:19.534Z",
+        "googleEventId": "del_evt_1793458519502",
+        "operation": "events.delete",
+        "result": "SUCCESS"
+      }
+    },
+    {
+      "id": "audit_1793458519637_7c9o",
+      "event": "WHATSAPP_SEND_ATTEMPT",
+      "actionId": "act_wa_dup_1793458519630",
+      "googleEventId": null,
+      "title": null,
+      "operation": "calendar.operation",
+      "result": "IN_PROGRESS",
+      "errorDetails": null,
+      "sessionId": "sess_wa",
+      "timestamp": "2026-10-31T14:55:19.637Z",
+      "details": {
+        "messageId": "wmsg_1793458519630_5msz",
+        "to": "+919876543210",
+        "integrationMode": "TWILIO",
+        "messageLength": 28,
+        "operation": "calendar.operation",
+        "result": "IN_PROGRESS"
+      }
+    },
+    {
+      "id": "audit_1793458519671_bnsh",
+      "event": "WHATSAPP_SENT",
+      "actionId": "act_wa_dup_1793458519630",
+      "googleEventId": null,
+      "title": null,
+      "operation": "calendar.operation",
+      "result": "SUCCESS",
+      "errorDetails": null,
+      "sessionId": "sess_wa",
+      "timestamp": "2026-10-31T14:55:19.671Z",
+      "details": {
+        "outcomeType": "PROVIDER_SUCCESS",
+        "actionId": "act_wa_dup_1793458519630",
+        "messageId": "wmsg_1793458519630_5msz",
+        "integrationMode": "TWILIO",
+        "httpStatus": 201,
+        "senderConfigValid": true,
+        "sender": "whatsapp:+17372508034",
+        "recipientFormatValid": true,
+        "recipient": "whatsapp:+919876543210",
+        "messageSid": "SM_IDEMP_1793458519668",
+        "providerMessageId": "SM_IDEMP_1793458519668",
+        "providerStatus": "queued",
+        "dateCreated": "2026-10-31T14:55:19.668Z",
+        "sentAt": "2026-10-31T14:55:19.668Z",
+        "operation": "calendar.operation",
+        "result": "SUCCESS"
+      }
+    },
+    {
+      "id": "audit_1793458519703_g1bl",
+      "event": "WHATSAPP_DUPLICATE_BLOCKED",
+      "actionId": "act_wa_dup_1793458519630",
+      "googleEventId": null,
+      "title": null,
+      "operation": "calendar.operation",
+      "result": "SUCCESS",
+      "errorDetails": null,
+      "sessionId": "sess_wa",
+      "timestamp": "2026-10-31T14:55:19.703Z",
+      "details": {
+        "to": "+919876543210",
+        "idempotencyKey": "wp_idemp_1793458519630",
+        "status": "SENT",
+        "providerMessageId": "SM_IDEMP_1793458519668",
+        "operation": "calendar.operation",
+        "result": "SUCCESS"
+      }
+    },
+    {
+      "id": "audit_1793458521133_2ifp",
+      "event": "EXECUTION_BLOCKED_BY_DEPENDENCY",
+      "actionId": "act_dep_1793458521121",
+      "googleEventId": null,
+      "title": null,
+      "operation": "calendar.operation",
+      "result": "SUCCESS",
+      "errorDetails": null,
+      "sessionId": "session_p3_dag_test",
+      "timestamp": "2026-10-31T14:55:21.133Z",
+      "details": {
+        "pendingDependencies": [
+          "act_prereq_1793458521121"
+        ],
+        "operation": "calendar.operation",
+        "result": "SUCCESS"
+      }
+    },
+    {
+      "id": "audit_1793458521171_cwo0",
+      "event": "EXECUTION_STARTED",
+      "actionId": "act_prereq_1793458521121",
+      "googleEventId": null,
+      "title": null,
+      "operation": "calendar.operation",
+      "result": "IN_PROGRESS",
+      "errorDetails": null,
+      "sessionId": "session_p3_dag_test",
+      "timestamp": "2026-10-31T14:55:21.171Z",
+      "details": {
+        "type": "CREATE_TASK",
+        "operation": "calendar.operation",
+        "result": "IN_PROGRESS"
+      }
+    },
+    {
+      "id": "audit_1793458521206_zdw0",
+      "event": "TASK_CREATED_INTERNALLY",
+      "actionId": "act_prereq_1793458521121",
+      "googleEventId": null,
+      "title": "Prerequisite Database Migration",
+      "operation": "events.insert",
+      "result": "SUCCESS",
+      "errorDetails": null,
+      "sessionId": "session_p3_dag_test",
+      "timestamp": "2026-10-31T14:55:21.206Z",
+      "details": {
+        "title": "Prerequisite Database Migration",
+        "type": "CREATE_TASK",
+        "operation": "events.insert",
+        "result": "SUCCESS"
+      }
+    },
+    {
+      "id": "audit_1793458521305_so2p",
+      "event": "TASK_CREATED",
+      "actionId": "act_prereq_1793458521121",
+      "googleEventId": null,
+      "title": "Prerequisite Database Migration",
+      "operation": "events.insert",
+      "result": "SUCCESS",
+      "errorDetails": null,
+      "sessionId": "session_p3_dag_test",
+      "timestamp": "2026-10-31T14:55:21.305Z",
+      "details": {
+        "title": "Prerequisite Database Migration",
+        "googleEventId": null,
+        "resourceType": "ACTIONFLOW_TASK",
+        "scheduledStart": null,
+        "operation": "events.insert",
+        "result": "SUCCESS"
+      }
+    },
+    {
+      "id": "audit_1793458521319_eilp",
+      "event": "EXECUTION_COMPLETED",
+      "actionId": "act_prereq_1793458521121",
+      "googleEventId": null,
+      "title": null,
+      "operation": "calendar.operation",
+      "result": "SUCCESS",
+      "errorDetails": null,
+      "sessionId": "session_p3_dag_test",
+      "timestamp": "2026-10-31T14:55:21.319Z",
+      "details": {
+        "type": "CREATE_TASK",
+        "status": "CREATED",
+        "operation": "calendar.operation",
+        "result": "SUCCESS"
+      }
+    },
+    {
+      "id": "audit_1793458521350_mxol",
+      "event": "EXECUTION_STARTED",
+      "actionId": "act_dep_1793458521121",
+      "googleEventId": null,
+      "title": null,
+      "operation": "calendar.operation",
+      "result": "IN_PROGRESS",
+      "errorDetails": null,
+      "sessionId": "session_p3_dag_test",
+      "timestamp": "2026-10-31T14:55:21.350Z",
+      "details": {
+        "type": "CREATE_TASK",
+        "operation": "calendar.operation",
+        "result": "IN_PROGRESS"
+      }
+    },
+    {
+      "id": "audit_1793458521394_qy21",
+      "event": "TASK_CREATED_INTERNALLY",
+      "actionId": "act_dep_1793458521121",
+      "googleEventId": null,
+      "title": "Start Production Workload",
+      "operation": "events.insert",
+      "result": "SUCCESS",
+      "errorDetails": null,
+      "sessionId": "session_p3_dag_test",
+      "timestamp": "2026-10-31T14:55:21.394Z",
+      "details": {
+        "title": "Start Production Workload",
+        "type": "CREATE_TASK",
+        "operation": "events.insert",
+        "result": "SUCCESS"
+      }
+    },
+    {
+      "id": "audit_1793458521408_3i6c",
+      "event": "ROOM_CREATED",
+      "actionId": "room_rooftop_lounge_5",
+      "googleEventId": null,
+      "title": null,
+      "operation": "events.insert",
+      "result": "SUCCESS",
+      "errorDetails": null,
+      "sessionId": null,
+      "timestamp": "2026-10-31T14:55:21.408Z",
+      "details": {
+        "name": "Rooftop Lounge",
+        "organizationId": "org_default",
+        "categories": [
+          "Outdoor",
+          "Plants"
+        ],
+        "operation": "events.insert",
+        "result": "SUCCESS"
+      }
+    },
+    {
+      "id": "audit_1793458521435_k5qg",
+      "event": "ROOM_UPDATED",
+      "actionId": "room_rooftop_lounge_5",
+      "googleEventId": null,
+      "title": null,
+      "operation": "events.patch",
+      "result": "SUCCESS",
+      "errorDetails": null,
+      "sessionId": null,
+      "timestamp": "2026-10-31T14:55:21.435Z",
+      "details": {
+        "name": "Rooftop Lounge",
+        "isActive": true,
+        "operation": "events.patch",
+        "result": "SUCCESS"
+      }
+    },
+    {
+      "id": "audit_1793458521447_xp9a",
+      "event": "TASK_CREATED",
+      "actionId": "act_dep_1793458521121",
+      "googleEventId": null,
+      "title": "Start Production Workload",
+      "operation": "events.insert",
+      "result": "SUCCESS",
+      "errorDetails": null,
+      "sessionId": "session_p3_dag_test",
+      "timestamp": "2026-10-31T14:55:21.447Z",
+      "details": {
+        "title": "Start Production Workload",
+        "googleEventId": null,
+        "resourceType": "ACTIONFLOW_TASK",
+        "scheduledStart": null,
+        "operation": "events.insert",
+        "result": "SUCCESS"
+      }
+    },
+    {
+      "id": "audit_1793458521467_1emr",
+      "event": "EXECUTION_COMPLETED",
+      "actionId": "act_dep_1793458521121",
+      "googleEventId": null,
+      "title": null,
+      "operation": "calendar.operation",
+      "result": "SUCCESS",
+      "errorDetails": null,
+      "sessionId": "session_p3_dag_test",
+      "timestamp": "2026-10-31T14:55:21.467Z",
+      "details": {
+        "type": "CREATE_TASK",
+        "status": "CREATED",
+        "operation": "calendar.operation",
+        "result": "SUCCESS"
+      }
+    },
+    {
+      "id": "audit_1793458521470_184n",
+      "event": "ROOM_DEACTIVATED",
+      "actionId": "room_rooftop_lounge_5",
+      "googleEventId": null,
+      "title": null,
+      "operation": "calendar.operation",
+      "result": "SUCCESS",
+      "errorDetails": null,
+      "sessionId": null,
+      "timestamp": "2026-10-31T14:55:21.470Z",
+      "details": {
+        "hardDelete": false,
+        "operation": "calendar.operation",
+        "result": "SUCCESS"
+      }
+    },
+    {
+      "id": "audit_1793458521524_99ht",
+      "event": "ROOM_CREATED",
+      "actionId": "room_org_a_lab_5",
+      "googleEventId": null,
+      "title": null,
+      "operation": "events.insert",
+      "result": "SUCCESS",
+      "errorDetails": null,
+      "sessionId": null,
+      "timestamp": "2026-10-31T14:55:21.524Z",
+      "details": {
+        "name": "Org A Lab",
+        "organizationId": "org_alpha",
+        "categories": [
+          "General"
+        ],
+        "operation": "events.insert",
+        "result": "SUCCESS"
+      }
+    },
+    {
+      "id": "audit_1793458521699_tlw8",
+      "event": "MEETING_COMPLETED",
+      "actionId": "meet_1793458521517_bekn",
+      "googleEventId": null,
+      "title": "Q3 Product Architecture Review",
+      "operation": "calendar.operation",
+      "result": "SUCCESS",
+      "errorDetails": null,
+      "sessionId": "session_p3_meeting_test",
+      "timestamp": "2026-10-31T14:55:21.699Z",
+      "details": {
+        "title": "Q3 Product Architecture Review",
+        "durationSeconds": 1,
+        "actionsExtracted": 1,
+        "operation": "calendar.operation",
+        "result": "SUCCESS"
+      }
+    },
+    {
+      "id": "audit_1793458522196_8mcp",
+      "event": "EXECUTION_STARTED",
+      "actionId": "act_fail_1793458522195",
+      "googleEventId": null,
+      "title": null,
+      "operation": "calendar.operation",
+      "result": "IN_PROGRESS",
+      "errorDetails": null,
+      "sessionId": "unauth_approve_1793458522195",
+      "timestamp": "2026-10-31T14:55:22.196Z",
+      "details": {
+        "type": "CREATE_EVENT",
+        "operation": "calendar.operation",
+        "result": "IN_PROGRESS"
+      }
+    },
+    {
+      "id": "audit_1793458522239_6fur",
+      "event": "EXECUTION_FAILED",
+      "actionId": "act_fail_1793458522195",
+      "googleEventId": null,
+      "title": null,
+      "operation": "calendar.operation",
+      "result": "FAILED",
+      "errorDetails": "Google Calendar credentials detected in .env, but your personal Google account has not been authorized yet. Please click \"Authorize Google Account\" in the Calendar Hub.",
+      "sessionId": "unauth_approve_1793458522195",
+      "timestamp": "2026-10-31T14:55:22.239Z",
+      "details": {
+        "type": "CREATE_EVENT",
+        "status": "NOT_CONNECTED",
+        "error": "Google Calendar credentials detected in .env, but your personal Google account has not been authorized yet. Please click \"Authorize Google Account\" in the Calendar Hub.",
+        "operation": "calendar.operation",
+        "result": "FAILED",
+        "errorDetails": "Google Calendar credentials detected in .env, but your personal Google account has not been authorized yet. Please click \"Authorize Google Account\" in the Calendar Hub."
+      }
+    },
+    {
+      "id": "audit_1793458525024_45t8",
+      "event": "USER_CORRECTION_SUBMITTED",
+      "actionId": "act_01",
+      "googleEventId": null,
+      "title": null,
+      "operation": "calendar.operation",
+      "result": "SUCCESS",
+      "errorDetails": null,
+      "sessionId": "sess_user_qa",
+      "timestamp": "2026-10-31T14:55:25.024Z",
+      "details": {
+        "feedbackId": "fb_1793458525019_r3t9",
+        "failingStage": "INTENT_UNDERSTANDING",
+        "inputSnippet": "Credit card [REDACTED_CC] par charge karo and assi",
+        "operation": "calendar.operation",
+        "result": "SUCCESS"
+      }
+    },
+    {
+      "id": "audit_1793458525081_fsge",
+      "event": "AUDIO_TRANSCRIBE_SIMULATED",
+      "actionId": null,
+      "googleEventId": null,
+      "title": null,
+      "operation": "calendar.operation",
+      "result": "SUCCESS",
+      "errorDetails": null,
+      "sessionId": null,
+      "timestamp": "2026-10-31T14:55:25.081Z",
+      "details": {
+        "bytes": 1024,
+        "mimeType": "audio/webm",
+        "mode": "quick",
+        "operation": "calendar.operation",
+        "result": "SUCCESS"
+      }
+    },
+    {
+      "id": "audit_1793458526000_uo7a",
+      "event": "EXECUTION_STARTED",
+      "actionId": "act_wa_test_1793458525982",
+      "googleEventId": null,
+      "title": null,
+      "operation": "calendar.operation",
+      "result": "IN_PROGRESS",
+      "errorDetails": null,
+      "sessionId": "sess_v4_test",
+      "timestamp": "2026-10-31T14:55:26.000Z",
+      "details": {
+        "type": "SEND_WHATSAPP",
+        "operation": "calendar.operation",
+        "result": "IN_PROGRESS"
+      }
+    },
+    {
+      "id": "audit_1793458526027_jkk0",
+      "event": "WHATSAPP_SEND_ATTEMPT",
+      "actionId": "act_wa_test_1793458525982",
+      "googleEventId": null,
+      "title": null,
+      "operation": "calendar.operation",
+      "result": "IN_PROGRESS",
+      "errorDetails": null,
+      "sessionId": "sess_v4_test",
+      "timestamp": "2026-10-31T14:55:26.027Z",
+      "details": {
+        "messageId": "wmsg_1793458526024_rbrt",
+        "to": "+919876543210",
+        "integrationMode": "TWILIO",
+        "messageLength": 50,
+        "operation": "calendar.operation",
+        "result": "IN_PROGRESS"
+      }
+    },
+    {
+      "id": "audit_1793458526072_twik",
+      "event": "WHATSAPP_SENT",
+      "actionId": "act_wa_test_1793458525982",
+      "googleEventId": null,
+      "title": null,
+      "operation": "calendar.operation",
+      "result": "SUCCESS",
+      "errorDetails": null,
+      "sessionId": "sess_v4_test",
+      "timestamp": "2026-10-31T14:55:26.072Z",
+      "details": {
+        "outcomeType": "PROVIDER_SUCCESS",
+        "actionId": "act_wa_test_1793458525982",
+        "messageId": "wmsg_1793458526024_rbrt",
+        "integrationMode": "TWILIO",
+        "httpStatus": 201,
+        "senderConfigValid": true,
+        "sender": "whatsapp:+17372508034",
+        "recipientFormatValid": true,
+        "recipient": "whatsapp:+919876543210",
+        "messageSid": "SM_TEST_1793458526062",
+        "providerMessageId": "SM_TEST_1793458526062",
+        "providerStatus": "queued",
+        "dateCreated": "2026-10-31T14:55:26.066Z",
+        "sentAt": "2026-10-31T14:55:26.066Z",
+        "operation": "calendar.operation",
+        "result": "SUCCESS"
+      }
+    },
+    {
+      "id": "audit_1793458526323_61l0",
+      "event": "EXECUTION_COMPLETED",
+      "actionId": "act_wa_test_1793458525982",
+      "googleEventId": null,
+      "title": null,
+      "operation": "calendar.operation",
+      "result": "SUCCESS",
+      "errorDetails": null,
+      "sessionId": "sess_v4_test",
+      "timestamp": "2026-10-31T14:55:26.323Z",
+      "details": {
+        "type": "SEND_WHATSAPP",
+        "status": "SENT",
+        "providerStatus": "queued",
+        "integrationMode": "TWILIO",
+        "providerMessageId": "SM_TEST_1793458526062",
+        "twilioMessageSid": "SM_TEST_1793458526062",
+        "sender": "whatsapp:+17372508034",
+        "recipient": "whatsapp:+919876543210",
+        "operation": "calendar.operation",
+        "result": "SUCCESS"
+      }
+    },
+    {
+      "id": "audit_1793458528504_oo6c",
+      "event": "VOICE_COMMAND_PROCESSED",
+      "actionId": "voice_bb65cf00-c8b6-4d0a-91e4-37fce61e89d2",
+      "googleEventId": null,
+      "title": null,
+      "operation": "calendar.operation",
+      "result": "SUCCESS",
+      "errorDetails": null,
+      "sessionId": "ses_e0fdf7dd",
+      "timestamp": "2026-10-31T14:55:28.504Z",
+      "details": {
+        "destinations": [
+          "UNKNOWN"
+        ],
+        "actionCount": 2,
+        "mode": "quick",
+        "ms": 1241,
+        "operation": "calendar.operation",
+        "result": "SUCCESS"
+      }
+    },
+    {
+      "id": "audit_1793458530025_7kr2",
+      "event": "ANALYZE_COMPLETED",
+      "actionId": null,
+      "googleEventId": null,
+      "title": null,
+      "operation": "calendar.operation",
+      "result": "SUCCESS",
+      "errorDetails": null,
+      "sessionId": "ses_e0fdf7dd",
+      "timestamp": "2026-10-31T14:55:30.025Z",
+      "details": {
+        "requestId": "1591d7c1-6368-4413-8837-6748b5f9d169",
+        "actionCount": 1,
+        "path": "FAST",
         "operation": "calendar.operation",
         "result": "SUCCESS"
       }

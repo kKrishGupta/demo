@@ -480,37 +480,38 @@ export default function CalendarIntegrationPanel() {
   };
 
   return (
-    <div className="bg-white border border-slate-200 rounded-2xl shadow-sm overflow-hidden space-y-6 p-6">
+    <div className="bg-white border border-slate-200 rounded-2xl shadow-sm overflow-hidden space-y-5 sm:space-y-6 p-4 sm:p-6 w-full max-w-full">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pb-5 border-b border-slate-100">
-        <div>
-          <h2 className="text-lg font-bold text-slate-900 flex items-center gap-2">
-            <Calendar className="w-5 h-5 text-blue-600" />
-            Google Calendar Integration Hub
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-4 pb-4 sm:pb-5 border-b border-slate-100">
+        <div className="min-w-0">
+          <h2 className="text-base sm:text-lg font-bold text-slate-900 flex items-center gap-2">
+            <Calendar className="w-5 h-5 text-blue-600 shrink-0" />
+            <span className="truncate">Google Calendar Integration Hub</span>
           </h2>
           <p className="text-xs text-slate-500 mt-1">
             Automatic environment credential detection, persistent OAuth refresh tokens, and live read/write event reconciliation.
           </p>
         </div>
 
-        <div className="flex items-center gap-2 flex-wrap">
+        <div className="flex items-center gap-2 flex-wrap w-full sm:w-auto">
           <button
             type="button"
             onClick={handleManualReconcile}
             disabled={loading || eventsLoading || actionLoading === 'reconcile'}
-            className="px-3 py-1.5 bg-indigo-50 hover:bg-indigo-100 text-indigo-700 border border-indigo-200 text-xs font-semibold rounded-lg flex items-center gap-1.5 transition"
+            className="flex-1 sm:flex-none justify-center px-3 py-1.5 bg-indigo-50 hover:bg-indigo-100 text-indigo-700 border border-indigo-200 text-xs font-semibold rounded-lg flex items-center gap-1.5 transition"
           >
-            <RefreshCw className={`w-3.5 h-3.5 ${(loading || eventsLoading || actionLoading === 'reconcile') ? 'animate-spin' : ''}`} />
-            Sync & Reconcile
+            <RefreshCw className={`w-3.5 h-3.5 shrink-0 ${(loading || eventsLoading || actionLoading === 'reconcile') ? 'animate-spin' : ''}`} />
+            <span>Sync & Reconcile</span>
           </button>
 
           <a
             href="https://calendar.google.com"
             target="_blank"
             rel="noreferrer"
-            className="px-3 py-1.5 bg-blue-50 hover:bg-blue-100 text-blue-700 text-xs font-semibold rounded-lg flex items-center gap-1.5 border border-blue-200 transition"
+            className="flex-1 sm:flex-none justify-center px-3 py-1.5 bg-blue-50 hover:bg-blue-100 text-blue-700 text-xs font-semibold rounded-lg flex items-center gap-1.5 border border-blue-200 transition"
           >
-            <ExternalLink className="w-3.5 h-3.5" /> Open Google Calendar
+            <ExternalLink className="w-3.5 h-3.5 shrink-0" />
+            <span>Open Google Calendar</span>
           </a>
         </div>
       </div>
@@ -675,9 +676,11 @@ export default function CalendarIntegrationPanel() {
           </div>
 
           <div className="space-y-1.5 text-xs">
-            <div className="flex items-center justify-between py-1 border-b border-slate-200/60">
-              <span className="text-slate-500">Connected Email:</span>
-              <span className="font-semibold text-slate-800">{status?.email || configStatus?.email || '—'}</span>
+            <div className="flex items-center justify-between py-1 border-b border-slate-200/60 gap-2">
+              <span className="text-slate-500 shrink-0">Connected Email:</span>
+              <span className="font-semibold text-slate-800 truncate text-right max-w-[200px] sm:max-w-xs" title={status?.email || configStatus?.email || '—'}>
+                {status?.email || configStatus?.email || '—'}
+              </span>
             </div>
             <div className="flex items-center justify-between py-1 border-b border-slate-200/60">
               <span className="text-slate-500">Calendar:</span>
@@ -860,9 +863,9 @@ export default function CalendarIntegrationPanel() {
             </button>
           </div>
         ) : events.length > 0 ? (
-          <div className="border border-slate-200 rounded-xl overflow-hidden">
-            <div className="overflow-x-auto">
-              <table className="w-full text-left text-xs">
+          <div className="border border-slate-200 rounded-xl overflow-hidden w-full">
+            <div className="overflow-x-auto w-full">
+              <table className="w-full text-left text-xs min-w-[720px]">
                 <thead className="bg-slate-50 border-b border-slate-200 text-slate-600 font-semibold">
                   <tr>
                     <th className="p-3">Event Title</th>
@@ -1179,9 +1182,9 @@ export default function CalendarIntegrationPanel() {
             No calendar operations recorded yet. Click "Sync & Reconcile" or create an event.
           </div>
         ) : (
-          <div className="border border-slate-200 rounded-xl overflow-hidden">
-            <div className="overflow-x-auto max-h-80">
-              <table className="w-full text-left text-xs">
+          <div className="border border-slate-200 rounded-xl overflow-hidden w-full">
+            <div className="overflow-x-auto max-h-80 w-full">
+              <table className="w-full text-left text-xs min-w-[680px]">
                 <thead className="bg-slate-50 border-b border-slate-200 text-slate-600 font-semibold sticky top-0">
                   <tr>
                     <th className="p-2.5">Timestamp</th>

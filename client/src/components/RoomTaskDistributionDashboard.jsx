@@ -436,12 +436,12 @@ export default function RoomTaskDistributionDashboard({ onNavigateToVoice }) {
           </div>
         </div>
 
-        <div className="flex items-center gap-2 flex-wrap">
+        <div className="flex items-center gap-2 flex-wrap w-full sm:w-auto">
           <button
             type="button"
             onClick={() => loadData(false)}
             disabled={refreshing}
-            className="px-3 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold rounded-lg flex items-center gap-1.5 transition border border-slate-200"
+            className="flex-1 sm:flex-none justify-center px-3 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold rounded-lg flex items-center gap-1.5 transition border border-slate-200"
           >
             <RefreshCw className={`w-3.5 h-3.5 ${refreshing ? 'animate-spin' : ''}`} />
             Sync
@@ -450,7 +450,7 @@ export default function RoomTaskDistributionDashboard({ onNavigateToVoice }) {
           <button
             type="button"
             onClick={() => setIsRoomAdminModalOpen(true)}
-            className="px-3 py-1.5 bg-slate-50 hover:bg-slate-100 text-slate-700 text-xs font-semibold rounded-lg flex items-center gap-1.5 border border-slate-200 transition"
+            className="flex-1 sm:flex-none justify-center px-3 py-1.5 bg-slate-50 hover:bg-slate-100 text-slate-700 text-xs font-semibold rounded-lg flex items-center gap-1.5 border border-slate-200 transition"
           >
             <Settings className="w-3.5 h-3.5 text-slate-500" />
             Manage Rooms
@@ -465,7 +465,7 @@ export default function RoomTaskDistributionDashboard({ onNavigateToVoice }) {
               }));
               setIsCreateModalOpen(true);
             }}
-            className="px-3.5 py-1.5 bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold rounded-lg flex items-center gap-1.5 shadow-xs transition"
+            className="flex-1 sm:flex-none justify-center px-3.5 py-1.5 bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold rounded-lg flex items-center gap-1.5 shadow-xs transition"
           >
             <Plus className="w-3.5 h-3.5" />
             Add Task
@@ -509,7 +509,7 @@ export default function RoomTaskDistributionDashboard({ onNavigateToVoice }) {
           </span>
         </div>
 
-        <div className="flex items-center gap-2 overflow-x-auto pb-1 scrollbar-thin">
+        <div className="flex items-center gap-2 overflow-x-auto pb-1 scrollbar-thin no-scrollbar">
           {/* 'All Rooms' Pill */}
           <button
             type="button"
@@ -1261,3 +1261,4 @@ export default function RoomTaskDistributionDashboard({ onNavigateToVoice }) {
     </div>
   );
 }
+
