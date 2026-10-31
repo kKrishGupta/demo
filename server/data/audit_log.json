@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-31T14:55:30.082Z",
+  "updatedAt": "2026-10-31T15:01:01.064Z",
   "entries": [
     {
       "id": "audit_1793431151754_2l5x",
@@ -7251,6 +7251,108 @@
         "requestId": "1591d7c1-6368-4413-8837-6748b5f9d169",
         "actionCount": 1,
         "path": "FAST",
+        "operation": "calendar.operation",
+        "result": "SUCCESS"
+      }
+    },
+    {
+      "id": "audit_1793458834618_wgii",
+      "event": "VOICE_COMMAND_PROCESSED",
+      "actionId": "voice_52ef8428-43f7-477a-9e39-d9e81757e533",
+      "googleEventId": null,
+      "title": null,
+      "operation": "calendar.operation",
+      "result": "SUCCESS",
+      "errorDetails": null,
+      "sessionId": "ses_e0fdf7dd",
+      "timestamp": "2026-10-31T15:00:34.618Z",
+      "details": {
+        "destinations": [
+          "GOOGLE_CALENDAR",
+          "TASK_ASSIGNMENT",
+          "SHOPPING_LIST"
+        ],
+        "actionCount": 4,
+        "mode": "conversation",
+        "ms": 4152,
+        "operation": "calendar.operation",
+        "result": "SUCCESS"
+      }
+    },
+    {
+      "id": "audit_1793458858716_uf0i",
+      "event": "EXECUTION_STARTED",
+      "actionId": "act_1793458834286_0",
+      "googleEventId": null,
+      "title": null,
+      "operation": "calendar.operation",
+      "result": "IN_PROGRESS",
+      "errorDetails": null,
+      "sessionId": "ses_e0fdf7dd",
+      "timestamp": "2026-10-31T15:00:58.716Z",
+      "details": {
+        "type": "CREATE_EVENT",
+        "operation": "calendar.operation",
+        "result": "IN_PROGRESS"
+      }
+    },
+    {
+      "id": "audit_1793458860779_jk9i",
+      "event": "CALENDAR_EVENT_CREATED",
+      "actionId": "act_1793458834286_0",
+      "googleEventId": "7d4f4n02l2s9te6v143v85g06s",
+      "title": "Meeting with baje Rahul",
+      "operation": "events.insert",
+      "result": "SUCCESS",
+      "errorDetails": null,
+      "sessionId": "ses_e0fdf7dd",
+      "timestamp": "2026-10-31T15:01:00.779Z",
+      "details": {
+        "title": "Meeting with baje Rahul",
+        "eventId": "7d4f4n02l2s9te6v143v85g06s",
+        "eventLink": "https://www.google.com/calendar/event?eid=N2Q0ZjRuMDJsMnM5dGU2djE0M3Y4NWcwNnMga3Jpc2gyMzE1MzEwNkBt",
+        "attendees": [],
+        "isVerified": true,
+        "googleEventId": "7d4f4n02l2s9te6v143v85g06s",
+        "operation": "events.insert",
+        "result": "SUCCESS"
+      }
+    },
+    {
+      "id": "audit_1793458860904_uswy",
+      "event": "TASK_CREATED",
+      "actionId": "act_1793458834286_0",
+      "googleEventId": "7d4f4n02l2s9te6v143v85g06s",
+      "title": "Meeting with baje Rahul",
+      "operation": "events.insert",
+      "result": "SUCCESS",
+      "errorDetails": null,
+      "sessionId": "ses_e0fdf7dd",
+      "timestamp": "2026-10-31T15:01:00.904Z",
+      "details": {
+        "title": "Meeting with baje Rahul",
+        "googleEventId": "7d4f4n02l2s9te6v143v85g06s",
+        "resourceType": "GOOGLE_CALENDAR_EVENT",
+        "scheduledStart": "2026-11-01T10:00:00+05:30",
+        "eventId": "7d4f4n02l2s9te6v143v85g06s",
+        "operation": "events.insert",
+        "result": "SUCCESS"
+      }
+    },
+    {
+      "id": "audit_1793458861028_7lp4",
+      "event": "EXECUTION_COMPLETED",
+      "actionId": "act_1793458834286_0",
+      "googleEventId": null,
+      "title": null,
+      "operation": "calendar.operation",
+      "result": "SUCCESS",
+      "errorDetails": null,
+      "sessionId": "ses_e0fdf7dd",
+      "timestamp": "2026-10-31T15:01:01.028Z",
+      "details": {
+        "type": "CREATE_EVENT",
+        "status": "COMPLETED",
         "operation": "calendar.operation",
         "result": "SUCCESS"
       }

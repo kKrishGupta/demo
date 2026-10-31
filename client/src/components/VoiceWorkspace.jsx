@@ -594,10 +594,10 @@ export default function VoiceWorkspace({
   const renderFmt = (s) => `${String(Math.floor(s/60)).padStart(2,'0')}:${String(s%60).padStart(2,'0')}`;
 
   return (
-    <div className="bg-white border border-slate-200/90 rounded-2xl shadow-sm overflow-hidden">
+    <div className="bg-white border border-slate-200/90 rounded-2xl shadow-sm overflow-hidden w-full max-w-full">
       {/* Top Banner & Mode Switcher */}
-      <div className="px-5 py-4 border-b border-slate-100 bg-gradient-to-br from-indigo-700 via-blue-700 to-indigo-900 text-white">
-        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+      <div className="px-4 sm:px-5 py-4 border-b border-slate-100 bg-gradient-to-br from-indigo-700 via-blue-700 to-indigo-900 text-white w-full max-w-full">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 w-full">
           <div>
             <h2 className="text-base font-bold flex items-center gap-2">
               <Zap className="w-4 h-4 text-yellow-300" />
@@ -613,7 +613,7 @@ export default function VoiceWorkspace({
             </p>
           </div>
 
-          <div className="flex items-center gap-2 flex-wrap">
+          <div className="flex items-center gap-2 flex-wrap w-full sm:w-auto justify-start">
             {/* Mode Selector */}
             <div className="bg-white/10 p-0.5 rounded-lg flex items-center text-xs">
               <button
@@ -650,7 +650,7 @@ export default function VoiceWorkspace({
         </div>
       </div>
 
-      <div className="p-5 space-y-4">
+      <div className="p-3.5 sm:p-5 space-y-4 w-full max-w-full overflow-hidden">
         {/* Voice Interaction Feedback Notification Banner */}
         {commandResult?.feedbackMessage && (
           <div className="p-3 bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200 rounded-xl flex items-center gap-2.5 text-xs text-blue-900 animate-in fade-in">
@@ -660,7 +660,7 @@ export default function VoiceWorkspace({
         )}
 
         {/* Universal Voice Mic + Controls Row */}
-        <div className="flex flex-col sm:flex-row items-center gap-5 p-4 bg-slate-50 border border-slate-200/80 rounded-2xl">
+        <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-5 p-3.5 sm:p-4 bg-slate-50 border border-slate-200/80 rounded-2xl w-full max-w-full overflow-hidden">
           {/* Large Mic Button */}
           <div className="relative shrink-0 flex items-center justify-center">
             {isListening && (
@@ -684,8 +684,8 @@ export default function VoiceWorkspace({
           </div>
 
           {/* Status, Device and Recording Info */}
-          <div className="flex-1 min-w-0 text-center sm:text-left space-y-2">
-            <div className="flex items-center justify-center sm:justify-start gap-2.5 flex-wrap">
+          <div className="flex-1 min-w-0 w-full text-center sm:text-left space-y-2">
+            <div className="flex items-center justify-center sm:justify-start gap-2 sm:gap-2.5 flex-wrap">
               <span className={`w-2.5 h-2.5 rounded-full shrink-0 ${isListening ? 'bg-rose-500 animate-ping' : isProcessing ? 'bg-blue-500 animate-pulse' : 'bg-slate-300'}`} />
               <span className="text-xs font-bold uppercase tracking-wider text-slate-700">
                 {isListening ? (isPaused ? 'Recording Paused' : `Recording ${renderFmt(recordSecs)}`) : isProcessing ? 'Processing AI Intent...' : 'Ready to Speak'}
@@ -733,12 +733,12 @@ export default function VoiceWorkspace({
 
             {/* Microphone device selection */}
             {audioDevices.length > 1 && (
-              <div className="flex items-center justify-center sm:justify-start gap-2 text-[11px] text-slate-500">
-                <span>Mic:</span>
+              <div className="flex items-center justify-center sm:justify-start gap-2 text-[11px] text-slate-500 w-full max-w-full min-w-0">
+                <span className="shrink-0 font-medium text-slate-600">Mic:</span>
                 <select
                   value={selectedDeviceId}
                   onChange={(e) => setSelectedDeviceId(e.target.value)}
-                  className="bg-white border border-slate-200 rounded px-1.5 py-0.5 text-xs text-slate-700 focus:outline-none"
+                  className="bg-white border border-slate-300 rounded-lg px-2 py-1 text-xs text-slate-700 focus:outline-none focus:ring-1 focus:ring-blue-500 w-full sm:w-auto max-w-full sm:max-w-xs truncate min-w-0 shadow-2xs"
                 >
                   {audioDevices.map(d => (
                     <option key={d.deviceId} value={d.deviceId}>{d.label || `Microphone ${d.deviceId.slice(0,5)}`}</option>

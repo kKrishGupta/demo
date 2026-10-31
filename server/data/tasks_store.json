@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-31T13:35:05.495Z",
+  "updatedAt": "2026-10-31T15:01:29.892Z",
   "tasks": [
     {
       "id": "act_1793427859149_0",
@@ -436,12 +436,12 @@
         "ap7dc9d3thqh69ifn96rglp0u0"
       ],
       "eventLink": "https://www.google.com/calendar/event?eid=YXA3ZGM5ZDN0aHFoNjlpZm45NnJnbHAwdTAga3Jpc2gyMzE1MzEwNkBt",
-      "status": "PENDING",
+      "status": "CANCELLED",
       "completed": false,
       "completedAt": null,
       "calendarRemovalResult": null,
       "createdAt": "2026-10-31T07:01:46.443Z",
-      "updatedAt": "2026-10-31T07:01:46.443Z",
+      "updatedAt": "2026-10-31T15:01:29.891Z",
       "auditTrail": [
         {
           "id": "taud_1793430106443_aq5x",
@@ -776,6 +776,85 @@
             "scheduledStart": "2026-10-31T13:50:59+05:30",
             "scheduledEnd": "2026-10-31T14:50:59+05:30",
             "googleEventId": "76399e8hbj0brc0k5tdi421ij8",
+            "resourceType": "GOOGLE_CALENDAR_EVENT"
+          }
+        }
+      ]
+    },
+    {
+      "id": "act_1793458834286_0",
+      "actionId": "act_1793458834286_0",
+      "sessionId": "ses_e0fdf7dd",
+      "ownerEmail": "krish23153106@gmail.com",
+      "title": "Meeting with baje Rahul",
+      "originalTitle": "Meeting with baje Rahul",
+      "description": "",
+      "priority": "Normal",
+      "assigneeId": null,
+      "assigneeName": null,
+      "roomId": "room_unassigned",
+      "roomNameSnapshot": "Unassigned",
+      "roomCategory": "Needs Review",
+      "classificationConfidence": 0.4,
+      "classificationReason": "No reliable room destination identified. Please assign manually.",
+      "classificationSource": "RULE_ENGINE",
+      "routingRuleId": "rule_unassigned",
+      "requiresRoomReview": true,
+      "sourceTranscriptId": null,
+      "sourceActionId": "act_1793458834286_0",
+      "organizationId": "org_default",
+      "scheduledStart": "2026-11-01T10:00:00+05:30",
+      "scheduledEnd": "2026-11-01T10:30:00+05:30",
+      "originalScheduledStart": "2026-11-01T10:00:00+05:30",
+      "originalScheduledEnd": "2026-11-01T10:30:00+05:30",
+      "dueDate": "2026-11-01T10:00:00+05:30",
+      "durationMinutes": 30,
+      "timeZone": "Asia/Kolkata",
+      "calendarId": "primary",
+      "calendarName": "Primary (krish23153106@gmail.com)",
+      "resourceType": "GOOGLE_CALENDAR_EVENT",
+      "linkedResources": {
+        "googleCalendarEvent": {
+          "resourceType": "GOOGLE_CALENDAR_EVENT",
+          "calendarId": "primary",
+          "calendarName": "Primary (krish23153106@gmail.com)",
+          "eventId": "7d4f4n02l2s9te6v143v85g06s",
+          "originalEventId": "7d4f4n02l2s9te6v143v85g06s",
+          "htmlLink": "https://www.google.com/calendar/event?eid=N2Q0ZjRuMDJsMnM5dGU2djE0M3Y4NWcwNnMga3Jpc2gyMzE1MzEwNkBt",
+          "providerStatus": "ACTIVE",
+          "lastVerifiedAt": "2026-10-31T15:01:00.886Z",
+          "lastError": null
+        },
+        "googleTask": null
+      },
+      "googleEventId": "7d4f4n02l2s9te6v143v85g06s",
+      "originalGoogleEventId": "7d4f4n02l2s9te6v143v85g06s",
+      "previousGoogleEventIds": [
+        "7d4f4n02l2s9te6v143v85g06s"
+      ],
+      "eventLink": "https://www.google.com/calendar/event?eid=N2Q0ZjRuMDJsMnM5dGU2djE0M3Y4NWcwNnMga3Jpc2gyMzE1MzEwNkBt",
+      "status": "PENDING",
+      "completed": false,
+      "completedAt": null,
+      "calendarRemovalResult": null,
+      "createdAt": "2026-10-31T15:01:00.886Z",
+      "updatedAt": "2026-10-31T15:01:00.886Z",
+      "auditTrail": [
+        {
+          "id": "taud_1793458860892_6zon",
+          "event": "TASK_CREATED",
+          "taskId": "act_1793458834286_0",
+          "actionId": "act_1793458834286_0",
+          "googleEventId": "7d4f4n02l2s9te6v143v85g06s",
+          "timestamp": "2026-10-31T15:01:00.892Z",
+          "details": {
+            "title": "Meeting with baje Rahul",
+            "roomId": "room_unassigned",
+            "roomName": "Unassigned",
+            "requiresRoomReview": true,
+            "scheduledStart": "2026-11-01T10:00:00+05:30",
+            "scheduledEnd": "2026-11-01T10:30:00+05:30",
+            "googleEventId": "7d4f4n02l2s9te6v143v85g06s",
             "resourceType": "GOOGLE_CALENDAR_EVENT"
           }
         }
