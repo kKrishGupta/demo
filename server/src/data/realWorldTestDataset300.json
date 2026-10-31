@@ -1,0 +1,6540 @@
+{
+  "version": "5.1.0",
+  "name": "ActionFlow AI Real-World Voice Command Test Dataset (300 Cases)",
+  "generatedAt": "2026-10-30T22:01:08.152Z",
+  "totalTests": 300,
+  "categories": [
+    "A_CALENDAR",
+    "B_WHATSAPP",
+    "C_TASKS",
+    "D_SHOPPING",
+    "E_MULTI_ACTION",
+    "F_MEETINGS",
+    "G_LOCATION",
+    "H_CONTEXT",
+    "I_AMBIGUITY",
+    "J_NEGATION"
+  ],
+  "tests": [
+    {
+      "id": "RW_CAL_001",
+      "category": "A_CALENDAR",
+      "categoryName": "Calendar Commands",
+      "utterance": "Kal subah 10 baje Rahul ke saath meeting fix kar do.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "GOOGLE_CALENDAR",
+            "type": "CREATE_EVENT",
+            "operation": "SCHEDULE",
+            "attendee": "Rahul Sharma",
+            "time": "10:00",
+            "requiresApproval": true
+          }
+        ],
+        "isMultiAction": false,
+        "isTaskVsAssignment": "NONE"
+      }
+    },
+    {
+      "id": "RW_CAL_002",
+      "category": "A_CALENDAR",
+      "categoryName": "Calendar Commands",
+      "utterance": "Schedule a meeting with Aman tomorrow at 3 PM.",
+      "language": "en",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "GOOGLE_CALENDAR",
+            "type": "CREATE_EVENT",
+            "operation": "SCHEDULE",
+            "attendee": "Aman Verma",
+            "time": "15:00",
+            "requiresApproval": true
+          }
+        ],
+        "isMultiAction": false,
+        "isTaskVsAssignment": "NONE"
+      }
+    },
+    {
+      "id": "RW_CAL_003",
+      "category": "A_CALENDAR",
+      "categoryName": "Calendar Commands",
+      "utterance": "Meri Friday wali meeting Monday shift kar do.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "GOOGLE_CALENDAR",
+            "type": "RESCHEDULE_EVENT",
+            "operation": "RESCHEDULE",
+            "attendee": null,
+            "time": null,
+            "requiresApproval": true
+          }
+        ],
+        "isMultiAction": false,
+        "isTaskVsAssignment": "NONE"
+      }
+    },
+    {
+      "id": "RW_CAL_004",
+      "category": "A_CALENDAR",
+      "categoryName": "Calendar Commands",
+      "utterance": "Aaj meri next meeting kab hai?",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "GOOGLE_CALENDAR",
+            "type": "CREATE_EVENT",
+            "operation": "READ",
+            "attendee": null,
+            "time": null,
+            "requiresApproval": true
+          }
+        ],
+        "isMultiAction": false,
+        "isTaskVsAssignment": "NONE"
+      }
+    },
+    {
+      "id": "RW_CAL_005",
+      "category": "A_CALENDAR",
+      "categoryName": "Calendar Commands",
+      "utterance": "Check whether I am free tomorrow at 11 AM.",
+      "language": "en",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "GOOGLE_CALENDAR",
+            "type": "CREATE_EVENT",
+            "operation": "READ",
+            "attendee": null,
+            "time": "11:00",
+            "requiresApproval": true
+          }
+        ],
+        "isMultiAction": false,
+        "isTaskVsAssignment": "NONE"
+      }
+    },
+    {
+      "id": "RW_CAL_006",
+      "category": "A_CALENDAR",
+      "categoryName": "Calendar Commands",
+      "utterance": "Rahul ko Monday ki meeting ka invitation bhejo.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "GOOGLE_CALENDAR",
+            "type": "CREATE_EVENT",
+            "operation": "SCHEDULE",
+            "attendee": "Rahul Sharma",
+            "time": null,
+            "requiresApproval": true
+          }
+        ],
+        "isMultiAction": false,
+        "isTaskVsAssignment": "NONE"
+      }
+    },
+    {
+      "id": "RW_CAL_007",
+      "category": "A_CALENDAR",
+      "categoryName": "Calendar Commands",
+      "utterance": "Meeting ko online schedule karo.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "GOOGLE_CALENDAR",
+            "type": "CREATE_EVENT",
+            "operation": "SCHEDULE",
+            "attendee": null,
+            "time": null,
+            "requiresApproval": true
+          }
+        ],
+        "isMultiAction": false,
+        "isTaskVsAssignment": "NONE"
+      }
+    },
+    {
+      "id": "RW_CAL_008",
+      "category": "A_CALENDAR",
+      "categoryName": "Calendar Commands",
+      "utterance": "Client meeting Johari Bazaar office mein fix karo.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "GOOGLE_CALENDAR",
+            "type": "CREATE_EVENT",
+            "operation": "SCHEDULE",
+            "attendee": null,
+            "time": null,
+            "requiresApproval": true
+          }
+        ],
+        "isMultiAction": false,
+        "isTaskVsAssignment": "NONE"
+      }
+    },
+    {
+      "id": "RW_CAL_009",
+      "category": "A_CALENDAR",
+      "categoryName": "Calendar Commands",
+      "utterance": "Every Monday at 9 AM team meeting schedule karo.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "GOOGLE_CALENDAR",
+            "type": "CREATE_EVENT",
+            "operation": "SCHEDULE",
+            "attendee": null,
+            "time": null,
+            "requiresApproval": true
+          }
+        ],
+        "isMultiAction": false,
+        "isTaskVsAssignment": "NONE"
+      }
+    },
+    {
+      "id": "RW_CAL_010",
+      "category": "A_CALENDAR",
+      "categoryName": "Calendar Commands",
+      "utterance": "Cancel my meeting with Rahul tomorrow.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "GOOGLE_CALENDAR",
+            "type": "CANCEL_EVENT",
+            "operation": "CANCEL",
+            "attendee": "Rahul Sharma",
+            "time": null,
+            "requiresApproval": true
+          }
+        ],
+        "isMultiAction": false,
+        "isTaskVsAssignment": "NONE"
+      }
+    },
+    {
+      "id": "RW_CAL_011",
+      "category": "A_CALENDAR",
+      "categoryName": "Calendar Commands",
+      "utterance": "Schedule strategy sync with Ashok tomorrow at 12 AM.",
+      "language": "en",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "GOOGLE_CALENDAR",
+            "type": "CREATE_EVENT",
+            "operation": "SCHEDULE",
+            "attendee": "Ashok Kumar",
+            "time": "12:00",
+            "requiresApproval": true
+          }
+        ],
+        "isMultiAction": false,
+        "isTaskVsAssignment": "NONE"
+      }
+    },
+    {
+      "id": "RW_CAL_012",
+      "category": "A_CALENDAR",
+      "categoryName": "Calendar Commands",
+      "utterance": "Kal 13 baje Rahul ke saath project review schedule karo.",
+      "language": "hinglish",
+      "inputMode": "WHISPER_SIMULATED",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "GOOGLE_CALENDAR",
+            "type": "CREATE_EVENT",
+            "operation": "SCHEDULE",
+            "attendee": "Rahul Sharma",
+            "time": "13:00",
+            "requiresApproval": true
+          }
+        ],
+        "isMultiAction": false,
+        "isTaskVsAssignment": "NONE"
+      }
+    },
+    {
+      "id": "RW_CAL_013",
+      "category": "A_CALENDAR",
+      "categoryName": "Calendar Commands",
+      "utterance": "Schedule strategy sync with Aman tomorrow at 2 PM.",
+      "language": "en",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "GOOGLE_CALENDAR",
+            "type": "CREATE_EVENT",
+            "operation": "SCHEDULE",
+            "attendee": "Aman Verma",
+            "time": "14:00",
+            "requiresApproval": true
+          }
+        ],
+        "isMultiAction": false,
+        "isTaskVsAssignment": "NONE"
+      }
+    },
+    {
+      "id": "RW_CAL_014",
+      "category": "A_CALENDAR",
+      "categoryName": "Calendar Commands",
+      "utterance": "Kal 15 baje Priya ke saath project review schedule karo.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "GOOGLE_CALENDAR",
+            "type": "CREATE_EVENT",
+            "operation": "SCHEDULE",
+            "attendee": "Priya Singh",
+            "time": "15:00",
+            "requiresApproval": true
+          }
+        ],
+        "isMultiAction": false,
+        "isTaskVsAssignment": "NONE"
+      }
+    },
+    {
+      "id": "RW_CAL_015",
+      "category": "A_CALENDAR",
+      "categoryName": "Calendar Commands",
+      "utterance": "Schedule strategy sync with Neha tomorrow at 4 PM.",
+      "language": "en",
+      "inputMode": "WHISPER_SIMULATED",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "GOOGLE_CALENDAR",
+            "type": "CREATE_EVENT",
+            "operation": "SCHEDULE",
+            "attendee": "Neha Gupta",
+            "time": "16:00",
+            "requiresApproval": true
+          }
+        ],
+        "isMultiAction": false,
+        "isTaskVsAssignment": "NONE"
+      }
+    },
+    {
+      "id": "RW_CAL_016",
+      "category": "A_CALENDAR",
+      "categoryName": "Calendar Commands",
+      "utterance": "Kal 9 baje Reena ke saath project review schedule karo.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "GOOGLE_CALENDAR",
+            "type": "CREATE_EVENT",
+            "operation": "SCHEDULE",
+            "attendee": "Reena Sen",
+            "time": "9:00",
+            "requiresApproval": true
+          }
+        ],
+        "isMultiAction": false,
+        "isTaskVsAssignment": "NONE"
+      }
+    },
+    {
+      "id": "RW_CAL_017",
+      "category": "A_CALENDAR",
+      "categoryName": "Calendar Commands",
+      "utterance": "Schedule strategy sync with Ashok tomorrow at 10 AM.",
+      "language": "en",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "GOOGLE_CALENDAR",
+            "type": "CREATE_EVENT",
+            "operation": "SCHEDULE",
+            "attendee": "Ashok Kumar",
+            "time": "10:00",
+            "requiresApproval": true
+          }
+        ],
+        "isMultiAction": false,
+        "isTaskVsAssignment": "NONE"
+      }
+    },
+    {
+      "id": "RW_CAL_018",
+      "category": "A_CALENDAR",
+      "categoryName": "Calendar Commands",
+      "utterance": "Kal 11 baje Rahul ke saath project review schedule karo.",
+      "language": "hinglish",
+      "inputMode": "WHISPER_SIMULATED",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "GOOGLE_CALENDAR",
+            "type": "CREATE_EVENT",
+            "operation": "SCHEDULE",
+            "attendee": "Rahul Sharma",
+            "time": "11:00",
+            "requiresApproval": true
+          }
+        ],
+        "isMultiAction": false,
+        "isTaskVsAssignment": "NONE"
+      }
+    },
+    {
+      "id": "RW_CAL_019",
+      "category": "A_CALENDAR",
+      "categoryName": "Calendar Commands",
+      "utterance": "Schedule strategy sync with Aman tomorrow at 12 AM.",
+      "language": "en",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "GOOGLE_CALENDAR",
+            "type": "CREATE_EVENT",
+            "operation": "SCHEDULE",
+            "attendee": "Aman Verma",
+            "time": "12:00",
+            "requiresApproval": true
+          }
+        ],
+        "isMultiAction": false,
+        "isTaskVsAssignment": "NONE"
+      }
+    },
+    {
+      "id": "RW_CAL_020",
+      "category": "A_CALENDAR",
+      "categoryName": "Calendar Commands",
+      "utterance": "Kal 13 baje Priya ke saath project review schedule karo.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "GOOGLE_CALENDAR",
+            "type": "CREATE_EVENT",
+            "operation": "SCHEDULE",
+            "attendee": "Priya Singh",
+            "time": "13:00",
+            "requiresApproval": true
+          }
+        ],
+        "isMultiAction": false,
+        "isTaskVsAssignment": "NONE"
+      }
+    },
+    {
+      "id": "RW_CAL_021",
+      "category": "A_CALENDAR",
+      "categoryName": "Calendar Commands",
+      "utterance": "Schedule strategy sync with Neha tomorrow at 2 PM.",
+      "language": "en",
+      "inputMode": "WHISPER_SIMULATED",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "GOOGLE_CALENDAR",
+            "type": "CREATE_EVENT",
+            "operation": "SCHEDULE",
+            "attendee": "Neha Gupta",
+            "time": "14:00",
+            "requiresApproval": true
+          }
+        ],
+        "isMultiAction": false,
+        "isTaskVsAssignment": "NONE"
+      }
+    },
+    {
+      "id": "RW_CAL_022",
+      "category": "A_CALENDAR",
+      "categoryName": "Calendar Commands",
+      "utterance": "Kal 15 baje Reena ke saath project review schedule karo.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "GOOGLE_CALENDAR",
+            "type": "CREATE_EVENT",
+            "operation": "SCHEDULE",
+            "attendee": "Reena Sen",
+            "time": "15:00",
+            "requiresApproval": true
+          }
+        ],
+        "isMultiAction": false,
+        "isTaskVsAssignment": "NONE"
+      }
+    },
+    {
+      "id": "RW_CAL_023",
+      "category": "A_CALENDAR",
+      "categoryName": "Calendar Commands",
+      "utterance": "Schedule strategy sync with Ashok tomorrow at 4 PM.",
+      "language": "en",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "GOOGLE_CALENDAR",
+            "type": "CREATE_EVENT",
+            "operation": "SCHEDULE",
+            "attendee": "Ashok Kumar",
+            "time": "16:00",
+            "requiresApproval": true
+          }
+        ],
+        "isMultiAction": false,
+        "isTaskVsAssignment": "NONE"
+      }
+    },
+    {
+      "id": "RW_CAL_024",
+      "category": "A_CALENDAR",
+      "categoryName": "Calendar Commands",
+      "utterance": "Kal 9 baje Rahul ke saath project review schedule karo.",
+      "language": "hinglish",
+      "inputMode": "WHISPER_SIMULATED",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "GOOGLE_CALENDAR",
+            "type": "CREATE_EVENT",
+            "operation": "SCHEDULE",
+            "attendee": "Rahul Sharma",
+            "time": "9:00",
+            "requiresApproval": true
+          }
+        ],
+        "isMultiAction": false,
+        "isTaskVsAssignment": "NONE"
+      }
+    },
+    {
+      "id": "RW_CAL_025",
+      "category": "A_CALENDAR",
+      "categoryName": "Calendar Commands",
+      "utterance": "Schedule strategy sync with Aman tomorrow at 10 AM.",
+      "language": "en",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "GOOGLE_CALENDAR",
+            "type": "CREATE_EVENT",
+            "operation": "SCHEDULE",
+            "attendee": "Aman Verma",
+            "time": "10:00",
+            "requiresApproval": true
+          }
+        ],
+        "isMultiAction": false,
+        "isTaskVsAssignment": "NONE"
+      }
+    },
+    {
+      "id": "RW_CAL_026",
+      "category": "A_CALENDAR",
+      "categoryName": "Calendar Commands",
+      "utterance": "Kal 11 baje Priya ke saath project review schedule karo.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "GOOGLE_CALENDAR",
+            "type": "CREATE_EVENT",
+            "operation": "SCHEDULE",
+            "attendee": "Priya Singh",
+            "time": "11:00",
+            "requiresApproval": true
+          }
+        ],
+        "isMultiAction": false,
+        "isTaskVsAssignment": "NONE"
+      }
+    },
+    {
+      "id": "RW_CAL_027",
+      "category": "A_CALENDAR",
+      "categoryName": "Calendar Commands",
+      "utterance": "Schedule strategy sync with Neha tomorrow at 12 AM.",
+      "language": "en",
+      "inputMode": "WHISPER_SIMULATED",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "GOOGLE_CALENDAR",
+            "type": "CREATE_EVENT",
+            "operation": "SCHEDULE",
+            "attendee": "Neha Gupta",
+            "time": "12:00",
+            "requiresApproval": true
+          }
+        ],
+        "isMultiAction": false,
+        "isTaskVsAssignment": "NONE"
+      }
+    },
+    {
+      "id": "RW_CAL_028",
+      "category": "A_CALENDAR",
+      "categoryName": "Calendar Commands",
+      "utterance": "Kal 13 baje Reena ke saath project review schedule karo.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "GOOGLE_CALENDAR",
+            "type": "CREATE_EVENT",
+            "operation": "SCHEDULE",
+            "attendee": "Reena Sen",
+            "time": "13:00",
+            "requiresApproval": true
+          }
+        ],
+        "isMultiAction": false,
+        "isTaskVsAssignment": "NONE"
+      }
+    },
+    {
+      "id": "RW_CAL_029",
+      "category": "A_CALENDAR",
+      "categoryName": "Calendar Commands",
+      "utterance": "Schedule strategy sync with Ashok tomorrow at 2 PM.",
+      "language": "en",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "GOOGLE_CALENDAR",
+            "type": "CREATE_EVENT",
+            "operation": "SCHEDULE",
+            "attendee": "Ashok Kumar",
+            "time": "14:00",
+            "requiresApproval": true
+          }
+        ],
+        "isMultiAction": false,
+        "isTaskVsAssignment": "NONE"
+      }
+    },
+    {
+      "id": "RW_CAL_030",
+      "category": "A_CALENDAR",
+      "categoryName": "Calendar Commands",
+      "utterance": "Kal 15 baje Rahul ke saath project review schedule karo.",
+      "language": "hinglish",
+      "inputMode": "WHISPER_SIMULATED",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "GOOGLE_CALENDAR",
+            "type": "CREATE_EVENT",
+            "operation": "SCHEDULE",
+            "attendee": "Rahul Sharma",
+            "time": "15:00",
+            "requiresApproval": true
+          }
+        ],
+        "isMultiAction": false,
+        "isTaskVsAssignment": "NONE"
+      }
+    },
+    {
+      "id": "RW_WA_001",
+      "category": "B_WHATSAPP",
+      "categoryName": "WhatsApp Commands",
+      "utterance": "Aman ko WhatsApp kar do ki report bhej de.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "WHATSAPP",
+            "type": "SEND_WHATSAPP",
+            "operation": "SEND",
+            "recipient": "Aman Verma",
+            "phone": null,
+            "requiresApproval": true
+          }
+        ],
+        "isNegation": false,
+        "isMultiAction": false,
+        "isTaskVsAssignment": "NONE"
+      }
+    },
+    {
+      "id": "RW_WA_002",
+      "category": "B_WHATSAPP",
+      "categoryName": "WhatsApp Commands",
+      "utterance": "Rahul ko message karo ki main late hoon.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "WHATSAPP",
+            "type": "SEND_WHATSAPP",
+            "operation": "SEND",
+            "recipient": "Rahul Sharma",
+            "phone": null,
+            "requiresApproval": true
+          }
+        ],
+        "isNegation": false,
+        "isMultiAction": false,
+        "isTaskVsAssignment": "NONE"
+      }
+    },
+    {
+      "id": "RW_WA_003",
+      "category": "B_WHATSAPP",
+      "categoryName": "WhatsApp Commands",
+      "utterance": "Send a WhatsApp message to +919876543210 saying I will arrive in 15 minutes.",
+      "language": "en",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "WHATSAPP",
+            "type": "SEND_WHATSAPP",
+            "operation": "SEND",
+            "recipient": null,
+            "phone": "+919876543210",
+            "requiresApproval": true
+          }
+        ],
+        "isNegation": false,
+        "isMultiAction": false,
+        "isTaskVsAssignment": "NONE"
+      }
+    },
+    {
+      "id": "RW_WA_004",
+      "category": "B_WHATSAPP",
+      "categoryName": "WhatsApp Commands",
+      "utterance": "Neha ko meeting reminder bhej do.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "WHATSAPP",
+            "type": "SEND_WHATSAPP",
+            "operation": "SEND",
+            "recipient": "Neha Gupta",
+            "phone": null,
+            "requiresApproval": true
+          }
+        ],
+        "isNegation": false,
+        "isMultiAction": false,
+        "isTaskVsAssignment": "NONE"
+      }
+    },
+    {
+      "id": "RW_WA_005",
+      "category": "B_WHATSAPP",
+      "categoryName": "WhatsApp Commands",
+      "utterance": "WhatsApp par production team ko deadline update bhejo.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "WHATSAPP",
+            "type": "SEND_WHATSAPP",
+            "operation": "SEND",
+            "recipient": null,
+            "phone": null,
+            "requiresApproval": true
+          }
+        ],
+        "isNegation": false,
+        "isMultiAction": false,
+        "isTaskVsAssignment": "NONE"
+      }
+    },
+    {
+      "id": "RW_WA_006",
+      "category": "B_WHATSAPP",
+      "categoryName": "WhatsApp Commands",
+      "utterance": "Aman ko previous meeting ka summary bhej do.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "WHATSAPP",
+            "type": "SEND_WHATSAPP",
+            "operation": "SEND",
+            "recipient": "Aman Verma",
+            "phone": null,
+            "requiresApproval": true
+          }
+        ],
+        "isNegation": false,
+        "isMultiAction": false,
+        "isTaskVsAssignment": "NONE"
+      }
+    },
+    {
+      "id": "RW_WA_007",
+      "category": "B_WHATSAPP",
+      "categoryName": "WhatsApp Commands",
+      "utterance": "Send Rahul the revised project document.",
+      "language": "en",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "WHATSAPP",
+            "type": "SEND_WHATSAPP",
+            "operation": "SEND",
+            "recipient": "Rahul Sharma",
+            "phone": null,
+            "requiresApproval": true
+          }
+        ],
+        "isNegation": false,
+        "isMultiAction": false,
+        "isTaskVsAssignment": "NONE"
+      }
+    },
+    {
+      "id": "RW_WA_008",
+      "category": "B_WHATSAPP",
+      "categoryName": "WhatsApp Commands",
+      "utterance": "Pehle message ka preview dikhao, abhi send mat karna.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "WHATSAPP",
+            "type": "PREVIEW_MESSAGE",
+            "operation": "PREVIEW",
+            "recipient": null,
+            "phone": null,
+            "requiresApproval": true
+          }
+        ],
+        "isNegation": false,
+        "isMultiAction": false,
+        "isTaskVsAssignment": "NONE"
+      }
+    },
+    {
+      "id": "RW_WA_009",
+      "category": "B_WHATSAPP",
+      "categoryName": "WhatsApp Commands",
+      "utterance": "Aman ka WhatsApp number update karna hai.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "CONTACT_MANAGEMENT",
+            "type": "UPDATE_CONTACT",
+            "operation": "UPDATE_CONTACT",
+            "recipient": "Aman Verma",
+            "phone": null,
+            "requiresApproval": true
+          }
+        ],
+        "isNegation": false,
+        "isMultiAction": false,
+        "isTaskVsAssignment": "NONE"
+      }
+    },
+    {
+      "id": "RW_WA_010",
+      "category": "B_WHATSAPP",
+      "categoryName": "WhatsApp Commands",
+      "utterance": "Rahul ko message nahi bhejna.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 0,
+        "actions": [],
+        "isNegation": true,
+        "isMultiAction": false,
+        "isTaskVsAssignment": "NONE"
+      }
+    },
+    {
+      "id": "RW_WA_011",
+      "category": "B_WHATSAPP",
+      "categoryName": "WhatsApp Commands",
+      "utterance": "Ashok ko WhatsApp kar do ki quarterly metrics share kare.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "WHATSAPP",
+            "type": "SEND_WHATSAPP",
+            "operation": "SEND",
+            "recipient": "Ashok Kumar",
+            "requiresApproval": true
+          }
+        ],
+        "isMultiAction": false,
+        "isTaskVsAssignment": "NONE"
+      }
+    },
+    {
+      "id": "RW_WA_012",
+      "category": "B_WHATSAPP",
+      "categoryName": "WhatsApp Commands",
+      "utterance": "Rahul ko WhatsApp kar do ki quarterly metrics share kare.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "WHATSAPP",
+            "type": "SEND_WHATSAPP",
+            "operation": "SEND",
+            "recipient": "Rahul Sharma",
+            "requiresApproval": true
+          }
+        ],
+        "isMultiAction": false,
+        "isTaskVsAssignment": "NONE"
+      }
+    },
+    {
+      "id": "RW_WA_013",
+      "category": "B_WHATSAPP",
+      "categoryName": "WhatsApp Commands",
+      "utterance": "Aman ko WhatsApp kar do ki quarterly metrics share kare.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "WHATSAPP",
+            "type": "SEND_WHATSAPP",
+            "operation": "SEND",
+            "recipient": "Aman Verma",
+            "requiresApproval": true
+          }
+        ],
+        "isMultiAction": false,
+        "isTaskVsAssignment": "NONE"
+      }
+    },
+    {
+      "id": "RW_WA_014",
+      "category": "B_WHATSAPP",
+      "categoryName": "WhatsApp Commands",
+      "utterance": "Priya ko WhatsApp kar do ki quarterly metrics share kare.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "WHATSAPP",
+            "type": "SEND_WHATSAPP",
+            "operation": "SEND",
+            "recipient": "Priya Singh",
+            "requiresApproval": true
+          }
+        ],
+        "isMultiAction": false,
+        "isTaskVsAssignment": "NONE"
+      }
+    },
+    {
+      "id": "RW_WA_015",
+      "category": "B_WHATSAPP",
+      "categoryName": "WhatsApp Commands",
+      "utterance": "Neha ko WhatsApp kar do ki quarterly metrics share kare.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "WHATSAPP",
+            "type": "SEND_WHATSAPP",
+            "operation": "SEND",
+            "recipient": "Neha Gupta",
+            "requiresApproval": true
+          }
+        ],
+        "isMultiAction": false,
+        "isTaskVsAssignment": "NONE"
+      }
+    },
+    {
+      "id": "RW_WA_016",
+      "category": "B_WHATSAPP",
+      "categoryName": "WhatsApp Commands",
+      "utterance": "Reena ko WhatsApp kar do ki quarterly metrics share kare.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "WHATSAPP",
+            "type": "SEND_WHATSAPP",
+            "operation": "SEND",
+            "recipient": "Reena Sen",
+            "requiresApproval": true
+          }
+        ],
+        "isMultiAction": false,
+        "isTaskVsAssignment": "NONE"
+      }
+    },
+    {
+      "id": "RW_WA_017",
+      "category": "B_WHATSAPP",
+      "categoryName": "WhatsApp Commands",
+      "utterance": "Ashok ko WhatsApp kar do ki quarterly metrics share kare.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "WHATSAPP",
+            "type": "SEND_WHATSAPP",
+            "operation": "SEND",
+            "recipient": "Ashok Kumar",
+            "requiresApproval": true
+          }
+        ],
+        "isMultiAction": false,
+        "isTaskVsAssignment": "NONE"
+      }
+    },
+    {
+      "id": "RW_WA_018",
+      "category": "B_WHATSAPP",
+      "categoryName": "WhatsApp Commands",
+      "utterance": "Rahul ko WhatsApp kar do ki quarterly metrics share kare.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "WHATSAPP",
+            "type": "SEND_WHATSAPP",
+            "operation": "SEND",
+            "recipient": "Rahul Sharma",
+            "requiresApproval": true
+          }
+        ],
+        "isMultiAction": false,
+        "isTaskVsAssignment": "NONE"
+      }
+    },
+    {
+      "id": "RW_WA_019",
+      "category": "B_WHATSAPP",
+      "categoryName": "WhatsApp Commands",
+      "utterance": "Aman ko WhatsApp kar do ki quarterly metrics share kare.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "WHATSAPP",
+            "type": "SEND_WHATSAPP",
+            "operation": "SEND",
+            "recipient": "Aman Verma",
+            "requiresApproval": true
+          }
+        ],
+        "isMultiAction": false,
+        "isTaskVsAssignment": "NONE"
+      }
+    },
+    {
+      "id": "RW_WA_020",
+      "category": "B_WHATSAPP",
+      "categoryName": "WhatsApp Commands",
+      "utterance": "Priya ko WhatsApp kar do ki quarterly metrics share kare.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "WHATSAPP",
+            "type": "SEND_WHATSAPP",
+            "operation": "SEND",
+            "recipient": "Priya Singh",
+            "requiresApproval": true
+          }
+        ],
+        "isMultiAction": false,
+        "isTaskVsAssignment": "NONE"
+      }
+    },
+    {
+      "id": "RW_WA_021",
+      "category": "B_WHATSAPP",
+      "categoryName": "WhatsApp Commands",
+      "utterance": "Neha ko WhatsApp kar do ki quarterly metrics share kare.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "WHATSAPP",
+            "type": "SEND_WHATSAPP",
+            "operation": "SEND",
+            "recipient": "Neha Gupta",
+            "requiresApproval": true
+          }
+        ],
+        "isMultiAction": false,
+        "isTaskVsAssignment": "NONE"
+      }
+    },
+    {
+      "id": "RW_WA_022",
+      "category": "B_WHATSAPP",
+      "categoryName": "WhatsApp Commands",
+      "utterance": "Reena ko WhatsApp kar do ki quarterly metrics share kare.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "WHATSAPP",
+            "type": "SEND_WHATSAPP",
+            "operation": "SEND",
+            "recipient": "Reena Sen",
+            "requiresApproval": true
+          }
+        ],
+        "isMultiAction": false,
+        "isTaskVsAssignment": "NONE"
+      }
+    },
+    {
+      "id": "RW_WA_023",
+      "category": "B_WHATSAPP",
+      "categoryName": "WhatsApp Commands",
+      "utterance": "Ashok ko WhatsApp kar do ki quarterly metrics share kare.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "WHATSAPP",
+            "type": "SEND_WHATSAPP",
+            "operation": "SEND",
+            "recipient": "Ashok Kumar",
+            "requiresApproval": true
+          }
+        ],
+        "isMultiAction": false,
+        "isTaskVsAssignment": "NONE"
+      }
+    },
+    {
+      "id": "RW_WA_024",
+      "category": "B_WHATSAPP",
+      "categoryName": "WhatsApp Commands",
+      "utterance": "Rahul ko WhatsApp kar do ki quarterly metrics share kare.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "WHATSAPP",
+            "type": "SEND_WHATSAPP",
+            "operation": "SEND",
+            "recipient": "Rahul Sharma",
+            "requiresApproval": true
+          }
+        ],
+        "isMultiAction": false,
+        "isTaskVsAssignment": "NONE"
+      }
+    },
+    {
+      "id": "RW_WA_025",
+      "category": "B_WHATSAPP",
+      "categoryName": "WhatsApp Commands",
+      "utterance": "Aman ko WhatsApp kar do ki quarterly metrics share kare.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "WHATSAPP",
+            "type": "SEND_WHATSAPP",
+            "operation": "SEND",
+            "recipient": "Aman Verma",
+            "requiresApproval": true
+          }
+        ],
+        "isMultiAction": false,
+        "isTaskVsAssignment": "NONE"
+      }
+    },
+    {
+      "id": "RW_WA_026",
+      "category": "B_WHATSAPP",
+      "categoryName": "WhatsApp Commands",
+      "utterance": "Priya ko WhatsApp kar do ki quarterly metrics share kare.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "WHATSAPP",
+            "type": "SEND_WHATSAPP",
+            "operation": "SEND",
+            "recipient": "Priya Singh",
+            "requiresApproval": true
+          }
+        ],
+        "isMultiAction": false,
+        "isTaskVsAssignment": "NONE"
+      }
+    },
+    {
+      "id": "RW_WA_027",
+      "category": "B_WHATSAPP",
+      "categoryName": "WhatsApp Commands",
+      "utterance": "Neha ko WhatsApp kar do ki quarterly metrics share kare.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "WHATSAPP",
+            "type": "SEND_WHATSAPP",
+            "operation": "SEND",
+            "recipient": "Neha Gupta",
+            "requiresApproval": true
+          }
+        ],
+        "isMultiAction": false,
+        "isTaskVsAssignment": "NONE"
+      }
+    },
+    {
+      "id": "RW_WA_028",
+      "category": "B_WHATSAPP",
+      "categoryName": "WhatsApp Commands",
+      "utterance": "Reena ko WhatsApp kar do ki quarterly metrics share kare.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "WHATSAPP",
+            "type": "SEND_WHATSAPP",
+            "operation": "SEND",
+            "recipient": "Reena Sen",
+            "requiresApproval": true
+          }
+        ],
+        "isMultiAction": false,
+        "isTaskVsAssignment": "NONE"
+      }
+    },
+    {
+      "id": "RW_WA_029",
+      "category": "B_WHATSAPP",
+      "categoryName": "WhatsApp Commands",
+      "utterance": "Ashok ko WhatsApp kar do ki quarterly metrics share kare.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "WHATSAPP",
+            "type": "SEND_WHATSAPP",
+            "operation": "SEND",
+            "recipient": "Ashok Kumar",
+            "requiresApproval": true
+          }
+        ],
+        "isMultiAction": false,
+        "isTaskVsAssignment": "NONE"
+      }
+    },
+    {
+      "id": "RW_WA_030",
+      "category": "B_WHATSAPP",
+      "categoryName": "WhatsApp Commands",
+      "utterance": "Rahul ko WhatsApp kar do ki quarterly metrics share kare.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "WHATSAPP",
+            "type": "SEND_WHATSAPP",
+            "operation": "SEND",
+            "recipient": "Rahul Sharma",
+            "requiresApproval": true
+          }
+        ],
+        "isMultiAction": false,
+        "isTaskVsAssignment": "NONE"
+      }
+    },
+    {
+      "id": "RW_TSK_001",
+      "category": "C_TASKS",
+      "categoryName": "Tasks and Assignments",
+      "utterance": "Production report complete karni hai.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "TASK_MANAGER",
+            "type": "CREATE_TASK",
+            "assignee": null,
+            "requiresApproval": false
+          }
+        ],
+        "isTaskVsAssignment": "TASK",
+        "isNegation": false,
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_TSK_002",
+      "category": "C_TASKS",
+      "categoryName": "Tasks and Assignments",
+      "utterance": "Rahul ko report assign kar do.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "TASK_ASSIGNMENT",
+            "type": "ASSIGN_TASK",
+            "assignee": "Rahul Sharma",
+            "requiresApproval": false
+          }
+        ],
+        "isTaskVsAssignment": "ASSIGNMENT",
+        "isNegation": false,
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_TSK_003",
+      "category": "C_TASKS",
+      "categoryName": "Tasks and Assignments",
+      "utterance": "Assign the API integration task to Aman by Friday.",
+      "language": "en",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "TASK_ASSIGNMENT",
+            "type": "ASSIGN_TASK",
+            "assignee": "Aman Verma",
+            "requiresApproval": false
+          }
+        ],
+        "isTaskVsAssignment": "ASSIGNMENT",
+        "isNegation": false,
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_TSK_004",
+      "category": "C_TASKS",
+      "categoryName": "Tasks and Assignments",
+      "utterance": "Neha ne presentation complete kar di.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "TASK_MANAGER",
+            "type": "COMPLETE_TASK",
+            "assignee": null,
+            "requiresApproval": false
+          }
+        ],
+        "isTaskVsAssignment": "TASK",
+        "isNegation": false,
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_TSK_005",
+      "category": "C_TASKS",
+      "categoryName": "Tasks and Assignments",
+      "utterance": "Is task ki priority high kar do.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "TASK_MANAGER",
+            "type": "UPDATE_TASK",
+            "assignee": null,
+            "requiresApproval": false
+          }
+        ],
+        "isTaskVsAssignment": "TASK",
+        "isNegation": false,
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_TSK_006",
+      "category": "C_TASKS",
+      "categoryName": "Tasks and Assignments",
+      "utterance": "Rahul ko ye task mat assign karna.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 0,
+        "actions": [],
+        "isTaskVsAssignment": "TASK",
+        "isNegation": true,
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_TSK_007",
+      "category": "C_TASKS",
+      "categoryName": "Tasks and Assignments",
+      "utterance": "Report complete hone ke baad presentation start karna.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "TASK_MANAGER",
+            "type": "CREATE_TASK",
+            "assignee": null,
+            "requiresApproval": false
+          }
+        ],
+        "isTaskVsAssignment": "TASK",
+        "isNegation": false,
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_TSK_008",
+      "category": "C_TASKS",
+      "categoryName": "Tasks and Assignments",
+      "utterance": "All pending assignments dikhao.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "TASK_MANAGER",
+            "type": "READ_TASKS",
+            "assignee": null,
+            "requiresApproval": false
+          }
+        ],
+        "isTaskVsAssignment": "TASK",
+        "isNegation": false,
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_TSK_009",
+      "category": "C_TASKS",
+      "categoryName": "Tasks and Assignments",
+      "utterance": "Reassign this task from Rahul to Aman.",
+      "language": "en",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "TASK_ASSIGNMENT",
+            "type": "ASSIGN_TASK",
+            "assignee": "Aman Verma",
+            "requiresApproval": false
+          }
+        ],
+        "isTaskVsAssignment": "ASSIGNMENT",
+        "isNegation": false,
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_TSK_010",
+      "category": "C_TASKS",
+      "categoryName": "Tasks and Assignments",
+      "utterance": "Remind me to review the project tomorrow.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "TASK_MANAGER",
+            "type": "CREATE_REMINDER",
+            "assignee": null,
+            "requiresApproval": false
+          }
+        ],
+        "isTaskVsAssignment": "TASK",
+        "isNegation": false,
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_TSK_011",
+      "category": "C_TASKS",
+      "categoryName": "Tasks and Assignments",
+      "utterance": "Office inventory check karni hai Sunday tak.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "TASK_MANAGER",
+            "type": "CREATE_TASK",
+            "assignee": null,
+            "requiresApproval": false
+          }
+        ],
+        "isTaskVsAssignment": "TASK",
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_TSK_012",
+      "category": "C_TASKS",
+      "categoryName": "Tasks and Assignments",
+      "utterance": "Rahul ko server maintenance task assign karo.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "TASK_ASSIGNMENT",
+            "type": "ASSIGN_TASK",
+            "assignee": "Rahul Sharma",
+            "requiresApproval": false
+          }
+        ],
+        "isTaskVsAssignment": "ASSIGNMENT",
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_TSK_013",
+      "category": "C_TASKS",
+      "categoryName": "Tasks and Assignments",
+      "utterance": "Office inventory check karni hai Sunday tak.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "TASK_MANAGER",
+            "type": "CREATE_TASK",
+            "assignee": null,
+            "requiresApproval": false
+          }
+        ],
+        "isTaskVsAssignment": "TASK",
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_TSK_014",
+      "category": "C_TASKS",
+      "categoryName": "Tasks and Assignments",
+      "utterance": "Priya ko server maintenance task assign karo.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "TASK_ASSIGNMENT",
+            "type": "ASSIGN_TASK",
+            "assignee": "Priya Singh",
+            "requiresApproval": false
+          }
+        ],
+        "isTaskVsAssignment": "ASSIGNMENT",
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_TSK_015",
+      "category": "C_TASKS",
+      "categoryName": "Tasks and Assignments",
+      "utterance": "Office inventory check karni hai Sunday tak.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "TASK_MANAGER",
+            "type": "CREATE_TASK",
+            "assignee": null,
+            "requiresApproval": false
+          }
+        ],
+        "isTaskVsAssignment": "TASK",
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_TSK_016",
+      "category": "C_TASKS",
+      "categoryName": "Tasks and Assignments",
+      "utterance": "Reena ko server maintenance task assign karo.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "TASK_ASSIGNMENT",
+            "type": "ASSIGN_TASK",
+            "assignee": "Reena Sen",
+            "requiresApproval": false
+          }
+        ],
+        "isTaskVsAssignment": "ASSIGNMENT",
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_TSK_017",
+      "category": "C_TASKS",
+      "categoryName": "Tasks and Assignments",
+      "utterance": "Office inventory check karni hai Sunday tak.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "TASK_MANAGER",
+            "type": "CREATE_TASK",
+            "assignee": null,
+            "requiresApproval": false
+          }
+        ],
+        "isTaskVsAssignment": "TASK",
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_TSK_018",
+      "category": "C_TASKS",
+      "categoryName": "Tasks and Assignments",
+      "utterance": "Rahul ko server maintenance task assign karo.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "TASK_ASSIGNMENT",
+            "type": "ASSIGN_TASK",
+            "assignee": "Rahul Sharma",
+            "requiresApproval": false
+          }
+        ],
+        "isTaskVsAssignment": "ASSIGNMENT",
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_TSK_019",
+      "category": "C_TASKS",
+      "categoryName": "Tasks and Assignments",
+      "utterance": "Office inventory check karni hai Sunday tak.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "TASK_MANAGER",
+            "type": "CREATE_TASK",
+            "assignee": null,
+            "requiresApproval": false
+          }
+        ],
+        "isTaskVsAssignment": "TASK",
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_TSK_020",
+      "category": "C_TASKS",
+      "categoryName": "Tasks and Assignments",
+      "utterance": "Priya ko server maintenance task assign karo.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "TASK_ASSIGNMENT",
+            "type": "ASSIGN_TASK",
+            "assignee": "Priya Singh",
+            "requiresApproval": false
+          }
+        ],
+        "isTaskVsAssignment": "ASSIGNMENT",
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_TSK_021",
+      "category": "C_TASKS",
+      "categoryName": "Tasks and Assignments",
+      "utterance": "Office inventory check karni hai Sunday tak.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "TASK_MANAGER",
+            "type": "CREATE_TASK",
+            "assignee": null,
+            "requiresApproval": false
+          }
+        ],
+        "isTaskVsAssignment": "TASK",
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_TSK_022",
+      "category": "C_TASKS",
+      "categoryName": "Tasks and Assignments",
+      "utterance": "Reena ko server maintenance task assign karo.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "TASK_ASSIGNMENT",
+            "type": "ASSIGN_TASK",
+            "assignee": "Reena Sen",
+            "requiresApproval": false
+          }
+        ],
+        "isTaskVsAssignment": "ASSIGNMENT",
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_TSK_023",
+      "category": "C_TASKS",
+      "categoryName": "Tasks and Assignments",
+      "utterance": "Office inventory check karni hai Sunday tak.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "TASK_MANAGER",
+            "type": "CREATE_TASK",
+            "assignee": null,
+            "requiresApproval": false
+          }
+        ],
+        "isTaskVsAssignment": "TASK",
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_TSK_024",
+      "category": "C_TASKS",
+      "categoryName": "Tasks and Assignments",
+      "utterance": "Rahul ko server maintenance task assign karo.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "TASK_ASSIGNMENT",
+            "type": "ASSIGN_TASK",
+            "assignee": "Rahul Sharma",
+            "requiresApproval": false
+          }
+        ],
+        "isTaskVsAssignment": "ASSIGNMENT",
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_TSK_025",
+      "category": "C_TASKS",
+      "categoryName": "Tasks and Assignments",
+      "utterance": "Office inventory check karni hai Sunday tak.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "TASK_MANAGER",
+            "type": "CREATE_TASK",
+            "assignee": null,
+            "requiresApproval": false
+          }
+        ],
+        "isTaskVsAssignment": "TASK",
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_TSK_026",
+      "category": "C_TASKS",
+      "categoryName": "Tasks and Assignments",
+      "utterance": "Priya ko server maintenance task assign karo.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "TASK_ASSIGNMENT",
+            "type": "ASSIGN_TASK",
+            "assignee": "Priya Singh",
+            "requiresApproval": false
+          }
+        ],
+        "isTaskVsAssignment": "ASSIGNMENT",
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_TSK_027",
+      "category": "C_TASKS",
+      "categoryName": "Tasks and Assignments",
+      "utterance": "Office inventory check karni hai Sunday tak.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "TASK_MANAGER",
+            "type": "CREATE_TASK",
+            "assignee": null,
+            "requiresApproval": false
+          }
+        ],
+        "isTaskVsAssignment": "TASK",
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_TSK_028",
+      "category": "C_TASKS",
+      "categoryName": "Tasks and Assignments",
+      "utterance": "Reena ko server maintenance task assign karo.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "TASK_ASSIGNMENT",
+            "type": "ASSIGN_TASK",
+            "assignee": "Reena Sen",
+            "requiresApproval": false
+          }
+        ],
+        "isTaskVsAssignment": "ASSIGNMENT",
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_TSK_029",
+      "category": "C_TASKS",
+      "categoryName": "Tasks and Assignments",
+      "utterance": "Office inventory check karni hai Sunday tak.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "TASK_MANAGER",
+            "type": "CREATE_TASK",
+            "assignee": null,
+            "requiresApproval": false
+          }
+        ],
+        "isTaskVsAssignment": "TASK",
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_TSK_030",
+      "category": "C_TASKS",
+      "categoryName": "Tasks and Assignments",
+      "utterance": "Rahul ko server maintenance task assign karo.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "TASK_ASSIGNMENT",
+            "type": "ASSIGN_TASK",
+            "assignee": "Rahul Sharma",
+            "requiresApproval": false
+          }
+        ],
+        "isTaskVsAssignment": "ASSIGNMENT",
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_SHP_001",
+      "category": "D_SHOPPING",
+      "categoryName": "Shopping & Personal",
+      "utterance": "Kitchen mein bread laana hai.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "SHOPPING_LIST",
+            "type": "ADD_ITEM",
+            "item": "Bread"
+          }
+        ],
+        "isNegation": false,
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_SHP_002",
+      "category": "D_SHOPPING",
+      "categoryName": "Shopping & Personal",
+      "utterance": "Milk bhi add kar do.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "SHOPPING_LIST",
+            "type": "ADD_ITEM",
+            "item": "Milk"
+          }
+        ],
+        "isNegation": false,
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_SHP_003",
+      "category": "D_SHOPPING",
+      "categoryName": "Shopping & Personal",
+      "utterance": "Eggs aur butter shopping list mein add kar do.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 2,
+        "actions": [
+          {
+            "destination": "SHOPPING_LIST",
+            "type": "ADD_ITEM",
+            "item": "Eggs"
+          },
+          {
+            "destination": "SHOPPING_LIST",
+            "type": "ADD_ITEM",
+            "item": "Butter"
+          }
+        ],
+        "isNegation": false,
+        "isMultiAction": true
+      }
+    },
+    {
+      "id": "RW_SHP_004",
+      "category": "D_SHOPPING",
+      "categoryName": "Shopping & Personal",
+      "utterance": "Papa ko call karna hai.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "PERSONAL_REMINDER",
+            "type": "CREATE_REMINDER",
+            "item": null
+          }
+        ],
+        "isNegation": false,
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_SHP_005",
+      "category": "D_SHOPPING",
+      "categoryName": "Shopping & Personal",
+      "utterance": "Electricity bill kal pay karna hai.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "PERSONAL_REMINDER",
+            "type": "CREATE_REMINDER",
+            "item": null
+          }
+        ],
+        "isNegation": false,
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_SHP_006",
+      "category": "D_SHOPPING",
+      "categoryName": "Shopping & Personal",
+      "utterance": "Weekend par groceries leni hain.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "SHOPPING_LIST",
+            "type": "ADD_ITEM",
+            "item": null
+          }
+        ],
+        "isNegation": false,
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_SHP_007",
+      "category": "D_SHOPPING",
+      "categoryName": "Shopping & Personal",
+      "utterance": "Bread nahi, sirf milk laana hai.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "SHOPPING_LIST",
+            "type": "ADD_ITEM",
+            "item": "Milk"
+          }
+        ],
+        "isNegation": true,
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_SHP_008",
+      "category": "D_SHOPPING",
+      "categoryName": "Shopping & Personal",
+      "utterance": "Master bedroom ke aage cleaning karni hai.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "TASK_MANAGER",
+            "type": "CREATE_REMINDER",
+            "item": null
+          }
+        ],
+        "isNegation": false,
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_SHP_009",
+      "category": "D_SHOPPING",
+      "categoryName": "Shopping & Personal",
+      "utterance": "Kitchen mein grocery items rakh dena.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "TASK_MANAGER",
+            "type": "CREATE_REMINDER",
+            "item": null
+          }
+        ],
+        "isNegation": false,
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_SHP_010",
+      "category": "D_SHOPPING",
+      "categoryName": "Shopping & Personal",
+      "utterance": "Mujhe shaam 5 baje yaad dila dena.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "PERSONAL_REMINDER",
+            "type": "CREATE_REMINDER",
+            "item": null
+          }
+        ],
+        "isNegation": false,
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_SHP_011",
+      "category": "D_SHOPPING",
+      "categoryName": "Shopping & Personal",
+      "utterance": "Kitchen ke liye Eggs le aana market se.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "SHOPPING_LIST",
+            "type": "ADD_ITEM",
+            "item": "Eggs",
+            "requiresApproval": false
+          }
+        ],
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_SHP_012",
+      "category": "D_SHOPPING",
+      "categoryName": "Shopping & Personal",
+      "utterance": "Kitchen ke liye Milk le aana market se.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "SHOPPING_LIST",
+            "type": "ADD_ITEM",
+            "item": "Milk",
+            "requiresApproval": false
+          }
+        ],
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_SHP_013",
+      "category": "D_SHOPPING",
+      "categoryName": "Shopping & Personal",
+      "utterance": "Kitchen ke liye Bread le aana market se.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "SHOPPING_LIST",
+            "type": "ADD_ITEM",
+            "item": "Bread",
+            "requiresApproval": false
+          }
+        ],
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_SHP_014",
+      "category": "D_SHOPPING",
+      "categoryName": "Shopping & Personal",
+      "utterance": "Kitchen ke liye Dal le aana market se.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "SHOPPING_LIST",
+            "type": "ADD_ITEM",
+            "item": "Dal",
+            "requiresApproval": false
+          }
+        ],
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_SHP_015",
+      "category": "D_SHOPPING",
+      "categoryName": "Shopping & Personal",
+      "utterance": "Kitchen ke liye Atta le aana market se.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "SHOPPING_LIST",
+            "type": "ADD_ITEM",
+            "item": "Atta",
+            "requiresApproval": false
+          }
+        ],
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_SHP_016",
+      "category": "D_SHOPPING",
+      "categoryName": "Shopping & Personal",
+      "utterance": "Kitchen ke liye Sugar le aana market se.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "SHOPPING_LIST",
+            "type": "ADD_ITEM",
+            "item": "Sugar",
+            "requiresApproval": false
+          }
+        ],
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_SHP_017",
+      "category": "D_SHOPPING",
+      "categoryName": "Shopping & Personal",
+      "utterance": "Kitchen ke liye Butter le aana market se.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "SHOPPING_LIST",
+            "type": "ADD_ITEM",
+            "item": "Butter",
+            "requiresApproval": false
+          }
+        ],
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_SHP_018",
+      "category": "D_SHOPPING",
+      "categoryName": "Shopping & Personal",
+      "utterance": "Kitchen ke liye Eggs le aana market se.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "SHOPPING_LIST",
+            "type": "ADD_ITEM",
+            "item": "Eggs",
+            "requiresApproval": false
+          }
+        ],
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_SHP_019",
+      "category": "D_SHOPPING",
+      "categoryName": "Shopping & Personal",
+      "utterance": "Kitchen ke liye Milk le aana market se.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "SHOPPING_LIST",
+            "type": "ADD_ITEM",
+            "item": "Milk",
+            "requiresApproval": false
+          }
+        ],
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_SHP_020",
+      "category": "D_SHOPPING",
+      "categoryName": "Shopping & Personal",
+      "utterance": "Kitchen ke liye Bread le aana market se.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "SHOPPING_LIST",
+            "type": "ADD_ITEM",
+            "item": "Bread",
+            "requiresApproval": false
+          }
+        ],
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_SHP_021",
+      "category": "D_SHOPPING",
+      "categoryName": "Shopping & Personal",
+      "utterance": "Kitchen ke liye Dal le aana market se.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "SHOPPING_LIST",
+            "type": "ADD_ITEM",
+            "item": "Dal",
+            "requiresApproval": false
+          }
+        ],
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_SHP_022",
+      "category": "D_SHOPPING",
+      "categoryName": "Shopping & Personal",
+      "utterance": "Kitchen ke liye Atta le aana market se.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "SHOPPING_LIST",
+            "type": "ADD_ITEM",
+            "item": "Atta",
+            "requiresApproval": false
+          }
+        ],
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_SHP_023",
+      "category": "D_SHOPPING",
+      "categoryName": "Shopping & Personal",
+      "utterance": "Kitchen ke liye Sugar le aana market se.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "SHOPPING_LIST",
+            "type": "ADD_ITEM",
+            "item": "Sugar",
+            "requiresApproval": false
+          }
+        ],
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_SHP_024",
+      "category": "D_SHOPPING",
+      "categoryName": "Shopping & Personal",
+      "utterance": "Kitchen ke liye Butter le aana market se.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "SHOPPING_LIST",
+            "type": "ADD_ITEM",
+            "item": "Butter",
+            "requiresApproval": false
+          }
+        ],
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_SHP_025",
+      "category": "D_SHOPPING",
+      "categoryName": "Shopping & Personal",
+      "utterance": "Kitchen ke liye Eggs le aana market se.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "SHOPPING_LIST",
+            "type": "ADD_ITEM",
+            "item": "Eggs",
+            "requiresApproval": false
+          }
+        ],
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_SHP_026",
+      "category": "D_SHOPPING",
+      "categoryName": "Shopping & Personal",
+      "utterance": "Kitchen ke liye Milk le aana market se.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "SHOPPING_LIST",
+            "type": "ADD_ITEM",
+            "item": "Milk",
+            "requiresApproval": false
+          }
+        ],
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_SHP_027",
+      "category": "D_SHOPPING",
+      "categoryName": "Shopping & Personal",
+      "utterance": "Kitchen ke liye Bread le aana market se.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "SHOPPING_LIST",
+            "type": "ADD_ITEM",
+            "item": "Bread",
+            "requiresApproval": false
+          }
+        ],
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_SHP_028",
+      "category": "D_SHOPPING",
+      "categoryName": "Shopping & Personal",
+      "utterance": "Kitchen ke liye Dal le aana market se.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "SHOPPING_LIST",
+            "type": "ADD_ITEM",
+            "item": "Dal",
+            "requiresApproval": false
+          }
+        ],
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_SHP_029",
+      "category": "D_SHOPPING",
+      "categoryName": "Shopping & Personal",
+      "utterance": "Kitchen ke liye Atta le aana market se.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "SHOPPING_LIST",
+            "type": "ADD_ITEM",
+            "item": "Atta",
+            "requiresApproval": false
+          }
+        ],
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_SHP_030",
+      "category": "D_SHOPPING",
+      "categoryName": "Shopping & Personal",
+      "utterance": "Kitchen ke liye Sugar le aana market se.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "SHOPPING_LIST",
+            "type": "ADD_ITEM",
+            "item": "Sugar",
+            "requiresApproval": false
+          }
+        ],
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_MLT_001",
+      "category": "E_MULTI_ACTION",
+      "categoryName": "Multi-Action Commands",
+      "utterance": "Kal Rahul ke saath 10 baje meeting fix kar do, Aman ko WhatsApp kar dena ki production report bhej de, aur bread aur milk laana hai.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 4,
+        "actions": [
+          {
+            "type": "CREATE_EVENT",
+            "destination": "GOOGLE_CALENDAR",
+            "attendee": "Rahul Sharma"
+          },
+          {
+            "type": "SEND_WHATSAPP",
+            "destination": "WHATSAPP",
+            "recipient": "Aman Verma"
+          },
+          {
+            "type": "ADD_ITEM",
+            "destination": "SHOPPING_LIST",
+            "item": "Bread"
+          },
+          {
+            "type": "ADD_ITEM",
+            "destination": "SHOPPING_LIST",
+            "item": "Milk"
+          }
+        ],
+        "isMultiAction": true
+      }
+    },
+    {
+      "id": "RW_MLT_002",
+      "category": "E_MULTI_ACTION",
+      "categoryName": "Multi-Action Commands",
+      "utterance": "Schedule a meeting with Neha tomorrow, assign the presentation to Rahul and send Aman a WhatsApp notification.",
+      "language": "en",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 3,
+        "actions": [
+          {
+            "type": "CREATE_EVENT",
+            "destination": "GOOGLE_CALENDAR",
+            "attendee": "Neha Gupta"
+          },
+          {
+            "type": "ASSIGN_TASK",
+            "destination": "TASK_ASSIGNMENT",
+            "assignee": "Rahul Sharma"
+          },
+          {
+            "type": "SEND_WHATSAPP",
+            "destination": "WHATSAPP",
+            "recipient": "Aman Verma"
+          }
+        ],
+        "isMultiAction": true
+      }
+    },
+    {
+      "id": "RW_MLT_003",
+      "category": "E_MULTI_ACTION",
+      "categoryName": "Multi-Action Commands",
+      "utterance": "Meeting Monday shift kar do aur sab attendees ko inform kar do.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 2,
+        "actions": [
+          {
+            "type": "RESCHEDULE_EVENT",
+            "destination": "GOOGLE_CALENDAR"
+          },
+          {
+            "type": "SEND_WHATSAPP",
+            "destination": "WHATSAPP"
+          }
+        ],
+        "isMultiAction": true
+      }
+    },
+    {
+      "id": "RW_MLT_004",
+      "category": "E_MULTI_ACTION",
+      "categoryName": "Multi-Action Commands",
+      "utterance": "Rahul ko report assign karo aur Friday tak complete karne ka reminder set karo.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 2,
+        "actions": [
+          {
+            "type": "ASSIGN_TASK",
+            "destination": "TASK_ASSIGNMENT",
+            "assignee": "Rahul Sharma"
+          },
+          {
+            "type": "CREATE_REMINDER",
+            "destination": "PERSONAL_REMINDER"
+          }
+        ],
+        "isMultiAction": true
+      }
+    },
+    {
+      "id": "RW_MLT_005",
+      "category": "E_MULTI_ACTION",
+      "categoryName": "Multi-Action Commands",
+      "utterance": "Buy bread, milk and eggs, and remind me tomorrow morning.",
+      "language": "en",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 4,
+        "actions": [
+          {
+            "type": "ADD_ITEM",
+            "destination": "SHOPPING_LIST",
+            "item": "Bread"
+          },
+          {
+            "type": "ADD_ITEM",
+            "destination": "SHOPPING_LIST",
+            "item": "Milk"
+          },
+          {
+            "type": "ADD_ITEM",
+            "destination": "SHOPPING_LIST",
+            "item": "Eggs"
+          },
+          {
+            "type": "CREATE_REMINDER",
+            "destination": "PERSONAL_REMINDER"
+          }
+        ],
+        "isMultiAction": true
+      }
+    },
+    {
+      "id": "RW_MLT_006",
+      "category": "E_MULTI_ACTION",
+      "categoryName": "Multi-Action Commands",
+      "utterance": "Kal 11 baje Rahul ke saath meeting fix kar do aur Aman ko WhatsApp inform kar dena.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 2,
+        "actions": [
+          {
+            "type": "CREATE_EVENT",
+            "destination": "GOOGLE_CALENDAR",
+            "attendee": "Rahul Sharma"
+          },
+          {
+            "type": "SEND_WHATSAPP",
+            "destination": "WHATSAPP",
+            "recipient": "Aman Verma"
+          }
+        ],
+        "isMultiAction": true
+      }
+    },
+    {
+      "id": "RW_MLT_007",
+      "category": "E_MULTI_ACTION",
+      "categoryName": "Multi-Action Commands",
+      "utterance": "Kal 11 baje Aman ke saath meeting fix kar do aur Priya ko WhatsApp inform kar dena.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 2,
+        "actions": [
+          {
+            "type": "CREATE_EVENT",
+            "destination": "GOOGLE_CALENDAR",
+            "attendee": "Aman Verma"
+          },
+          {
+            "type": "SEND_WHATSAPP",
+            "destination": "WHATSAPP",
+            "recipient": "Priya Singh"
+          }
+        ],
+        "isMultiAction": true
+      }
+    },
+    {
+      "id": "RW_MLT_008",
+      "category": "E_MULTI_ACTION",
+      "categoryName": "Multi-Action Commands",
+      "utterance": "Kal 11 baje Priya ke saath meeting fix kar do aur Neha ko WhatsApp inform kar dena.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 2,
+        "actions": [
+          {
+            "type": "CREATE_EVENT",
+            "destination": "GOOGLE_CALENDAR",
+            "attendee": "Priya Singh"
+          },
+          {
+            "type": "SEND_WHATSAPP",
+            "destination": "WHATSAPP",
+            "recipient": "Neha Gupta"
+          }
+        ],
+        "isMultiAction": true
+      }
+    },
+    {
+      "id": "RW_MLT_009",
+      "category": "E_MULTI_ACTION",
+      "categoryName": "Multi-Action Commands",
+      "utterance": "Kal 11 baje Neha ke saath meeting fix kar do aur Reena ko WhatsApp inform kar dena.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 2,
+        "actions": [
+          {
+            "type": "CREATE_EVENT",
+            "destination": "GOOGLE_CALENDAR",
+            "attendee": "Neha Gupta"
+          },
+          {
+            "type": "SEND_WHATSAPP",
+            "destination": "WHATSAPP",
+            "recipient": "Reena Sen"
+          }
+        ],
+        "isMultiAction": true
+      }
+    },
+    {
+      "id": "RW_MLT_010",
+      "category": "E_MULTI_ACTION",
+      "categoryName": "Multi-Action Commands",
+      "utterance": "Kal 11 baje Reena ke saath meeting fix kar do aur Ashok ko WhatsApp inform kar dena.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 2,
+        "actions": [
+          {
+            "type": "CREATE_EVENT",
+            "destination": "GOOGLE_CALENDAR",
+            "attendee": "Reena Sen"
+          },
+          {
+            "type": "SEND_WHATSAPP",
+            "destination": "WHATSAPP",
+            "recipient": "Ashok Kumar"
+          }
+        ],
+        "isMultiAction": true
+      }
+    },
+    {
+      "id": "RW_MLT_011",
+      "category": "E_MULTI_ACTION",
+      "categoryName": "Multi-Action Commands",
+      "utterance": "Kal 11 baje Ashok ke saath meeting fix kar do aur Rahul ko WhatsApp inform kar dena.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 2,
+        "actions": [
+          {
+            "type": "CREATE_EVENT",
+            "destination": "GOOGLE_CALENDAR",
+            "attendee": "Ashok Kumar"
+          },
+          {
+            "type": "SEND_WHATSAPP",
+            "destination": "WHATSAPP",
+            "recipient": "Rahul Sharma"
+          }
+        ],
+        "isMultiAction": true
+      }
+    },
+    {
+      "id": "RW_MLT_012",
+      "category": "E_MULTI_ACTION",
+      "categoryName": "Multi-Action Commands",
+      "utterance": "Kal 11 baje Rahul ke saath meeting fix kar do aur Aman ko WhatsApp inform kar dena.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 2,
+        "actions": [
+          {
+            "type": "CREATE_EVENT",
+            "destination": "GOOGLE_CALENDAR",
+            "attendee": "Rahul Sharma"
+          },
+          {
+            "type": "SEND_WHATSAPP",
+            "destination": "WHATSAPP",
+            "recipient": "Aman Verma"
+          }
+        ],
+        "isMultiAction": true
+      }
+    },
+    {
+      "id": "RW_MLT_013",
+      "category": "E_MULTI_ACTION",
+      "categoryName": "Multi-Action Commands",
+      "utterance": "Kal 11 baje Aman ke saath meeting fix kar do aur Priya ko WhatsApp inform kar dena.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 2,
+        "actions": [
+          {
+            "type": "CREATE_EVENT",
+            "destination": "GOOGLE_CALENDAR",
+            "attendee": "Aman Verma"
+          },
+          {
+            "type": "SEND_WHATSAPP",
+            "destination": "WHATSAPP",
+            "recipient": "Priya Singh"
+          }
+        ],
+        "isMultiAction": true
+      }
+    },
+    {
+      "id": "RW_MLT_014",
+      "category": "E_MULTI_ACTION",
+      "categoryName": "Multi-Action Commands",
+      "utterance": "Kal 11 baje Priya ke saath meeting fix kar do aur Neha ko WhatsApp inform kar dena.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 2,
+        "actions": [
+          {
+            "type": "CREATE_EVENT",
+            "destination": "GOOGLE_CALENDAR",
+            "attendee": "Priya Singh"
+          },
+          {
+            "type": "SEND_WHATSAPP",
+            "destination": "WHATSAPP",
+            "recipient": "Neha Gupta"
+          }
+        ],
+        "isMultiAction": true
+      }
+    },
+    {
+      "id": "RW_MLT_015",
+      "category": "E_MULTI_ACTION",
+      "categoryName": "Multi-Action Commands",
+      "utterance": "Kal 11 baje Neha ke saath meeting fix kar do aur Reena ko WhatsApp inform kar dena.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 2,
+        "actions": [
+          {
+            "type": "CREATE_EVENT",
+            "destination": "GOOGLE_CALENDAR",
+            "attendee": "Neha Gupta"
+          },
+          {
+            "type": "SEND_WHATSAPP",
+            "destination": "WHATSAPP",
+            "recipient": "Reena Sen"
+          }
+        ],
+        "isMultiAction": true
+      }
+    },
+    {
+      "id": "RW_MLT_016",
+      "category": "E_MULTI_ACTION",
+      "categoryName": "Multi-Action Commands",
+      "utterance": "Kal 11 baje Reena ke saath meeting fix kar do aur Ashok ko WhatsApp inform kar dena.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 2,
+        "actions": [
+          {
+            "type": "CREATE_EVENT",
+            "destination": "GOOGLE_CALENDAR",
+            "attendee": "Reena Sen"
+          },
+          {
+            "type": "SEND_WHATSAPP",
+            "destination": "WHATSAPP",
+            "recipient": "Ashok Kumar"
+          }
+        ],
+        "isMultiAction": true
+      }
+    },
+    {
+      "id": "RW_MLT_017",
+      "category": "E_MULTI_ACTION",
+      "categoryName": "Multi-Action Commands",
+      "utterance": "Kal 11 baje Ashok ke saath meeting fix kar do aur Rahul ko WhatsApp inform kar dena.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 2,
+        "actions": [
+          {
+            "type": "CREATE_EVENT",
+            "destination": "GOOGLE_CALENDAR",
+            "attendee": "Ashok Kumar"
+          },
+          {
+            "type": "SEND_WHATSAPP",
+            "destination": "WHATSAPP",
+            "recipient": "Rahul Sharma"
+          }
+        ],
+        "isMultiAction": true
+      }
+    },
+    {
+      "id": "RW_MLT_018",
+      "category": "E_MULTI_ACTION",
+      "categoryName": "Multi-Action Commands",
+      "utterance": "Kal 11 baje Rahul ke saath meeting fix kar do aur Aman ko WhatsApp inform kar dena.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 2,
+        "actions": [
+          {
+            "type": "CREATE_EVENT",
+            "destination": "GOOGLE_CALENDAR",
+            "attendee": "Rahul Sharma"
+          },
+          {
+            "type": "SEND_WHATSAPP",
+            "destination": "WHATSAPP",
+            "recipient": "Aman Verma"
+          }
+        ],
+        "isMultiAction": true
+      }
+    },
+    {
+      "id": "RW_MLT_019",
+      "category": "E_MULTI_ACTION",
+      "categoryName": "Multi-Action Commands",
+      "utterance": "Kal 11 baje Aman ke saath meeting fix kar do aur Priya ko WhatsApp inform kar dena.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 2,
+        "actions": [
+          {
+            "type": "CREATE_EVENT",
+            "destination": "GOOGLE_CALENDAR",
+            "attendee": "Aman Verma"
+          },
+          {
+            "type": "SEND_WHATSAPP",
+            "destination": "WHATSAPP",
+            "recipient": "Priya Singh"
+          }
+        ],
+        "isMultiAction": true
+      }
+    },
+    {
+      "id": "RW_MLT_020",
+      "category": "E_MULTI_ACTION",
+      "categoryName": "Multi-Action Commands",
+      "utterance": "Kal 11 baje Priya ke saath meeting fix kar do aur Neha ko WhatsApp inform kar dena.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 2,
+        "actions": [
+          {
+            "type": "CREATE_EVENT",
+            "destination": "GOOGLE_CALENDAR",
+            "attendee": "Priya Singh"
+          },
+          {
+            "type": "SEND_WHATSAPP",
+            "destination": "WHATSAPP",
+            "recipient": "Neha Gupta"
+          }
+        ],
+        "isMultiAction": true
+      }
+    },
+    {
+      "id": "RW_MLT_021",
+      "category": "E_MULTI_ACTION",
+      "categoryName": "Multi-Action Commands",
+      "utterance": "Kal 11 baje Neha ke saath meeting fix kar do aur Reena ko WhatsApp inform kar dena.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 2,
+        "actions": [
+          {
+            "type": "CREATE_EVENT",
+            "destination": "GOOGLE_CALENDAR",
+            "attendee": "Neha Gupta"
+          },
+          {
+            "type": "SEND_WHATSAPP",
+            "destination": "WHATSAPP",
+            "recipient": "Reena Sen"
+          }
+        ],
+        "isMultiAction": true
+      }
+    },
+    {
+      "id": "RW_MLT_022",
+      "category": "E_MULTI_ACTION",
+      "categoryName": "Multi-Action Commands",
+      "utterance": "Kal 11 baje Reena ke saath meeting fix kar do aur Ashok ko WhatsApp inform kar dena.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 2,
+        "actions": [
+          {
+            "type": "CREATE_EVENT",
+            "destination": "GOOGLE_CALENDAR",
+            "attendee": "Reena Sen"
+          },
+          {
+            "type": "SEND_WHATSAPP",
+            "destination": "WHATSAPP",
+            "recipient": "Ashok Kumar"
+          }
+        ],
+        "isMultiAction": true
+      }
+    },
+    {
+      "id": "RW_MLT_023",
+      "category": "E_MULTI_ACTION",
+      "categoryName": "Multi-Action Commands",
+      "utterance": "Kal 11 baje Ashok ke saath meeting fix kar do aur Rahul ko WhatsApp inform kar dena.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 2,
+        "actions": [
+          {
+            "type": "CREATE_EVENT",
+            "destination": "GOOGLE_CALENDAR",
+            "attendee": "Ashok Kumar"
+          },
+          {
+            "type": "SEND_WHATSAPP",
+            "destination": "WHATSAPP",
+            "recipient": "Rahul Sharma"
+          }
+        ],
+        "isMultiAction": true
+      }
+    },
+    {
+      "id": "RW_MLT_024",
+      "category": "E_MULTI_ACTION",
+      "categoryName": "Multi-Action Commands",
+      "utterance": "Kal 11 baje Rahul ke saath meeting fix kar do aur Aman ko WhatsApp inform kar dena.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 2,
+        "actions": [
+          {
+            "type": "CREATE_EVENT",
+            "destination": "GOOGLE_CALENDAR",
+            "attendee": "Rahul Sharma"
+          },
+          {
+            "type": "SEND_WHATSAPP",
+            "destination": "WHATSAPP",
+            "recipient": "Aman Verma"
+          }
+        ],
+        "isMultiAction": true
+      }
+    },
+    {
+      "id": "RW_MLT_025",
+      "category": "E_MULTI_ACTION",
+      "categoryName": "Multi-Action Commands",
+      "utterance": "Kal 11 baje Aman ke saath meeting fix kar do aur Priya ko WhatsApp inform kar dena.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 2,
+        "actions": [
+          {
+            "type": "CREATE_EVENT",
+            "destination": "GOOGLE_CALENDAR",
+            "attendee": "Aman Verma"
+          },
+          {
+            "type": "SEND_WHATSAPP",
+            "destination": "WHATSAPP",
+            "recipient": "Priya Singh"
+          }
+        ],
+        "isMultiAction": true
+      }
+    },
+    {
+      "id": "RW_MLT_026",
+      "category": "E_MULTI_ACTION",
+      "categoryName": "Multi-Action Commands",
+      "utterance": "Kal 11 baje Priya ke saath meeting fix kar do aur Neha ko WhatsApp inform kar dena.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 2,
+        "actions": [
+          {
+            "type": "CREATE_EVENT",
+            "destination": "GOOGLE_CALENDAR",
+            "attendee": "Priya Singh"
+          },
+          {
+            "type": "SEND_WHATSAPP",
+            "destination": "WHATSAPP",
+            "recipient": "Neha Gupta"
+          }
+        ],
+        "isMultiAction": true
+      }
+    },
+    {
+      "id": "RW_MLT_027",
+      "category": "E_MULTI_ACTION",
+      "categoryName": "Multi-Action Commands",
+      "utterance": "Kal 11 baje Neha ke saath meeting fix kar do aur Reena ko WhatsApp inform kar dena.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 2,
+        "actions": [
+          {
+            "type": "CREATE_EVENT",
+            "destination": "GOOGLE_CALENDAR",
+            "attendee": "Neha Gupta"
+          },
+          {
+            "type": "SEND_WHATSAPP",
+            "destination": "WHATSAPP",
+            "recipient": "Reena Sen"
+          }
+        ],
+        "isMultiAction": true
+      }
+    },
+    {
+      "id": "RW_MLT_028",
+      "category": "E_MULTI_ACTION",
+      "categoryName": "Multi-Action Commands",
+      "utterance": "Kal 11 baje Reena ke saath meeting fix kar do aur Ashok ko WhatsApp inform kar dena.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 2,
+        "actions": [
+          {
+            "type": "CREATE_EVENT",
+            "destination": "GOOGLE_CALENDAR",
+            "attendee": "Reena Sen"
+          },
+          {
+            "type": "SEND_WHATSAPP",
+            "destination": "WHATSAPP",
+            "recipient": "Ashok Kumar"
+          }
+        ],
+        "isMultiAction": true
+      }
+    },
+    {
+      "id": "RW_MLT_029",
+      "category": "E_MULTI_ACTION",
+      "categoryName": "Multi-Action Commands",
+      "utterance": "Kal 11 baje Ashok ke saath meeting fix kar do aur Rahul ko WhatsApp inform kar dena.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 2,
+        "actions": [
+          {
+            "type": "CREATE_EVENT",
+            "destination": "GOOGLE_CALENDAR",
+            "attendee": "Ashok Kumar"
+          },
+          {
+            "type": "SEND_WHATSAPP",
+            "destination": "WHATSAPP",
+            "recipient": "Rahul Sharma"
+          }
+        ],
+        "isMultiAction": true
+      }
+    },
+    {
+      "id": "RW_MLT_030",
+      "category": "E_MULTI_ACTION",
+      "categoryName": "Multi-Action Commands",
+      "utterance": "Kal 11 baje Rahul ke saath meeting fix kar do aur Aman ko WhatsApp inform kar dena.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 2,
+        "actions": [
+          {
+            "type": "CREATE_EVENT",
+            "destination": "GOOGLE_CALENDAR",
+            "attendee": "Rahul Sharma"
+          },
+          {
+            "type": "SEND_WHATSAPP",
+            "destination": "WHATSAPP",
+            "recipient": "Aman Verma"
+          }
+        ],
+        "isMultiAction": true
+      }
+    },
+    {
+      "id": "RW_MTG_001",
+      "category": "F_MEETINGS",
+      "categoryName": "Online and Physical Meetings",
+      "utterance": "Client office mein Aman ke saath physical inspection meeting fix karo.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "type": "CREATE_EVENT",
+            "destination": "GOOGLE_CALENDAR",
+            "meetingType": "SITE_MEETING"
+          }
+        ],
+        "isNegation": false,
+        "isClarification": false,
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_MTG_002",
+      "category": "F_MEETINGS",
+      "categoryName": "Online and Physical Meetings",
+      "utterance": "Priya ke saath Google Meet par online meeting schedule karo.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "type": "CREATE_EVENT",
+            "destination": "GOOGLE_CALENDAR",
+            "meetingType": "ONLINE_MEETING"
+          }
+        ],
+        "isNegation": false,
+        "isClarification": false,
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_MTG_003",
+      "category": "F_MEETINGS",
+      "categoryName": "Online and Physical Meetings",
+      "utterance": "Client office mein Neha ke saath physical inspection meeting fix karo.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "type": "CREATE_EVENT",
+            "destination": "GOOGLE_CALENDAR",
+            "meetingType": "SITE_MEETING"
+          }
+        ],
+        "isNegation": false,
+        "isClarification": false,
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_MTG_004",
+      "category": "F_MEETINGS",
+      "categoryName": "Online and Physical Meetings",
+      "utterance": "Reena ke saath Google Meet par online meeting schedule karo.",
+      "language": "hinglish",
+      "inputMode": "WHISPER_SIMULATED",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "type": "CREATE_EVENT",
+            "destination": "GOOGLE_CALENDAR",
+            "meetingType": "ONLINE_MEETING"
+          }
+        ],
+        "isNegation": false,
+        "isClarification": false,
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_MTG_005",
+      "category": "F_MEETINGS",
+      "categoryName": "Online and Physical Meetings",
+      "utterance": "Client office mein Ashok ke saath physical inspection meeting fix karo.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "type": "CREATE_EVENT",
+            "destination": "GOOGLE_CALENDAR",
+            "meetingType": "SITE_MEETING"
+          }
+        ],
+        "isNegation": false,
+        "isClarification": false,
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_MTG_006",
+      "category": "F_MEETINGS",
+      "categoryName": "Online and Physical Meetings",
+      "utterance": "Rahul ke saath Google Meet par online meeting schedule karo.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "type": "CREATE_EVENT",
+            "destination": "GOOGLE_CALENDAR",
+            "meetingType": "ONLINE_MEETING"
+          }
+        ],
+        "isNegation": false,
+        "isClarification": false,
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_MTG_007",
+      "category": "F_MEETINGS",
+      "categoryName": "Online and Physical Meetings",
+      "utterance": "Client office mein Aman ke saath physical inspection meeting fix karo.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "type": "CREATE_EVENT",
+            "destination": "GOOGLE_CALENDAR",
+            "meetingType": "SITE_MEETING"
+          }
+        ],
+        "isNegation": false,
+        "isClarification": false,
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_MTG_008",
+      "category": "F_MEETINGS",
+      "categoryName": "Online and Physical Meetings",
+      "utterance": "Priya ke saath Google Meet par online meeting schedule karo.",
+      "language": "hinglish",
+      "inputMode": "WHISPER_SIMULATED",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "type": "CREATE_EVENT",
+            "destination": "GOOGLE_CALENDAR",
+            "meetingType": "ONLINE_MEETING"
+          }
+        ],
+        "isNegation": false,
+        "isClarification": false,
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_MTG_009",
+      "category": "F_MEETINGS",
+      "categoryName": "Online and Physical Meetings",
+      "utterance": "Client office mein Neha ke saath physical inspection meeting fix karo.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "type": "CREATE_EVENT",
+            "destination": "GOOGLE_CALENDAR",
+            "meetingType": "SITE_MEETING"
+          }
+        ],
+        "isNegation": false,
+        "isClarification": false,
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_MTG_010",
+      "category": "F_MEETINGS",
+      "categoryName": "Online and Physical Meetings",
+      "utterance": "Reena ke saath Google Meet par online meeting schedule karo.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "type": "CREATE_EVENT",
+            "destination": "GOOGLE_CALENDAR",
+            "meetingType": "ONLINE_MEETING"
+          }
+        ],
+        "isNegation": false,
+        "isClarification": false,
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_MTG_011",
+      "category": "F_MEETINGS",
+      "categoryName": "Online and Physical Meetings",
+      "utterance": "Client office mein Ashok ke saath physical inspection meeting fix karo.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "type": "CREATE_EVENT",
+            "destination": "GOOGLE_CALENDAR",
+            "meetingType": "SITE_MEETING"
+          }
+        ],
+        "isNegation": false,
+        "isClarification": false,
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_MTG_012",
+      "category": "F_MEETINGS",
+      "categoryName": "Online and Physical Meetings",
+      "utterance": "Rahul ke saath Google Meet par online meeting schedule karo.",
+      "language": "hinglish",
+      "inputMode": "WHISPER_SIMULATED",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "type": "CREATE_EVENT",
+            "destination": "GOOGLE_CALENDAR",
+            "meetingType": "ONLINE_MEETING"
+          }
+        ],
+        "isNegation": false,
+        "isClarification": false,
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_MTG_013",
+      "category": "F_MEETINGS",
+      "categoryName": "Online and Physical Meetings",
+      "utterance": "Client office mein Aman ke saath physical inspection meeting fix karo.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "type": "CREATE_EVENT",
+            "destination": "GOOGLE_CALENDAR",
+            "meetingType": "SITE_MEETING"
+          }
+        ],
+        "isNegation": false,
+        "isClarification": false,
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_MTG_014",
+      "category": "F_MEETINGS",
+      "categoryName": "Online and Physical Meetings",
+      "utterance": "Priya ke saath Google Meet par online meeting schedule karo.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "type": "CREATE_EVENT",
+            "destination": "GOOGLE_CALENDAR",
+            "meetingType": "ONLINE_MEETING"
+          }
+        ],
+        "isNegation": false,
+        "isClarification": false,
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_MTG_015",
+      "category": "F_MEETINGS",
+      "categoryName": "Online and Physical Meetings",
+      "utterance": "Client office mein Neha ke saath physical inspection meeting fix karo.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "type": "CREATE_EVENT",
+            "destination": "GOOGLE_CALENDAR",
+            "meetingType": "SITE_MEETING"
+          }
+        ],
+        "isNegation": false,
+        "isClarification": false,
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_MTG_016",
+      "category": "F_MEETINGS",
+      "categoryName": "Online and Physical Meetings",
+      "utterance": "Reena ke saath Google Meet par online meeting schedule karo.",
+      "language": "hinglish",
+      "inputMode": "WHISPER_SIMULATED",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "type": "CREATE_EVENT",
+            "destination": "GOOGLE_CALENDAR",
+            "meetingType": "ONLINE_MEETING"
+          }
+        ],
+        "isNegation": false,
+        "isClarification": false,
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_MTG_017",
+      "category": "F_MEETINGS",
+      "categoryName": "Online and Physical Meetings",
+      "utterance": "Client office mein Ashok ke saath physical inspection meeting fix karo.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "type": "CREATE_EVENT",
+            "destination": "GOOGLE_CALENDAR",
+            "meetingType": "SITE_MEETING"
+          }
+        ],
+        "isNegation": false,
+        "isClarification": false,
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_MTG_018",
+      "category": "F_MEETINGS",
+      "categoryName": "Online and Physical Meetings",
+      "utterance": "Rahul ke saath Google Meet par online meeting schedule karo.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "type": "CREATE_EVENT",
+            "destination": "GOOGLE_CALENDAR",
+            "meetingType": "ONLINE_MEETING"
+          }
+        ],
+        "isNegation": false,
+        "isClarification": false,
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_MTG_019",
+      "category": "F_MEETINGS",
+      "categoryName": "Online and Physical Meetings",
+      "utterance": "Client office mein Aman ke saath physical inspection meeting fix karo.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "type": "CREATE_EVENT",
+            "destination": "GOOGLE_CALENDAR",
+            "meetingType": "SITE_MEETING"
+          }
+        ],
+        "isNegation": false,
+        "isClarification": false,
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_MTG_020",
+      "category": "F_MEETINGS",
+      "categoryName": "Online and Physical Meetings",
+      "utterance": "Priya ke saath Google Meet par online meeting schedule karo.",
+      "language": "hinglish",
+      "inputMode": "WHISPER_SIMULATED",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "type": "CREATE_EVENT",
+            "destination": "GOOGLE_CALENDAR",
+            "meetingType": "ONLINE_MEETING"
+          }
+        ],
+        "isNegation": false,
+        "isClarification": false,
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_MTG_021",
+      "category": "F_MEETINGS",
+      "categoryName": "Online and Physical Meetings",
+      "utterance": "Client office mein Neha ke saath physical inspection meeting fix karo.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "type": "CREATE_EVENT",
+            "destination": "GOOGLE_CALENDAR",
+            "meetingType": "SITE_MEETING"
+          }
+        ],
+        "isNegation": false,
+        "isClarification": false,
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_MTG_022",
+      "category": "F_MEETINGS",
+      "categoryName": "Online and Physical Meetings",
+      "utterance": "Reena ke saath Google Meet par online meeting schedule karo.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "type": "CREATE_EVENT",
+            "destination": "GOOGLE_CALENDAR",
+            "meetingType": "ONLINE_MEETING"
+          }
+        ],
+        "isNegation": false,
+        "isClarification": false,
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_MTG_023",
+      "category": "F_MEETINGS",
+      "categoryName": "Online and Physical Meetings",
+      "utterance": "Client office mein Ashok ke saath physical inspection meeting fix karo.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "type": "CREATE_EVENT",
+            "destination": "GOOGLE_CALENDAR",
+            "meetingType": "SITE_MEETING"
+          }
+        ],
+        "isNegation": false,
+        "isClarification": false,
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_MTG_024",
+      "category": "F_MEETINGS",
+      "categoryName": "Online and Physical Meetings",
+      "utterance": "Rahul ke saath Google Meet par online meeting schedule karo.",
+      "language": "hinglish",
+      "inputMode": "WHISPER_SIMULATED",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "type": "CREATE_EVENT",
+            "destination": "GOOGLE_CALENDAR",
+            "meetingType": "ONLINE_MEETING"
+          }
+        ],
+        "isNegation": false,
+        "isClarification": false,
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_MTG_025",
+      "category": "F_MEETINGS",
+      "categoryName": "Online and Physical Meetings",
+      "utterance": "Client office mein Aman ke saath physical inspection meeting fix karo.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "type": "CREATE_EVENT",
+            "destination": "GOOGLE_CALENDAR",
+            "meetingType": "SITE_MEETING"
+          }
+        ],
+        "isNegation": false,
+        "isClarification": false,
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_MTG_026",
+      "category": "F_MEETINGS",
+      "categoryName": "Online and Physical Meetings",
+      "utterance": "Priya ke saath Google Meet par online meeting schedule karo.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "type": "CREATE_EVENT",
+            "destination": "GOOGLE_CALENDAR",
+            "meetingType": "ONLINE_MEETING"
+          }
+        ],
+        "isNegation": false,
+        "isClarification": false,
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_MTG_027",
+      "category": "F_MEETINGS",
+      "categoryName": "Online and Physical Meetings",
+      "utterance": "Client office mein Neha ke saath physical inspection meeting fix karo.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "type": "CREATE_EVENT",
+            "destination": "GOOGLE_CALENDAR",
+            "meetingType": "SITE_MEETING"
+          }
+        ],
+        "isNegation": false,
+        "isClarification": false,
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_MTG_028",
+      "category": "F_MEETINGS",
+      "categoryName": "Online and Physical Meetings",
+      "utterance": "Reena ke saath Google Meet par online meeting schedule karo.",
+      "language": "hinglish",
+      "inputMode": "WHISPER_SIMULATED",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "type": "CREATE_EVENT",
+            "destination": "GOOGLE_CALENDAR",
+            "meetingType": "ONLINE_MEETING"
+          }
+        ],
+        "isNegation": false,
+        "isClarification": false,
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_MTG_029",
+      "category": "F_MEETINGS",
+      "categoryName": "Online and Physical Meetings",
+      "utterance": "Client office mein Ashok ke saath physical inspection meeting fix karo.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "type": "CREATE_EVENT",
+            "destination": "GOOGLE_CALENDAR",
+            "meetingType": "SITE_MEETING"
+          }
+        ],
+        "isNegation": false,
+        "isClarification": false,
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_MTG_030",
+      "category": "F_MEETINGS",
+      "categoryName": "Online and Physical Meetings",
+      "utterance": "Rahul ke saath Google Meet par online meeting schedule karo.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "type": "CREATE_EVENT",
+            "destination": "GOOGLE_CALENDAR",
+            "meetingType": "ONLINE_MEETING"
+          }
+        ],
+        "isNegation": false,
+        "isClarification": false,
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_LOC_001",
+      "category": "G_LOCATION",
+      "categoryName": "Location-Aware Actions",
+      "utterance": "Master bedroom ke paas cleaning task create karo.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "TASK_MANAGER",
+            "type": "CREATE_TASK"
+          }
+        ],
+        "isNegation": false,
+        "isClarification": false,
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_LOC_002",
+      "category": "G_LOCATION",
+      "categoryName": "Location-Aware Actions",
+      "utterance": "Coal mine site par recording start karni hai.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "MEETING_RECORDER",
+            "type": "LOCATION_AUTOMATION"
+          }
+        ],
+        "isNegation": false,
+        "isClarification": false,
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_LOC_003",
+      "category": "G_LOCATION",
+      "categoryName": "Location-Aware Actions",
+      "utterance": "Master bedroom ke paas cleaning task create karo.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "TASK_MANAGER",
+            "type": "CREATE_TASK"
+          }
+        ],
+        "isNegation": false,
+        "isClarification": false,
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_LOC_004",
+      "category": "G_LOCATION",
+      "categoryName": "Location-Aware Actions",
+      "utterance": "Coal mine site par recording start karni hai.",
+      "language": "hinglish",
+      "inputMode": "WHISPER_SIMULATED",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "MEETING_RECORDER",
+            "type": "LOCATION_AUTOMATION"
+          }
+        ],
+        "isNegation": false,
+        "isClarification": false,
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_LOC_005",
+      "category": "G_LOCATION",
+      "categoryName": "Location-Aware Actions",
+      "utterance": "Master bedroom ke paas cleaning task create karo.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "TASK_MANAGER",
+            "type": "CREATE_TASK"
+          }
+        ],
+        "isNegation": false,
+        "isClarification": false,
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_LOC_006",
+      "category": "G_LOCATION",
+      "categoryName": "Location-Aware Actions",
+      "utterance": "Coal mine site par recording start karni hai.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "MEETING_RECORDER",
+            "type": "LOCATION_AUTOMATION"
+          }
+        ],
+        "isNegation": false,
+        "isClarification": false,
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_LOC_007",
+      "category": "G_LOCATION",
+      "categoryName": "Location-Aware Actions",
+      "utterance": "Master bedroom ke paas cleaning task create karo.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "TASK_MANAGER",
+            "type": "CREATE_TASK"
+          }
+        ],
+        "isNegation": false,
+        "isClarification": false,
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_LOC_008",
+      "category": "G_LOCATION",
+      "categoryName": "Location-Aware Actions",
+      "utterance": "Coal mine site par recording start karni hai.",
+      "language": "hinglish",
+      "inputMode": "WHISPER_SIMULATED",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "MEETING_RECORDER",
+            "type": "LOCATION_AUTOMATION"
+          }
+        ],
+        "isNegation": false,
+        "isClarification": false,
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_LOC_009",
+      "category": "G_LOCATION",
+      "categoryName": "Location-Aware Actions",
+      "utterance": "Master bedroom ke paas cleaning task create karo.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "TASK_MANAGER",
+            "type": "CREATE_TASK"
+          }
+        ],
+        "isNegation": false,
+        "isClarification": false,
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_LOC_010",
+      "category": "G_LOCATION",
+      "categoryName": "Location-Aware Actions",
+      "utterance": "Coal mine site par recording start karni hai.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "MEETING_RECORDER",
+            "type": "LOCATION_AUTOMATION"
+          }
+        ],
+        "isNegation": false,
+        "isClarification": false,
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_LOC_011",
+      "category": "G_LOCATION",
+      "categoryName": "Location-Aware Actions",
+      "utterance": "Master bedroom ke paas cleaning task create karo.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "TASK_MANAGER",
+            "type": "CREATE_TASK"
+          }
+        ],
+        "isNegation": false,
+        "isClarification": false,
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_LOC_012",
+      "category": "G_LOCATION",
+      "categoryName": "Location-Aware Actions",
+      "utterance": "Coal mine site par recording start karni hai.",
+      "language": "hinglish",
+      "inputMode": "WHISPER_SIMULATED",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "MEETING_RECORDER",
+            "type": "LOCATION_AUTOMATION"
+          }
+        ],
+        "isNegation": false,
+        "isClarification": false,
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_LOC_013",
+      "category": "G_LOCATION",
+      "categoryName": "Location-Aware Actions",
+      "utterance": "Master bedroom ke paas cleaning task create karo.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "TASK_MANAGER",
+            "type": "CREATE_TASK"
+          }
+        ],
+        "isNegation": false,
+        "isClarification": false,
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_LOC_014",
+      "category": "G_LOCATION",
+      "categoryName": "Location-Aware Actions",
+      "utterance": "Coal mine site par recording start karni hai.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "MEETING_RECORDER",
+            "type": "LOCATION_AUTOMATION"
+          }
+        ],
+        "isNegation": false,
+        "isClarification": false,
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_LOC_015",
+      "category": "G_LOCATION",
+      "categoryName": "Location-Aware Actions",
+      "utterance": "Master bedroom ke paas cleaning task create karo.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "TASK_MANAGER",
+            "type": "CREATE_TASK"
+          }
+        ],
+        "isNegation": false,
+        "isClarification": false,
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_LOC_016",
+      "category": "G_LOCATION",
+      "categoryName": "Location-Aware Actions",
+      "utterance": "Coal mine site par recording start karni hai.",
+      "language": "hinglish",
+      "inputMode": "WHISPER_SIMULATED",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "MEETING_RECORDER",
+            "type": "LOCATION_AUTOMATION"
+          }
+        ],
+        "isNegation": false,
+        "isClarification": false,
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_LOC_017",
+      "category": "G_LOCATION",
+      "categoryName": "Location-Aware Actions",
+      "utterance": "Master bedroom ke paas cleaning task create karo.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "TASK_MANAGER",
+            "type": "CREATE_TASK"
+          }
+        ],
+        "isNegation": false,
+        "isClarification": false,
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_LOC_018",
+      "category": "G_LOCATION",
+      "categoryName": "Location-Aware Actions",
+      "utterance": "Coal mine site par recording start karni hai.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "MEETING_RECORDER",
+            "type": "LOCATION_AUTOMATION"
+          }
+        ],
+        "isNegation": false,
+        "isClarification": false,
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_LOC_019",
+      "category": "G_LOCATION",
+      "categoryName": "Location-Aware Actions",
+      "utterance": "Master bedroom ke paas cleaning task create karo.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "TASK_MANAGER",
+            "type": "CREATE_TASK"
+          }
+        ],
+        "isNegation": false,
+        "isClarification": false,
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_LOC_020",
+      "category": "G_LOCATION",
+      "categoryName": "Location-Aware Actions",
+      "utterance": "Coal mine site par recording start karni hai.",
+      "language": "hinglish",
+      "inputMode": "WHISPER_SIMULATED",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "MEETING_RECORDER",
+            "type": "LOCATION_AUTOMATION"
+          }
+        ],
+        "isNegation": false,
+        "isClarification": false,
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_LOC_021",
+      "category": "G_LOCATION",
+      "categoryName": "Location-Aware Actions",
+      "utterance": "Master bedroom ke paas cleaning task create karo.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "TASK_MANAGER",
+            "type": "CREATE_TASK"
+          }
+        ],
+        "isNegation": false,
+        "isClarification": false,
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_LOC_022",
+      "category": "G_LOCATION",
+      "categoryName": "Location-Aware Actions",
+      "utterance": "Coal mine site par recording start karni hai.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "MEETING_RECORDER",
+            "type": "LOCATION_AUTOMATION"
+          }
+        ],
+        "isNegation": false,
+        "isClarification": false,
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_LOC_023",
+      "category": "G_LOCATION",
+      "categoryName": "Location-Aware Actions",
+      "utterance": "Master bedroom ke paas cleaning task create karo.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "TASK_MANAGER",
+            "type": "CREATE_TASK"
+          }
+        ],
+        "isNegation": false,
+        "isClarification": false,
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_LOC_024",
+      "category": "G_LOCATION",
+      "categoryName": "Location-Aware Actions",
+      "utterance": "Coal mine site par recording start karni hai.",
+      "language": "hinglish",
+      "inputMode": "WHISPER_SIMULATED",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "MEETING_RECORDER",
+            "type": "LOCATION_AUTOMATION"
+          }
+        ],
+        "isNegation": false,
+        "isClarification": false,
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_LOC_025",
+      "category": "G_LOCATION",
+      "categoryName": "Location-Aware Actions",
+      "utterance": "Master bedroom ke paas cleaning task create karo.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "TASK_MANAGER",
+            "type": "CREATE_TASK"
+          }
+        ],
+        "isNegation": false,
+        "isClarification": false,
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_LOC_026",
+      "category": "G_LOCATION",
+      "categoryName": "Location-Aware Actions",
+      "utterance": "Coal mine site par recording start karni hai.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "MEETING_RECORDER",
+            "type": "LOCATION_AUTOMATION"
+          }
+        ],
+        "isNegation": false,
+        "isClarification": false,
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_LOC_027",
+      "category": "G_LOCATION",
+      "categoryName": "Location-Aware Actions",
+      "utterance": "Master bedroom ke paas cleaning task create karo.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "TASK_MANAGER",
+            "type": "CREATE_TASK"
+          }
+        ],
+        "isNegation": false,
+        "isClarification": false,
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_LOC_028",
+      "category": "G_LOCATION",
+      "categoryName": "Location-Aware Actions",
+      "utterance": "Coal mine site par recording start karni hai.",
+      "language": "hinglish",
+      "inputMode": "WHISPER_SIMULATED",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "MEETING_RECORDER",
+            "type": "LOCATION_AUTOMATION"
+          }
+        ],
+        "isNegation": false,
+        "isClarification": false,
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_LOC_029",
+      "category": "G_LOCATION",
+      "categoryName": "Location-Aware Actions",
+      "utterance": "Master bedroom ke paas cleaning task create karo.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "TASK_MANAGER",
+            "type": "CREATE_TASK"
+          }
+        ],
+        "isNegation": false,
+        "isClarification": false,
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_LOC_030",
+      "category": "G_LOCATION",
+      "categoryName": "Location-Aware Actions",
+      "utterance": "Coal mine site par recording start karni hai.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "MEETING_RECORDER",
+            "type": "LOCATION_AUTOMATION"
+          }
+        ],
+        "isNegation": false,
+        "isClarification": false,
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_CTX_001",
+      "category": "H_CONTEXT",
+      "categoryName": "Contextual Follow-ups",
+      "utterance": "Meeting time change karke 11 baje kar do aur Aman ko update bhej do.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 2,
+        "actions": [
+          {
+            "type": "RESCHEDULE_EVENT",
+            "destination": "GOOGLE_CALENDAR"
+          },
+          {
+            "type": "SEND_WHATSAPP",
+            "destination": "WHATSAPP",
+            "recipient": "Aman Verma"
+          }
+        ],
+        "isNegation": false,
+        "isClarification": false,
+        "isMultiAction": true
+      }
+    },
+    {
+      "id": "RW_CTX_002",
+      "category": "H_CONTEXT",
+      "categoryName": "Contextual Follow-ups",
+      "utterance": "Meeting time change karke 11 baje kar do aur Priya ko update bhej do.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 2,
+        "actions": [
+          {
+            "type": "RESCHEDULE_EVENT",
+            "destination": "GOOGLE_CALENDAR"
+          },
+          {
+            "type": "SEND_WHATSAPP",
+            "destination": "WHATSAPP",
+            "recipient": "Priya Singh"
+          }
+        ],
+        "isNegation": false,
+        "isClarification": false,
+        "isMultiAction": true
+      }
+    },
+    {
+      "id": "RW_CTX_003",
+      "category": "H_CONTEXT",
+      "categoryName": "Contextual Follow-ups",
+      "utterance": "Meeting time change karke 11 baje kar do aur Neha ko update bhej do.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 2,
+        "actions": [
+          {
+            "type": "RESCHEDULE_EVENT",
+            "destination": "GOOGLE_CALENDAR"
+          },
+          {
+            "type": "SEND_WHATSAPP",
+            "destination": "WHATSAPP",
+            "recipient": "Neha Gupta"
+          }
+        ],
+        "isNegation": false,
+        "isClarification": false,
+        "isMultiAction": true
+      }
+    },
+    {
+      "id": "RW_CTX_004",
+      "category": "H_CONTEXT",
+      "categoryName": "Contextual Follow-ups",
+      "utterance": "Meeting time change karke 11 baje kar do aur Reena ko update bhej do.",
+      "language": "hinglish",
+      "inputMode": "WHISPER_SIMULATED",
+      "expected": {
+        "actionCount": 2,
+        "actions": [
+          {
+            "type": "RESCHEDULE_EVENT",
+            "destination": "GOOGLE_CALENDAR"
+          },
+          {
+            "type": "SEND_WHATSAPP",
+            "destination": "WHATSAPP",
+            "recipient": "Reena Sen"
+          }
+        ],
+        "isNegation": false,
+        "isClarification": false,
+        "isMultiAction": true
+      }
+    },
+    {
+      "id": "RW_CTX_005",
+      "category": "H_CONTEXT",
+      "categoryName": "Contextual Follow-ups",
+      "utterance": "Meeting time change karke 11 baje kar do aur Ashok ko update bhej do.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 2,
+        "actions": [
+          {
+            "type": "RESCHEDULE_EVENT",
+            "destination": "GOOGLE_CALENDAR"
+          },
+          {
+            "type": "SEND_WHATSAPP",
+            "destination": "WHATSAPP",
+            "recipient": "Ashok Kumar"
+          }
+        ],
+        "isNegation": false,
+        "isClarification": false,
+        "isMultiAction": true
+      }
+    },
+    {
+      "id": "RW_CTX_006",
+      "category": "H_CONTEXT",
+      "categoryName": "Contextual Follow-ups",
+      "utterance": "Meeting time change karke 11 baje kar do aur Rahul ko update bhej do.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 2,
+        "actions": [
+          {
+            "type": "RESCHEDULE_EVENT",
+            "destination": "GOOGLE_CALENDAR"
+          },
+          {
+            "type": "SEND_WHATSAPP",
+            "destination": "WHATSAPP",
+            "recipient": "Rahul Sharma"
+          }
+        ],
+        "isNegation": false,
+        "isClarification": false,
+        "isMultiAction": true
+      }
+    },
+    {
+      "id": "RW_CTX_007",
+      "category": "H_CONTEXT",
+      "categoryName": "Contextual Follow-ups",
+      "utterance": "Meeting time change karke 11 baje kar do aur Aman ko update bhej do.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 2,
+        "actions": [
+          {
+            "type": "RESCHEDULE_EVENT",
+            "destination": "GOOGLE_CALENDAR"
+          },
+          {
+            "type": "SEND_WHATSAPP",
+            "destination": "WHATSAPP",
+            "recipient": "Aman Verma"
+          }
+        ],
+        "isNegation": false,
+        "isClarification": false,
+        "isMultiAction": true
+      }
+    },
+    {
+      "id": "RW_CTX_008",
+      "category": "H_CONTEXT",
+      "categoryName": "Contextual Follow-ups",
+      "utterance": "Meeting time change karke 11 baje kar do aur Priya ko update bhej do.",
+      "language": "hinglish",
+      "inputMode": "WHISPER_SIMULATED",
+      "expected": {
+        "actionCount": 2,
+        "actions": [
+          {
+            "type": "RESCHEDULE_EVENT",
+            "destination": "GOOGLE_CALENDAR"
+          },
+          {
+            "type": "SEND_WHATSAPP",
+            "destination": "WHATSAPP",
+            "recipient": "Priya Singh"
+          }
+        ],
+        "isNegation": false,
+        "isClarification": false,
+        "isMultiAction": true
+      }
+    },
+    {
+      "id": "RW_CTX_009",
+      "category": "H_CONTEXT",
+      "categoryName": "Contextual Follow-ups",
+      "utterance": "Meeting time change karke 11 baje kar do aur Neha ko update bhej do.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 2,
+        "actions": [
+          {
+            "type": "RESCHEDULE_EVENT",
+            "destination": "GOOGLE_CALENDAR"
+          },
+          {
+            "type": "SEND_WHATSAPP",
+            "destination": "WHATSAPP",
+            "recipient": "Neha Gupta"
+          }
+        ],
+        "isNegation": false,
+        "isClarification": false,
+        "isMultiAction": true
+      }
+    },
+    {
+      "id": "RW_CTX_010",
+      "category": "H_CONTEXT",
+      "categoryName": "Contextual Follow-ups",
+      "utterance": "Meeting time change karke 11 baje kar do aur Reena ko update bhej do.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 2,
+        "actions": [
+          {
+            "type": "RESCHEDULE_EVENT",
+            "destination": "GOOGLE_CALENDAR"
+          },
+          {
+            "type": "SEND_WHATSAPP",
+            "destination": "WHATSAPP",
+            "recipient": "Reena Sen"
+          }
+        ],
+        "isNegation": false,
+        "isClarification": false,
+        "isMultiAction": true
+      }
+    },
+    {
+      "id": "RW_CTX_011",
+      "category": "H_CONTEXT",
+      "categoryName": "Contextual Follow-ups",
+      "utterance": "Meeting time change karke 11 baje kar do aur Ashok ko update bhej do.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 2,
+        "actions": [
+          {
+            "type": "RESCHEDULE_EVENT",
+            "destination": "GOOGLE_CALENDAR"
+          },
+          {
+            "type": "SEND_WHATSAPP",
+            "destination": "WHATSAPP",
+            "recipient": "Ashok Kumar"
+          }
+        ],
+        "isNegation": false,
+        "isClarification": false,
+        "isMultiAction": true
+      }
+    },
+    {
+      "id": "RW_CTX_012",
+      "category": "H_CONTEXT",
+      "categoryName": "Contextual Follow-ups",
+      "utterance": "Meeting time change karke 11 baje kar do aur Rahul ko update bhej do.",
+      "language": "hinglish",
+      "inputMode": "WHISPER_SIMULATED",
+      "expected": {
+        "actionCount": 2,
+        "actions": [
+          {
+            "type": "RESCHEDULE_EVENT",
+            "destination": "GOOGLE_CALENDAR"
+          },
+          {
+            "type": "SEND_WHATSAPP",
+            "destination": "WHATSAPP",
+            "recipient": "Rahul Sharma"
+          }
+        ],
+        "isNegation": false,
+        "isClarification": false,
+        "isMultiAction": true
+      }
+    },
+    {
+      "id": "RW_CTX_013",
+      "category": "H_CONTEXT",
+      "categoryName": "Contextual Follow-ups",
+      "utterance": "Meeting time change karke 11 baje kar do aur Aman ko update bhej do.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 2,
+        "actions": [
+          {
+            "type": "RESCHEDULE_EVENT",
+            "destination": "GOOGLE_CALENDAR"
+          },
+          {
+            "type": "SEND_WHATSAPP",
+            "destination": "WHATSAPP",
+            "recipient": "Aman Verma"
+          }
+        ],
+        "isNegation": false,
+        "isClarification": false,
+        "isMultiAction": true
+      }
+    },
+    {
+      "id": "RW_CTX_014",
+      "category": "H_CONTEXT",
+      "categoryName": "Contextual Follow-ups",
+      "utterance": "Meeting time change karke 11 baje kar do aur Priya ko update bhej do.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 2,
+        "actions": [
+          {
+            "type": "RESCHEDULE_EVENT",
+            "destination": "GOOGLE_CALENDAR"
+          },
+          {
+            "type": "SEND_WHATSAPP",
+            "destination": "WHATSAPP",
+            "recipient": "Priya Singh"
+          }
+        ],
+        "isNegation": false,
+        "isClarification": false,
+        "isMultiAction": true
+      }
+    },
+    {
+      "id": "RW_CTX_015",
+      "category": "H_CONTEXT",
+      "categoryName": "Contextual Follow-ups",
+      "utterance": "Meeting time change karke 11 baje kar do aur Neha ko update bhej do.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 2,
+        "actions": [
+          {
+            "type": "RESCHEDULE_EVENT",
+            "destination": "GOOGLE_CALENDAR"
+          },
+          {
+            "type": "SEND_WHATSAPP",
+            "destination": "WHATSAPP",
+            "recipient": "Neha Gupta"
+          }
+        ],
+        "isNegation": false,
+        "isClarification": false,
+        "isMultiAction": true
+      }
+    },
+    {
+      "id": "RW_CTX_016",
+      "category": "H_CONTEXT",
+      "categoryName": "Contextual Follow-ups",
+      "utterance": "Meeting time change karke 11 baje kar do aur Reena ko update bhej do.",
+      "language": "hinglish",
+      "inputMode": "WHISPER_SIMULATED",
+      "expected": {
+        "actionCount": 2,
+        "actions": [
+          {
+            "type": "RESCHEDULE_EVENT",
+            "destination": "GOOGLE_CALENDAR"
+          },
+          {
+            "type": "SEND_WHATSAPP",
+            "destination": "WHATSAPP",
+            "recipient": "Reena Sen"
+          }
+        ],
+        "isNegation": false,
+        "isClarification": false,
+        "isMultiAction": true
+      }
+    },
+    {
+      "id": "RW_CTX_017",
+      "category": "H_CONTEXT",
+      "categoryName": "Contextual Follow-ups",
+      "utterance": "Meeting time change karke 11 baje kar do aur Ashok ko update bhej do.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 2,
+        "actions": [
+          {
+            "type": "RESCHEDULE_EVENT",
+            "destination": "GOOGLE_CALENDAR"
+          },
+          {
+            "type": "SEND_WHATSAPP",
+            "destination": "WHATSAPP",
+            "recipient": "Ashok Kumar"
+          }
+        ],
+        "isNegation": false,
+        "isClarification": false,
+        "isMultiAction": true
+      }
+    },
+    {
+      "id": "RW_CTX_018",
+      "category": "H_CONTEXT",
+      "categoryName": "Contextual Follow-ups",
+      "utterance": "Meeting time change karke 11 baje kar do aur Rahul ko update bhej do.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 2,
+        "actions": [
+          {
+            "type": "RESCHEDULE_EVENT",
+            "destination": "GOOGLE_CALENDAR"
+          },
+          {
+            "type": "SEND_WHATSAPP",
+            "destination": "WHATSAPP",
+            "recipient": "Rahul Sharma"
+          }
+        ],
+        "isNegation": false,
+        "isClarification": false,
+        "isMultiAction": true
+      }
+    },
+    {
+      "id": "RW_CTX_019",
+      "category": "H_CONTEXT",
+      "categoryName": "Contextual Follow-ups",
+      "utterance": "Meeting time change karke 11 baje kar do aur Aman ko update bhej do.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 2,
+        "actions": [
+          {
+            "type": "RESCHEDULE_EVENT",
+            "destination": "GOOGLE_CALENDAR"
+          },
+          {
+            "type": "SEND_WHATSAPP",
+            "destination": "WHATSAPP",
+            "recipient": "Aman Verma"
+          }
+        ],
+        "isNegation": false,
+        "isClarification": false,
+        "isMultiAction": true
+      }
+    },
+    {
+      "id": "RW_CTX_020",
+      "category": "H_CONTEXT",
+      "categoryName": "Contextual Follow-ups",
+      "utterance": "Meeting time change karke 11 baje kar do aur Priya ko update bhej do.",
+      "language": "hinglish",
+      "inputMode": "WHISPER_SIMULATED",
+      "expected": {
+        "actionCount": 2,
+        "actions": [
+          {
+            "type": "RESCHEDULE_EVENT",
+            "destination": "GOOGLE_CALENDAR"
+          },
+          {
+            "type": "SEND_WHATSAPP",
+            "destination": "WHATSAPP",
+            "recipient": "Priya Singh"
+          }
+        ],
+        "isNegation": false,
+        "isClarification": false,
+        "isMultiAction": true
+      }
+    },
+    {
+      "id": "RW_CTX_021",
+      "category": "H_CONTEXT",
+      "categoryName": "Contextual Follow-ups",
+      "utterance": "Meeting time change karke 11 baje kar do aur Neha ko update bhej do.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 2,
+        "actions": [
+          {
+            "type": "RESCHEDULE_EVENT",
+            "destination": "GOOGLE_CALENDAR"
+          },
+          {
+            "type": "SEND_WHATSAPP",
+            "destination": "WHATSAPP",
+            "recipient": "Neha Gupta"
+          }
+        ],
+        "isNegation": false,
+        "isClarification": false,
+        "isMultiAction": true
+      }
+    },
+    {
+      "id": "RW_CTX_022",
+      "category": "H_CONTEXT",
+      "categoryName": "Contextual Follow-ups",
+      "utterance": "Meeting time change karke 11 baje kar do aur Reena ko update bhej do.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 2,
+        "actions": [
+          {
+            "type": "RESCHEDULE_EVENT",
+            "destination": "GOOGLE_CALENDAR"
+          },
+          {
+            "type": "SEND_WHATSAPP",
+            "destination": "WHATSAPP",
+            "recipient": "Reena Sen"
+          }
+        ],
+        "isNegation": false,
+        "isClarification": false,
+        "isMultiAction": true
+      }
+    },
+    {
+      "id": "RW_CTX_023",
+      "category": "H_CONTEXT",
+      "categoryName": "Contextual Follow-ups",
+      "utterance": "Meeting time change karke 11 baje kar do aur Ashok ko update bhej do.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 2,
+        "actions": [
+          {
+            "type": "RESCHEDULE_EVENT",
+            "destination": "GOOGLE_CALENDAR"
+          },
+          {
+            "type": "SEND_WHATSAPP",
+            "destination": "WHATSAPP",
+            "recipient": "Ashok Kumar"
+          }
+        ],
+        "isNegation": false,
+        "isClarification": false,
+        "isMultiAction": true
+      }
+    },
+    {
+      "id": "RW_CTX_024",
+      "category": "H_CONTEXT",
+      "categoryName": "Contextual Follow-ups",
+      "utterance": "Meeting time change karke 11 baje kar do aur Rahul ko update bhej do.",
+      "language": "hinglish",
+      "inputMode": "WHISPER_SIMULATED",
+      "expected": {
+        "actionCount": 2,
+        "actions": [
+          {
+            "type": "RESCHEDULE_EVENT",
+            "destination": "GOOGLE_CALENDAR"
+          },
+          {
+            "type": "SEND_WHATSAPP",
+            "destination": "WHATSAPP",
+            "recipient": "Rahul Sharma"
+          }
+        ],
+        "isNegation": false,
+        "isClarification": false,
+        "isMultiAction": true
+      }
+    },
+    {
+      "id": "RW_CTX_025",
+      "category": "H_CONTEXT",
+      "categoryName": "Contextual Follow-ups",
+      "utterance": "Meeting time change karke 11 baje kar do aur Aman ko update bhej do.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 2,
+        "actions": [
+          {
+            "type": "RESCHEDULE_EVENT",
+            "destination": "GOOGLE_CALENDAR"
+          },
+          {
+            "type": "SEND_WHATSAPP",
+            "destination": "WHATSAPP",
+            "recipient": "Aman Verma"
+          }
+        ],
+        "isNegation": false,
+        "isClarification": false,
+        "isMultiAction": true
+      }
+    },
+    {
+      "id": "RW_CTX_026",
+      "category": "H_CONTEXT",
+      "categoryName": "Contextual Follow-ups",
+      "utterance": "Meeting time change karke 11 baje kar do aur Priya ko update bhej do.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 2,
+        "actions": [
+          {
+            "type": "RESCHEDULE_EVENT",
+            "destination": "GOOGLE_CALENDAR"
+          },
+          {
+            "type": "SEND_WHATSAPP",
+            "destination": "WHATSAPP",
+            "recipient": "Priya Singh"
+          }
+        ],
+        "isNegation": false,
+        "isClarification": false,
+        "isMultiAction": true
+      }
+    },
+    {
+      "id": "RW_CTX_027",
+      "category": "H_CONTEXT",
+      "categoryName": "Contextual Follow-ups",
+      "utterance": "Meeting time change karke 11 baje kar do aur Neha ko update bhej do.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 2,
+        "actions": [
+          {
+            "type": "RESCHEDULE_EVENT",
+            "destination": "GOOGLE_CALENDAR"
+          },
+          {
+            "type": "SEND_WHATSAPP",
+            "destination": "WHATSAPP",
+            "recipient": "Neha Gupta"
+          }
+        ],
+        "isNegation": false,
+        "isClarification": false,
+        "isMultiAction": true
+      }
+    },
+    {
+      "id": "RW_CTX_028",
+      "category": "H_CONTEXT",
+      "categoryName": "Contextual Follow-ups",
+      "utterance": "Meeting time change karke 11 baje kar do aur Reena ko update bhej do.",
+      "language": "hinglish",
+      "inputMode": "WHISPER_SIMULATED",
+      "expected": {
+        "actionCount": 2,
+        "actions": [
+          {
+            "type": "RESCHEDULE_EVENT",
+            "destination": "GOOGLE_CALENDAR"
+          },
+          {
+            "type": "SEND_WHATSAPP",
+            "destination": "WHATSAPP",
+            "recipient": "Reena Sen"
+          }
+        ],
+        "isNegation": false,
+        "isClarification": false,
+        "isMultiAction": true
+      }
+    },
+    {
+      "id": "RW_CTX_029",
+      "category": "H_CONTEXT",
+      "categoryName": "Contextual Follow-ups",
+      "utterance": "Meeting time change karke 11 baje kar do aur Ashok ko update bhej do.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 2,
+        "actions": [
+          {
+            "type": "RESCHEDULE_EVENT",
+            "destination": "GOOGLE_CALENDAR"
+          },
+          {
+            "type": "SEND_WHATSAPP",
+            "destination": "WHATSAPP",
+            "recipient": "Ashok Kumar"
+          }
+        ],
+        "isNegation": false,
+        "isClarification": false,
+        "isMultiAction": true
+      }
+    },
+    {
+      "id": "RW_CTX_030",
+      "category": "H_CONTEXT",
+      "categoryName": "Contextual Follow-ups",
+      "utterance": "Meeting time change karke 11 baje kar do aur Rahul ko update bhej do.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 2,
+        "actions": [
+          {
+            "type": "RESCHEDULE_EVENT",
+            "destination": "GOOGLE_CALENDAR"
+          },
+          {
+            "type": "SEND_WHATSAPP",
+            "destination": "WHATSAPP",
+            "recipient": "Rahul Sharma"
+          }
+        ],
+        "isNegation": false,
+        "isClarification": false,
+        "isMultiAction": true
+      }
+    },
+    {
+      "id": "RW_AMB_001",
+      "category": "I_AMBIGUITY",
+      "categoryName": "Ambiguity & Error Handling",
+      "utterance": "Usko report bhej do.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "WHATSAPP"
+          }
+        ],
+        "isNegation": false,
+        "isClarification": true,
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_AMB_002",
+      "category": "I_AMBIGUITY",
+      "categoryName": "Ambiguity & Error Handling",
+      "utterance": "Kal meeting fix kar do.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "GOOGLE_CALENDAR"
+          }
+        ],
+        "isNegation": false,
+        "isClarification": true,
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_AMB_003",
+      "category": "I_AMBIGUITY",
+      "categoryName": "Ambiguity & Error Handling",
+      "utterance": "Usko report bhej do.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "WHATSAPP"
+          }
+        ],
+        "isNegation": false,
+        "isClarification": true,
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_AMB_004",
+      "category": "I_AMBIGUITY",
+      "categoryName": "Ambiguity & Error Handling",
+      "utterance": "Kal meeting fix kar do.",
+      "language": "hinglish",
+      "inputMode": "WHISPER_SIMULATED",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "GOOGLE_CALENDAR"
+          }
+        ],
+        "isNegation": false,
+        "isClarification": true,
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_AMB_005",
+      "category": "I_AMBIGUITY",
+      "categoryName": "Ambiguity & Error Handling",
+      "utterance": "Usko report bhej do.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "WHATSAPP"
+          }
+        ],
+        "isNegation": false,
+        "isClarification": true,
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_AMB_006",
+      "category": "I_AMBIGUITY",
+      "categoryName": "Ambiguity & Error Handling",
+      "utterance": "Kal meeting fix kar do.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "GOOGLE_CALENDAR"
+          }
+        ],
+        "isNegation": false,
+        "isClarification": true,
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_AMB_007",
+      "category": "I_AMBIGUITY",
+      "categoryName": "Ambiguity & Error Handling",
+      "utterance": "Usko report bhej do.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "WHATSAPP"
+          }
+        ],
+        "isNegation": false,
+        "isClarification": true,
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_AMB_008",
+      "category": "I_AMBIGUITY",
+      "categoryName": "Ambiguity & Error Handling",
+      "utterance": "Kal meeting fix kar do.",
+      "language": "hinglish",
+      "inputMode": "WHISPER_SIMULATED",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "GOOGLE_CALENDAR"
+          }
+        ],
+        "isNegation": false,
+        "isClarification": true,
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_AMB_009",
+      "category": "I_AMBIGUITY",
+      "categoryName": "Ambiguity & Error Handling",
+      "utterance": "Usko report bhej do.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "WHATSAPP"
+          }
+        ],
+        "isNegation": false,
+        "isClarification": true,
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_AMB_010",
+      "category": "I_AMBIGUITY",
+      "categoryName": "Ambiguity & Error Handling",
+      "utterance": "Kal meeting fix kar do.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "GOOGLE_CALENDAR"
+          }
+        ],
+        "isNegation": false,
+        "isClarification": true,
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_AMB_011",
+      "category": "I_AMBIGUITY",
+      "categoryName": "Ambiguity & Error Handling",
+      "utterance": "Usko report bhej do.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "WHATSAPP"
+          }
+        ],
+        "isNegation": false,
+        "isClarification": true,
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_AMB_012",
+      "category": "I_AMBIGUITY",
+      "categoryName": "Ambiguity & Error Handling",
+      "utterance": "Kal meeting fix kar do.",
+      "language": "hinglish",
+      "inputMode": "WHISPER_SIMULATED",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "GOOGLE_CALENDAR"
+          }
+        ],
+        "isNegation": false,
+        "isClarification": true,
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_AMB_013",
+      "category": "I_AMBIGUITY",
+      "categoryName": "Ambiguity & Error Handling",
+      "utterance": "Usko report bhej do.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "WHATSAPP"
+          }
+        ],
+        "isNegation": false,
+        "isClarification": true,
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_AMB_014",
+      "category": "I_AMBIGUITY",
+      "categoryName": "Ambiguity & Error Handling",
+      "utterance": "Kal meeting fix kar do.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "GOOGLE_CALENDAR"
+          }
+        ],
+        "isNegation": false,
+        "isClarification": true,
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_AMB_015",
+      "category": "I_AMBIGUITY",
+      "categoryName": "Ambiguity & Error Handling",
+      "utterance": "Usko report bhej do.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "WHATSAPP"
+          }
+        ],
+        "isNegation": false,
+        "isClarification": true,
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_AMB_016",
+      "category": "I_AMBIGUITY",
+      "categoryName": "Ambiguity & Error Handling",
+      "utterance": "Kal meeting fix kar do.",
+      "language": "hinglish",
+      "inputMode": "WHISPER_SIMULATED",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "GOOGLE_CALENDAR"
+          }
+        ],
+        "isNegation": false,
+        "isClarification": true,
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_AMB_017",
+      "category": "I_AMBIGUITY",
+      "categoryName": "Ambiguity & Error Handling",
+      "utterance": "Usko report bhej do.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "WHATSAPP"
+          }
+        ],
+        "isNegation": false,
+        "isClarification": true,
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_AMB_018",
+      "category": "I_AMBIGUITY",
+      "categoryName": "Ambiguity & Error Handling",
+      "utterance": "Kal meeting fix kar do.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "GOOGLE_CALENDAR"
+          }
+        ],
+        "isNegation": false,
+        "isClarification": true,
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_AMB_019",
+      "category": "I_AMBIGUITY",
+      "categoryName": "Ambiguity & Error Handling",
+      "utterance": "Usko report bhej do.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "WHATSAPP"
+          }
+        ],
+        "isNegation": false,
+        "isClarification": true,
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_AMB_020",
+      "category": "I_AMBIGUITY",
+      "categoryName": "Ambiguity & Error Handling",
+      "utterance": "Kal meeting fix kar do.",
+      "language": "hinglish",
+      "inputMode": "WHISPER_SIMULATED",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "GOOGLE_CALENDAR"
+          }
+        ],
+        "isNegation": false,
+        "isClarification": true,
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_AMB_021",
+      "category": "I_AMBIGUITY",
+      "categoryName": "Ambiguity & Error Handling",
+      "utterance": "Usko report bhej do.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "WHATSAPP"
+          }
+        ],
+        "isNegation": false,
+        "isClarification": true,
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_AMB_022",
+      "category": "I_AMBIGUITY",
+      "categoryName": "Ambiguity & Error Handling",
+      "utterance": "Kal meeting fix kar do.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "GOOGLE_CALENDAR"
+          }
+        ],
+        "isNegation": false,
+        "isClarification": true,
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_AMB_023",
+      "category": "I_AMBIGUITY",
+      "categoryName": "Ambiguity & Error Handling",
+      "utterance": "Usko report bhej do.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "WHATSAPP"
+          }
+        ],
+        "isNegation": false,
+        "isClarification": true,
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_AMB_024",
+      "category": "I_AMBIGUITY",
+      "categoryName": "Ambiguity & Error Handling",
+      "utterance": "Kal meeting fix kar do.",
+      "language": "hinglish",
+      "inputMode": "WHISPER_SIMULATED",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "GOOGLE_CALENDAR"
+          }
+        ],
+        "isNegation": false,
+        "isClarification": true,
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_AMB_025",
+      "category": "I_AMBIGUITY",
+      "categoryName": "Ambiguity & Error Handling",
+      "utterance": "Usko report bhej do.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "WHATSAPP"
+          }
+        ],
+        "isNegation": false,
+        "isClarification": true,
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_AMB_026",
+      "category": "I_AMBIGUITY",
+      "categoryName": "Ambiguity & Error Handling",
+      "utterance": "Kal meeting fix kar do.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "GOOGLE_CALENDAR"
+          }
+        ],
+        "isNegation": false,
+        "isClarification": true,
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_AMB_027",
+      "category": "I_AMBIGUITY",
+      "categoryName": "Ambiguity & Error Handling",
+      "utterance": "Usko report bhej do.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "WHATSAPP"
+          }
+        ],
+        "isNegation": false,
+        "isClarification": true,
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_AMB_028",
+      "category": "I_AMBIGUITY",
+      "categoryName": "Ambiguity & Error Handling",
+      "utterance": "Kal meeting fix kar do.",
+      "language": "hinglish",
+      "inputMode": "WHISPER_SIMULATED",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "GOOGLE_CALENDAR"
+          }
+        ],
+        "isNegation": false,
+        "isClarification": true,
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_AMB_029",
+      "category": "I_AMBIGUITY",
+      "categoryName": "Ambiguity & Error Handling",
+      "utterance": "Usko report bhej do.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "WHATSAPP"
+          }
+        ],
+        "isNegation": false,
+        "isClarification": true,
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_AMB_030",
+      "category": "I_AMBIGUITY",
+      "categoryName": "Ambiguity & Error Handling",
+      "utterance": "Kal meeting fix kar do.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "GOOGLE_CALENDAR"
+          }
+        ],
+        "isNegation": false,
+        "isClarification": true,
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_NEG_001",
+      "category": "J_NEGATION",
+      "categoryName": "Negation & Corrections",
+      "utterance": "Rahul nahi, Aman ko message bhejna.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "WHATSAPP",
+            "type": "SEND_WHATSAPP",
+            "recipient": "Aman Verma"
+          }
+        ],
+        "isNegation": true,
+        "isClarification": false,
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_NEG_002",
+      "category": "J_NEGATION",
+      "categoryName": "Negation & Corrections",
+      "utterance": "Milk nahi laana, sirf bread laana.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "SHOPPING_LIST",
+            "type": "ADD_ITEM",
+            "item": "Bread"
+          }
+        ],
+        "isNegation": true,
+        "isClarification": false,
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_NEG_003",
+      "category": "J_NEGATION",
+      "categoryName": "Negation & Corrections",
+      "utterance": "Rahul nahi, Aman ko message bhejna.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "WHATSAPP",
+            "type": "SEND_WHATSAPP",
+            "recipient": "Aman Verma"
+          }
+        ],
+        "isNegation": true,
+        "isClarification": false,
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_NEG_004",
+      "category": "J_NEGATION",
+      "categoryName": "Negation & Corrections",
+      "utterance": "Milk nahi laana, sirf bread laana.",
+      "language": "hinglish",
+      "inputMode": "WHISPER_SIMULATED",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "SHOPPING_LIST",
+            "type": "ADD_ITEM",
+            "item": "Bread"
+          }
+        ],
+        "isNegation": true,
+        "isClarification": false,
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_NEG_005",
+      "category": "J_NEGATION",
+      "categoryName": "Negation & Corrections",
+      "utterance": "Rahul nahi, Aman ko message bhejna.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "WHATSAPP",
+            "type": "SEND_WHATSAPP",
+            "recipient": "Aman Verma"
+          }
+        ],
+        "isNegation": true,
+        "isClarification": false,
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_NEG_006",
+      "category": "J_NEGATION",
+      "categoryName": "Negation & Corrections",
+      "utterance": "Milk nahi laana, sirf bread laana.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "SHOPPING_LIST",
+            "type": "ADD_ITEM",
+            "item": "Bread"
+          }
+        ],
+        "isNegation": true,
+        "isClarification": false,
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_NEG_007",
+      "category": "J_NEGATION",
+      "categoryName": "Negation & Corrections",
+      "utterance": "Rahul nahi, Aman ko message bhejna.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "WHATSAPP",
+            "type": "SEND_WHATSAPP",
+            "recipient": "Aman Verma"
+          }
+        ],
+        "isNegation": true,
+        "isClarification": false,
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_NEG_008",
+      "category": "J_NEGATION",
+      "categoryName": "Negation & Corrections",
+      "utterance": "Milk nahi laana, sirf bread laana.",
+      "language": "hinglish",
+      "inputMode": "WHISPER_SIMULATED",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "SHOPPING_LIST",
+            "type": "ADD_ITEM",
+            "item": "Bread"
+          }
+        ],
+        "isNegation": true,
+        "isClarification": false,
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_NEG_009",
+      "category": "J_NEGATION",
+      "categoryName": "Negation & Corrections",
+      "utterance": "Rahul nahi, Aman ko message bhejna.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "WHATSAPP",
+            "type": "SEND_WHATSAPP",
+            "recipient": "Aman Verma"
+          }
+        ],
+        "isNegation": true,
+        "isClarification": false,
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_NEG_010",
+      "category": "J_NEGATION",
+      "categoryName": "Negation & Corrections",
+      "utterance": "Milk nahi laana, sirf bread laana.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "SHOPPING_LIST",
+            "type": "ADD_ITEM",
+            "item": "Bread"
+          }
+        ],
+        "isNegation": true,
+        "isClarification": false,
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_NEG_011",
+      "category": "J_NEGATION",
+      "categoryName": "Negation & Corrections",
+      "utterance": "Rahul nahi, Aman ko message bhejna.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "WHATSAPP",
+            "type": "SEND_WHATSAPP",
+            "recipient": "Aman Verma"
+          }
+        ],
+        "isNegation": true,
+        "isClarification": false,
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_NEG_012",
+      "category": "J_NEGATION",
+      "categoryName": "Negation & Corrections",
+      "utterance": "Milk nahi laana, sirf bread laana.",
+      "language": "hinglish",
+      "inputMode": "WHISPER_SIMULATED",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "SHOPPING_LIST",
+            "type": "ADD_ITEM",
+            "item": "Bread"
+          }
+        ],
+        "isNegation": true,
+        "isClarification": false,
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_NEG_013",
+      "category": "J_NEGATION",
+      "categoryName": "Negation & Corrections",
+      "utterance": "Rahul nahi, Aman ko message bhejna.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "WHATSAPP",
+            "type": "SEND_WHATSAPP",
+            "recipient": "Aman Verma"
+          }
+        ],
+        "isNegation": true,
+        "isClarification": false,
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_NEG_014",
+      "category": "J_NEGATION",
+      "categoryName": "Negation & Corrections",
+      "utterance": "Milk nahi laana, sirf bread laana.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "SHOPPING_LIST",
+            "type": "ADD_ITEM",
+            "item": "Bread"
+          }
+        ],
+        "isNegation": true,
+        "isClarification": false,
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_NEG_015",
+      "category": "J_NEGATION",
+      "categoryName": "Negation & Corrections",
+      "utterance": "Rahul nahi, Aman ko message bhejna.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "WHATSAPP",
+            "type": "SEND_WHATSAPP",
+            "recipient": "Aman Verma"
+          }
+        ],
+        "isNegation": true,
+        "isClarification": false,
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_NEG_016",
+      "category": "J_NEGATION",
+      "categoryName": "Negation & Corrections",
+      "utterance": "Milk nahi laana, sirf bread laana.",
+      "language": "hinglish",
+      "inputMode": "WHISPER_SIMULATED",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "SHOPPING_LIST",
+            "type": "ADD_ITEM",
+            "item": "Bread"
+          }
+        ],
+        "isNegation": true,
+        "isClarification": false,
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_NEG_017",
+      "category": "J_NEGATION",
+      "categoryName": "Negation & Corrections",
+      "utterance": "Rahul nahi, Aman ko message bhejna.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "WHATSAPP",
+            "type": "SEND_WHATSAPP",
+            "recipient": "Aman Verma"
+          }
+        ],
+        "isNegation": true,
+        "isClarification": false,
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_NEG_018",
+      "category": "J_NEGATION",
+      "categoryName": "Negation & Corrections",
+      "utterance": "Milk nahi laana, sirf bread laana.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "SHOPPING_LIST",
+            "type": "ADD_ITEM",
+            "item": "Bread"
+          }
+        ],
+        "isNegation": true,
+        "isClarification": false,
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_NEG_019",
+      "category": "J_NEGATION",
+      "categoryName": "Negation & Corrections",
+      "utterance": "Rahul nahi, Aman ko message bhejna.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "WHATSAPP",
+            "type": "SEND_WHATSAPP",
+            "recipient": "Aman Verma"
+          }
+        ],
+        "isNegation": true,
+        "isClarification": false,
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_NEG_020",
+      "category": "J_NEGATION",
+      "categoryName": "Negation & Corrections",
+      "utterance": "Milk nahi laana, sirf bread laana.",
+      "language": "hinglish",
+      "inputMode": "WHISPER_SIMULATED",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "SHOPPING_LIST",
+            "type": "ADD_ITEM",
+            "item": "Bread"
+          }
+        ],
+        "isNegation": true,
+        "isClarification": false,
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_NEG_021",
+      "category": "J_NEGATION",
+      "categoryName": "Negation & Corrections",
+      "utterance": "Rahul nahi, Aman ko message bhejna.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "WHATSAPP",
+            "type": "SEND_WHATSAPP",
+            "recipient": "Aman Verma"
+          }
+        ],
+        "isNegation": true,
+        "isClarification": false,
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_NEG_022",
+      "category": "J_NEGATION",
+      "categoryName": "Negation & Corrections",
+      "utterance": "Milk nahi laana, sirf bread laana.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "SHOPPING_LIST",
+            "type": "ADD_ITEM",
+            "item": "Bread"
+          }
+        ],
+        "isNegation": true,
+        "isClarification": false,
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_NEG_023",
+      "category": "J_NEGATION",
+      "categoryName": "Negation & Corrections",
+      "utterance": "Rahul nahi, Aman ko message bhejna.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "WHATSAPP",
+            "type": "SEND_WHATSAPP",
+            "recipient": "Aman Verma"
+          }
+        ],
+        "isNegation": true,
+        "isClarification": false,
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_NEG_024",
+      "category": "J_NEGATION",
+      "categoryName": "Negation & Corrections",
+      "utterance": "Milk nahi laana, sirf bread laana.",
+      "language": "hinglish",
+      "inputMode": "WHISPER_SIMULATED",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "SHOPPING_LIST",
+            "type": "ADD_ITEM",
+            "item": "Bread"
+          }
+        ],
+        "isNegation": true,
+        "isClarification": false,
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_NEG_025",
+      "category": "J_NEGATION",
+      "categoryName": "Negation & Corrections",
+      "utterance": "Rahul nahi, Aman ko message bhejna.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "WHATSAPP",
+            "type": "SEND_WHATSAPP",
+            "recipient": "Aman Verma"
+          }
+        ],
+        "isNegation": true,
+        "isClarification": false,
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_NEG_026",
+      "category": "J_NEGATION",
+      "categoryName": "Negation & Corrections",
+      "utterance": "Milk nahi laana, sirf bread laana.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "SHOPPING_LIST",
+            "type": "ADD_ITEM",
+            "item": "Bread"
+          }
+        ],
+        "isNegation": true,
+        "isClarification": false,
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_NEG_027",
+      "category": "J_NEGATION",
+      "categoryName": "Negation & Corrections",
+      "utterance": "Rahul nahi, Aman ko message bhejna.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "WHATSAPP",
+            "type": "SEND_WHATSAPP",
+            "recipient": "Aman Verma"
+          }
+        ],
+        "isNegation": true,
+        "isClarification": false,
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_NEG_028",
+      "category": "J_NEGATION",
+      "categoryName": "Negation & Corrections",
+      "utterance": "Milk nahi laana, sirf bread laana.",
+      "language": "hinglish",
+      "inputMode": "WHISPER_SIMULATED",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "SHOPPING_LIST",
+            "type": "ADD_ITEM",
+            "item": "Bread"
+          }
+        ],
+        "isNegation": true,
+        "isClarification": false,
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_NEG_029",
+      "category": "J_NEGATION",
+      "categoryName": "Negation & Corrections",
+      "utterance": "Rahul nahi, Aman ko message bhejna.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "WHATSAPP",
+            "type": "SEND_WHATSAPP",
+            "recipient": "Aman Verma"
+          }
+        ],
+        "isNegation": true,
+        "isClarification": false,
+        "isMultiAction": false
+      }
+    },
+    {
+      "id": "RW_NEG_030",
+      "category": "J_NEGATION",
+      "categoryName": "Negation & Corrections",
+      "utterance": "Milk nahi laana, sirf bread laana.",
+      "language": "hinglish",
+      "inputMode": "TEXT",
+      "expected": {
+        "actionCount": 1,
+        "actions": [
+          {
+            "destination": "SHOPPING_LIST",
+            "type": "ADD_ITEM",
+            "item": "Bread"
+          }
+        ],
+        "isNegation": true,
+        "isClarification": false,
+        "isMultiAction": false
+      }
+    }
+  ]
+}

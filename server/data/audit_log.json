@@ -1,0 +1,1229 @@
+{
+  "updatedAt": "2026-10-31T07:43:57.334Z",
+  "entries": [
+    {
+      "id": "audit_1793431151754_2l5x",
+      "event": "CALENDAR_EVENT_CREATED",
+      "actionId": "ext_gcal_sclti51t1e548f4t5odp7b8seg",
+      "googleEventId": "sclti51t1e548f4t5odp7b8seg",
+      "title": "Assign the meeting",
+      "operation": "events.import",
+      "result": "SUCCESS",
+      "errorDetails": null,
+      "sessionId": "ses_e0fdf7dd",
+      "timestamp": "2026-10-30T23:54:40.000Z",
+      "details": {
+        "title": "Assign the meeting",
+        "eventId": "sclti51t1e548f4t5odp7b8seg",
+        "googleEventId": "sclti51t1e548f4t5odp7b8seg",
+        "eventLink": "https://www.google.com/calendar/event?eid=c2NsdGk1MXQxZTU0OGY0dDVvZHA3YjhzZWcga3Jpc2gyMzE1MzEwNkBt&ctz=Asia/Kolkata",
+        "calendarId": "primary",
+        "startDateTime": "2026-11-01T05:24:40+05:30",
+        "endDateTime": "2026-11-01T06:24:40+05:30",
+        "operation": "events.import",
+        "result": "SUCCESS",
+        "isVerified": true
+      }
+    },
+    {
+      "id": "audit_1793431151803_6jp0",
+      "event": "CALENDAR_EVENT_CREATED",
+      "actionId": "act_gcal_3audn3cm7722hgj6apci8esqi4",
+      "googleEventId": "3audn3cm7722hgj6apci8esqi4",
+      "title": "Meeting with baje Rahul",
+      "operation": "events.insert",
+      "result": "SUCCESS",
+      "errorDetails": null,
+      "sessionId": "ses_e0fdf7dd",
+      "timestamp": "2026-10-31T00:41:29.000Z",
+      "details": {
+        "title": "Meeting with baje Rahul",
+        "eventId": "3audn3cm7722hgj6apci8esqi4",
+        "googleEventId": "3audn3cm7722hgj6apci8esqi4",
+        "eventLink": "https://www.google.com/calendar/event?eid=M2F1ZG4zY203NzIyaGdqNmFwY2k4ZXNxaTQga3Jpc2gyMzE1MzEwNkBt&ctz=Asia/Kolkata",
+        "calendarId": "primary",
+        "startDateTime": "2026-11-01T10:00:00+05:30",
+        "endDateTime": "2026-11-01T10:30:00+05:30",
+        "operation": "events.insert",
+        "result": "SUCCESS",
+        "isVerified": true
+      }
+    },
+    {
+      "id": "audit_1793431151902_7i7p",
+      "event": "CALENDAR_EVENT_CREATED",
+      "actionId": "act_gcal_l1mktc2ttfhbaejdk9ssbhd43o",
+      "googleEventId": "l1mktc2ttfhbaejdk9ssbhd43o",
+      "title": "Project review",
+      "operation": "events.insert",
+      "result": "SUCCESS",
+      "errorDetails": null,
+      "sessionId": "ses_e0fdf7dd",
+      "timestamp": "2026-10-31T00:45:57.000Z",
+      "details": {
+        "title": "Project review",
+        "eventId": "l1mktc2ttfhbaejdk9ssbhd43o",
+        "googleEventId": "l1mktc2ttfhbaejdk9ssbhd43o",
+        "eventLink": "https://www.google.com/calendar/event?eid=bDFta3RjMnR0ZmhiYWVqZGs5c3NiaGQ0M28ga3Jpc2gyMzE1MzEwNkBt&ctz=Asia/Kolkata",
+        "calendarId": "primary",
+        "startDateTime": "2026-11-01T11:00:00+05:30",
+        "endDateTime": "2026-11-01T11:30:00+05:30",
+        "operation": "events.insert",
+        "result": "SUCCESS",
+        "isVerified": true
+      }
+    },
+    {
+      "id": "audit_1793431151872_271o",
+      "event": "CALENDAR_EVENT_CREATED",
+      "actionId": "ext_gcal_50oub392qifqql88i360cngrg4",
+      "googleEventId": "50oub392qifqql88i360cngrg4",
+      "title": "ActionFlow Production Verification — Asia/Kolkata",
+      "operation": "events.import",
+      "result": "SUCCESS",
+      "errorDetails": null,
+      "sessionId": "ses_e0fdf7dd",
+      "timestamp": "2026-10-31T00:52:52.000Z",
+      "details": {
+        "title": "ActionFlow Production Verification — Asia/Kolkata",
+        "eventId": "50oub392qifqql88i360cngrg4",
+        "googleEventId": "50oub392qifqql88i360cngrg4",
+        "eventLink": "https://www.google.com/calendar/event?eid=NTBvdWIzOTJxaWZxcWw4OGkzNjBjbmdyZzQga3Jpc2gyMzE1MzEwNkBt&ctz=Asia/Kolkata",
+        "calendarId": "primary",
+        "startDateTime": "2026-11-01T10:00:00+05:30",
+        "endDateTime": "2026-11-01T11:00:00+05:30",
+        "operation": "events.import",
+        "result": "SUCCESS",
+        "isVerified": true
+      }
+    },
+    {
+      "id": "audit_1793431151729_habq",
+      "event": "CALENDAR_EVENT_CREATED",
+      "actionId": "act_1793427859149_0",
+      "googleEventId": "t7ds2ut8f4gmrrn93s0255kd14",
+      "title": "Meeting with Shankar Dey",
+      "operation": "events.insert",
+      "result": "SUCCESS",
+      "errorDetails": null,
+      "sessionId": "ses_e0fdf7dd",
+      "timestamp": "2026-10-31T06:24:39.000Z",
+      "details": {
+        "title": "Meeting with Shankar Dey",
+        "eventId": "t7ds2ut8f4gmrrn93s0255kd14",
+        "googleEventId": "t7ds2ut8f4gmrrn93s0255kd14",
+        "eventLink": "https://www.google.com/calendar/event?eid=dDdkczJ1dDhmNGdtcnJuOTNzMDI1NWtkMTQga3Jpc2gyMzE1MzEwNkBt&ctz=Asia/Kolkata",
+        "calendarId": "primary",
+        "startDateTime": "2026-10-31T23:00:00+05:30",
+        "endDateTime": "2026-10-31T23:30:00+05:30",
+        "operation": "events.insert",
+        "result": "SUCCESS",
+        "isVerified": true
+      }
+    },
+    {
+      "id": "audit_1793431151935_nheb",
+      "event": "CALENDAR_EVENT_CREATED",
+      "actionId": "act_1793428497784_0",
+      "googleEventId": "trqighp34tok3e29n9isell7ac",
+      "title": "Meeting with Sangeet",
+      "operation": "events.insert",
+      "result": "SUCCESS",
+      "errorDetails": null,
+      "sessionId": "ses_e0fdf7dd",
+      "timestamp": "2026-10-31T06:35:03.000Z",
+      "details": {
+        "title": "Meeting with Sangeet",
+        "eventId": "trqighp34tok3e29n9isell7ac",
+        "googleEventId": "trqighp34tok3e29n9isell7ac",
+        "eventLink": "https://www.google.com/calendar/event?eid=dHJxaWdocDM0dG9rM2UyOW45aXNlbGw3YWMga3Jpc2gyMzE1MzEwNkBt&ctz=Asia/Kolkata",
+        "calendarId": "primary",
+        "startDateTime": "2026-11-01T11:00:00+05:30",
+        "endDateTime": "2026-11-01T11:30:00+05:30",
+        "operation": "events.insert",
+        "result": "SUCCESS",
+        "isVerified": true
+      }
+    },
+    {
+      "id": "audit_1793430071924_ounu",
+      "event": "CALENDAR_OAUTH_CONNECTED",
+      "actionId": null,
+      "googleEventId": null,
+      "title": null,
+      "operation": "oauth2.token",
+      "result": "SUCCESS",
+      "errorDetails": null,
+      "sessionId": "ses_e0fdf7dd",
+      "timestamp": "2026-10-31T07:01:11.924Z",
+      "details": {
+        "userEmail": "krish23153106@gmail.com",
+        "scopes": "https://www.googleapis.com/auth/calendar.events https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/calendar.readonly openid",
+        "operation": "oauth2.token",
+        "result": "SUCCESS"
+      }
+    },
+    {
+      "id": "audit_1793430096312_k76p",
+      "event": "VOICE_COMMAND_PROCESSED",
+      "actionId": "voice_4d4ce9be-6999-40b0-bb51-fdfee861d4a6",
+      "googleEventId": null,
+      "title": null,
+      "operation": "calendar.operation",
+      "result": "SUCCESS",
+      "errorDetails": null,
+      "sessionId": "ses_e0fdf7dd",
+      "timestamp": "2026-10-31T07:01:36.312Z",
+      "details": {
+        "destinations": [
+          "GOOGLE_CALENDAR"
+        ],
+        "actionCount": 1,
+        "mode": "quick",
+        "ms": 1368,
+        "operation": "calendar.operation",
+        "result": "SUCCESS"
+      }
+    },
+    {
+      "id": "audit_1793430097860_i83x",
+      "event": "ANALYZE_COMPLETED",
+      "actionId": null,
+      "googleEventId": null,
+      "title": null,
+      "operation": "calendar.operation",
+      "result": "SUCCESS",
+      "errorDetails": null,
+      "sessionId": "ses_e0fdf7dd",
+      "timestamp": "2026-10-31T07:01:37.860Z",
+      "details": {
+        "requestId": "d8ef8909-d223-4ff4-955c-a64ebe8b0586",
+        "actionCount": 1,
+        "path": "FAST",
+        "operation": "calendar.operation",
+        "result": "SUCCESS"
+      }
+    },
+    {
+      "id": "audit_1793430104673_5oa7",
+      "event": "EXECUTION_STARTED",
+      "actionId": "act_1793430095582_0",
+      "googleEventId": null,
+      "title": null,
+      "operation": "calendar.operation",
+      "result": "IN_PROGRESS",
+      "errorDetails": null,
+      "sessionId": "ses_e0fdf7dd",
+      "timestamp": "2026-10-31T07:01:44.673Z",
+      "details": {
+        "type": "CREATE_EVENT",
+        "operation": "calendar.operation",
+        "result": "IN_PROGRESS"
+      }
+    },
+    {
+      "id": "audit_1793430106430_ifra",
+      "event": "CALENDAR_EVENT_CREATED",
+      "actionId": "act_1793430095582_0",
+      "googleEventId": "ap7dc9d3thqh69ifn96rglp0u0",
+      "title": "Meeting at 11:00 PM",
+      "operation": "events.insert",
+      "result": "SUCCESS",
+      "errorDetails": null,
+      "sessionId": "ses_e0fdf7dd",
+      "timestamp": "2026-10-31T07:01:46.430Z",
+      "details": {
+        "title": "Meeting at 11:00 PM",
+        "eventId": "ap7dc9d3thqh69ifn96rglp0u0",
+        "eventLink": "https://www.google.com/calendar/event?eid=YXA3ZGM5ZDN0aHFoNjlpZm45NnJnbHAwdTAga3Jpc2gyMzE1MzEwNkBt",
+        "attendees": [
+          "kg20060220@gmail.com"
+        ],
+        "isVerified": true,
+        "googleEventId": "ap7dc9d3thqh69ifn96rglp0u0",
+        "operation": "events.insert",
+        "result": "SUCCESS"
+      }
+    },
+    {
+      "id": "audit_1793430106448_x176",
+      "event": "TASK_CREATED",
+      "actionId": "act_1793430095582_0",
+      "googleEventId": "ap7dc9d3thqh69ifn96rglp0u0",
+      "title": "Meeting at 11:00 PM",
+      "operation": "events.insert",
+      "result": "SUCCESS",
+      "errorDetails": null,
+      "sessionId": "ses_e0fdf7dd",
+      "timestamp": "2026-10-31T07:01:46.448Z",
+      "details": {
+        "title": "Meeting at 11:00 PM",
+        "googleEventId": "ap7dc9d3thqh69ifn96rglp0u0",
+        "resourceType": "GOOGLE_CALENDAR_EVENT",
+        "scheduledStart": "2026-11-01T23:00:00+05:30",
+        "eventId": "ap7dc9d3thqh69ifn96rglp0u0",
+        "operation": "events.insert",
+        "result": "SUCCESS"
+      }
+    },
+    {
+      "id": "audit_1793430106469_7yrn",
+      "event": "EXECUTION_COMPLETED",
+      "actionId": "act_1793430095582_0",
+      "googleEventId": null,
+      "title": null,
+      "operation": "calendar.operation",
+      "result": "SUCCESS",
+      "errorDetails": null,
+      "sessionId": "ses_e0fdf7dd",
+      "timestamp": "2026-10-31T07:01:46.469Z",
+      "details": {
+        "type": "CREATE_EVENT",
+        "status": "COMPLETED",
+        "operation": "calendar.operation",
+        "result": "SUCCESS"
+      }
+    },
+    {
+      "id": "audit_1793431150846_utw8",
+      "event": "CALENDAR_SYNC_STARTED",
+      "actionId": null,
+      "googleEventId": null,
+      "title": "Calendar Sync (all)",
+      "operation": "events.list",
+      "result": "STARTED",
+      "errorDetails": null,
+      "sessionId": "ses_e0fdf7dd",
+      "timestamp": "2026-10-31T07:19:10.846Z",
+      "details": {
+        "title": "Calendar Sync (all)",
+        "calendarId": "primary",
+        "range": "all",
+        "operation": "events.list",
+        "result": "STARTED"
+      }
+    },
+    {
+      "id": "audit_1793431151967_629b",
+      "event": "CALENDAR_SYNC_COMPLETED",
+      "actionId": null,
+      "googleEventId": null,
+      "title": "Calendar Sync Completed (7 events)",
+      "operation": "events.list + reconcile",
+      "result": "SUCCESS",
+      "errorDetails": null,
+      "sessionId": "ses_e0fdf7dd",
+      "timestamp": "2026-10-31T07:19:11.967Z",
+      "details": {
+        "title": "Calendar Sync Completed (7 events)",
+        "calendarId": "primary",
+        "range": "all",
+        "googleEventsCount": 7,
+        "localEventsCount": 5,
+        "mergedEventsCount": 7,
+        "discrepanciesCount": 1,
+        "operation": "events.list + reconcile",
+        "result": "SUCCESS"
+      }
+    },
+    {
+      "id": "audit_1793431227127_cqv8",
+      "event": "CALENDAR_SYNC_STARTED",
+      "actionId": null,
+      "googleEventId": null,
+      "title": "Calendar Sync (all)",
+      "operation": "events.list",
+      "result": "STARTED",
+      "errorDetails": null,
+      "sessionId": "ses_e0fdf7dd",
+      "timestamp": "2026-10-31T07:20:27.127Z",
+      "details": {
+        "title": "Calendar Sync (all)",
+        "calendarId": "primary",
+        "range": "all",
+        "operation": "events.list",
+        "result": "STARTED"
+      }
+    },
+    {
+      "id": "audit_1793431227130_8wvp",
+      "event": "CALENDAR_SYNC_FAILED",
+      "actionId": null,
+      "googleEventId": null,
+      "title": null,
+      "operation": "events.list",
+      "result": "FAILED",
+      "errorDetails": "Google Calendar API retrieval failed (HTTP 503): Service temporarily unavailable or quota exceeded.",
+      "sessionId": "ses_e0fdf7dd",
+      "timestamp": "2026-10-31T07:20:27.130Z",
+      "details": {
+        "calendarId": "primary",
+        "operation": "events.list",
+        "result": "FAILED",
+        "httpStatus": 503,
+        "error": "GOOGLE_CALENDAR_API_UNAVAILABLE",
+        "errorDetails": "Google Calendar API retrieval failed (HTTP 503): Service temporarily unavailable or quota exceeded.",
+        "message": "Google Calendar API retrieval failed (HTTP 503): Service temporarily unavailable or quota exceeded."
+      }
+    },
+    {
+      "id": "audit_1793431237601_1cef",
+      "event": "CALENDAR_SYNC_STARTED",
+      "actionId": null,
+      "googleEventId": null,
+      "title": "Calendar Sync (all)",
+      "operation": "events.list",
+      "result": "STARTED",
+      "errorDetails": null,
+      "sessionId": "ses_e0fdf7dd",
+      "timestamp": "2026-10-31T07:20:37.601Z",
+      "details": {
+        "title": "Calendar Sync (all)",
+        "calendarId": "primary",
+        "range": "all",
+        "operation": "events.list",
+        "result": "STARTED"
+      }
+    },
+    {
+      "id": "audit_1793431238299_tgi6",
+      "event": "CALENDAR_SYNC_COMPLETED",
+      "actionId": null,
+      "googleEventId": null,
+      "title": "Calendar Sync Completed (7 events)",
+      "operation": "events.list + reconcile",
+      "result": "SUCCESS",
+      "errorDetails": null,
+      "sessionId": "ses_e0fdf7dd",
+      "timestamp": "2026-10-31T07:20:38.299Z",
+      "details": {
+        "title": "Calendar Sync Completed (7 events)",
+        "calendarId": "primary",
+        "range": "all",
+        "googleEventsCount": 7,
+        "localEventsCount": 9,
+        "mergedEventsCount": 7,
+        "discrepanciesCount": 1,
+        "operation": "events.list + reconcile",
+        "result": "SUCCESS"
+      }
+    },
+    {
+      "id": "audit_1793431238359_xhp3",
+      "event": "CALENDAR_SYNC_STARTED",
+      "actionId": null,
+      "googleEventId": null,
+      "title": "Calendar Sync (all)",
+      "operation": "events.list",
+      "result": "STARTED",
+      "errorDetails": null,
+      "sessionId": "ses_e0fdf7dd",
+      "timestamp": "2026-10-31T07:20:38.359Z",
+      "details": {
+        "title": "Calendar Sync (all)",
+        "calendarId": "primary",
+        "range": "all",
+        "operation": "events.list",
+        "result": "STARTED"
+      }
+    },
+    {
+      "id": "audit_1793431238910_s47k",
+      "event": "CALENDAR_SYNC_COMPLETED",
+      "actionId": null,
+      "googleEventId": null,
+      "title": "Calendar Sync Completed (7 events)",
+      "operation": "events.list + reconcile",
+      "result": "SUCCESS",
+      "errorDetails": null,
+      "sessionId": "ses_e0fdf7dd",
+      "timestamp": "2026-10-31T07:20:38.910Z",
+      "details": {
+        "title": "Calendar Sync Completed (7 events)",
+        "calendarId": "primary",
+        "range": "all",
+        "googleEventsCount": 7,
+        "localEventsCount": 9,
+        "mergedEventsCount": 7,
+        "discrepanciesCount": 1,
+        "operation": "events.list + reconcile",
+        "result": "SUCCESS"
+      }
+    },
+    {
+      "id": "audit_1793431245549_do0y",
+      "event": "CALENDAR_SYNC_STARTED",
+      "actionId": null,
+      "googleEventId": null,
+      "title": "Calendar Sync (all)",
+      "operation": "events.list",
+      "result": "STARTED",
+      "errorDetails": null,
+      "sessionId": "ses_e0fdf7dd",
+      "timestamp": "2026-10-31T07:20:45.549Z",
+      "details": {
+        "title": "Calendar Sync (all)",
+        "calendarId": "primary",
+        "range": "all",
+        "operation": "events.list",
+        "result": "STARTED"
+      }
+    },
+    {
+      "id": "audit_1793431245559_xa2b",
+      "event": "CALENDAR_SYNC_FAILED",
+      "actionId": null,
+      "googleEventId": null,
+      "title": null,
+      "operation": "events.list",
+      "result": "FAILED",
+      "errorDetails": "Google Calendar API retrieval failed (HTTP 503): Service temporarily unavailable or quota exceeded.",
+      "sessionId": "ses_e0fdf7dd",
+      "timestamp": "2026-10-31T07:20:45.559Z",
+      "details": {
+        "calendarId": "primary",
+        "operation": "events.list",
+        "result": "FAILED",
+        "httpStatus": 503,
+        "error": "GOOGLE_CALENDAR_API_UNAVAILABLE",
+        "errorDetails": "Google Calendar API retrieval failed (HTTP 503): Service temporarily unavailable or quota exceeded.",
+        "message": "Google Calendar API retrieval failed (HTTP 503): Service temporarily unavailable or quota exceeded."
+      }
+    },
+    {
+      "id": "audit_1793431246082_ei35",
+      "event": "CALENDAR_SYNC_STARTED",
+      "actionId": null,
+      "googleEventId": null,
+      "title": "Calendar Sync (all)",
+      "operation": "events.list",
+      "result": "STARTED",
+      "errorDetails": null,
+      "sessionId": "ses_e0fdf7dd",
+      "timestamp": "2026-10-31T07:20:46.082Z",
+      "details": {
+        "title": "Calendar Sync (all)",
+        "calendarId": "primary",
+        "range": "all",
+        "operation": "events.list",
+        "result": "STARTED"
+      }
+    },
+    {
+      "id": "audit_1793431246085_ta6u",
+      "event": "CALENDAR_SYNC_FAILED",
+      "actionId": null,
+      "googleEventId": null,
+      "title": null,
+      "operation": "events.list",
+      "result": "FAILED",
+      "errorDetails": "Google Calendar API retrieval failed (HTTP 503): Service temporarily unavailable or quota exceeded.",
+      "sessionId": "ses_e0fdf7dd",
+      "timestamp": "2026-10-31T07:20:46.085Z",
+      "details": {
+        "calendarId": "primary",
+        "operation": "events.list",
+        "result": "FAILED",
+        "httpStatus": 503,
+        "error": "GOOGLE_CALENDAR_API_UNAVAILABLE",
+        "errorDetails": "Google Calendar API retrieval failed (HTTP 503): Service temporarily unavailable or quota exceeded.",
+        "message": "Google Calendar API retrieval failed (HTTP 503): Service temporarily unavailable or quota exceeded."
+      }
+    },
+    {
+      "id": "audit_1793431246248_qrn6",
+      "event": "CALENDAR_SYNC_STARTED",
+      "actionId": null,
+      "googleEventId": null,
+      "title": "Calendar Sync (all)",
+      "operation": "events.list",
+      "result": "STARTED",
+      "errorDetails": null,
+      "sessionId": "ses_e0fdf7dd",
+      "timestamp": "2026-10-31T07:20:46.248Z",
+      "details": {
+        "title": "Calendar Sync (all)",
+        "calendarId": "primary",
+        "range": "all",
+        "operation": "events.list",
+        "result": "STARTED"
+      }
+    },
+    {
+      "id": "audit_1793431246251_lvyu",
+      "event": "CALENDAR_SYNC_FAILED",
+      "actionId": null,
+      "googleEventId": null,
+      "title": null,
+      "operation": "events.list",
+      "result": "FAILED",
+      "errorDetails": "Google Calendar API retrieval failed (HTTP 503): Service temporarily unavailable or quota exceeded.",
+      "sessionId": "ses_e0fdf7dd",
+      "timestamp": "2026-10-31T07:20:46.251Z",
+      "details": {
+        "calendarId": "primary",
+        "operation": "events.list",
+        "result": "FAILED",
+        "httpStatus": 503,
+        "error": "GOOGLE_CALENDAR_API_UNAVAILABLE",
+        "errorDetails": "Google Calendar API retrieval failed (HTTP 503): Service temporarily unavailable or quota exceeded.",
+        "message": "Google Calendar API retrieval failed (HTTP 503): Service temporarily unavailable or quota exceeded."
+      }
+    },
+    {
+      "id": "audit_1793431248803_6um7",
+      "event": "CALENDAR_SYNC_STARTED",
+      "actionId": null,
+      "googleEventId": null,
+      "title": "Calendar Sync (all)",
+      "operation": "events.list",
+      "result": "STARTED",
+      "errorDetails": null,
+      "sessionId": "ses_e0fdf7dd",
+      "timestamp": "2026-10-31T07:20:48.804Z",
+      "details": {
+        "title": "Calendar Sync (all)",
+        "calendarId": "primary",
+        "range": "all",
+        "operation": "events.list",
+        "result": "STARTED"
+      }
+    },
+    {
+      "id": "audit_1793431249246_l4xl",
+      "event": "CALENDAR_SYNC_COMPLETED",
+      "actionId": null,
+      "googleEventId": null,
+      "title": "Calendar Sync Completed (7 events)",
+      "operation": "events.list + reconcile",
+      "result": "SUCCESS",
+      "errorDetails": null,
+      "sessionId": "ses_e0fdf7dd",
+      "timestamp": "2026-10-31T07:20:49.246Z",
+      "details": {
+        "title": "Calendar Sync Completed (7 events)",
+        "calendarId": "primary",
+        "range": "all",
+        "googleEventsCount": 7,
+        "localEventsCount": 9,
+        "mergedEventsCount": 7,
+        "discrepanciesCount": 1,
+        "operation": "events.list + reconcile",
+        "result": "SUCCESS"
+      }
+    },
+    {
+      "id": "audit_1793431261581_b5bh",
+      "event": "CALENDAR_EVENT_CREATED",
+      "actionId": "diag_test_1793431259798",
+      "googleEventId": "76399e8hbj0brc0k5tdi421ij8",
+      "title": "ActionFlow Verified Test Event",
+      "operation": "events.insert",
+      "result": "SUCCESS",
+      "errorDetails": null,
+      "sessionId": "ses_e0fdf7dd",
+      "timestamp": "2026-10-31T07:21:01.581Z",
+      "details": {
+        "title": "ActionFlow Verified Test Event",
+        "eventId": "76399e8hbj0brc0k5tdi421ij8",
+        "eventLink": "https://www.google.com/calendar/event?eid=NzYzOTllOGhiajBicmMwazV0ZGk0MjFpajgga3Jpc2gyMzE1MzEwNkBt",
+        "attendees": [
+          "test-attendee@example.com"
+        ],
+        "isVerified": true,
+        "googleEventId": "76399e8hbj0brc0k5tdi421ij8",
+        "operation": "events.insert",
+        "result": "SUCCESS"
+      }
+    },
+    {
+      "id": "audit_1793431261593_lcng",
+      "event": "TASK_CREATED",
+      "actionId": "task_diag_test_1793431259798",
+      "googleEventId": "76399e8hbj0brc0k5tdi421ij8",
+      "title": "ActionFlow Verified Test Event",
+      "operation": "events.insert",
+      "result": "SUCCESS",
+      "errorDetails": null,
+      "sessionId": "ses_e0fdf7dd",
+      "timestamp": "2026-10-31T07:21:01.593Z",
+      "details": {
+        "title": "ActionFlow Verified Test Event",
+        "googleEventId": "76399e8hbj0brc0k5tdi421ij8",
+        "resourceType": "GOOGLE_CALENDAR_EVENT",
+        "scheduledStart": "2026-10-31T13:50:59+05:30",
+        "eventId": "76399e8hbj0brc0k5tdi421ij8",
+        "operation": "events.insert",
+        "result": "SUCCESS"
+      }
+    },
+    {
+      "id": "audit_1793431262332_48t7",
+      "event": "CALENDAR_SYNC_STARTED",
+      "actionId": null,
+      "googleEventId": null,
+      "title": "Calendar Sync (all)",
+      "operation": "events.list",
+      "result": "STARTED",
+      "errorDetails": null,
+      "sessionId": "ses_e0fdf7dd",
+      "timestamp": "2026-10-31T07:21:02.332Z",
+      "details": {
+        "title": "Calendar Sync (all)",
+        "calendarId": "primary",
+        "range": "all",
+        "operation": "events.list",
+        "result": "STARTED"
+      }
+    },
+    {
+      "id": "audit_1793431262917_tz4h",
+      "event": "CALENDAR_SYNC_COMPLETED",
+      "actionId": null,
+      "googleEventId": null,
+      "title": "Calendar Sync Completed (8 events)",
+      "operation": "events.list + reconcile",
+      "result": "SUCCESS",
+      "errorDetails": null,
+      "sessionId": "ses_e0fdf7dd",
+      "timestamp": "2026-10-31T07:21:02.917Z",
+      "details": {
+        "title": "Calendar Sync Completed (8 events)",
+        "calendarId": "primary",
+        "range": "all",
+        "googleEventsCount": 8,
+        "localEventsCount": 10,
+        "mergedEventsCount": 8,
+        "discrepanciesCount": 1,
+        "operation": "events.list + reconcile",
+        "result": "SUCCESS"
+      }
+    },
+    {
+      "id": "audit_1793431262968_2d1t",
+      "event": "CALENDAR_SYNC_STARTED",
+      "actionId": null,
+      "googleEventId": null,
+      "title": "Calendar Sync (all)",
+      "operation": "events.list",
+      "result": "STARTED",
+      "errorDetails": null,
+      "sessionId": "ses_e0fdf7dd",
+      "timestamp": "2026-10-31T07:21:02.968Z",
+      "details": {
+        "title": "Calendar Sync (all)",
+        "calendarId": "primary",
+        "range": "all",
+        "operation": "events.list",
+        "result": "STARTED"
+      }
+    },
+    {
+      "id": "audit_1793431263530_i9bs",
+      "event": "CALENDAR_SYNC_COMPLETED",
+      "actionId": null,
+      "googleEventId": null,
+      "title": "Calendar Sync Completed (8 events)",
+      "operation": "events.list + reconcile",
+      "result": "SUCCESS",
+      "errorDetails": null,
+      "sessionId": "ses_e0fdf7dd",
+      "timestamp": "2026-10-31T07:21:03.530Z",
+      "details": {
+        "title": "Calendar Sync Completed (8 events)",
+        "calendarId": "primary",
+        "range": "all",
+        "googleEventsCount": 8,
+        "localEventsCount": 10,
+        "mergedEventsCount": 8,
+        "discrepanciesCount": 1,
+        "operation": "events.list + reconcile",
+        "result": "SUCCESS"
+      }
+    },
+    {
+      "id": "audit_1793431266935_ie71",
+      "event": "CALENDAR_EVENT_DELETED",
+      "actionId": "del_1793431265835",
+      "googleEventId": "76399e8hbj0brc0k5tdi421ij8",
+      "title": null,
+      "operation": "events.delete",
+      "result": "SUCCESS",
+      "errorDetails": null,
+      "sessionId": "ses_e0fdf7dd",
+      "timestamp": "2026-10-31T07:21:06.935Z",
+      "details": {
+        "eventId": "76399e8hbj0brc0k5tdi421ij8",
+        "calendarId": "primary",
+        "httpStatus": 204,
+        "verifiedAbsent": true,
+        "removedAt": "2026-10-31T07:21:06.935Z",
+        "googleEventId": "76399e8hbj0brc0k5tdi421ij8",
+        "operation": "events.delete",
+        "result": "SUCCESS"
+      }
+    },
+    {
+      "id": "audit_1793431267457_f166",
+      "event": "CALENDAR_SYNC_STARTED",
+      "actionId": null,
+      "googleEventId": null,
+      "title": "Calendar Sync (all)",
+      "operation": "events.list",
+      "result": "STARTED",
+      "errorDetails": null,
+      "sessionId": "ses_e0fdf7dd",
+      "timestamp": "2026-10-31T07:21:07.457Z",
+      "details": {
+        "title": "Calendar Sync (all)",
+        "calendarId": "primary",
+        "range": "all",
+        "operation": "events.list",
+        "result": "STARTED"
+      }
+    },
+    {
+      "id": "audit_1793431267992_2qa0",
+      "event": "CALENDAR_SYNC_COMPLETED",
+      "actionId": null,
+      "googleEventId": null,
+      "title": "Calendar Sync Completed (7 events)",
+      "operation": "events.list + reconcile",
+      "result": "SUCCESS",
+      "errorDetails": null,
+      "sessionId": "ses_e0fdf7dd",
+      "timestamp": "2026-10-31T07:21:07.992Z",
+      "details": {
+        "title": "Calendar Sync Completed (7 events)",
+        "calendarId": "primary",
+        "range": "all",
+        "googleEventsCount": 7,
+        "localEventsCount": 10,
+        "mergedEventsCount": 7,
+        "discrepanciesCount": 1,
+        "operation": "events.list + reconcile",
+        "result": "SUCCESS"
+      }
+    },
+    {
+      "id": "audit_1793431268075_eteg",
+      "event": "CALENDAR_SYNC_STARTED",
+      "actionId": null,
+      "googleEventId": null,
+      "title": "Calendar Sync (all)",
+      "operation": "events.list",
+      "result": "STARTED",
+      "errorDetails": null,
+      "sessionId": "ses_e0fdf7dd",
+      "timestamp": "2026-10-31T07:21:08.075Z",
+      "details": {
+        "title": "Calendar Sync (all)",
+        "calendarId": "primary",
+        "range": "all",
+        "operation": "events.list",
+        "result": "STARTED"
+      }
+    },
+    {
+      "id": "audit_1793431268593_ouzh",
+      "event": "CALENDAR_SYNC_COMPLETED",
+      "actionId": null,
+      "googleEventId": null,
+      "title": "Calendar Sync Completed (7 events)",
+      "operation": "events.list + reconcile",
+      "result": "SUCCESS",
+      "errorDetails": null,
+      "sessionId": "ses_e0fdf7dd",
+      "timestamp": "2026-10-31T07:21:08.593Z",
+      "details": {
+        "title": "Calendar Sync Completed (7 events)",
+        "calendarId": "primary",
+        "range": "all",
+        "googleEventsCount": 7,
+        "localEventsCount": 10,
+        "mergedEventsCount": 7,
+        "discrepanciesCount": 1,
+        "operation": "events.list + reconcile",
+        "result": "SUCCESS"
+      }
+    },
+    {
+      "id": "audit_1793431275630_s859",
+      "event": "CALENDAR_SYNC_STARTED",
+      "actionId": null,
+      "googleEventId": null,
+      "title": "Calendar Sync (today)",
+      "operation": "events.list",
+      "result": "STARTED",
+      "errorDetails": null,
+      "sessionId": "ses_e0fdf7dd",
+      "timestamp": "2026-10-31T07:21:15.630Z",
+      "details": {
+        "title": "Calendar Sync (today)",
+        "calendarId": "primary",
+        "range": "today",
+        "operation": "events.list",
+        "result": "STARTED"
+      }
+    },
+    {
+      "id": "audit_1793431276266_bf87",
+      "event": "CALENDAR_SYNC_COMPLETED",
+      "actionId": null,
+      "googleEventId": null,
+      "title": "Calendar Sync Completed (1 events)",
+      "operation": "events.list + reconcile",
+      "result": "SUCCESS",
+      "errorDetails": null,
+      "sessionId": "ses_e0fdf7dd",
+      "timestamp": "2026-10-31T07:21:16.266Z",
+      "details": {
+        "title": "Calendar Sync Completed (1 events)",
+        "calendarId": "primary",
+        "range": "today",
+        "googleEventsCount": 1,
+        "localEventsCount": 10,
+        "mergedEventsCount": 1,
+        "discrepanciesCount": 0,
+        "operation": "events.list + reconcile",
+        "result": "SUCCESS"
+      }
+    },
+    {
+      "id": "audit_1793431277387_3y3o",
+      "event": "CALENDAR_SYNC_STARTED",
+      "actionId": null,
+      "googleEventId": null,
+      "title": "Calendar Sync (upcoming)",
+      "operation": "events.list",
+      "result": "STARTED",
+      "errorDetails": null,
+      "sessionId": "ses_e0fdf7dd",
+      "timestamp": "2026-10-31T07:21:17.387Z",
+      "details": {
+        "title": "Calendar Sync (upcoming)",
+        "calendarId": "primary",
+        "range": "upcoming",
+        "operation": "events.list",
+        "result": "STARTED"
+      }
+    },
+    {
+      "id": "audit_1793431277908_8xlf",
+      "event": "CALENDAR_SYNC_COMPLETED",
+      "actionId": null,
+      "googleEventId": null,
+      "title": "Calendar Sync Completed (7 events)",
+      "operation": "events.list + reconcile",
+      "result": "SUCCESS",
+      "errorDetails": null,
+      "sessionId": "ses_e0fdf7dd",
+      "timestamp": "2026-10-31T07:21:17.908Z",
+      "details": {
+        "title": "Calendar Sync Completed (7 events)",
+        "calendarId": "primary",
+        "range": "upcoming",
+        "googleEventsCount": 7,
+        "localEventsCount": 10,
+        "mergedEventsCount": 7,
+        "discrepanciesCount": 1,
+        "operation": "events.list + reconcile",
+        "result": "SUCCESS"
+      }
+    },
+    {
+      "id": "audit_1793431281334_fu4d",
+      "event": "CALENDAR_SYNC_STARTED",
+      "actionId": null,
+      "googleEventId": null,
+      "title": "Calendar Sync (past)",
+      "operation": "events.list",
+      "result": "STARTED",
+      "errorDetails": null,
+      "sessionId": "ses_e0fdf7dd",
+      "timestamp": "2026-10-31T07:21:21.334Z",
+      "details": {
+        "title": "Calendar Sync (past)",
+        "calendarId": "primary",
+        "range": "past",
+        "operation": "events.list",
+        "result": "STARTED"
+      }
+    },
+    {
+      "id": "audit_1793431281779_etly",
+      "event": "CALENDAR_SYNC_COMPLETED",
+      "actionId": null,
+      "googleEventId": null,
+      "title": "Calendar Sync Completed (0 events)",
+      "operation": "events.list + reconcile",
+      "result": "SUCCESS",
+      "errorDetails": null,
+      "sessionId": "ses_e0fdf7dd",
+      "timestamp": "2026-10-31T07:21:21.779Z",
+      "details": {
+        "title": "Calendar Sync Completed (0 events)",
+        "calendarId": "primary",
+        "range": "past",
+        "googleEventsCount": 0,
+        "localEventsCount": 10,
+        "mergedEventsCount": 0,
+        "discrepanciesCount": 0,
+        "operation": "events.list + reconcile",
+        "result": "SUCCESS"
+      }
+    },
+    {
+      "id": "audit_1793431287217_mow5",
+      "event": "CALENDAR_SYNC_STARTED",
+      "actionId": null,
+      "googleEventId": null,
+      "title": "Calendar Sync (all)",
+      "operation": "events.list",
+      "result": "STARTED",
+      "errorDetails": null,
+      "sessionId": "ses_e0fdf7dd",
+      "timestamp": "2026-10-31T07:21:27.217Z",
+      "details": {
+        "title": "Calendar Sync (all)",
+        "calendarId": "primary",
+        "range": "all",
+        "operation": "events.list",
+        "result": "STARTED"
+      }
+    },
+    {
+      "id": "audit_1793431287924_4r02",
+      "event": "CALENDAR_SYNC_COMPLETED",
+      "actionId": null,
+      "googleEventId": null,
+      "title": "Calendar Sync Completed (7 events)",
+      "operation": "events.list + reconcile",
+      "result": "SUCCESS",
+      "errorDetails": null,
+      "sessionId": "ses_e0fdf7dd",
+      "timestamp": "2026-10-31T07:21:27.924Z",
+      "details": {
+        "title": "Calendar Sync Completed (7 events)",
+        "calendarId": "primary",
+        "range": "all",
+        "googleEventsCount": 7,
+        "localEventsCount": 10,
+        "mergedEventsCount": 7,
+        "discrepanciesCount": 1,
+        "operation": "events.list + reconcile",
+        "result": "SUCCESS"
+      }
+    },
+    {
+      "id": "audit_1793431302586_zbnf",
+      "event": "VOICE_COMMAND_PROCESSED",
+      "actionId": "voice_ba499e9a-787c-4e04-bb8b-58cfced83f78",
+      "googleEventId": null,
+      "title": null,
+      "operation": "calendar.operation",
+      "result": "SUCCESS",
+      "errorDetails": null,
+      "sessionId": "ses_e0fdf7dd",
+      "timestamp": "2026-10-31T07:21:42.586Z",
+      "details": {
+        "destinations": [
+          "WHATSAPP"
+        ],
+        "actionCount": 1,
+        "mode": "quick",
+        "ms": 949,
+        "operation": "calendar.operation",
+        "result": "SUCCESS"
+      }
+    },
+    {
+      "id": "audit_1793431304019_kk2b",
+      "event": "ANALYZE_COMPLETED",
+      "actionId": null,
+      "googleEventId": null,
+      "title": null,
+      "operation": "calendar.operation",
+      "result": "SUCCESS",
+      "errorDetails": null,
+      "sessionId": "ses_e0fdf7dd",
+      "timestamp": "2026-10-31T07:21:44.019Z",
+      "details": {
+        "requestId": "b047a1f3-04a5-41e7-8b5b-dfef9cee3cc7",
+        "actionCount": 1,
+        "path": "FAST",
+        "operation": "calendar.operation",
+        "result": "SUCCESS"
+      }
+    },
+    {
+      "id": "audit_1793431323024_0o7o",
+      "event": "EXECUTION_STARTED",
+      "actionId": "act_1793431302304_0",
+      "googleEventId": null,
+      "title": null,
+      "operation": "calendar.operation",
+      "result": "IN_PROGRESS",
+      "errorDetails": null,
+      "sessionId": "ses_e0fdf7dd",
+      "timestamp": "2026-10-31T07:22:03.024Z",
+      "details": {
+        "type": "SEND_WHATSAPP",
+        "operation": "calendar.operation",
+        "result": "IN_PROGRESS"
+      }
+    },
+    {
+      "id": "audit_1793431323410_acuj",
+      "event": "WHATSAPP_SEND_ATTEMPT",
+      "actionId": "act_1793431302304_0",
+      "googleEventId": null,
+      "title": null,
+      "operation": "calendar.operation",
+      "result": "IN_PROGRESS",
+      "errorDetails": null,
+      "sessionId": "ses_e0fdf7dd",
+      "timestamp": "2026-10-31T07:22:03.410Z",
+      "details": {
+        "messageId": "wmsg_1793431323409_0mtg",
+        "to": "+919044667729",
+        "integrationMode": "TWILIO",
+        "messageLength": 44,
+        "operation": "calendar.operation",
+        "result": "IN_PROGRESS"
+      }
+    },
+    {
+      "id": "audit_1793431324140_s125",
+      "event": "WHATSAPP_FAILED",
+      "actionId": "act_1793431302304_0",
+      "googleEventId": null,
+      "title": null,
+      "operation": "calendar.operation",
+      "result": "FAILED",
+      "errorDetails": "No Twilio trial phone number is assigned for messaging to this destination number. Please add the 'to' number as a verified recipient.",
+      "sessionId": "ses_e0fdf7dd",
+      "timestamp": "2026-10-31T07:22:04.140Z",
+      "details": {
+        "messageId": "wmsg_1793431323409_0mtg",
+        "to": "+919044667729",
+        "integrationMode": "TWILIO",
+        "httpStatus": 422,
+        "code": 572002,
+        "message": "No Twilio trial phone number is assigned for messaging to this destination number. Please add the 'to' number as a verified recipient.",
+        "operation": "calendar.operation",
+        "result": "FAILED",
+        "errorDetails": "No Twilio trial phone number is assigned for messaging to this destination number. Please add the 'to' number as a verified recipient."
+      }
+    },
+    {
+      "id": "audit_1793431324146_pm18",
+      "event": "EXECUTION_FAILED",
+      "actionId": "act_1793431302304_0",
+      "googleEventId": null,
+      "title": null,
+      "operation": "calendar.operation",
+      "result": "FAILED",
+      "errorDetails": "No Twilio trial phone number is assigned for messaging to this destination number. Please add the 'to' number as a verified recipient.",
+      "sessionId": "ses_e0fdf7dd",
+      "timestamp": "2026-10-31T07:22:04.146Z",
+      "details": {
+        "type": "SEND_WHATSAPP",
+        "status": "FAILED",
+        "integrationMode": "TWILIO",
+        "error": "No Twilio trial phone number is assigned for messaging to this destination number. Please add the 'to' number as a verified recipient.",
+        "operation": "calendar.operation",
+        "result": "FAILED",
+        "errorDetails": "No Twilio trial phone number is assigned for messaging to this destination number. Please add the 'to' number as a verified recipient."
+      }
+    },
+    {
+      "id": "audit_1793432636088_tnus",
+      "event": "EXECUTION_STARTED",
+      "actionId": "act_twilio_live_verify_1793432636071",
+      "googleEventId": null,
+      "title": null,
+      "operation": "calendar.operation",
+      "result": "IN_PROGRESS",
+      "errorDetails": null,
+      "sessionId": "ses_live_twilio_verification",
+      "timestamp": "2026-10-31T07:43:56.088Z",
+      "details": {
+        "type": "SEND_WHATSAPP",
+        "operation": "calendar.operation",
+        "result": "IN_PROGRESS"
+      }
+    },
+    {
+      "id": "audit_1793432636103_v148",
+      "event": "WHATSAPP_SEND_ATTEMPT",
+      "actionId": "act_twilio_live_verify_1793432636071",
+      "googleEventId": null,
+      "title": null,
+      "operation": "calendar.operation",
+      "result": "IN_PROGRESS",
+      "errorDetails": null,
+      "sessionId": "ses_live_twilio_verification",
+      "timestamp": "2026-10-31T07:43:56.103Z",
+      "details": {
+        "messageId": "wmsg_1793432636101_oftp",
+        "to": "+917465982627",
+        "integrationMode": "TWILIO",
+        "messageLength": 64,
+        "operation": "calendar.operation",
+        "result": "IN_PROGRESS"
+      }
+    },
+    {
+      "id": "audit_1793432637301_sndi",
+      "event": "WHATSAPP_FAILED",
+      "actionId": "act_twilio_live_verify_1793432636071",
+      "googleEventId": null,
+      "title": null,
+      "operation": "calendar.operation",
+      "result": "FAILED",
+      "errorDetails": null,
+      "sessionId": "ses_live_twilio_verification",
+      "timestamp": "2026-10-31T07:43:57.301Z",
+      "details": {
+        "outcomeType": "PROVIDER_FAILURE",
+        "actionId": "act_twilio_live_verify_1793432636071",
+        "messageId": "wmsg_1793432636101_oftp",
+        "integrationMode": "TWILIO",
+        "twilioErrorCode": 21654,
+        "httpStatus": 400,
+        "senderConfigValid": true,
+        "sender": "whatsapp:+17372508034",
+        "recipientFormatValid": true,
+        "recipient": "whatsapp:+917465982627",
+        "messageSid": null,
+        "errorMessage": "ContentSid Required",
+        "moreInfo": "https://www.twilio.com/docs/errors/21654",
+        "operation": "calendar.operation",
+        "result": "FAILED"
+      }
+    },
+    {
+      "id": "audit_1793432637304_oy6a",
+      "event": "EXECUTION_FAILED",
+      "actionId": "act_twilio_live_verify_1793432636071",
+      "googleEventId": null,
+      "title": null,
+      "operation": "calendar.operation",
+      "result": "FAILED",
+      "errorDetails": "ContentSid Required",
+      "sessionId": "ses_live_twilio_verification",
+      "timestamp": "2026-10-31T07:43:57.304Z",
+      "details": {
+        "type": "SEND_WHATSAPP",
+        "status": "FAILED",
+        "integrationMode": "TWILIO",
+        "errorCode": 21654,
+        "error": "ContentSid Required",
+        "operation": "calendar.operation",
+        "result": "FAILED",
+        "errorDetails": "ContentSid Required"
+      }
+    }
+  ]
+}

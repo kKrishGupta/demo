@@ -1,0 +1,222 @@
+{
+  "updatedAt": "2026-10-31T07:43:57.300Z",
+  "messages": [
+    {
+      "id": "wmsg_1793429383559_gmw0",
+      "actionId": "sim_act_1793429383558",
+      "idempotencyKey": "sim_test_1793429383558",
+      "sessionId": "s2",
+      "recipientName": "Recipient",
+      "recipientPhone": "+919876543210",
+      "messageBody": "Test message",
+      "integrationMode": "SIMULATION",
+      "providerMessageId": "SIM_WA_1793429383559",
+      "status": "SIMULATED",
+      "waUrl": null,
+      "isSimulated": true,
+      "sentAt": null,
+      "deliveredAt": null,
+      "readAt": null,
+      "userConfirmedSentAt": null,
+      "failureReason": null,
+      "attempts": [
+        {
+          "attemptNumber": 1,
+          "timestamp": "2026-10-31T06:49:43.559Z",
+          "integrationMode": "SIMULATION",
+          "status": "SIMULATED",
+          "httpStatus": 200,
+          "providerMessageId": "SIM_WA_1793429383559",
+          "error": null
+        }
+      ],
+      "webhookEvents": [],
+      "createdAt": "2026-10-31T06:49:43.559Z",
+      "updatedAt": "2026-10-31T06:49:43.559Z"
+    },
+    {
+      "id": "wmsg_1793429552330_bbuc",
+      "actionId": "sim_act_1793429552330",
+      "idempotencyKey": "sim_test_1793429552330",
+      "sessionId": "s2",
+      "recipientName": "Recipient",
+      "recipientPhone": "+919876543210",
+      "messageBody": "Test message",
+      "integrationMode": "SIMULATION",
+      "providerMessageId": "SIM_WA_1793429552330",
+      "status": "SIMULATED",
+      "waUrl": null,
+      "isSimulated": true,
+      "sentAt": null,
+      "deliveredAt": null,
+      "readAt": null,
+      "userConfirmedSentAt": null,
+      "failureReason": null,
+      "attempts": [
+        {
+          "attemptNumber": 1,
+          "timestamp": "2026-10-31T06:52:32.330Z",
+          "integrationMode": "SIMULATION",
+          "status": "SIMULATED",
+          "httpStatus": 200,
+          "providerMessageId": "SIM_WA_1793429552330",
+          "error": null
+        }
+      ],
+      "webhookEvents": [],
+      "createdAt": "2026-10-31T06:52:32.330Z",
+      "updatedAt": "2026-10-31T06:52:32.330Z"
+    },
+    {
+      "id": "wmsg_1793429635333_1fny",
+      "actionId": "act_1793429565862_0",
+      "idempotencyKey": "act_1793429565862_0",
+      "sessionId": "ses_e0fdf7dd",
+      "recipientName": "sparsh",
+      "recipientPhone": "+9109044667729",
+      "messageBody": "regarding themeetingg",
+      "integrationMode": "CLICK_TO_CHAT",
+      "providerMessageId": null,
+      "status": "USER_CONFIRMED_SENT",
+      "waUrl": "https://wa.me/9109044667729?text=regarding%20themeetingg",
+      "isSimulated": false,
+      "sentAt": "2026-10-31T06:54:12.341Z",
+      "deliveredAt": null,
+      "readAt": null,
+      "userConfirmedSentAt": "2026-10-31T06:54:12.341Z",
+      "failureReason": null,
+      "attempts": [
+        {
+          "attemptNumber": 1,
+          "timestamp": "2026-10-31T06:53:56.741Z",
+          "integrationMode": "TWILIO",
+          "status": "FAILED",
+          "httpStatus": 422,
+          "providerMessageId": null,
+          "error": "No Twilio trial phone number is assigned for messaging to this destination number. Please add the 'to' number as a verified recipient."
+        },
+        {
+          "attemptNumber": 2,
+          "timestamp": "2026-10-31T06:53:59.202Z",
+          "integrationMode": "CLICK_TO_CHAT",
+          "status": "AWAITING_USER_SEND",
+          "httpStatus": 202,
+          "providerMessageId": null,
+          "error": null
+        }
+      ],
+      "webhookEvents": [],
+      "createdAt": "2026-10-31T06:53:55.333Z",
+      "updatedAt": "2026-10-31T06:54:12.341Z"
+    },
+    {
+      "id": "wmsg_1793431323409_0mtg",
+      "actionId": "act_1793431302304_0",
+      "idempotencyKey": "act_1793431302304_0",
+      "sessionId": "ses_e0fdf7dd",
+      "recipientName": "Spaesh",
+      "recipientPhone": "+919044667729",
+      "messageBody": "i am reaching the college tomorrow at 10 AM.",
+      "integrationMode": "TWILIO",
+      "providerMessageId": null,
+      "status": "FAILED",
+      "waUrl": null,
+      "isSimulated": false,
+      "sentAt": null,
+      "deliveredAt": null,
+      "readAt": null,
+      "userConfirmedSentAt": null,
+      "failureReason": {
+        "httpStatus": 422,
+        "code": 572002,
+        "message": "No Twilio trial phone number is assigned for messaging to this destination number. Please add the 'to' number as a verified recipient."
+      },
+      "attempts": [
+        {
+          "attemptNumber": 1,
+          "timestamp": "2026-10-31T07:22:04.133Z",
+          "integrationMode": "TWILIO",
+          "status": "FAILED",
+          "httpStatus": 422,
+          "providerMessageId": null,
+          "error": "No Twilio trial phone number is assigned for messaging to this destination number. Please add the 'to' number as a verified recipient."
+        }
+      ],
+      "webhookEvents": [],
+      "createdAt": "2026-10-31T07:22:03.409Z",
+      "updatedAt": "2026-10-31T07:22:04.133Z"
+    },
+    {
+      "id": "wmsg_1793432636101_oftp",
+      "actionId": "act_twilio_live_verify_1793432636071",
+      "idempotencyKey": "act_twilio_live_verify_1793432636071",
+      "sessionId": "ses_live_twilio_verification",
+      "recipientName": "Krish (Twilio Sandbox Verified)",
+      "recipientPhone": "+917465982627",
+      "recipientAddress": "whatsapp:+917465982627",
+      "senderAddress": "whatsapp:+17372508034",
+      "messageBody": "Hello! This is a real WhatsApp delivery test from ActionFlow AI.",
+      "integrationMode": "TWILIO",
+      "providerMessageId": null,
+      "twilioMessageSid": null,
+      "providerStatus": null,
+      "dateCreated": null,
+      "dateUpdated": null,
+      "dateSent": null,
+      "errorCode": 21654,
+      "errorMessage": "ContentSid Required",
+      "providerResponse": {
+        "code": 21654,
+        "message": "ContentSid Required",
+        "more_info": "https://www.twilio.com/docs/errors/21654",
+        "status": 400
+      },
+      "status": "FAILED",
+      "waUrl": null,
+      "isSimulated": false,
+      "sentAt": null,
+      "deliveredAt": null,
+      "readAt": null,
+      "userConfirmedSentAt": null,
+      "failureReason": {
+        "outcomeType": "PROVIDER_FAILURE",
+        "httpStatus": 400,
+        "code": 21654,
+        "sender": "whatsapp:+17372508034",
+        "recipient": "whatsapp:+917465982627",
+        "senderConfigValid": true,
+        "recipientFormatValid": true,
+        "message": "ContentSid Required",
+        "moreInfo": "https://www.twilio.com/docs/errors/21654"
+      },
+      "statusHistory": [
+        {
+          "status": "FAILED",
+          "providerStatus": "failed",
+          "timestamp": "2026-10-31T07:43:57.300Z",
+          "details": {
+            "code": 21654,
+            "message": "ContentSid Required"
+          }
+        }
+      ],
+      "attempts": [
+        {
+          "attemptNumber": 1,
+          "timestamp": "2026-10-31T07:43:57.300Z",
+          "integrationMode": "TWILIO",
+          "status": "FAILED",
+          "httpStatus": 400,
+          "providerMessageId": null,
+          "sender": "whatsapp:+17372508034",
+          "recipient": "whatsapp:+917465982627",
+          "errorCode": 21654,
+          "error": "ContentSid Required"
+        }
+      ],
+      "webhookEvents": [],
+      "createdAt": "2026-10-31T07:43:56.101Z",
+      "updatedAt": "2026-10-31T07:43:57.300Z"
+    }
+  ]
+}

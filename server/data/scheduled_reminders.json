@@ -1,0 +1,18 @@
+[
+  {
+    "id": "rem_1793427716238_nkdd",
+    "sessionId": "test_cal_sess_1793427715504",
+    "title": "Deploy Production Release",
+    "description": "",
+    "dueAt": "2026-10-31T06:22:56.238Z",
+    "status": "DISMISSED",
+    "syncGoogleCalendar": false,
+    "googleEventId": null,
+    "notificationMinutes": 15,
+    "recurrence": null,
+    "createdAt": "2026-10-31T06:21:56.238Z",
+    "retryCount": 0,
+    "deliveryLog": [],
+    "dismissedAt": "2026-10-31T06:21:56.241Z"
+  }
+]
