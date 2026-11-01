@@ -689,17 +689,16 @@ export default function VoiceWorkspace({
       setIsListening(false);
       setIsPaused(false);
       setInterimText('');
-      if (wasPaused) {
-        // Recognizer is already stopped while paused — process what we have
-        if (transcriptRef.current?.trim()) {
-          triggerProcessRef.current?.(transcriptRef.current.trim());
-        }
-      } else {
-        recognizerRef.current?.stop();
+      const captured = (transcriptRef.current || transcript || interimText || '').trim();
+      if (captured && captured.length >= 3) {
+        triggerProcessRef.current?.(captured);
       }
+      recognizerRef.current?.stop();
     } else {
       setErrorMsg('');
       setRecordSecs(0);
+      setCommandResult(null);
+      onCommandProcessed?.(null);
       pausedRef.current = false;
       cancelledRef.current = false;
       recognizerRef.current?.start();
@@ -738,6 +737,7 @@ export default function VoiceWorkspace({
     setTranscript('');
     setInterimText('');
     setCommandResult(null);
+    onCommandProcessed?.(null);
     setIsProcessing(false);
     setErrorMsg('');
     setIsEditing(false);
@@ -1066,7 +1066,15 @@ export default function VoiceWorkspace({
               {activeDisplay && (
                 <button
                   type="button"
-                  onClick={() => setIsEditing(!isEditing)}
+                  onClick={() => {
+                    if (isEditing) {
+                      const trimmed = (transcript || '').trim();
+                      if (trimmed && trimmed.length >= 3) {
+                        triggerProcess(trimmed);
+                      }
+                    }
+                    setIsEditing(!isEditing);
+                  }}
                   className="text-xs text-slate-500 hover:text-slate-800 flex items-center gap-1 px-2 py-0.5 rounded hover:bg-slate-100 transition"
                 >
                   <Edit3 className="w-3 h-3" /> {isEditing ? 'Save' : 'Edit Text'}

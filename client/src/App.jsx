@@ -239,8 +239,12 @@ export default function App() {
   // Async server analysis — runs after local extraction, enriches with Gemini intelligence
   // Debounced so it doesn't fire on every keystroke, only after user pauses
   const serverAnalysisTimer = useRef(null);
+  const latestTranscriptRef = useRef('');
+
   const runServerAnalysis = useCallback((transcriptText) => {
     if (serverAnalysisTimer.current) clearTimeout(serverAnalysisTimer.current);
+
+    latestTranscriptRef.current = transcriptText || '';
 
     serverAnalysisTimer.current = setTimeout(async () => {
       if (!transcriptText?.trim() || transcriptText.trim().length < 5) {
@@ -260,7 +264,7 @@ export default function App() {
         });
 
         // Only update if this is still the latest transcript
-        if (transcriptText === rawTranscript || transcriptText === (latestExtraction?.rawTranscript || '')) {
+        if (latestTranscriptRef.current === transcriptText) {
           setIntelligenceResult(result);
         }
       } catch (err) {
@@ -269,7 +273,7 @@ export default function App() {
         setIsAnalyzing(false);
       }
     }, 800); // 800ms debounce
-  }, [selectedIndustry, rawTranscript, latestExtraction]);
+  }, [selectedIndustry]);
 
   // Industry pack switch handler - reapplies extraction under active industry profile
   const handleSelectIndustry = (industryKey) => {
@@ -645,14 +649,19 @@ export default function App() {
               onTaskFormFill={handleExtractDraft}
               onNavigateToRooms={() => setViewMode('rooms')}
               onCommandProcessed={(result) => {
+                if (!result) {
+                  setIntelligenceResult(null);
+                  return;
+                }
                 // Sync server analysis result to ActionPlan display
                 if (result?.actions?.length > 0) {
+                  latestTranscriptRef.current = result.transcript;
                   setIntelligenceResult({
                     requestId: result.commandId,
-                    status: result.stage,
-                    language: result.language,
-                    intent: result.intent,
-                    extractionPath: result.extractionPath,
+                    status: result.stage || 'extracted',
+                    language: result.language || 'en',
+                    intent: result.intent || 'task_create',
+                    extractionPath: result.extractionPath || 'DETERMINISTIC_FAST',
                     actions: result.actions,
                     clarifications: result.clarifications || [],
                     suggestions: [],
@@ -666,13 +675,13 @@ export default function App() {
                       ...(result.geminiWarning?.message ? [result.geminiWarning.message] : [])
                     ],
                     metadata: {
-                      processingTimeMs: result.processingTimeMs,
-                      extractionPath: result.extractionPath,
+                      processingTimeMs: result.processingTimeMs || 0,
+                      extractionPath: result.extractionPath || 'DETERMINISTIC_FAST',
                       taskCount: result.actions.length
                     }
                   });
-                } else if (!result?.commandId) {
-                  // Only invoke fallback /intelligence/analyze if voice command did not already process on server
+                } else if (result?.transcript) {
+                  // Fallback /intelligence/analyze if voice command did not provide actions
                   runServerAnalysis(result.transcript);
                 }
               }}

@@ -74,7 +74,7 @@ const EXPLICIT_ROOM_PATTERNS = [
 const SEMANTIC_OBJECT_ROOM_MAP = [
   // Kitchen items
   {
-    entities: ['bread', 'milk', 'doodh', 'dudh', 'vegetables', 'sabzi', 'grocery', 'atta', 'dal', 'chawal', 'rice', 'oil', 'masala', 'stove', 'gas cylinder', 'crockery', 'bartan', 'utensil', 'dishwasher', 'cookware', 'microwave', 'toaster', 'mixer', 'juicer', 'chai', 'coffee', 'fridge repair', 'refrigerator repair'],
+    entities: ['bread', 'milk', 'doodh', 'dudh', 'vegetables', 'sabzi', 'grocery', 'atta', 'dal', 'chawal', 'rice', 'oil', 'masala', 'stove', 'gas cylinder', 'crockery', 'bartan', 'utensil', 'dishwasher', 'cookware', 'microwave', 'toaster', 'mixer', 'juicer', 'chai', 'coffee', 'fridge', 'refrigerator', 'clean fridge', 'clean the fridge', 'fridge repair', 'refrigerator repair'],
     roomId: 'room_kitchen',
     category: 'Shopping',
     confidence: 0.92,
@@ -82,7 +82,7 @@ const SEMANTIC_OBJECT_ROOM_MAP = [
   },
   // Reception items
   {
-    entities: ['visitor register', 'entry register', 'visitor entry', 'guest register', 'sign-in sheet', 'gate pass', 'visitor badge', 'front desk', 'inward register', 'entry pass'],
+    entities: ['visitor register', 'entry register', 'visitor entry', 'guest register', 'sign-in sheet', 'gate pass', 'visitor badge', 'front desk', 'inward register', 'entry pass', 'water for guests', 'water arrange', 'guests water', 'guest water', 'guests'],
     roomId: 'room_reception',
     category: 'Visitor Management',
     confidence: 0.94,
@@ -90,7 +90,7 @@ const SEMANTIC_OBJECT_ROOM_MAP = [
   },
   // Bedroom items
   {
-    entities: ['bed', 'mattress', 'almirah', 'wardrobe', 'bedsheet', 'pillow', 'blanket', 'nightstand', 'dressing table', 'ac service', 'ac servicing', 'air conditioner service'],
+    entities: ['bed', 'mattress', 'almirah', 'wardrobe', 'bedsheet', 'change bedsheet', 'pillow', 'blanket', 'nightstand', 'dressing table', 'ac service', 'ac servicing', 'air conditioner service'],
     roomId: 'room_bedroom',
     category: 'AC Servicing',
     confidence: 0.88,
@@ -98,7 +98,7 @@ const SEMANTIC_OBJECT_ROOM_MAP = [
   },
   // Bathroom items
   {
-    entities: ['geyser', 'tap', 'nal', 'shower', 'sink', 'commode', 'flush', 'plumbing', 'toilet paper', 'towel', 'soap', 'shampoo', 'drain', 'bathroom leakage'],
+    entities: ['geyser', 'tap', 'nal', 'tap repair', 'bathroom tap', 'shower', 'sink', 'commode', 'flush', 'plumbing', 'toilet paper', 'towel', 'soap', 'shampoo', 'drain', 'bathroom leakage'],
     roomId: 'room_bathroom',
     category: 'Plumbing',
     confidence: 0.93,
@@ -138,7 +138,7 @@ const SEMANTIC_OBJECT_ROOM_MAP = [
   },
   // Parking Area items
   {
-    entities: ['car wash', 'bike wash', 'ev charger', 'tyre puncture', 'tire air', 'garage gate', 'security gate', 'parking slot'],
+    entities: ['car wash', 'wash car', 'car', 'bike wash', 'ev charger', 'tyre puncture', 'tire air', 'garage gate', 'security gate', 'parking slot', 'clean parking', 'parking area clean'],
     roomId: 'room_parking_area',
     category: 'Vehicle Maintenance',
     confidence: 0.92,
@@ -177,7 +177,8 @@ export class RoomClassificationEngine {
     intent = '',
     destination = '',
     sessionId = 'default_session',
-    organizationId = 'org_default'
+    organizationId = 'org_default',
+    contextualRoomId = null
   } = {}) {
     const rawText = String(text || '').trim();
     const lower = rawText.toLowerCase();
@@ -233,7 +234,27 @@ export class RoomClassificationEngine {
       }
     }
 
-    // ─── TIER 2: CONTEXTUAL CONTINUATION (CROSS-TASK CONVERSATION INTELLIGENCE) ──
+    // ─── TIER 2: CONTEXTUAL CONTINUATION (SAME-COMMAND / CONVERSATION INHERITANCE) ──
+    if (contextualRoomId && roomMap.has(contextualRoomId)) {
+      const targetRoom = roomMap.get(contextualRoomId);
+      const isCleaning = /\b(?:clean|saaf|safai|wash|dhona)\b/i.test(rawText);
+      const category = isCleaning ? 'Cleaning / Maintenance' : (targetRoom.categories?.[0] || 'General');
+      const assigned = {
+        roomId: targetRoom.roomId,
+        roomName: targetRoom.name,
+        roomCategory: category,
+        confidenceScore: 0.95,
+        classificationReason: `Inherited active room ${targetRoom.name} from utterance context`,
+        classificationSource: 'CONTEXT_INHERITED',
+        matchedEntities: [targetRoom.name],
+        routingRuleId: `rule_context_${targetRoom.roomId}`,
+        requiresReview: false,
+        outcome: 'AUTO_ASSIGNED'
+      };
+      this._recordSessionContext(sessionId, assigned);
+      return assigned;
+    }
+
     // If the clause begins with an additive connector (e.g. "Aur milk bhi le aana", "And also clean the floor")
     // and a previous task in this same session was assigned to a room within the last 15 minutes:
     if (/^(?:aur|and|also|bhi|uske\s+baad|fir|phir)\b/i.test(rawText) || /\b(?:bhi|also)\s+(?:le\s+aana|laana|karna|kar\s+dena)\b/i.test(rawText)) {

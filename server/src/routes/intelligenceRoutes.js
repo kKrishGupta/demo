@@ -21,6 +21,7 @@ import { auditLog } from '../services/auditService.js';
 import { cacheService, hashString } from '../cache/cacheService.js';
 import { config } from '../config.js';
 import { routeTranscript } from '../services/smartRouterService.js';
+import { semanticDecomposer } from '../services/semanticDecomposer.js';
 
 // ─── Simple field validator (no external deps) ─────────────────────────────────
 function validateFields(obj, rules) {
@@ -303,19 +304,21 @@ router.get('/requests/:id/actions', (req, res) => {
  * For now returns a structured mock that the route tests can validate.
  */
 async function runRuleEngine(transcript, { directory = [], projects = [], departments = [], industry = 'all', referenceDate }) {
-  // In production: import the rule engine from a shared package
-  // For this server build, return a well-formed structural response
+  const decomposed = semanticDecomposer.decompose(transcript, { directory, projects, referenceDate });
+  const firstAction = decomposed[0];
+
   return {
     rawTranscript: transcript,
     normalizedTranscript: transcript.toLowerCase(),
     intent: detectSimpleIntent(transcript),
     isActionable: true,
+    decomposedActions: decomposed,
     fields: {
-      title: extractSimpleTitle(transcript),
+      title: firstAction?.title || extractSimpleTitle(transcript),
       description: '',
-      assigneeId: '',
-      priority: detectPriority(transcript),
-      dueDate: '',
+      assigneeId: firstAction?.assignee?.id || '',
+      priority: firstAction?.priority || detectPriority(transcript),
+      dueDate: firstAction?.deadline || '',
       isRecurring: /\b(daily|weekly|monthly|roz|har\s+\w+)\b/i.test(transcript),
       recurrenceFrequency: detectRecurrence(transcript)
     },
@@ -366,7 +369,39 @@ function buildAnalysisResponse(result, ctx) {
   const { requestId, sessionId, contextResolutions, extractionPath, latencies, totalMs, transcript } = ctx;
 
   const actions = [];
-  if (result.fields?.title) {
+  if (result.decomposedActions && result.decomposedActions.length > 0) {
+    result.decomposedActions.forEach((act, idx) => {
+      actions.push({
+        id: act.id || `action_${requestId}_${idx}`,
+        type: act.type || 'CREATE_TASK',
+        source: 'EXPLICIT_ACTION',
+        title: act.title,
+        description: act.description || '',
+        priority: act.priority || '',
+        assignee: act.assignee || null,
+        deadline: act.deadline || null,
+        isRecurring: act.recurrence ? true : (act.isRecurring || false),
+        recurrenceFrequency: act.recurrenceFrequency || '',
+        executionState: act.requiresApproval ? 'PENDING_APPROVAL' : 'DRAFT',
+        requiresApproval: act.requiresApproval || ['SEND_WHATSAPP', 'SEND_EMAIL', 'CREATE_CALENDAR_EVENT', 'CREATE_EVENT'].includes(act.type),
+        confidence: act.confidence ? { title: act.confidence } : (result.meta?.fieldConfidences || {}),
+        clarificationsNeeded: result.meta?.clarifications || [],
+        warnings: result.meta?.warnings || [],
+        sourceText: act.sourceText || transcript.slice(0, 200),
+        destination: act.destination,
+        destinationLabel: act.destinationLabel,
+        destinationIcon: act.destinationIcon,
+        roomId: act.roomId,
+        roomName: act.roomName,
+        roomCategory: act.roomCategory,
+        classificationConfidence: act.classificationConfidence,
+        classificationReason: act.classificationReason,
+        classificationSource: act.classificationSource,
+        requiresRoomReview: act.requiresRoomReview,
+        roomOutcome: act.roomOutcome
+      });
+    });
+  } else if (result.fields?.title) {
     actions.push({
       id: `action_${requestId}_0`,
       type: detectActionTypeFromResult(result),

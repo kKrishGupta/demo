@@ -37,6 +37,7 @@ export class SemanticDecomposer {
     let lastIdentifiedPerson = null;
     let hasRescheduleContext = false;
     let isOnlineMeetingContext = false;
+    let activeRoomContext = null;
 
     // Scan for broad contextual cues
     if (/\b(?:shift|reschedule|postpone)\b|monday\s+shift/i.test(raw)) {
@@ -48,6 +49,23 @@ export class SemanticDecomposer {
 
     for (const clause of clauses) {
       const lower = clause.toLowerCase().trim();
+
+      // Track active room context if explicitly mentioned in this clause
+      if (/\b(?:kitchen|rasoi|pantry)\b/i.test(clause)) {
+        activeRoomContext = { roomId: 'room_kitchen', roomName: 'Kitchen' };
+      } else if (/\b(?:reception|front\s*desk)\b/i.test(clause)) {
+        activeRoomContext = { roomId: 'room_reception', roomName: 'Reception' };
+      } else if (/\b(?:bedroom|shayan\s*kaksh)\b/i.test(clause)) {
+        activeRoomContext = { roomId: 'room_bedroom', roomName: 'Bedroom' };
+      } else if (/\b(?:parking|garage)\b/i.test(clause)) {
+        activeRoomContext = { roomId: 'room_parking_area', roomName: 'Parking Area' };
+      } else if (/\b(?:bathroom|washroom|toilet)\b/i.test(clause)) {
+        activeRoomContext = { roomId: 'room_bathroom', roomName: 'Bathroom' };
+      } else if (/\b(?:office|cabin|karyalaya)\b/i.test(clause)) {
+        activeRoomContext = { roomId: 'room_office', roomName: 'Office' };
+      } else if (/\b(?:drawing\s*room|baithak)\b/i.test(clause)) {
+        activeRoomContext = { roomId: 'room_drawing_room', roomName: 'Drawing Room' };
+      }
 
       // Check Negation: Do not schedule / don't create meeting / etc.
       if (/\b(?:do\s*not|don't|dont|mat|nahi|never)\s+(?:schedule|book|create|fix|add|set\s*up)\s+(?:a\s+)?(?:meeting|event|call|slot|appointment)\b/i.test(lower) ||
@@ -147,26 +165,49 @@ export class SemanticDecomposer {
 
       // Check D: Shopping clause
       if (this.isShoppingClause(lower)) {
-        const items = shoppingItems.length > 0 ? shoppingItems : this.extractShoppingItems(clause);
-        const resolvedItems = items.length > 0 ? items : ['Grocery item'];
+        const clauseItems = this.extractShoppingItems(clause);
+        const resolvedItems = clauseItems.length > 0 ? clauseItems : (shoppingItems.length > 0 ? shoppingItems : ['Grocery item']);
 
-        for (const item of resolvedItems) {
+        if (resolvedItems.length >= 3) {
+          const itemNames = resolvedItems.map(i => i.toLowerCase());
+          const joinedTitle = `Buy ${itemNames.slice(0, -1).join(', ')} and ${itemNames[itemNames.length - 1]}`;
           actions.push({
             id: `${baseId}_${actionIndex++}`,
-            type: 'ADD_ITEM',
-            title: `Add ${item} to shopping list`,
-            item: item,
+            type: 'CREATE_TASK',
+            title: joinedTitle,
+            items: resolvedItems,
             destination: 'SHOPPING_LIST',
             destinationLabel: 'Shopping List',
             destinationIcon: '🛒',
             destinationColor: 'orange',
             requiresApproval: false,
-            stage: 'EXTRACTED',
-            status: 'EXTRACTED',
+            stage: 'DRAFT',
+            status: 'PENDING_APPROVAL',
             confidence: 0.98,
             sourceText: clause,
-            participantRole: null
+            participantRole: null,
+            contextualRoomId: activeRoomContext?.roomId
           });
+        } else {
+          for (const item of resolvedItems) {
+            actions.push({
+              id: `${baseId}_${actionIndex++}`,
+              type: 'ADD_ITEM',
+              title: `Add ${item} to shopping list`,
+              item: item,
+              destination: 'SHOPPING_LIST',
+              destinationLabel: 'Shopping List',
+              destinationIcon: '🛒',
+              destinationColor: 'orange',
+              requiresApproval: false,
+              stage: 'EXTRACTED',
+              status: 'EXTRACTED',
+              confidence: 0.98,
+              sourceText: clause,
+              participantRole: null,
+              contextualRoomId: activeRoomContext?.roomId
+            });
+          }
         }
         continue;
       }
@@ -500,7 +541,8 @@ export class SemanticDecomposer {
           status: 'EXTRACTED',
           confidence: 0.92,
           sourceText: clause,
-          participantRole: assignee ? 'assignee' : null
+          participantRole: assignee ? 'assignee' : null,
+          contextualRoomId: activeRoomContext?.roomId
         });
       }
     }
@@ -513,7 +555,8 @@ export class SemanticDecomposer {
         intent: act.type,
         destination: act.destination,
         sessionId: context.sessionId || 'default_session',
-        organizationId: context.organizationId || 'org_default'
+        organizationId: context.organizationId || 'org_default',
+        contextualRoomId: act.contextualRoomId
       });
       act.roomId = roomRes.roomId;
       act.roomName = roomRes.roomName;
@@ -537,11 +580,15 @@ export class SemanticDecomposer {
 
     let working = transcript.trim();
 
-    // Protect "bread aur milk" or "<item> aur <item>" from being split into separate clauses
-    working = working.replace(
-      /\b(bread|milk|eggs?|butter|dal|atta|sugar|doodh)\s+(?:aur|and|&)\s+(bread|milk|eggs?|butter|dal|atta|sugar|doodh)\b/gi,
-      (m, g1, g2) => g1 + '__JOIN__' + g2
-    );
+    // Protect multi-item grocery lists e.g. "bread aur milk", "doodh, bread aur eggs" from being split into separate clauses
+    let prev;
+    do {
+      prev = working;
+      working = working.replace(
+        /((?:__JOIN__\w+|\b(?:bread|milk|eggs?|butter|dal|atta|sugar|doodh|dudh|sabzi|fruits?|chawal|rice)))\s*(?:,\s*|\s+(?:aur|and|&)\s+)(bread|milk|eggs?|butter|dal|atta|sugar|doodh|dudh|sabzi|fruits?|chawal|rice)\b/gi,
+        (m, g1, g2) => g1 + '__JOIN__' + g2
+      );
+    } while (working !== prev);
 
     // If whole sentence is a meeting summary discussion (e.g. "Meeting ho gayi, ab summary bhejni hai"), protect from splitting
     if (/meeting\s+ho\s+gayi.*summary\s+bhej/i.test(working)) {
@@ -555,9 +602,9 @@ export class SemanticDecomposer {
 
     // Split on commas followed by verbs/people/clauses or room indicators
     const normalized = working
-      .replace(/,\s*(?=(?:[A-Za-z\u0900-\u097F]+\s+){0,3}(?:ko|se|ke|will|should|par|mein|ka|ki|ke|bata\s+dena|assign|WhatsApp|reception|drawing|living|bedroom|bathroom|office|kitchen|store|parking|meeting|register|lights|service|repair))/gi, ' | ')
+      .replace(/,\s*(?=(?:[A-Za-z\u0900-\u097F]+\s+){0,3}(?:ko|se|ke|will|should|par|mein|ka|ki|ke|bata\s+dena|assign|WhatsApp|reception|drawing|living|bedroom|bathroom|office|kitchen|store|parking|meeting|register|lights|service|repair|clean|saaf|safai|wash|bedsheet|water|guests|tap))/gi, ' | ')
       .replace(/,\s*(?:aur|and|then|uske\s+baad|fir|phir)\s+/gi, ' | ')
-      .replace(/\s+(?:aur|and|then|uske\s+baad|fir|phir|after\s+that|as\s+well\s+as)\s+(?=(?:[A-Za-z\u0900-\u097F]+\s+){0,2}(?:ko|se|ke|par|mein|ka|ki|bata|WhatsApp|parso|kal|aaj|usko|ac|lights|service|repair|meeting|register|bedroom|drawing|office|reception|kitchen))/gi, ' | ')
+      .replace(/\s+(?:aur|and|then|uske\s+baad|fir|phir|after\s+that|as\s+well\s+as)\s+(?=(?:[A-Za-z\u0900-\u097F]+\s+){0,3}(?:ko|se|ke|par|mein|ka|ki|bata|WhatsApp|parso|kal|aaj|usko|ac|lights|service|servicing|repair|clean|saaf|safai|wash|change|badal|arrange|intezam|ready|meeting|register|fridge|refrigerator|bedsheet|car|tap|water|pani|guests|mehman|area|bedroom|drawing|office|reception|kitchen|bathroom|parking|store))/gi, ' | ')
       .replace(/\s+(?:aur|and)\s+(?=(?:reception|drawing|living|bedroom|bathroom|office|kitchen|store|parking|meeting)\b)/gi, ' | ')
       .replace(/\s+(?:aur|and)\s+(?=[A-Za-z\u0900-\u097F]+(?:\s+bhi|\s+laana|\s+le\s+aana))/gi, ' | ')
       .replace(/[.;\n]+/g, ' | ');
@@ -691,12 +738,12 @@ export class SemanticDecomposer {
       return false;
     }
 
-    return /\b(?:task|assign|mangwani|mangwana|karna\s+hai|karega|karegi|report|presentation|testing|cleaning|check|ready\s+rakhna|rakhna|repair|service|servicing|theek|fix|safai|maintenance)\b/i.test(text) ||
-           /\b(?:register|lights?|ac\s+service|service\s+karwana|repair\s+karwani)\b/i.test(text);
+    return /\b(?:task|assign|mangwani|mangwana|karna\s+hai|karni\s+hai|karna|karni|karega|karegi|report|presentation|testing|cleaning|clean|check|ready\s+rakhna|ready\s+karna|ready|rakhna|rakho|repair|service|servicing|theek|thik|fix|safai|saaf|maintenance|wash|washing|change|badalna|badal|arrange|arranging|intezam|vyavastha|karwana|karwani)\b/i.test(text) ||
+           /\b(?:register|visitor\s+register|lights?|ac\s+service|service\s+karwana|repair\s+karwani|repair\s+karwana|car\s+wash|tap\s+repair|bedsheet|water|pani|guests|mehman|fridge|refrigerator|area)\b/i.test(text);
   }
 
   extractShoppingItems(text) {
-    const items = [];
+    const itemsWithIndex = [];
     const lower = text.toLowerCase();
 
     // Check negation for an item: e.g. "Milk nahi laana, sirf bread laana"
@@ -704,16 +751,29 @@ export class SemanticDecomposer {
       return new RegExp(`(?:${itemKey}\\s+(?:nahi|not|mat|nhi)|(?:nahi|not|mat|nhi)\\s+${itemKey}|mat\\s+laana.*${itemKey})`, 'i').test(lower);
     };
 
-    if (/\bbread\b/i.test(lower) && !isNegated('bread')) items.push('Bread');
-    if (/\b(?:milk|doodh|dudh)\b/i.test(lower) && !isNegated('(?:milk|doodh|dudh)')) items.push('Milk');
-    if (/\beggs?\b/i.test(lower) && !isNegated('eggs?')) items.push('Eggs');
-    if (/\bbutter\b/i.test(lower) && !isNegated('butter')) items.push('Butter');
-    if (/\bdal\b/i.test(lower) && !isNegated('dal')) items.push('Dal');
-    if (/\batta\b/i.test(lower) && !isNegated('atta')) items.push('Atta');
-    if (/\bsugar\b/i.test(lower) && !isNegated('sugar')) items.push('Sugar');
-    if (/\bgroceries|grocery\b/i.test(lower) && items.length === 0) items.push('Groceries');
+    const candidates = [
+      { name: 'Bread', regex: /\bbread\b/i, neg: 'bread' },
+      { name: 'Milk', regex: /\b(?:milk|doodh|dudh)\b/i, neg: '(?:milk|doodh|dudh)' },
+      { name: 'Eggs', regex: /\beggs?\b/i, neg: 'eggs?' },
+      { name: 'Butter', regex: /\bbutter\b/i, neg: 'butter' },
+      { name: 'Dal', regex: /\bdal\b/i, neg: 'dal' },
+      { name: 'Atta', regex: /\batta\b/i, neg: 'atta' },
+      { name: 'Sugar', regex: /\bsugar\b/i, neg: 'sugar' }
+    ];
 
-    return items;
+    for (const c of candidates) {
+      const match = c.regex.exec(lower);
+      if (match && !isNegated(c.neg)) {
+        itemsWithIndex.push({ name: c.name, index: match.index });
+      }
+    }
+
+    if (itemsWithIndex.length === 0 && /\bgroceries|grocery\b/i.test(lower)) {
+      return ['Groceries'];
+    }
+
+    itemsWithIndex.sort((a, b) => a.index - b.index);
+    return itemsWithIndex.map(i => i.name);
   }
 
   extractAttendee(clause, directory = []) {
@@ -786,10 +846,16 @@ export class SemanticDecomposer {
       return 'Master bedroom cleaning';
     }
     if (/report/i.test(clause)) return 'Production report';
-    if (/visitor\s+register/i.test(clause)) return 'Prepare visitor entry register';
+    if (/visitor\s+register/i.test(clause)) return 'Prepare visitor register';
+    if (/water/i.test(clause) && /guest/i.test(clause)) return 'Arrange water for guests';
     if (/drawing\s+room/i.test(clause) && /light/i.test(clause)) return 'Repair drawing room lights';
-    if (/bedroom/i.test(clause) && /ac/i.test(clause)) return 'Arrange bedroom AC servicing';
+    if (/ac/i.test(clause) && /service/i.test(clause)) return 'Service bedroom AC';
+    if (/bedsheet/i.test(clause) && /change|badal/i.test(clause)) return 'Change bedsheet';
+    if (/fridge|refrigerator/i.test(clause) && /clean|saaf|safai/i.test(clause)) return 'Clean the fridge';
     if (/fridge|refrigerator/i.test(clause) && /repair/i.test(clause)) return 'Repair refrigerator';
+    if (/parking/i.test(clause) && /clean|saaf/i.test(clause)) return 'Clean parking area';
+    if (/car/i.test(clause) && /wash|dhona/i.test(clause)) return 'Wash the car';
+    if (/tap|nal/i.test(clause) && /repair|theek|thik/i.test(clause)) return 'Repair bathroom tap';
 
     let clean = clause
       .replace(/^[A-Za-z\u0900-\u097F]+\s+(?:ko\s+(?:ye\s+task\s+)?assign\s+(?:karo|kar\s+do)|se\s+)/i, '')

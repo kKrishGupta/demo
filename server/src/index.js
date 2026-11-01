@@ -4,6 +4,9 @@
  * Redis caching, execution gateway, and audit logging.
  */
 
+import { installNetworkResilience } from './utils/networkResilience.js';
+installNetworkResilience();
+
 import express from 'express';
 import { createServer } from 'http';
 import { config, logConfigSummary } from './config.js';

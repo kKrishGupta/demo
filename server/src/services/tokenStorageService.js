@@ -471,7 +471,21 @@ export async function getValidAccessToken(sessionId, { forceRefresh = false } = 
     return conn.accessToken;
   }
 
+  // De-duplicate concurrent refreshes for the same session (several API calls
+  // arriving together previously triggered 4 parallel refresh requests).
+  if (_inFlightRefreshes.has(sessionId)) {
+    return _inFlightRefreshes.get(sessionId);
+  }
   console.log('[TokenStorage] Refreshing access token with Google OAuth token endpoint...');
+  const refreshPromise = performTokenRefresh(sessionId, conn)
+    .finally(() => _inFlightRefreshes.delete(sessionId));
+  _inFlightRefreshes.set(sessionId, refreshPromise);
+  return refreshPromise;
+}
+
+const _inFlightRefreshes = new Map();
+
+async function performTokenRefresh(sessionId, conn) {
   try {
     const res = await fetch('https://oauth2.googleapis.com/token', {
       method: 'POST',

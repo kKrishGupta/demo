@@ -87,6 +87,17 @@ function ActionCard({ action, index, orderedPosition }) {
             <span className="font-medium">{new Date(action.deadline).toLocaleDateString('en-US', { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' })}</span>
           </span>
         )}
+        {action.roomName && (
+          <span className="text-[10px] font-medium bg-blue-50 text-blue-700 px-2 py-0.5 rounded-full border border-blue-200 flex items-center gap-1">
+            <span>🏠</span>
+            <span>{action.roomName}</span>
+          </span>
+        )}
+        {action.roomCategory && (
+          <span className="text-[10px] font-medium bg-slate-100 text-slate-600 px-1.5 py-0.5 rounded">
+            {action.roomCategory}
+          </span>
+        )}
         {action.type && action.type !== 'CREATE_TASK' && (
           <span className="text-[10px] font-mono bg-slate-100 px-1.5 py-0.5 rounded text-slate-600">
             {action.type.replace(/_/g, ' ')}

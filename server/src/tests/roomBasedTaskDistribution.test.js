@@ -378,4 +378,93 @@ describe('ACTIONFLOW AI — INTELLIGENT ROOM-BASED TASK DISTRIBUTION TEST SUITE'
     const orgARooms = listRooms({ organizationId: 'org_alpha' });
     expect(orgARooms.some(r => r.roomId === orgARoom.roomId)).toBe(true);
   });
+
+  // ── TEST 17: User Bug Fix: "Kitchen mein doodh, bread aur eggs le aana aur fridge clean karwana." ──
+  it('17. Bug Fix: Extracts exactly two Kitchen tasks from compound grocery and appliance command with no calendar event', () => {
+    const text = 'Kitchen mein doodh, bread aur eggs le aana aur fridge clean karwana.';
+    const actions = semanticDecomposer.decompose(text, { directory, sessionId: testSession });
+
+    expect(actions).toHaveLength(2);
+
+    const task1 = actions[0];
+    expect(task1.title).toBe('Buy milk, bread and eggs');
+    expect(task1.roomId).toBe('room_kitchen');
+    expect(task1.roomName).toBe('Kitchen');
+    expect(task1.roomCategory).toBe('Shopping');
+    expect(task1.destination).toBe('SHOPPING_LIST');
+
+    const task2 = actions[1];
+    expect(task2.title).toBe('Clean the fridge');
+    expect(task2.roomId).toBe('room_kitchen');
+    expect(task2.roomName).toBe('Kitchen');
+    expect(task2.roomCategory).toBe('Cleaning / Maintenance');
+    expect(task2.destination).toBe('TASK_MANAGER');
+
+    // Verify no calendar event was generated
+    expect(actions.some(a => a.destination === 'GOOGLE_CALENDAR' || a.type === 'CREATE_EVENT' || a.type === 'CREATE_CALENDAR_EVENT')).toBe(false);
+  });
+
+  // ── REGRESSION PROMPTS A through F (Section 7) ───────────────────────────────
+  it('18. Regression Prompt B: "Reception par visitor register ready karna aur guests ke liye water arrange karna."', () => {
+    const text = 'Reception par visitor register ready karna aur guests ke liye water arrange karna.';
+    const actions = semanticDecomposer.decompose(text, { directory, sessionId: testSession });
+
+    expect(actions).toHaveLength(2);
+    expect(actions[0].title).toBe('Prepare visitor register');
+    expect(actions[0].roomId).toBe('room_reception');
+    expect(actions[0].roomName).toBe('Reception');
+
+    expect(actions[1].title).toBe('Arrange water for guests');
+    expect(actions[1].roomId).toBe('room_reception');
+    expect(actions[1].roomName).toBe('Reception');
+  });
+
+  it('19. Regression Prompt C: "Bedroom ka AC service karwana aur bedsheet change karni hai."', () => {
+    const text = 'Bedroom ka AC service karwana aur bedsheet change karni hai.';
+    const actions = semanticDecomposer.decompose(text, { directory, sessionId: testSession });
+
+    expect(actions).toHaveLength(2);
+    expect(actions[0].title).toBe('Service bedroom AC');
+    expect(actions[0].roomId).toBe('room_bedroom');
+    expect(actions[0].roomName).toBe('Bedroom');
+
+    expect(actions[1].title).toBe('Change bedsheet');
+    expect(actions[1].roomId).toBe('room_bedroom');
+    expect(actions[1].roomName).toBe('Bedroom');
+  });
+
+  it('20. Regression Prompt D: "Office mein Rahul ke saath kal 11 baje meeting schedule karni hai."', () => {
+    const text = 'Office mein Rahul ke saath kal 11 baje meeting schedule karni hai.';
+    const actions = semanticDecomposer.decompose(text, { directory, sessionId: testSession });
+
+    expect(actions).toHaveLength(1);
+    expect(actions[0].title).toMatch(/Meeting with Rahul/i);
+    expect(actions[0].destination).toBe('GOOGLE_CALENDAR');
+    expect(actions[0].roomId).toBe('room_office');
+    expect(actions[0].roomName).toBe('Office');
+  });
+
+  it('21. Regression Prompt E: "Parking area clean karwana aur car wash karwani hai."', () => {
+    const text = 'Parking area clean karwana aur car wash karwani hai.';
+    const actions = semanticDecomposer.decompose(text, { directory, sessionId: testSession });
+
+    expect(actions).toHaveLength(2);
+    expect(actions[0].title).toBe('Clean parking area');
+    expect(actions[0].roomId).toBe('room_parking_area');
+    expect(actions[0].roomName).toBe('Parking Area');
+
+    expect(actions[1].title).toBe('Wash the car');
+    expect(actions[1].roomId).toBe('room_parking_area');
+    expect(actions[1].roomName).toBe('Parking Area');
+  });
+
+  it('22. Regression Prompt F: "Bathroom ka tap repair karwana."', () => {
+    const text = 'Bathroom ka tap repair karwana.';
+    const actions = semanticDecomposer.decompose(text, { directory, sessionId: testSession });
+
+    expect(actions).toHaveLength(1);
+    expect(actions[0].title).toBe('Repair bathroom tap');
+    expect(actions[0].roomId).toBe('room_bathroom');
+    expect(actions[0].roomName).toBe('Bathroom');
+  });
 });

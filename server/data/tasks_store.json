@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-31T15:05:37.614Z",
+  "updatedAt": "2026-11-01T08:24:47.541Z",
   "tasks": [
     {
       "id": "act_1793427859149_0",
@@ -291,27 +291,38 @@
           "resourceType": "GOOGLE_CALENDAR_EVENT",
           "calendarId": "primary",
           "calendarName": "Primary (krish23153106@gmail.com)",
-          "eventId": "9a5ut1qhp84u48nsa1ght8d69c",
+          "eventId": null,
           "originalEventId": "9a5ut1qhp84u48nsa1ght8d69c",
           "htmlLink": "https://www.google.com/calendar/event?eid=OWE1dXQxcWhwODR1NDhuc2ExZ2h0OGQ2OWMga3Jpc2gyMzE1MzEwNkBt",
-          "providerStatus": "ACTIVE",
-          "lastVerifiedAt": "2026-10-31T06:30:07.653Z",
+          "providerStatus": "ALREADY_ABSENT",
+          "lastVerifiedAt": "2026-11-01T08:24:37.768Z",
           "lastError": null
         },
         "googleTask": null
       },
-      "googleEventId": "9a5ut1qhp84u48nsa1ght8d69c",
+      "googleEventId": null,
       "originalGoogleEventId": "9a5ut1qhp84u48nsa1ght8d69c",
       "previousGoogleEventIds": [
         "9a5ut1qhp84u48nsa1ght8d69c"
       ],
       "eventLink": "https://www.google.com/calendar/event?eid=OWE1dXQxcWhwODR1NDhuc2ExZ2h0OGQ2OWMga3Jpc2gyMzE1MzEwNkBt",
-      "status": "PENDING",
-      "completed": false,
-      "completedAt": null,
-      "calendarRemovalResult": null,
+      "status": "COMPLETED",
+      "completed": true,
+      "completedAt": "2026-11-01T08:24:37.768Z",
+      "calendarRemovalResult": {
+        "attempted": true,
+        "success": true,
+        "status": "ALREADY_ABSENT",
+        "googleEventId": "9a5ut1qhp84u48nsa1ght8d69c",
+        "calendarId": "primary",
+        "httpStatus": 410,
+        "verifiedAbsent": true,
+        "alreadyAbsent": true,
+        "removedAt": "2026-11-01T08:24:37.735Z",
+        "message": "Event was already absent from Google Calendar (HTTP 404/410)."
+      },
       "createdAt": "2026-10-31T06:30:07.653Z",
-      "updatedAt": "2026-10-31T06:30:07.653Z",
+      "updatedAt": "2026-11-01T08:24:37.768Z",
       "auditTrail": [
         {
           "id": "taud_1793428207653_e4n1",
@@ -326,6 +337,47 @@
             "scheduledEnd": "2026-11-01T10:41:00+05:30",
             "googleEventId": "9a5ut1qhp84u48nsa1ght8d69c",
             "resourceType": "GOOGLE_CALENDAR_EVENT"
+          }
+        },
+        {
+          "id": "taud_1793521477284_k5bf",
+          "event": "TASK_COMPLETION_REQUESTED",
+          "taskId": "act_1793428176651_0",
+          "actionId": "act_1793428176651_0",
+          "googleEventId": "9a5ut1qhp84u48nsa1ght8d69c",
+          "timestamp": "2026-11-01T08:24:37.284Z",
+          "details": {
+            "title": "Meeting with Rahul Sharma",
+            "googleEventId": "9a5ut1qhp84u48nsa1ght8d69c"
+          }
+        },
+        {
+          "id": "taud_1793521477768_7sta",
+          "event": "CALENDAR_EVENT_DELETED",
+          "taskId": "act_1793428176651_0",
+          "actionId": "act_1793428176651_0",
+          "googleEventId": "9a5ut1qhp84u48nsa1ght8d69c",
+          "timestamp": "2026-11-01T08:24:37.768Z",
+          "details": {
+            "googleEventId": "9a5ut1qhp84u48nsa1ght8d69c",
+            "calendarId": "primary",
+            "removalStatus": "ALREADY_ABSENT",
+            "verifiedAbsent": true
+          }
+        },
+        {
+          "id": "taud_1793521477768_1ewr",
+          "event": "TASK_COMPLETED",
+          "taskId": "act_1793428176651_0",
+          "actionId": "act_1793428176651_0",
+          "googleEventId": "9a5ut1qhp84u48nsa1ght8d69c",
+          "timestamp": "2026-11-01T08:24:37.768Z",
+          "details": {
+            "completedAt": "2026-11-01T08:24:37.768Z",
+            "originalTitle": "Meeting with Rahul Sharma",
+            "originalScheduledStart": "2026-11-01T10:11:00+05:30",
+            "originalGoogleEventId": "9a5ut1qhp84u48nsa1ght8d69c",
+            "calendarRemovalStatus": "ALREADY_ABSENT"
           }
         }
       ]
@@ -654,28 +706,39 @@
           "resourceType": "GOOGLE_CALENDAR_EVENT",
           "calendarId": "primary",
           "calendarName": "primary (krish23153106@gmail.com)",
-          "eventId": "3audn3cm7722hgj6apci8esqi4",
+          "eventId": null,
           "originalEventId": "3audn3cm7722hgj6apci8esqi4",
           "htmlLink": "https://www.google.com/calendar/event?eid=M2F1ZG4zY203NzIyaGdqNmFwY2k4ZXNxaTQga3Jpc2gyMzE1MzEwNkBt&ctz=Asia/Kolkata",
-          "providerStatus": "ACTIVE",
-          "lastVerifiedAt": "2026-10-31T15:01:49.150Z",
+          "providerStatus": "DELETED",
+          "lastVerifiedAt": "2026-11-01T08:24:44.471Z",
           "lastError": null
         },
         "googleTask": null
       },
-      "googleEventId": "3audn3cm7722hgj6apci8esqi4",
+      "googleEventId": null,
       "originalGoogleEventId": "3audn3cm7722hgj6apci8esqi4",
       "previousGoogleEventIds": [
         "3audn3cm7722hgj6apci8esqi4"
       ],
       "eventLink": "https://www.google.com/calendar/event?eid=M2F1ZG4zY203NzIyaGdqNmFwY2k4ZXNxaTQga3Jpc2gyMzE1MzEwNkBt&ctz=Asia/Kolkata",
       "sourceOrigin": "ACTIONFLOW_AI",
-      "status": "PENDING",
-      "completed": false,
-      "completedAt": null,
-      "calendarRemovalResult": null,
+      "status": "COMPLETED",
+      "completed": true,
+      "completedAt": "2026-11-01T08:24:44.471Z",
+      "calendarRemovalResult": {
+        "attempted": true,
+        "success": true,
+        "status": "DELETED",
+        "googleEventId": "3audn3cm7722hgj6apci8esqi4",
+        "calendarId": "primary",
+        "httpStatus": 204,
+        "verifiedAbsent": true,
+        "alreadyAbsent": false,
+        "removedAt": "2026-11-01T08:24:44.402Z",
+        "message": "Event deleted from Google Calendar and verified absent."
+      },
       "createdAt": "2026-10-31T00:41:29.000Z",
-      "updatedAt": "2026-10-31T00:41:29.890Z",
+      "updatedAt": "2026-11-01T08:24:44.471Z",
       "auditTrail": [
         {
           "id": "taud_1793431151803_hoem",
@@ -688,6 +751,47 @@
             "title": "Meeting with baje Rahul",
             "googleEventId": "3audn3cm7722hgj6apci8esqi4",
             "sourceOrigin": "ACTIONFLOW_AI"
+          }
+        },
+        {
+          "id": "taud_1793521483179_6or0",
+          "event": "TASK_COMPLETION_REQUESTED",
+          "taskId": "task_gcal_3audn3cm7722hgj6apci8esqi4",
+          "actionId": "act_gcal_3audn3cm7722hgj6apci8esqi4",
+          "googleEventId": "3audn3cm7722hgj6apci8esqi4",
+          "timestamp": "2026-11-01T08:24:43.179Z",
+          "details": {
+            "title": "Meeting with baje Rahul",
+            "googleEventId": "3audn3cm7722hgj6apci8esqi4"
+          }
+        },
+        {
+          "id": "taud_1793521484471_lgz6",
+          "event": "CALENDAR_EVENT_DELETED",
+          "taskId": "task_gcal_3audn3cm7722hgj6apci8esqi4",
+          "actionId": "act_gcal_3audn3cm7722hgj6apci8esqi4",
+          "googleEventId": "3audn3cm7722hgj6apci8esqi4",
+          "timestamp": "2026-11-01T08:24:44.471Z",
+          "details": {
+            "googleEventId": "3audn3cm7722hgj6apci8esqi4",
+            "calendarId": "primary",
+            "removalStatus": "DELETED",
+            "verifiedAbsent": true
+          }
+        },
+        {
+          "id": "taud_1793521484471_x10r",
+          "event": "TASK_COMPLETED",
+          "taskId": "task_gcal_3audn3cm7722hgj6apci8esqi4",
+          "actionId": "act_gcal_3audn3cm7722hgj6apci8esqi4",
+          "googleEventId": "3audn3cm7722hgj6apci8esqi4",
+          "timestamp": "2026-11-01T08:24:44.471Z",
+          "details": {
+            "completedAt": "2026-11-01T08:24:44.471Z",
+            "originalTitle": "Meeting with baje Rahul",
+            "originalScheduledStart": "2026-11-01T10:00:00+05:30",
+            "originalGoogleEventId": "3audn3cm7722hgj6apci8esqi4",
+            "calendarRemovalStatus": "DELETED"
           }
         }
       ]
@@ -718,28 +822,39 @@
           "resourceType": "GOOGLE_CALENDAR_EVENT",
           "calendarId": "primary",
           "calendarName": "primary (krish23153106@gmail.com)",
-          "eventId": "50oub392qifqql88i360cngrg4",
+          "eventId": null,
           "originalEventId": "50oub392qifqql88i360cngrg4",
           "htmlLink": "https://www.google.com/calendar/event?eid=NTBvdWIzOTJxaWZxcWw4OGkzNjBjbmdyZzQga3Jpc2gyMzE1MzEwNkBt&ctz=Asia/Kolkata",
-          "providerStatus": "ACTIVE",
-          "lastVerifiedAt": "2026-10-31T15:01:49.150Z",
+          "providerStatus": "DELETED",
+          "lastVerifiedAt": "2026-11-01T08:24:41.800Z",
           "lastError": null
         },
         "googleTask": null
       },
-      "googleEventId": "50oub392qifqql88i360cngrg4",
+      "googleEventId": null,
       "originalGoogleEventId": "50oub392qifqql88i360cngrg4",
       "previousGoogleEventIds": [
         "50oub392qifqql88i360cngrg4"
       ],
       "eventLink": "https://www.google.com/calendar/event?eid=NTBvdWIzOTJxaWZxcWw4OGkzNjBjbmdyZzQga3Jpc2gyMzE1MzEwNkBt&ctz=Asia/Kolkata",
       "sourceOrigin": "GOOGLE_CALENDAR_EXTERNAL",
-      "status": "PENDING",
-      "completed": false,
-      "completedAt": null,
-      "calendarRemovalResult": null,
+      "status": "COMPLETED",
+      "completed": true,
+      "completedAt": "2026-11-01T08:24:41.800Z",
+      "calendarRemovalResult": {
+        "attempted": true,
+        "success": true,
+        "status": "DELETED",
+        "googleEventId": "50oub392qifqql88i360cngrg4",
+        "calendarId": "primary",
+        "httpStatus": 204,
+        "verifiedAbsent": true,
+        "alreadyAbsent": false,
+        "removedAt": "2026-11-01T08:24:41.757Z",
+        "message": "Event deleted from Google Calendar and verified absent."
+      },
       "createdAt": "2026-10-31T00:52:52.000Z",
-      "updatedAt": "2026-10-31T00:52:52.596Z",
+      "updatedAt": "2026-11-01T08:24:41.800Z",
       "auditTrail": [
         {
           "id": "taud_1793431151872_84th",
@@ -752,6 +867,47 @@
             "title": "ActionFlow Production Verification — Asia/Kolkata",
             "googleEventId": "50oub392qifqql88i360cngrg4",
             "sourceOrigin": "GOOGLE_CALENDAR_EXTERNAL"
+          }
+        },
+        {
+          "id": "taud_1793521480446_8l6u",
+          "event": "TASK_COMPLETION_REQUESTED",
+          "taskId": "task_gcal_50oub392qifqql88i360cngrg4",
+          "actionId": "ext_gcal_50oub392qifqql88i360cngrg4",
+          "googleEventId": "50oub392qifqql88i360cngrg4",
+          "timestamp": "2026-11-01T08:24:40.446Z",
+          "details": {
+            "title": "ActionFlow Production Verification — Asia/Kolkata",
+            "googleEventId": "50oub392qifqql88i360cngrg4"
+          }
+        },
+        {
+          "id": "taud_1793521481800_cxyo",
+          "event": "CALENDAR_EVENT_DELETED",
+          "taskId": "task_gcal_50oub392qifqql88i360cngrg4",
+          "actionId": "ext_gcal_50oub392qifqql88i360cngrg4",
+          "googleEventId": "50oub392qifqql88i360cngrg4",
+          "timestamp": "2026-11-01T08:24:41.800Z",
+          "details": {
+            "googleEventId": "50oub392qifqql88i360cngrg4",
+            "calendarId": "primary",
+            "removalStatus": "DELETED",
+            "verifiedAbsent": true
+          }
+        },
+        {
+          "id": "taud_1793521481800_zr21",
+          "event": "TASK_COMPLETED",
+          "taskId": "task_gcal_50oub392qifqql88i360cngrg4",
+          "actionId": "ext_gcal_50oub392qifqql88i360cngrg4",
+          "googleEventId": "50oub392qifqql88i360cngrg4",
+          "timestamp": "2026-11-01T08:24:41.800Z",
+          "details": {
+            "completedAt": "2026-11-01T08:24:41.800Z",
+            "originalTitle": "ActionFlow Production Verification — Asia/Kolkata",
+            "originalScheduledStart": "2026-11-01T10:00:00+05:30",
+            "originalGoogleEventId": "50oub392qifqql88i360cngrg4",
+            "calendarRemovalStatus": "DELETED"
           }
         }
       ]
@@ -782,28 +938,39 @@
           "resourceType": "GOOGLE_CALENDAR_EVENT",
           "calendarId": "primary",
           "calendarName": "primary (krish23153106@gmail.com)",
-          "eventId": "l1mktc2ttfhbaejdk9ssbhd43o",
+          "eventId": null,
           "originalEventId": "l1mktc2ttfhbaejdk9ssbhd43o",
           "htmlLink": "https://www.google.com/calendar/event?eid=bDFta3RjMnR0ZmhiYWVqZGs5c3NiaGQ0M28ga3Jpc2gyMzE1MzEwNkBt&ctz=Asia/Kolkata",
-          "providerStatus": "ACTIVE",
-          "lastVerifiedAt": "2026-10-31T15:01:49.150Z",
+          "providerStatus": "DELETED",
+          "lastVerifiedAt": "2026-11-01T08:24:40.244Z",
           "lastError": null
         },
         "googleTask": null
       },
-      "googleEventId": "l1mktc2ttfhbaejdk9ssbhd43o",
+      "googleEventId": null,
       "originalGoogleEventId": "l1mktc2ttfhbaejdk9ssbhd43o",
       "previousGoogleEventIds": [
         "l1mktc2ttfhbaejdk9ssbhd43o"
       ],
       "eventLink": "https://www.google.com/calendar/event?eid=bDFta3RjMnR0ZmhiYWVqZGs5c3NiaGQ0M28ga3Jpc2gyMzE1MzEwNkBt&ctz=Asia/Kolkata",
       "sourceOrigin": "ACTIONFLOW_AI",
-      "status": "PENDING",
-      "completed": false,
-      "completedAt": null,
-      "calendarRemovalResult": null,
+      "status": "COMPLETED",
+      "completed": true,
+      "completedAt": "2026-11-01T08:24:40.244Z",
+      "calendarRemovalResult": {
+        "attempted": true,
+        "success": true,
+        "status": "DELETED",
+        "googleEventId": "l1mktc2ttfhbaejdk9ssbhd43o",
+        "calendarId": "primary",
+        "httpStatus": 204,
+        "verifiedAbsent": true,
+        "alreadyAbsent": false,
+        "removedAt": "2026-11-01T08:24:40.226Z",
+        "message": "Event deleted from Google Calendar and verified absent."
+      },
       "createdAt": "2026-10-31T00:45:57.000Z",
-      "updatedAt": "2026-10-31T00:45:58.163Z",
+      "updatedAt": "2026-11-01T08:24:40.244Z",
       "auditTrail": [
         {
           "id": "taud_1793431151902_amkx",
@@ -816,6 +983,47 @@
             "title": "Project review",
             "googleEventId": "l1mktc2ttfhbaejdk9ssbhd43o",
             "sourceOrigin": "ACTIONFLOW_AI"
+          }
+        },
+        {
+          "id": "taud_1793521478746_uqlo",
+          "event": "TASK_COMPLETION_REQUESTED",
+          "taskId": "task_gcal_l1mktc2ttfhbaejdk9ssbhd43o",
+          "actionId": "act_gcal_l1mktc2ttfhbaejdk9ssbhd43o",
+          "googleEventId": "l1mktc2ttfhbaejdk9ssbhd43o",
+          "timestamp": "2026-11-01T08:24:38.746Z",
+          "details": {
+            "title": "Project review",
+            "googleEventId": "l1mktc2ttfhbaejdk9ssbhd43o"
+          }
+        },
+        {
+          "id": "taud_1793521480244_damu",
+          "event": "CALENDAR_EVENT_DELETED",
+          "taskId": "task_gcal_l1mktc2ttfhbaejdk9ssbhd43o",
+          "actionId": "act_gcal_l1mktc2ttfhbaejdk9ssbhd43o",
+          "googleEventId": "l1mktc2ttfhbaejdk9ssbhd43o",
+          "timestamp": "2026-11-01T08:24:40.244Z",
+          "details": {
+            "googleEventId": "l1mktc2ttfhbaejdk9ssbhd43o",
+            "calendarId": "primary",
+            "removalStatus": "DELETED",
+            "verifiedAbsent": true
+          }
+        },
+        {
+          "id": "taud_1793521480244_oof0",
+          "event": "TASK_COMPLETED",
+          "taskId": "task_gcal_l1mktc2ttfhbaejdk9ssbhd43o",
+          "actionId": "act_gcal_l1mktc2ttfhbaejdk9ssbhd43o",
+          "googleEventId": "l1mktc2ttfhbaejdk9ssbhd43o",
+          "timestamp": "2026-11-01T08:24:40.244Z",
+          "details": {
+            "completedAt": "2026-11-01T08:24:40.244Z",
+            "originalTitle": "Project review",
+            "originalScheduledStart": "2026-11-01T11:00:00+05:30",
+            "originalGoogleEventId": "l1mktc2ttfhbaejdk9ssbhd43o",
+            "calendarRemovalStatus": "DELETED"
           }
         }
       ]
@@ -1079,6 +1287,509 @@
             "originalScheduledStart": "2026-11-01T10:00:00+05:30",
             "originalGoogleEventId": "7d4f4n02l2s9te6v143v85g06s",
             "calendarRemovalStatus": "DELETED"
+          }
+        }
+      ]
+    },
+    {
+      "id": "act_1793517360323_0",
+      "actionId": "act_1793517360323_0",
+      "sessionId": "ses_e0fdf7dd",
+      "ownerEmail": "krish23153106@gmail.com",
+      "title": "Meeting tomorrow",
+      "originalTitle": "Meeting tomorrow",
+      "description": "",
+      "priority": "Normal",
+      "assigneeId": null,
+      "assigneeName": null,
+      "roomId": "room_unassigned",
+      "roomNameSnapshot": "Unassigned",
+      "roomCategory": "Needs Review",
+      "classificationConfidence": 0.4,
+      "classificationReason": "No reliable room destination identified. Please assign manually.",
+      "classificationSource": "RULE_ENGINE",
+      "routingRuleId": "rule_unassigned",
+      "requiresRoomReview": true,
+      "sourceTranscriptId": null,
+      "sourceActionId": "act_1793517360323_0",
+      "organizationId": "org_default",
+      "scheduledStart": "2026-11-02T10:00:00+05:30",
+      "scheduledEnd": "2026-11-02T10:30:00+05:30",
+      "originalScheduledStart": "2026-11-02T10:00:00+05:30",
+      "originalScheduledEnd": "2026-11-02T10:30:00+05:30",
+      "dueDate": "2026-11-02T10:00:00+05:30",
+      "durationMinutes": 30,
+      "timeZone": "Asia/Kolkata",
+      "calendarId": "primary",
+      "calendarName": "Primary (krish23153106@gmail.com)",
+      "resourceType": "GOOGLE_CALENDAR_EVENT",
+      "linkedResources": {
+        "googleCalendarEvent": {
+          "resourceType": "GOOGLE_CALENDAR_EVENT",
+          "calendarId": "primary",
+          "calendarName": "Primary (krish23153106@gmail.com)",
+          "eventId": null,
+          "originalEventId": "7224ohvkq0gl1atretd8f2ll14",
+          "htmlLink": "https://www.google.com/calendar/event?eid=NG0xNWxiczk3bXBrOGNtbmc2ajltdWsxdjgga3Jpc2gyMzE1MzEwNkBt",
+          "providerStatus": "DELETED",
+          "lastVerifiedAt": "2026-11-01T08:24:47.420Z",
+          "lastError": null
+        },
+        "googleTask": null
+      },
+      "googleEventId": null,
+      "originalGoogleEventId": "7224ohvkq0gl1atretd8f2ll14",
+      "previousGoogleEventIds": [
+        "7224ohvkq0gl1atretd8f2ll14",
+        "4m15lbs97mpk8cmng6j9muk1v8"
+      ],
+      "eventLink": "https://www.google.com/calendar/event?eid=NG0xNWxiczk3bXBrOGNtbmc2ajltdWsxdjgga3Jpc2gyMzE1MzEwNkBt",
+      "status": "COMPLETED",
+      "completed": true,
+      "completedAt": "2026-11-01T08:24:47.420Z",
+      "calendarRemovalResult": {
+        "attempted": true,
+        "success": true,
+        "status": "DELETED",
+        "googleEventId": "4m15lbs97mpk8cmng6j9muk1v8",
+        "calendarId": "primary",
+        "httpStatus": 204,
+        "verifiedAbsent": true,
+        "alreadyAbsent": false,
+        "removedAt": "2026-11-01T08:24:47.366Z",
+        "message": "Event deleted from Google Calendar and verified absent."
+      },
+      "createdAt": "2026-11-01T07:16:35.100Z",
+      "updatedAt": "2026-11-01T08:24:47.420Z",
+      "auditTrail": [
+        {
+          "id": "taud_1793517395113_8sz2",
+          "event": "TASK_CREATED",
+          "taskId": "act_1793517360323_0",
+          "actionId": "act_1793517360323_0",
+          "googleEventId": "7224ohvkq0gl1atretd8f2ll14",
+          "timestamp": "2026-11-01T07:16:35.113Z",
+          "details": {
+            "title": "Meeting tomorrow",
+            "roomId": "room_unassigned",
+            "roomName": "Unassigned",
+            "requiresRoomReview": true,
+            "scheduledStart": "2026-11-02T10:00:00+05:30",
+            "scheduledEnd": "2026-11-02T10:30:00+05:30",
+            "googleEventId": "7224ohvkq0gl1atretd8f2ll14",
+            "resourceType": "GOOGLE_CALENDAR_EVENT"
+          }
+        },
+        {
+          "id": "taud_1793521470710_dfgv",
+          "event": "TASK_COMPLETION_REQUESTED",
+          "taskId": "act_1793517360323_0",
+          "actionId": "act_1793517360323_0",
+          "googleEventId": "7224ohvkq0gl1atretd8f2ll14",
+          "timestamp": "2026-11-01T08:24:30.710Z",
+          "details": {
+            "title": "Meeting tomorrow",
+            "googleEventId": "7224ohvkq0gl1atretd8f2ll14"
+          }
+        },
+        {
+          "id": "taud_1793521473072_f8bn",
+          "event": "CALENDAR_EVENT_DELETED",
+          "taskId": "act_1793517360323_0",
+          "actionId": "act_1793517360323_0",
+          "googleEventId": "7224ohvkq0gl1atretd8f2ll14",
+          "timestamp": "2026-11-01T08:24:33.072Z",
+          "details": {
+            "googleEventId": "7224ohvkq0gl1atretd8f2ll14",
+            "calendarId": "primary",
+            "removalStatus": "DELETED",
+            "verifiedAbsent": true
+          }
+        },
+        {
+          "id": "taud_1793521473072_jnba",
+          "event": "TASK_COMPLETED",
+          "taskId": "act_1793517360323_0",
+          "actionId": "act_1793517360323_0",
+          "googleEventId": "7224ohvkq0gl1atretd8f2ll14",
+          "timestamp": "2026-11-01T08:24:33.072Z",
+          "details": {
+            "completedAt": "2026-11-01T08:24:33.072Z",
+            "originalTitle": "Meeting tomorrow",
+            "originalScheduledStart": "2026-11-02T10:00:00+05:30",
+            "originalGoogleEventId": "7224ohvkq0gl1atretd8f2ll14",
+            "calendarRemovalStatus": "DELETED"
+          }
+        },
+        {
+          "id": "taud_1793521474833_207o",
+          "event": "TASK_COMPLETION_UNDONE",
+          "taskId": "act_1793517360323_0",
+          "actionId": "act_1793517360323_0",
+          "googleEventId": "4m15lbs97mpk8cmng6j9muk1v8",
+          "timestamp": "2026-11-01T08:24:34.833Z",
+          "details": {
+            "undoneAt": "2026-11-01T08:24:34.833Z",
+            "previousGoogleEventId": "7224ohvkq0gl1atretd8f2ll14",
+            "recreatedGoogleEventId": "4m15lbs97mpk8cmng6j9muk1v8"
+          }
+        },
+        {
+          "id": "taud_1793521486140_7zxd",
+          "event": "TASK_COMPLETION_REQUESTED",
+          "taskId": "act_1793517360323_0",
+          "actionId": "act_1793517360323_0",
+          "googleEventId": "4m15lbs97mpk8cmng6j9muk1v8",
+          "timestamp": "2026-11-01T08:24:46.140Z",
+          "details": {
+            "title": "Meeting tomorrow",
+            "googleEventId": "4m15lbs97mpk8cmng6j9muk1v8"
+          }
+        },
+        {
+          "id": "taud_1793521487420_r2ar",
+          "event": "CALENDAR_EVENT_DELETED",
+          "taskId": "act_1793517360323_0",
+          "actionId": "act_1793517360323_0",
+          "googleEventId": "4m15lbs97mpk8cmng6j9muk1v8",
+          "timestamp": "2026-11-01T08:24:47.420Z",
+          "details": {
+            "googleEventId": "4m15lbs97mpk8cmng6j9muk1v8",
+            "calendarId": "primary",
+            "removalStatus": "DELETED",
+            "verifiedAbsent": true
+          }
+        },
+        {
+          "id": "taud_1793521487420_vrjt",
+          "event": "TASK_COMPLETED",
+          "taskId": "act_1793517360323_0",
+          "actionId": "act_1793517360323_0",
+          "googleEventId": "7224ohvkq0gl1atretd8f2ll14",
+          "timestamp": "2026-11-01T08:24:47.420Z",
+          "details": {
+            "completedAt": "2026-11-01T08:24:47.420Z",
+            "originalTitle": "Meeting tomorrow",
+            "originalScheduledStart": "2026-11-02T10:00:00+05:30",
+            "originalGoogleEventId": "7224ohvkq0gl1atretd8f2ll14",
+            "calendarRemovalStatus": "DELETED"
+          }
+        }
+      ],
+      "undoneAt": "2026-11-01T08:24:34.833Z"
+    },
+    {
+      "id": "act_1793519948899_0",
+      "actionId": "act_1793519948899_0",
+      "sessionId": "ses_e0fdf7dd",
+      "ownerEmail": "krish23153106@gmail.com",
+      "title": "Add Milk to shopping list",
+      "originalTitle": "Add Milk to shopping list",
+      "description": "Add Milk to shopping list",
+      "priority": "Normal",
+      "assigneeId": null,
+      "assigneeName": null,
+      "roomId": "room_kitchen",
+      "roomNameSnapshot": "Kitchen",
+      "roomCategory": "Shopping",
+      "classificationConfidence": 0.98,
+      "classificationReason": "Explicitly directed to Kitchen via \"kitchen\"",
+      "classificationSource": "EXPLICIT_MENTION",
+      "routingRuleId": "rule_explicit_room_kitchen",
+      "requiresRoomReview": false,
+      "sourceTranscriptId": null,
+      "sourceActionId": "act_1793519948899_0",
+      "organizationId": "org_default",
+      "scheduledStart": null,
+      "scheduledEnd": null,
+      "originalScheduledStart": null,
+      "originalScheduledEnd": null,
+      "dueDate": null,
+      "durationMinutes": 60,
+      "timeZone": "Asia/Kolkata",
+      "calendarId": "primary",
+      "calendarName": "Primary (krish23153106@gmail.com)",
+      "resourceType": "ACTIONFLOW_TASK",
+      "linkedResources": {
+        "googleCalendarEvent": null,
+        "googleTask": null
+      },
+      "googleEventId": null,
+      "originalGoogleEventId": null,
+      "previousGoogleEventIds": [],
+      "eventLink": null,
+      "status": "COMPLETED",
+      "completed": true,
+      "completedAt": "2026-11-01T08:05:56.372Z",
+      "calendarRemovalResult": {
+        "attempted": false,
+        "success": true,
+        "status": "NOT_APPLICABLE",
+        "googleEventId": null,
+        "verifiedAbsent": true,
+        "message": "Task had no linked Google Calendar event."
+      },
+      "createdAt": "2026-11-01T07:59:59.875Z",
+      "updatedAt": "2026-11-01T08:05:56.372Z",
+      "auditTrail": [
+        {
+          "id": "taud_1793519999877_kxoi",
+          "event": "TASK_CREATED",
+          "taskId": "act_1793519948899_0",
+          "actionId": "act_1793519948899_0",
+          "googleEventId": null,
+          "timestamp": "2026-11-01T07:59:59.877Z",
+          "details": {
+            "title": "Add Milk to shopping list",
+            "roomId": "room_kitchen",
+            "roomName": "Kitchen",
+            "requiresRoomReview": false,
+            "scheduledStart": null,
+            "scheduledEnd": null,
+            "googleEventId": null,
+            "resourceType": "ACTIONFLOW_TASK"
+          }
+        },
+        {
+          "id": "taud_1793520325241_e8wj",
+          "event": "TASK_COMPLETION_REQUESTED",
+          "taskId": "act_1793519948899_0",
+          "actionId": "act_1793519948899_0",
+          "googleEventId": null,
+          "timestamp": "2026-11-01T08:05:25.241Z",
+          "details": {
+            "title": "Add Milk to shopping list",
+            "googleEventId": null
+          }
+        },
+        {
+          "id": "taud_1793520325284_sl9o",
+          "event": "TASK_COMPLETED",
+          "taskId": "act_1793519948899_0",
+          "actionId": "act_1793519948899_0",
+          "googleEventId": null,
+          "timestamp": "2026-11-01T08:05:25.285Z",
+          "details": {
+            "completedAt": "2026-11-01T08:05:25.284Z",
+            "originalTitle": "Add Milk to shopping list",
+            "originalScheduledStart": null,
+            "originalGoogleEventId": null,
+            "calendarRemovalStatus": "NOT_APPLICABLE"
+          }
+        },
+        {
+          "id": "taud_1793520326165_pntd",
+          "event": "TASK_REOPENED",
+          "taskId": "act_1793519948899_0",
+          "actionId": "act_1793519948899_0",
+          "googleEventId": null,
+          "timestamp": "2026-11-01T08:05:26.165Z",
+          "details": {
+            "reason": "Reopened from Room Dashboard"
+          }
+        },
+        {
+          "id": "taud_1793520327975_1ipm",
+          "event": "TASK_COMPLETION_REQUESTED",
+          "taskId": "act_1793519948899_0",
+          "actionId": "act_1793519948899_0",
+          "googleEventId": null,
+          "timestamp": "2026-11-01T08:05:27.975Z",
+          "details": {
+            "title": "Add Milk to shopping list",
+            "googleEventId": null
+          }
+        },
+        {
+          "id": "taud_1793520328067_0jh8",
+          "event": "TASK_COMPLETED",
+          "taskId": "act_1793519948899_0",
+          "actionId": "act_1793519948899_0",
+          "googleEventId": null,
+          "timestamp": "2026-11-01T08:05:28.067Z",
+          "details": {
+            "completedAt": "2026-11-01T08:05:28.067Z",
+            "originalTitle": "Add Milk to shopping list",
+            "originalScheduledStart": null,
+            "originalGoogleEventId": null,
+            "calendarRemovalStatus": "NOT_APPLICABLE"
+          }
+        },
+        {
+          "id": "taud_1793520345128_4ans",
+          "event": "TASK_REOPENED",
+          "taskId": "act_1793519948899_0",
+          "actionId": "act_1793519948899_0",
+          "googleEventId": null,
+          "timestamp": "2026-11-01T08:05:45.128Z",
+          "details": {
+            "reason": "Reopened from Room Dashboard"
+          }
+        },
+        {
+          "id": "taud_1793520353219_gusk",
+          "event": "TASK_COMPLETION_REQUESTED",
+          "taskId": "act_1793519948899_0",
+          "actionId": "act_1793519948899_0",
+          "googleEventId": null,
+          "timestamp": "2026-11-01T08:05:53.219Z",
+          "details": {
+            "title": "Add Milk to shopping list",
+            "googleEventId": null
+          }
+        },
+        {
+          "id": "taud_1793520353260_gyn8",
+          "event": "TASK_COMPLETED",
+          "taskId": "act_1793519948899_0",
+          "actionId": "act_1793519948899_0",
+          "googleEventId": null,
+          "timestamp": "2026-11-01T08:05:53.260Z",
+          "details": {
+            "completedAt": "2026-11-01T08:05:53.260Z",
+            "originalTitle": "Add Milk to shopping list",
+            "originalScheduledStart": null,
+            "originalGoogleEventId": null,
+            "calendarRemovalStatus": "NOT_APPLICABLE"
+          }
+        },
+        {
+          "id": "taud_1793520354518_tbd0",
+          "event": "TASK_REOPENED",
+          "taskId": "act_1793519948899_0",
+          "actionId": "act_1793519948899_0",
+          "googleEventId": null,
+          "timestamp": "2026-11-01T08:05:54.518Z",
+          "details": {
+            "reason": "Reopened from Room Dashboard"
+          }
+        },
+        {
+          "id": "taud_1793520356338_fd4d",
+          "event": "TASK_COMPLETION_REQUESTED",
+          "taskId": "act_1793519948899_0",
+          "actionId": "act_1793519948899_0",
+          "googleEventId": null,
+          "timestamp": "2026-11-01T08:05:56.338Z",
+          "details": {
+            "title": "Add Milk to shopping list",
+            "googleEventId": null
+          }
+        },
+        {
+          "id": "taud_1793520356372_70hu",
+          "event": "TASK_COMPLETED",
+          "taskId": "act_1793519948899_0",
+          "actionId": "act_1793519948899_0",
+          "googleEventId": null,
+          "timestamp": "2026-11-01T08:05:56.372Z",
+          "details": {
+            "completedAt": "2026-11-01T08:05:56.372Z",
+            "originalTitle": "Add Milk to shopping list",
+            "originalScheduledStart": null,
+            "originalGoogleEventId": null,
+            "calendarRemovalStatus": "NOT_APPLICABLE"
+          }
+        }
+      ]
+    },
+    {
+      "id": "act_1793520571873_0",
+      "actionId": "act_1793520571873_0",
+      "sessionId": "ses_e0fdf7dd",
+      "ownerEmail": "krish23153106@gmail.com",
+      "title": "Reception key table go clean karna",
+      "originalTitle": "Reception key table go clean karna",
+      "description": "Reception key table go clean karna",
+      "priority": "Normal",
+      "assigneeId": null,
+      "assigneeName": null,
+      "roomId": "room_reception",
+      "roomNameSnapshot": "Reception",
+      "roomCategory": "Visitor Management",
+      "classificationConfidence": 0.98,
+      "classificationReason": "Explicitly directed to Reception via \"reception ke\"",
+      "classificationSource": "EXPLICIT_MENTION",
+      "routingRuleId": "rule_explicit_room_reception",
+      "requiresRoomReview": false,
+      "sourceTranscriptId": null,
+      "sourceActionId": "act_1793520571873_0",
+      "organizationId": "org_default",
+      "scheduledStart": null,
+      "scheduledEnd": null,
+      "originalScheduledStart": null,
+      "originalScheduledEnd": null,
+      "dueDate": null,
+      "durationMinutes": 60,
+      "timeZone": "Asia/Kolkata",
+      "calendarId": "primary",
+      "calendarName": "Primary (krish23153106@gmail.com)",
+      "resourceType": "ACTIONFLOW_TASK",
+      "linkedResources": {
+        "googleCalendarEvent": null,
+        "googleTask": null
+      },
+      "googleEventId": null,
+      "originalGoogleEventId": null,
+      "previousGoogleEventIds": [],
+      "eventLink": null,
+      "status": "COMPLETED",
+      "completed": true,
+      "completedAt": "2026-11-01T08:21:10.947Z",
+      "calendarRemovalResult": {
+        "attempted": false,
+        "success": true,
+        "status": "NOT_APPLICABLE",
+        "googleEventId": null,
+        "verifiedAbsent": true,
+        "message": "Task had no linked Google Calendar event."
+      },
+      "createdAt": "2026-11-01T08:09:48.962Z",
+      "updatedAt": "2026-11-01T08:21:10.947Z",
+      "auditTrail": [
+        {
+          "id": "taud_1793520589047_4mo3",
+          "event": "TASK_CREATED",
+          "taskId": "act_1793520571873_0",
+          "actionId": "act_1793520571873_0",
+          "googleEventId": null,
+          "timestamp": "2026-11-01T08:09:49.047Z",
+          "details": {
+            "title": "Reception key table go clean karna",
+            "roomId": "room_reception",
+            "roomName": "Reception",
+            "requiresRoomReview": false,
+            "scheduledStart": null,
+            "scheduledEnd": null,
+            "googleEventId": null,
+            "resourceType": "ACTIONFLOW_TASK"
+          }
+        },
+        {
+          "id": "taud_1793521270796_5r68",
+          "event": "TASK_COMPLETION_REQUESTED",
+          "taskId": "act_1793520571873_0",
+          "actionId": "act_1793520571873_0",
+          "googleEventId": null,
+          "timestamp": "2026-11-01T08:21:10.796Z",
+          "details": {
+            "title": "Reception key table go clean karna",
+            "googleEventId": null
+          }
+        },
+        {
+          "id": "taud_1793521270947_cjar",
+          "event": "TASK_COMPLETED",
+          "taskId": "act_1793520571873_0",
+          "actionId": "act_1793520571873_0",
+          "googleEventId": null,
+          "timestamp": "2026-11-01T08:21:10.947Z",
+          "details": {
+            "completedAt": "2026-11-01T08:21:10.947Z",
+            "originalTitle": "Reception key table go clean karna",
+            "originalScheduledStart": null,
+            "originalGoogleEventId": null,
+            "calendarRemovalStatus": "NOT_APPLICABLE"
           }
         }
       ]

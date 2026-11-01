@@ -24,19 +24,19 @@ const EXPLICIT_ROOM_PATTERNS = [
 ];
 
 const SEMANTIC_OBJECTS = [
-  { entities: ['bread', 'milk', 'doodh', 'dudh', 'vegetables', 'sabzi', 'grocery', 'atta', 'dal', 'chawal', 'rice', 'oil', 'masala', 'stove', 'gas cylinder', 'crockery', 'bartan', 'utensil', 'dishwasher', 'cookware', 'microwave', 'toaster', 'mixer', 'juicer', 'chai', 'coffee', 'fridge repair'], roomId: 'room_kitchen', name: 'Kitchen', category: 'Shopping', confidence: 0.92 },
-  { entities: ['visitor register', 'entry register', 'visitor entry', 'guest register', 'sign-in sheet', 'gate pass', 'visitor badge', 'front desk', 'inward register'], roomId: 'room_reception', name: 'Reception', category: 'Visitor Management', confidence: 0.94 },
-  { entities: ['bed', 'mattress', 'almirah', 'wardrobe', 'bedsheet', 'pillow', 'blanket', 'nightstand', 'dressing table', 'ac service', 'ac servicing', 'air conditioner service'], roomId: 'room_bedroom', name: 'Bedroom', category: 'AC Servicing', confidence: 0.88 },
-  { entities: ['geyser', 'tap', 'nal', 'shower', 'sink', 'commode', 'flush', 'plumbing', 'toilet paper', 'towel', 'soap', 'shampoo', 'drain', 'bathroom leakage'], roomId: 'room_bathroom', name: 'Bathroom', category: 'Plumbing', confidence: 0.93 },
+  { entities: ['bread', 'milk', 'doodh', 'dudh', 'vegetables', 'sabzi', 'grocery', 'atta', 'dal', 'chawal', 'rice', 'oil', 'masala', 'stove', 'gas cylinder', 'crockery', 'bartan', 'utensil', 'dishwasher', 'cookware', 'microwave', 'toaster', 'mixer', 'juicer', 'chai', 'coffee', 'fridge', 'refrigerator', 'clean fridge', 'clean the fridge', 'fridge repair', 'refrigerator repair'], roomId: 'room_kitchen', name: 'Kitchen', category: 'Shopping', confidence: 0.92 },
+  { entities: ['visitor register', 'entry register', 'visitor entry', 'guest register', 'sign-in sheet', 'gate pass', 'visitor badge', 'front desk', 'inward register', 'water for guests', 'water arrange', 'guests water', 'guests'], roomId: 'room_reception', name: 'Reception', category: 'Visitor Management', confidence: 0.94 },
+  { entities: ['bed', 'mattress', 'almirah', 'wardrobe', 'bedsheet', 'change bedsheet', 'pillow', 'blanket', 'nightstand', 'dressing table', 'ac service', 'ac servicing', 'air conditioner service'], roomId: 'room_bedroom', name: 'Bedroom', category: 'AC Servicing', confidence: 0.88 },
+  { entities: ['geyser', 'tap', 'nal', 'tap repair', 'bathroom tap', 'shower', 'sink', 'commode', 'flush', 'plumbing', 'toilet paper', 'towel', 'soap', 'shampoo', 'drain', 'bathroom leakage'], roomId: 'room_bathroom', name: 'Bathroom', category: 'Plumbing', confidence: 0.93 },
   { entities: ['presentation', 'audit report', 'sales report', 'laptop', 'printer', 'scanner', 'stationery', 'payroll', 'timesheet', 'staff coordination', 'employee meeting'], roomId: 'room_office', name: 'Office', category: 'Documentation', confidence: 0.89 },
   { entities: ['projector', 'whiteboard', 'video conference', 'zoom room', 'client presentation', 'board meeting', 'standup call'], roomId: 'room_meeting_room', name: 'Meeting Room', category: 'Client Meetings', confidence: 0.90 },
   { entities: ['spare parts', 'storage boxes', 'cartons', 'extra inventory', 'old files', 'archive boxes', 'tools shed', 'godown'], roomId: 'room_store_room', name: 'Store Room', category: 'Inventory Audit', confidence: 0.89 },
   { entities: ['dining table', 'table mat', 'cutlery', 'plates and spoons', 'dinner table', 'dinnerware'], roomId: 'room_dining_room', name: 'Dining Room', category: 'Table Setup', confidence: 0.91 },
-  { entities: ['car wash', 'bike wash', 'ev charger', 'tyre puncture', 'tire air', 'garage gate', 'security gate', 'parking slot'], roomId: 'room_parking_area', name: 'Parking Area', category: 'Vehicle Maintenance', confidence: 0.92 },
+  { entities: ['car wash', 'wash car', 'car', 'bike wash', 'ev charger', 'tyre puncture', 'tire air', 'garage gate', 'security gate', 'parking slot', 'clean parking', 'parking area clean'], roomId: 'room_parking_area', name: 'Parking Area', category: 'Vehicle Maintenance', confidence: 0.92 },
   { entities: ['electricity bill', 'bijli ka bill', 'water bill', 'paani ka bill', 'wifi bill', 'broadband bill', 'income tax', 'itr', 'gst filing', 'bank deposit', 'cheque clearing', 'insurance premium', 'policy renewal'], roomId: 'room_general', name: 'General', category: 'Bill Payments', confidence: 0.93 }
 ];
 
-export function classifyRoomDeterministic(text = '', destination = '') {
+export function classifyRoomDeterministic(text = '', destination = '', contextualRoomId = null) {
   const raw = String(text || '').trim();
   const lower = raw.toLowerCase();
 
@@ -50,6 +50,24 @@ export function classifyRoomDeterministic(text = '', destination = '') {
         confidenceScore: 0.98,
         classificationReason: `Explicitly directed to ${pat.name}`,
         classificationSource: 'EXPLICIT_MENTION',
+        requiresReview: false,
+        outcome: 'AUTO_ASSIGNED'
+      };
+    }
+  }
+
+  // 1b. Contextual inheritance if provided
+  if (contextualRoomId) {
+    const found = EXPLICIT_ROOM_PATTERNS.find(p => p.roomId === contextualRoomId);
+    if (found) {
+      const isCleaning = /\b(?:clean|saaf|safai|wash|dhona)\b/i.test(raw);
+      return {
+        roomId: found.roomId,
+        roomName: found.name,
+        roomCategory: isCleaning ? 'Cleaning / Maintenance' : 'General',
+        confidenceScore: 0.95,
+        classificationReason: `Inherited active room context (${found.name})`,
+        classificationSource: 'CONTEXT_INHERITED',
         requiresReview: false,
         outcome: 'AUTO_ASSIGNED'
       };
