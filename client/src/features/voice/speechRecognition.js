@@ -46,6 +46,11 @@ export function createSpeechRecognizer({
 
   let recognition = null;
   let isListening = false;
+  // Set when the user asks to stop. Guards against the browser firing
+  // onstart AFTER stop() was requested (clicking stop quickly), which
+  // previously left the microphone running forever.
+  let stopRequested = false;
+  let forceEndTimer = null;
 
   const initRecognizer = () => {
     try {
@@ -57,6 +62,11 @@ export function createSpeechRecognizer({
 
       instance.onstart = () => {
         isListening = true;
+        if (stopRequested) {
+          // User already pressed stop before the mic actually started
+          try { instance.abort(); } catch { /* ignore */ }
+          return;
+        }
         onStart?.();
       };
 
@@ -82,6 +92,7 @@ export function createSpeechRecognizer({
       };
 
       instance.onerror = (event) => {
+        if (recognition !== instance) return;
         let message = 'Speech recognition error occurred.';
         switch (event.error) {
           case 'not-allowed':
@@ -107,7 +118,11 @@ export function createSpeechRecognizer({
       };
 
       instance.onend = () => {
+        // Ignore late onend from a superseded session (e.g. quick pause -> resume)
+        if (recognition !== instance) return;
         isListening = false;
+        clearTimeout(forceEndTimer);
+        recognition = null;
         onEnd?.();
       };
 
@@ -122,7 +137,15 @@ export function createSpeechRecognizer({
     isSupported: true,
     isListening: () => isListening,
     start: () => {
-      if (isListening) return;
+      if (recognition && !stopRequested) return; // already running
+      if (recognition) {
+        // Previous session is still shutting down — discard it
+        const old = recognition;
+        recognition = null;
+        try { old.abort(); } catch { /* ignore */ }
+      }
+      clearTimeout(forceEndTimer);
+      stopRequested = false;
       try {
         recognition = initRecognizer();
         if (recognition) {
@@ -133,17 +156,29 @@ export function createSpeechRecognizer({
       }
     },
     stop: () => {
-      if (!isListening || !recognition) return;
+      stopRequested = true;
+      const inst = recognition;
+      if (!inst) return;
       try {
-        recognition.stop();
+        inst.stop();
       } catch (err) {
         console.warn('Error stopping recognition:', err);
       }
+      // Some browsers delay or never fire onend after stop(); force-abort.
+      clearTimeout(forceEndTimer);
+      forceEndTimer = setTimeout(() => {
+        if (recognition === inst) {
+          try { inst.abort(); } catch { /* ignore */ }
+        }
+      }, 1500);
     },
     abort: () => {
-      if (!recognition) return;
+      stopRequested = true;
+      clearTimeout(forceEndTimer);
+      const inst = recognition;
+      if (!inst) return;
       try {
-        recognition.abort();
+        inst.abort();
       } catch (err) {
         console.warn('Error aborting recognition:', err);
       }

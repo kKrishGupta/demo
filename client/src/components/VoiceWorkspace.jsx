@@ -15,7 +15,7 @@
  *  - Multi-destination action cards with approval flows
  */
 
-import { useState, useEffect, useRef, useCallback } from 'react';
+import { useState, useEffect, useRef, useCallback ,useMemo} from 'react';
 import {
   Mic, Square, RefreshCw, Sparkles, AlertCircle, AlertTriangle, Edit2, Edit3, Check, X, Plus,
   Zap, Calendar, Bell, ShoppingCart, MessageSquare, Mail,
@@ -556,6 +556,9 @@ export default function VoiceWorkspace({
   const fileInputRef = useRef(null);
   const timerRef = useRef(null);
   const transcriptRef = useRef('');
+  const pausedRef = useRef(false);      // true while user has paused (suppress processing on end)
+  const cancelledRef = useRef(false);   // true when user cancelled (discard transcript)
+  const triggerProcessRef = useRef(null);
 
   // WebSocket for progressive AI updates
   const { connected: wsConnected } = useActionFlowWS({
@@ -612,10 +615,17 @@ export default function VoiceWorkspace({
         setErrorMsg('');
       },
       onEnd: () => {
-        setIsListening(false);
         setInterimText('');
+        // Paused: recognizer is stopped but session stays open for resume
+        if (pausedRef.current) return;
+        setIsListening(false);
+        setIsPaused(false);
+        if (cancelledRef.current) {
+          cancelledRef.current = false;
+          return;
+        }
         if (transcriptRef.current?.trim()) {
-          triggerProcess(transcriptRef.current.trim());
+          triggerProcessRef.current?.(transcriptRef.current.trim());
         }
       },
       onInterim: (t) => setInterimText(t),
@@ -624,8 +634,9 @@ export default function VoiceWorkspace({
         setInterimText('');
       },
       onError: (msg, code) => {
-        setIsListening(false);
         setInterimText('');
+        if (pausedRef.current) return;
+        setIsListening(false);
         if (code !== 'aborted') setErrorMsg(msg);
       }
     });
@@ -665,22 +676,54 @@ export default function VoiceWorkspace({
     }
   }, [directory, projects, departments, industry, commandMode, onTaskFormFill, onCommandProcessed]);
 
+  // Always call the latest triggerProcess from recognizer callbacks
+  useEffect(() => { triggerProcessRef.current = triggerProcess; }, [triggerProcess]);
+
   // Start / Stop Microphone
   const handleToggleMic = () => {
     if (isListening) {
-      recognizerRef.current?.stop();
+      // STOP: update UI immediately, then stop the recognizer.
+      const wasPaused = pausedRef.current;
+      pausedRef.current = false;
+      cancelledRef.current = false;
+      setIsListening(false);
+      setIsPaused(false);
+      setInterimText('');
+      if (wasPaused) {
+        // Recognizer is already stopped while paused — process what we have
+        if (transcriptRef.current?.trim()) {
+          triggerProcessRef.current?.(transcriptRef.current.trim());
+        }
+      } else {
+        recognizerRef.current?.stop();
+      }
     } else {
       setErrorMsg('');
       setRecordSecs(0);
+      pausedRef.current = false;
+      cancelledRef.current = false;
       recognizerRef.current?.start();
     }
   };
 
   const handlePauseResume = () => {
-    setIsPaused(!isPaused);
+    if (!isPaused) {
+      // PAUSE: actually stop capturing audio, keep transcript & session open
+      pausedRef.current = true;
+      setIsPaused(true);
+      setInterimText('');
+      recognizerRef.current?.stop();
+    } else {
+      // RESUME: start a fresh recognition; new speech is appended to transcript
+      pausedRef.current = false;
+      setIsPaused(false);
+      recognizerRef.current?.start();
+    }
   };
 
   const handleCancelRecording = () => {
+    cancelledRef.current = true;
+    pausedRef.current = false;
     recognizerRef.current?.abort();
     setIsListening(false);
     setIsPaused(false);
