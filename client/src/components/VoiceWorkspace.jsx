@@ -298,7 +298,7 @@ function ActionCard({ action, directory = [], rooms = [], onApprove, onReject, o
               <select
                 value={localRoomId}
                 onChange={(e) => handleRoomSelect(e.target.value)}
-                className="bg-white border border-slate-300 rounded-md px-2 py-0.5 text-xs font-semibold text-slate-800 focus:outline-none focus:ring-1 focus:ring-blue-500 shadow-2xs max-w-[180px] sm:max-w-xs truncate"
+                className="bg-white border border-slate-300 rounded-md px-2 py-0.5 text-xs font-semibold text-slate-800 focus:outline-none focus:ring-1 focus:ring-blue-500 shadow-2xs max-w-45 sm:max-w-xs truncate"
               >
                 {allRoomOptions.map(r => (
                   <option key={r.roomId} value={r.roomId}>{r.name} {r.category ? `(${r.category})` : ''}</option>
@@ -342,7 +342,7 @@ function ActionCard({ action, directory = [], rooms = [], onApprove, onReject, o
               </div>
             ) : (
               <div className="flex items-start justify-between gap-2 group mt-0.5">
-                <h3 className="text-sm font-semibold text-slate-800 break-words leading-snug">
+                <h3 className="text-sm font-semibold text-slate-800 wrap-break-word leading-snug">
                   {localTitle}
                 </h3>
                 {!isDone && (
@@ -360,7 +360,7 @@ function ActionCard({ action, directory = [], rooms = [], onApprove, onReject, o
           </div>
 
           {/* Classification Reason Text (Section 5) */}
-          <div className="mt-1 text-[11px] text-slate-500 flex items-center gap-1 break-words">
+          <div className="mt-1 text-[11px] text-slate-500 flex items-center gap-1 wrap-break-word">
             <span className="font-medium text-slate-600 shrink-0">💡 Reason:</span>
             <span className="italic truncate">
               {action.classificationReason || `Classified to ${localRoomName} based on voice utterance context`}
@@ -438,7 +438,7 @@ function ActionCard({ action, directory = [], rooms = [], onApprove, onReject, o
                   <button
                     type="button"
                     onClick={() => onReject(action)}
-                    className="min-h-[36px] px-2.5 py-1 text-xs text-slate-500 hover:text-rose-600 rounded-lg hover:bg-slate-50 transition"
+                    className="min-h-9 px-2.5 py-1 text-xs text-slate-500 hover:text-rose-600 rounded-lg hover:bg-slate-50 transition"
                   >
                     Dismiss
                   </button>
@@ -449,7 +449,7 @@ function ActionCard({ action, directory = [], rooms = [], onApprove, onReject, o
                     type="button"
                     onClick={() => { setResult(null); handleApprove(); }}
                     disabled={submitting}
-                    className="min-h-[36px] px-3 py-1 bg-rose-600 hover:bg-rose-700 text-white rounded-lg text-xs font-semibold flex items-center gap-1 shadow-xs transition"
+                    className="min-h-9 px-3 py-1 bg-rose-600 hover:bg-rose-700 text-white rounded-lg text-xs font-semibold flex items-center gap-1 shadow-xs transition"
                   >
                     {submitting ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <RotateCcw className="w-3.5 h-3.5" />}
                     Retry
@@ -472,7 +472,7 @@ function ActionCard({ action, directory = [], rooms = [], onApprove, onReject, o
                           roomName: localRoomName
                         })}
                         disabled={submitting}
-                        className="min-h-[36px] px-3 py-1.5 bg-orange-600 hover:bg-orange-700 text-white rounded-lg text-xs font-semibold flex items-center gap-1.5 shadow-xs transition"
+                        className="min-h-9 px-3 py-1.5 bg-orange-600 hover:bg-orange-700 text-white rounded-lg text-xs font-semibold flex items-center gap-1.5 shadow-xs transition"
                         title="Add to Shopping List"
                       >
                         {submitting ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <span>🛒</span>}
@@ -492,7 +492,7 @@ function ActionCard({ action, directory = [], rooms = [], onApprove, onReject, o
                         roomName: localRoomName
                       })}
                       disabled={submitting}
-                      className="min-h-[36px] px-3.5 py-1.5 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-xs font-bold flex items-center gap-1.5 shadow-xs transition"
+                      className="min-h-9 px-3.5 py-1.5 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-xs font-bold flex items-center gap-1.5 shadow-xs transition"
                       title="Add to Task Manager and distribute to Room"
                     >
                       {submitting ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <Plus className="w-3.5 h-3.5" />}
@@ -881,7 +881,7 @@ export default function VoiceWorkspace({
   return (
     <div className="bg-white border border-slate-200/90 rounded-2xl shadow-sm overflow-hidden w-full max-w-full">
       {/* Top Banner & Mode Switcher */}
-      <div className="px-4 sm:px-5 py-4 border-b border-slate-100 bg-gradient-to-br from-indigo-700 via-blue-700 to-indigo-900 text-white w-full max-w-full">
+      <div className="px-4 sm:px-5 py-4 border-b border-slate-100 bg-linear-to-br from-indigo-700 via-blue-700 to-indigo-900 text-white w-full max-w-full">
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 w-full">
           <div>
             <h2 className="text-base font-bold flex items-center gap-2">
@@ -938,7 +938,7 @@ export default function VoiceWorkspace({
       <div className="p-3.5 sm:p-5 space-y-4 w-full max-w-full overflow-hidden">
         {/* Voice Interaction Feedback Notification Banner */}
         {commandResult?.feedbackMessage && (
-          <div className="p-3 bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200 rounded-xl flex items-center gap-2.5 text-xs text-blue-900 animate-in fade-in">
+          <div className="p-3 bg-linear-to-r from-blue-50 to-indigo-50 border border-blue-200 rounded-xl flex items-center gap-2.5 text-xs text-blue-900 animate-in fade-in">
             <Volume2 className="w-4 h-4 text-blue-600 shrink-0" />
             <span className="font-medium">{commandResult.feedbackMessage}</span>
           </div>
@@ -1023,7 +1023,7 @@ export default function VoiceWorkspace({
                 <select
                   value={selectedDeviceId}
                   onChange={(e) => setSelectedDeviceId(e.target.value)}
-                  className="bg-white border border-slate-300 rounded-lg px-2 py-1 text-xs text-slate-700 focus:outline-none focus:ring-1 focus:ring-blue-500 w-full sm:w-auto max-w-[260px] sm:max-w-xs truncate min-w-0 shadow-2xs box-border"
+                  className="bg-white border border-slate-300 rounded-lg px-2 py-1 text-xs text-slate-700 focus:outline-none focus:ring-1 focus:ring-blue-500 w-full sm:w-auto max-w-65 sm:max-w-xs truncate min-w-0 shadow-2xs box-border"
                 >
                   {audioDevices.map(d => (
                     <option key={d.deviceId} value={d.deviceId}>{d.label || `Microphone ${d.deviceId.slice(0,5)}`}</option>
@@ -1156,7 +1156,7 @@ export default function VoiceWorkspace({
 
         {/* Continuous Meeting Mode Controller */}
         {commandMode === 'meeting' && (
-          <div className="p-3.5 bg-gradient-to-r from-indigo-50/90 to-purple-50/90 border border-indigo-200 rounded-xl flex items-center justify-between gap-3">
+          <div className="p-3.5 bg-linear-to-r from-indigo-50/90 to-purple-50/90 border border-indigo-200 rounded-xl flex items-center justify-between gap-3">
             <div className="flex items-center gap-2">
               <span className="relative flex h-2.5 w-2.5">
                 {isListening && <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-indigo-400 opacity-75"></span>}
